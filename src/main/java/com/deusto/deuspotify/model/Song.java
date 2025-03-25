@@ -1,14 +1,34 @@
 package com.deusto.deuspotify.model;
 
-import java.util.List;
+import jakarta.persistence.*;
 import java.util.Date;
+import java.util.List;
 
+@Entity
+@Table(name = "songs")
 public class Song {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String name;
+
+    @ElementCollection
+    @CollectionTable(name = "song_artists", joinColumns = @JoinColumn(name = "song_id"))
+    @Column(name = "artist")
     private List<String> artists;
-    private double duration; // en minutos o segundos, según prefieras
+
+    private double duration;
+
+    @ElementCollection
+    @CollectionTable(name = "song_genres", joinColumns = @JoinColumn(name = "song_id"))
+    @Column(name = "genre")
     private List<String> genres;
+
+    @Temporal(TemporalType.DATE)
     private Date dateOfRelease;
+
     private String album;
 
     public Song() {}
@@ -22,7 +42,11 @@ public class Song {
         this.album = album;
     }
 
-    // Getters y setters
+    // Getters and setters
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
@@ -43,6 +67,13 @@ public class Song {
 
     @Override
     public String toString() {
-        return "Song{" + "name='" + name + '\'' + ", artists=" + artists + ", duration=" + duration + ", genres=" + genres + ", dateOfRelease=" + dateOfRelease + ", album='" + album + '\'' + '}';
+        return "Song{" +
+                "name='" + name + '\'' +
+                ", artists=" + artists +
+                ", duration=" + duration +
+                ", genres=" + genres +
+                ", dateOfRelease=" + dateOfRelease +
+                ", album='" + album + '\'' +
+                '}';
     }
 }
