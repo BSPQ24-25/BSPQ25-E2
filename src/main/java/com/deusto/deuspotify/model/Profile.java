@@ -1,13 +1,37 @@
 package com.deusto.deuspotify.model;
+
+import jakarta.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "profiles")
 public class Profile {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String username;
     private String password;
     private String email;
+
+    @ElementCollection
+    @CollectionTable(name = "profile_friends", joinColumns = @JoinColumn(name = "profile_id"))
+    @Column(name = "friend")
     private List<String> friendsList;
+
+    @ManyToMany
+    @JoinTable(
+        name = "profile_favourite_song",
+        joinColumns = @JoinColumn(name = "profile_id"),
+        inverseJoinColumns = @JoinColumn(name = "song_id")
+    )
     private List<Song> favouriteSongs;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "profile_id")
     private List<Playlist> playlists;
+
     private boolean isAdmin;
 
     public Profile() {}
@@ -22,7 +46,11 @@ public class Profile {
         this.isAdmin = isAdmin;
     }
 
-    // Getters y setters
+    // Getters and setters
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
 
@@ -46,6 +74,10 @@ public class Profile {
 
     @Override
     public String toString() {
-        return "Profile{" + "username='" + username + '\'' + ", email='" + email + '\'' + ", isAdmin=" + isAdmin + '}';
+        return "Profile{" +
+                "username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", isAdmin=" + isAdmin +
+                '}';
     }
 }
