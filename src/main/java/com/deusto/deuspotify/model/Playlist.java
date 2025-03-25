@@ -1,12 +1,33 @@
 package com.deusto.deuspotify.model;
 
+import jakarta.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "playlists")
 public class Playlist {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ElementCollection
     private List<String> owners;
+
     private boolean isPublic;
+
+    @ManyToMany
+    @JoinTable(
+        name = "playlist_song",
+        joinColumns = @JoinColumn(name = "playlist_id"),
+        inverseJoinColumns = @JoinColumn(name = "song_id")
+    )
     private List<Song> songs;
+
     private int numberOfSongs;
+
+    @ElementCollection
+    @Column(name = "song_order")
     private List<Integer> order;
 
     public Playlist() {}
@@ -19,7 +40,11 @@ public class Playlist {
         this.order = order;
     }
 
-    // Getters y setters
+    // Getters and setters
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
     public List<String> getOwners() { return owners; }
     public void setOwners(List<String> owners) { this.owners = owners; }
 
@@ -27,7 +52,10 @@ public class Playlist {
     public void setPublic(boolean isPublic) { this.isPublic = isPublic; }
 
     public List<Song> getSongs() { return songs; }
-    public void setSongs(List<Song> songs) { this.songs = songs; this.numberOfSongs = songs.size(); }
+    public void setSongs(List<Song> songs) { 
+        this.songs = songs; 
+        this.numberOfSongs = songs != null ? songs.size() : 0;
+    }
 
     public int getNumberOfSongs() { return numberOfSongs; }
 
@@ -36,6 +64,11 @@ public class Playlist {
 
     @Override
     public String toString() {
-        return "Playlist{" + "owners=" + owners + ", isPublic=" + isPublic + ", numberOfSongs=" + numberOfSongs + ", order=" + order + '}';
+        return "Playlist{" +
+                "owners=" + owners +
+                ", isPublic=" + isPublic +
+                ", numberOfSongs=" + numberOfSongs +
+                ", order=" + order +
+                '}';
     }
 }
