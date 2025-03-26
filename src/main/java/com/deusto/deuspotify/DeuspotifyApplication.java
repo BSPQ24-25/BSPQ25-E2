@@ -8,6 +8,7 @@ public class DeuspotifyApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DeuspotifyApplication.class, args);
+		
 	}
 
 }
