@@ -41,6 +41,7 @@ public class DataInitializer implements CommandLineRunner {
 
         songRepository.save(song1);
         songRepository.save(song2);
+        System.out.println("Canciones en BBDD: " + songRepository.count());
 
         
         Profile profile1 = new Profile();
@@ -56,6 +57,7 @@ public class DataInitializer implements CommandLineRunner {
 
         profileRepository.save(profile1);
         profileRepository.save(profile2);
+        System.out.println("Perfiles en BBDD: " + profileRepository.count());
 
 
         Playlist playlist1 = new Playlist();
@@ -68,5 +70,6 @@ public class DataInitializer implements CommandLineRunner {
 
         playlistRepository.save(playlist1);
         playlistRepository.save(playlist2);
+        System.out.println("Playlists en BBDD: " + playlistRepository.count());
     }
 }
