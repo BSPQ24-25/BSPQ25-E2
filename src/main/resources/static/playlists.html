@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Playlists</title>
+</head>
+<body>
+    <h2>Playlists</h2>
+    <ul id="playlistsList"></ul>
+    <script>
+        fetch("http://localhost:8080/api/playlists")
+            .then(response => response.json())
+            .then(playlists => {
+                const list = document.getElementById("playlistsList");
+                playlists.forEach(playlist => {
+                    const item = document.createElement("li");
+                    item.innerHTML = `<a href="playlist_details.html?id=${playlist.id}">${playlist.owners.join(", ")}'s Playlist</a>`;
+                    list.appendChild(item);
+                });
+            });
+    </script>
+</body>
+</html>
