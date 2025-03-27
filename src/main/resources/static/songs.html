@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Songs</title>
+</head>
+<body>
+    <h2>Songs</h2>
+    <ul id="songsList"></ul>
+    <script>
+        fetch("http://localhost:8080/api/songs")
+            .then(response => response.json())
+            .then(songs => {
+                const list = document.getElementById("songsList");
+                songs.forEach(song => {
+                    const item = document.createElement("li");
+                    item.innerHTML = `<a href="song_details.html?id=${song.id}">${song.name}</a>`;
+                    list.appendChild(item);
+                });
+            });
+    </script>
+</body>
+</html>
