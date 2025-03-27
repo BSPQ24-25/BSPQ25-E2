@@ -1,25 +1,29 @@
-package com.deusto.deuspotify.controllers;
+package com.deusto.deuspotify.Controllers;
 
 import com.deusto.deuspotify.model.Playlist;
 import com.deusto.deuspotify.repositories.PlaylistRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/playlists")
-@CrossOrigin("*")  // Permite llamadas desde el frontend
+@CrossOrigin
 public class PlaylistController {
-
-    private final PlaylistRepository playlistRepository;
-
-    public PlaylistController(PlaylistRepository playlistRepository) {
-        this.playlistRepository = playlistRepository;
-    }
+    
+    @Autowired
+    private PlaylistRepository playlistRepository;
 
     @GetMapping
     public List<Playlist> getAllPlaylists() {
         return playlistRepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Playlist> getPlaylistById(@PathVariable Long id) {
+        return playlistRepository.findById(id);
     }
 
     @PostMapping
@@ -27,3 +31,4 @@ public class PlaylistController {
         return playlistRepository.save(playlist);
     }
 }
+
