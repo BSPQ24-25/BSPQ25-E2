@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Song</title>
+</head>
+<body>
+    <h2>Add a New Song</h2>
+    <form id="addSongForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+        <br>
+        <button type="submit">Add</button>
+    </form>
+    <script>
+        document.getElementById("addSongForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const song = { name: document.getElementById("name").value };
+            fetch("http://localhost:8080/api/songs", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(song)
+            }).then(() => window.location.href = "songs.html");
+        });
+    </script>
+</body>
+</html>
