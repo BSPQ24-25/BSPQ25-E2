@@ -1,8 +1,8 @@
-package com.deusto.deuspotify.Controllers;
+package com.deusto.deuspotify.controllers;
 
 import com.deusto.deuspotify.model.Profile;
-import com.deusto.deuspotify.repositories.ProfileRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.deusto.deuspotify.services.ProfileService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,21 +13,31 @@ import java.util.Optional;
 @CrossOrigin
 public class ProfileController {
 
-    @Autowired
-    private ProfileRepository profileRepository;
+    private final ProfileService profileService;
+
+    public ProfileController(ProfileService profileService) {
+        this.profileService = profileService;
+    }
 
     @GetMapping
-    public List<Profile> getAllProfiles() {
-        return profileRepository.findAll();
+    public ResponseEntity<List<Profile>> getAllProfiles() {
+        return ResponseEntity.ok(profileService.getAllProfiles());
     }
 
     @GetMapping("/{id}")
-    public Optional<Profile> getProfileById(@PathVariable Long id) {
-        return profileRepository.findById(id);
+    public ResponseEntity<Profile> getProfileById(@PathVariable Long id) {
+        Optional<Profile> profile = profileService.getProfileById(id);
+        return profile.map(ResponseEntity::ok)
+                      .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Profile createProfile(@RequestBody Profile profile) {
-        return profileRepository.save(profile);
+    public ResponseEntity<?> createProfile(@RequestBody Profile profile) {
+        try {
+            Profile savedProfile = profileService.registerUser(profile);
+            return ResponseEntity.ok(savedProfile);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error: " + e.getMessage());
+        }
     }
 }
