@@ -1,9 +1,10 @@
 package com.deusto.deuspotify;
+
 import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.deusto.deuspotify.repositories.SongRepository;
@@ -19,16 +20,19 @@ public class DataInitializer implements CommandLineRunner {
     private final SongRepository songRepository;
     private final ProfileRepository profileRepository;
     private final PlaylistRepository playlistRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public DataInitializer(SongRepository songRepository, ProfileRepository profileRepository, PlaylistRepository playlistRepository) {
+    public DataInitializer(SongRepository songRepository, ProfileRepository profileRepository, 
+                           PlaylistRepository playlistRepository, PasswordEncoder passwordEncoder) {
         this.songRepository = songRepository;
         this.profileRepository = profileRepository;
         this.playlistRepository = playlistRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public void run(String... args) throws Exception {
-        // Crear y guardar categorías
+        // Crear y guardar canciones
         Song song1 = new Song();
         Song song2 = new Song(
             "Bohemian Rhapsody",
@@ -43,12 +47,12 @@ public class DataInitializer implements CommandLineRunner {
         songRepository.save(song2);
         System.out.println("Canciones en BBDD: " + songRepository.count());
 
-        
+        // Crear perfiles con contraseñas hasheadas
         Profile profile1 = new Profile();
         Profile profile2 = new Profile(
-            "juanito99",
-            "superSegura123",
-            "juanito@example.com",
+            "asier",
+            passwordEncoder.encode("conhash"),  // Hashear contraseña
+            "asier@example.com",
             Arrays.asList("amigo1", "amigo2"),
             null,
             null,
@@ -59,7 +63,7 @@ public class DataInitializer implements CommandLineRunner {
         profileRepository.save(profile2);
         System.out.println("Perfiles en BBDD: " + profileRepository.count());
 
-
+        // Crear playlists
         Playlist playlist1 = new Playlist();
         Playlist playlist2 = new Playlist(
             Arrays.asList("juanito99"),
