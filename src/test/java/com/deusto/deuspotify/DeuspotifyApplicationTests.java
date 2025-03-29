@@ -126,4 +126,47 @@ class DeuspotifyApplicationTests {
         assertTrue(foundPlaylist.isPresent());
         assertEquals(1L, foundPlaylist.get().getId());
     }
+
+    // Test for retraving all songs
+    @Test
+    void getAllSongsTest() {
+        Song song1 = new Song();
+        Song song2 = new Song();
+
+        when(songRepository.findAll()).thenReturn(List.of(song1, song2));
+
+        List<Song> songs = songRepository.findAll();
+
+        assertEquals(2, songs.size());
+        assertTrue(songs.contains(song1));
+        assertTrue(songs.contains(song2));
+    }
+
+    // Test for getting a song by ID
+    @Test
+    void getSongByIdTest() {
+        Song song = new Song();
+        song.setId(1L);
+
+        when(songRepository.findById(1L)).thenReturn(Optional.of(song));
+
+        Optional<Song> foundSong = songRepository.findById(1L);
+
+        assertTrue(foundSong.isPresent());
+        assertEquals(1L, foundSong.get().getId());
+    }
+
+    // Test for adding a new song
+    @Test
+    void addSongTest() {
+        Song newSong = new Song();
+        newSong.setName("New Song");
+
+        when(songRepository.save(newSong)).thenReturn(newSong);
+
+        Song savedSong = songRepository.save(newSong);
+
+        assertNotNull(savedSong);
+        assertEquals("New Song", savedSong.getName());
+    }
 }
