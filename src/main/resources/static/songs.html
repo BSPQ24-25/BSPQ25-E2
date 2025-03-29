@@ -6,6 +6,7 @@
 <body>
     <h2>Songs</h2>
     <ul id="songsList"></ul>
+    <button onclick="window.location.href='add_song.html'">Add Song</button>
     <script>
         fetch("http://localhost:8080/api/songs")
             .then(response => response.json())
