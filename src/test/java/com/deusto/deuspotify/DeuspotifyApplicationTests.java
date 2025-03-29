@@ -1,25 +1,43 @@
 package com.deusto.deuspotify;
 
 import com.deusto.deuspotify.model.Profile;
+import com.deusto.deuspotify.Controllers.AuthController;
 import com.deusto.deuspotify.model.Playlist;
 import com.deusto.deuspotify.model.Song;
 import com.deusto.deuspotify.repositories.ProfileRepository;
 import com.deusto.deuspotify.repositories.PlaylistRepository;
 import com.deusto.deuspotify.repositories.SongRepository;
+import com.deusto.deuspotify.security.JwtUtil;
+import com.deusto.deuspotify.services.ProfileService;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
 class DeuspotifyApplicationTests {
+
+    @Mock
+    private AuthenticationManager authenticationManager;
+
+    @Mock
+    private ProfileService profileService;
+
+    @Mock
+    private JwtUtil jwtUtil;
 
     @Mock
     private ProfileRepository profileRepository;
@@ -30,10 +48,50 @@ class DeuspotifyApplicationTests {
     @Mock
     private SongRepository songRepository;
 
+    private AuthController authController;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
+        authController = new AuthController(authenticationManager, profileService, jwtUtil);
     }
+
+    // Auth Controller tests
+
+    @Test
+    void loginTest() {
+        String username = "testUser";
+        String password = "testPass";
+        String token = "dummy-token";
+        Map<String, String> loginRequest = Map.of("username", username, "password", password);
+
+        when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
+                .thenReturn(new UsernamePasswordAuthenticationToken(username, password));
+        when(jwtUtil.generateToken(username)).thenReturn(token);
+
+        ResponseEntity<?> response = authController.login(loginRequest);
+        Map<?, ?> responseBody = (Map<?, ?>) response.getBody();
+
+        assertNotNull(response);
+        assertEquals(200, response.getStatusCode().value());
+        assertNotNull(responseBody);
+        assertEquals(token, responseBody.get("token"));
+    }
+
+    @Test
+    void registerTest() {
+        Profile newProfile = new Profile();
+        newProfile.setUsername("newUser");
+        newProfile.setEmail("new@example.com");
+
+        when(profileService.registerUser(newProfile)).thenReturn(newProfile);
+        ResponseEntity<?> response = authController.register(newProfile);
+
+        assertNotNull(response);
+        assertEquals(200, response.getStatusCode().value());
+        assertEquals(newProfile, response.getBody());
+    }
+
 
     // Test for creating a new profile
     @Test
