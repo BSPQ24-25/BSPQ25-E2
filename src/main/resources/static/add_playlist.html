@@ -2,25 +2,45 @@
 <html>
 <head>
     <title>Add Playlist</title>
-</head>
-<body>
-    <h2>Create a New Playlist</h2>
-    <form id="addPlaylistForm">
-        <label for="owners">Owner(s):</label>
-        <input type="text" id="owners" required>
-        <br>
-        <button type="submit">Create</button>
-    </form>
     <script>
-        document.getElementById("addPlaylistForm").addEventListener("submit", function(event) {
+        async function createPlaylist(event) {
             event.preventDefault();
-            const playlist = { owners: [document.getElementById("owners").value] };
-            fetch("http://localhost:8080/api/playlists", {
+            const user = sessionStorage.getItem("username"); // Obtener usuario en sesión
+            if (!user) {
+                alert("No user logged in");
+                return;
+            }
+
+            const isPublic = document.getElementById("isPublic").checked;
+            const playlist = {
+                owners: [user],
+                isPublic: isPublic,
+                songs: [],
+                order: []
+            };
+
+            const response = await fetch("http://localhost:8080/api/playlists", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(playlist)
-            }).then(() => window.location.href = "playlists.html");
-        });
+            });
+
+            if (response.ok) {
+                alert("Playlist created successfully!");
+                window.location.href = "playlists.html";
+            } else {
+                alert("Failed to create playlist");
+            }
+        }
     </script>
+</head>
+<body>
+    <h2>Create a New Playlist</h2>
+    <form id="addPlaylistForm" onsubmit="createPlaylist(event)">
+        <label for="isPublic">Public:</label>
+        <input type="checkbox" id="isPublic">
+        <br>
+        <button type="submit">Create</button>
+    </form>
 </body>
 </html>
