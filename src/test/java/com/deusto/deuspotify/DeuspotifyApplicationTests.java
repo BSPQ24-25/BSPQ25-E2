@@ -35,6 +35,21 @@ class DeuspotifyApplicationTests {
         MockitoAnnotations.openMocks(this);
     }
 
+    // Test for getting al profiles
+    @Test
+    void getAllProfilesTest() {
+        Profile profile1 = new Profile();
+        Profile profile2 = new Profile();
+
+        when(profileRepository.findAll()).thenReturn(List.of(profile1, profile2));
+
+        List<Profile> profiles = profileRepository.findAll();
+
+        assertEquals(2, profiles.size());
+        assertTrue(profiles.contains(profile1));
+        assertTrue(profiles.contains(profile2));
+    }
+
     // Test for creating a new profile
     @Test
     void createProfileTest() {
@@ -51,19 +66,55 @@ class DeuspotifyApplicationTests {
         assertEquals("new@example.com", savedProfile.getEmail());
     }
 
-    // Test for retrieving a profile by username
+    // Test for retrieving a profile by ID
     @Test
-    void findProfileByUsernameTest() {
-        String username = "testUser";
+    void getProfileByIdTest() {
         Profile profile = new Profile();
-        profile.setUsername(username);
+        profile.setId(1L);
 
-        when(profileRepository.findByUsername(username)).thenReturn(Optional.of(profile));
+        when(profileRepository.findById(1L)).thenReturn(Optional.of(profile));
 
-        Optional<Profile> foundProfile = profileRepository.findByUsername(username);
+        Optional<Profile> foundProfile = profileRepository.findById(1L);
 
         assertTrue(foundProfile.isPresent());
-        assertEquals(username, foundProfile.get().getUsername());
+        assertEquals(1L, foundProfile.get().getId());
+    }
+
+    // Test for updating a profile
+    @Test
+    void updateProfileTest() {
+        Profile existingProfile = new Profile();
+        existingProfile.setId(1L);
+        existingProfile.setUsername("oldUser");
+
+        Profile updatedProfile = new Profile();
+        updatedProfile.setUsername("newUser");
+
+        when(profileRepository.findById(1L)).thenReturn(Optional.of(existingProfile));
+        when(profileRepository.save(existingProfile)).thenReturn(existingProfile);
+
+        existingProfile.setUsername(updatedProfile.getUsername());
+        profileRepository.save(existingProfile);
+
+        assertEquals("newUser", existingProfile.getUsername());
+    }
+
+    // Test for profile login
+    @Test
+    void loginTest() {
+        Profile profile = new Profile();
+        profile.setUsername("testUser");
+        profile.setPassword("testPassword");
+
+        when(profileRepository.findAll()).thenReturn(List.of(profile));
+
+        Profile loggedInProfile = profileRepository.findAll().stream()
+                .filter(p -> p.getUsername().equals("testUser") && p.getPassword().equals("testPassword"))
+                .findFirst()
+                .orElse(null);
+
+        assertNotNull(loggedInProfile);
+        assertEquals("testUser", loggedInProfile.getUsername());
     }
 
     // Test for creating a new playlist
@@ -169,4 +220,6 @@ class DeuspotifyApplicationTests {
         assertNotNull(savedSong);
         assertEquals("New Song", savedSong.getName());
     }
+
+
 }
