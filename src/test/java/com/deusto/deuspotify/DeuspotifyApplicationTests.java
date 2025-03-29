@@ -239,7 +239,7 @@ class DeuspotifyApplicationTests {
     }
 
     // Song Repository tests
-    // Test for retraving all songs
+    // Test for retrieving all songs
     @Test
     void getAllSongsTest() {
         Song song1 = new Song();
