@@ -159,7 +159,7 @@ class DeuspotifyApplicationTests {
 
     // Test for profile login
     @Test
-    void profileloginTest() {
+    void profileLoginTest() {
         Profile profile = new Profile();
         profile.setUsername("testUser");
         profile.setPassword("testPassword");
@@ -209,7 +209,7 @@ class DeuspotifyApplicationTests {
         assertTrue(playlist.getSongs().contains(song));
     }
 
-    // Test for retreaving all playlists
+    // Test for retrieving all playlists
     @Test
     void getAllPlaylistsTest() {
         Playlist playlist1 = new Playlist();
