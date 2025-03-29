@@ -66,4 +66,36 @@ class DeuspotifyApplicationTests {
         assertEquals(username, foundProfile.get().getUsername());
     }
 
+    // Test for creating a new playlist
+    @Test
+    void createPlaylistTest() {
+        Playlist newPlaylist = new Playlist();
+        newPlaylist.setOwners(List.of("owner1", "owner2"));
+        newPlaylist.setPublic(true);
+
+        when(playlistRepository.save(newPlaylist)).thenReturn(newPlaylist);
+
+        Playlist savedPlaylist = playlistRepository.save(newPlaylist);
+
+        assertNotNull(savedPlaylist);
+        assertTrue(savedPlaylist.isPublic());
+        assertEquals(2, savedPlaylist.getOwners().size());
+    }
+
+    // Test for adding a song to a playlist
+    @Test
+    void addSongToPlaylistTest() {
+        Playlist playlist = new Playlist();
+        Song song = new Song();
+        song.setName("Test Song");
+
+        when(playlistRepository.findById(1L)).thenReturn(Optional.of(playlist));
+        when(songRepository.findById(1L)).thenReturn(Optional.of(song));
+
+        playlist.setSongs(List.of(song));
+        playlistRepository.save(playlist);
+
+        assertTrue(playlist.getSongs().contains(song));
+    }
+
 }
