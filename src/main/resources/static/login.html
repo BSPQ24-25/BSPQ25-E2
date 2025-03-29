@@ -2,10 +2,30 @@
 <html>
 <head>
     <title>Login</title>
+    <script>
+        async function login(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            const response = await fetch("http://localhost:8080/api/profiles/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password })
+            });
+
+            if (response.ok) {
+                alert("Login successful! Redirecting to index...");
+                window.location.href = "index.html";
+            } else {
+                alert("Login failed. Check your credentials.");
+            }
+        }
+    </script>
 </head>
 <body>
     <h2>Login</h2>
-    <form id="loginForm">
+    <form id="loginForm" onsubmit="login(event)">
         <label for="username">Username:</label>
         <input type="text" id="username" required>
         <br>
@@ -14,11 +34,7 @@
         <br>
         <button type="submit">Login</button>
     </form>
-    <script>
-        document.getElementById("loginForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            window.location.href = "index.html";
-        });
-    </script>
+    <br>
+    <button onclick="window.location.href='register.html'">Create New User</button>
 </body>
 </html>

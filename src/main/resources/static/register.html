@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <script>
+        async function register(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const email = document.getElementById("email").value;
+
+            const response = await fetch("http://localhost:8080/api/profiles", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password, email, friendsList: [], favouriteSongs: [], playlists: [], isAdmin: false })
+            });
+
+            if (response.ok) {
+                alert("User registered successfully! Redirecting to login...");
+                window.location.href = "login.html";
+            } else {
+                alert("Registration failed. Please try again.");
+            }
+        }
+
+        function goToLogin() {
+            window.location.href = "login.html";
+        }
+    </script>
+</head>
+<body>
+    <h2>Register</h2>
+    <form id="registerForm" onsubmit="register(event)">
+        <label for="username">Username:</label>
+        <input type="text" id="username" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+        <br>
+        <button type="submit">Register</button>
+    </form>
+    <br>
+    <button onclick="goToLogin()">Back to Login</button>
+</body>
+</html>
