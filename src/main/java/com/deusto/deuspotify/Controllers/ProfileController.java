@@ -1,7 +1,8 @@
-package com.deusto.deuspotify.controllers;
+package com.deusto.deuspotify.Controllers;
 
 import com.deusto.deuspotify.model.Profile;
 import com.deusto.deuspotify.repositories.ProfileRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,14 +10,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/profiles")
-@CrossOrigin("*")  // Permite llamadas desde el frontend
+@CrossOrigin
 public class ProfileController {
 
-    private final ProfileRepository profileRepository;
-
-    public ProfileController(ProfileRepository profileRepository) {
-        this.profileRepository = profileRepository;
-    }
+    @Autowired
+    private ProfileRepository profileRepository;
 
     @GetMapping
     public List<Profile> getAllProfiles() {
@@ -32,7 +30,6 @@ public class ProfileController {
     public Profile createProfile(@RequestBody Profile profile) {
         return profileRepository.save(profile);
     }
-
     @PutMapping("/{id}")
     public Profile updateProfile(@PathVariable Long id, @RequestBody Profile updatedProfile) {
         return profileRepository.findById(id).map(profile -> {
