@@ -98,4 +98,32 @@ class DeuspotifyApplicationTests {
         assertTrue(playlist.getSongs().contains(song));
     }
 
+    // Test for retreaving all playlists
+    @Test
+    void getAllPlaylistsTest() {
+        Playlist playlist1 = new Playlist();
+        Playlist playlist2 = new Playlist();
+
+        when(playlistRepository.findAll()).thenReturn(List.of(playlist1, playlist2));
+
+        List<Playlist> playlists = playlistRepository.findAll();
+
+        assertEquals(2, playlists.size());
+        assertTrue(playlists.contains(playlist1));
+        assertTrue(playlists.contains(playlist2));
+    }
+
+    // Test for getting a playlist by ID
+    @Test
+    void getPlaylistByIdTest() {
+        Playlist playlist = new Playlist();
+        playlist.setId(1L);
+
+        when(playlistRepository.findById(1L)).thenReturn(Optional.of(playlist));
+
+        Optional<Playlist> foundPlaylist = playlistRepository.findById(1L);
+
+        assertTrue(foundPlaylist.isPresent());
+        assertEquals(1L, foundPlaylist.get().getId());
+    }
 }
