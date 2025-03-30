@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Songs</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
+<<<<<<< HEAD
 <body>
     <h2>Songs</h2>
     <ul id="songsList"></ul>
     <button onclick="window.location.href='add_song.html'">Add Song</button>
+=======
+<body class="side-layout">
+    <div class="sidebar">
+        <div class="button-group">
+            <button onclick="window.location.href='add_song.html'">Add Song</button>
+            <button onclick="window.location.href='edit_song.html'">Edit Song</button>
+            <button onclick="window.location.href='delete_song.html'">Delete Song</button>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <h2>Your Songs</h2>
+        <ul id="songsList"></ul>
+    </div>
+
+>>>>>>> origin/ane
     <script>
         fetch("http://localhost:8080/api/songs")
             .then(response => response.json())
@@ -16,7 +34,8 @@
                 const list = document.getElementById("songsList");
                 songs.forEach(song => {
                     const item = document.createElement("li");
-                    item.innerHTML = `<a href="song_details.html?id=${song.id}">${song.name}</a>`;
+                    item.id = `song-${song.id}`;
+                    item.textContent = song.name;
                     list.appendChild(item);
                 });
             });
