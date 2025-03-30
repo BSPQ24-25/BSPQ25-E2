@@ -1,7 +1,8 @@
 package com.deusto.deuspotify.Controllers;
 
 import com.deusto.deuspotify.model.Song;
-import com.deusto.deuspotify.repositories.SongRepository;
+import com.deusto.deuspotify.services.DeuspotifyServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,20 +15,20 @@ import java.util.Optional;
 public class SongController {
     
     @Autowired
-    private SongRepository songRepository;
-
+    private DeuspotifyServiceImpl deuspotifyServiceImpl;
+    
     @GetMapping
     public List<Song> getAllSongs() {
-        return songRepository.findAll();
+        return deuspotifyServiceImpl.retrieveAllSongs();
     }
 
     @GetMapping("/{id}")
     public Optional<Song> getSongById(@PathVariable Long id) {
-        return songRepository.findById(id);
+        return deuspotifyServiceImpl.findSong(id);
     }
 
     @PostMapping
     public Song addSong(@RequestBody Song song) {
-        return songRepository.save(song);
+        return deuspotifyServiceImpl.addSong(song);
     }
 }
