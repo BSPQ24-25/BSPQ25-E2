@@ -1,4 +1,5 @@
 package com.deusto.deuspotify.controllers;
+import com.deusto.deuspotify.repositories.ProfileRepository;
 
 import com.deusto.deuspotify.model.Profile;
 import com.deusto.deuspotify.services.ProfileService;
@@ -14,9 +15,12 @@ import java.util.Optional;
 public class ProfileController {
 
     private final ProfileService profileService;
+    private final ProfileRepository profileRepository;
 
-    public ProfileController(ProfileService profileService) {
+
+    public ProfileController(ProfileService profileService, ProfileRepository profileRepository) {
         this.profileService = profileService;
+        this.profileRepository = profileRepository;
     }
 
     @GetMapping
@@ -40,31 +44,29 @@ public class ProfileController {
             return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
     }
+
     @PutMapping("/{id}")
-    public Profile updateProfile(@PathVariable Long id, @RequestBody Profile updatedProfile) {
-        return profileRepository.findById(id).map(profile -> {
-            profile.setUsername(updatedProfile.getUsername());
-            profile.setPassword(updatedProfile.getPassword());
-            profile.setEmail(updatedProfile.getEmail());
-            profile.setFriendsList(updatedProfile.getFriendsList());
-            profile.setFavouriteSongs(updatedProfile.getFavouriteSongs());
-            profile.setPlaylists(updatedProfile.getPlaylists());
-            profile.setAdmin(updatedProfile.isAdmin());
-            return profileRepository.save(profile);
-        }).orElse(null);
+    public ResponseEntity<?> updateProfile(@PathVariable Long id, @RequestBody Profile updatedProfile) {
+        return profileService.updateProfile(id, updatedProfile)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
+    
 
     @DeleteMapping("/{id}")
-    public void deleteProfile(@PathVariable Long id) {
-        profileRepository.deleteById(id);
+    public ResponseEntity<?> deleteProfile(@PathVariable Long id) {
+        if (profileService.deleteProfile(id)) {
+            return ResponseEntity.ok("Perfil eliminado correctamente.");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping("/login")
-    public Profile login(@RequestBody Profile loginRequest) {
-        return profileRepository.findAll().stream()
-                .filter(profile -> profile.getUsername().equals(loginRequest.getUsername())
-                        && profile.getPassword().equals(loginRequest.getPassword()))
-                .findFirst()
-                .orElse(null);
+    public ResponseEntity<?> login(@RequestBody Profile loginRequest) {
+        Optional<Profile> profile = profileService.login(loginRequest.getUsername(), loginRequest.getPassword());
+        return profile.map(ResponseEntity::ok)
+                    .orElseGet(() -> ResponseEntity.status(401).body(null)); // Devolvemos `null` en lugar de un String
     }
+
 }

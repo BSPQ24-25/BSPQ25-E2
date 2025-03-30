@@ -45,14 +45,40 @@ public class ProfileService implements UserDetailsService {
 
     @Transactional
     public Profile registerUser(Profile profile) {
-        // Verificar si el usuario ya existe
         if (profileRepository.findByUsername(profile.getUsername()).isPresent()) {
             throw new RuntimeException("El usuario ya existe.");
         }
-        
-        // Hashear la contraseña antes de guardar
         profile.setPassword(passwordEncoder.encode(profile.getPassword()));
-        
         return profileRepository.save(profile);
+    }
+
+    @Transactional
+    public Optional<Profile> updateProfile(Long id, Profile updatedProfile) {
+        return profileRepository.findById(id).map(profile -> {
+            profile.setUsername(updatedProfile.getUsername());
+            if (!updatedProfile.getPassword().isEmpty()) {
+                profile.setPassword(passwordEncoder.encode(updatedProfile.getPassword()));
+            }
+            profile.setEmail(updatedProfile.getEmail());
+            profile.setFriendsList(updatedProfile.getFriendsList());
+            profile.setFavouriteSongs(updatedProfile.getFavouriteSongs());
+            profile.setPlaylists(updatedProfile.getPlaylists());
+            profile.setAdmin(updatedProfile.isAdmin());
+            return profileRepository.save(profile);
+        });
+    }
+
+    @Transactional
+    public boolean deleteProfile(Long id) {
+        if (profileRepository.existsById(id)) {
+            profileRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+    public Optional<Profile> login(String username, String password) {
+        return profileRepository.findByUsername(username)
+                .filter(profile -> passwordEncoder.matches(password, profile.getPassword()));
     }
 }
