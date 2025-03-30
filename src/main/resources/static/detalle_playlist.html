@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle de la Playlist</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="side-layout">
+    <div class="main-content">
+        <h2>Detalles de la Playlist</h2>
+        <div id="playlistDetails"></div>
+        <br>
+        <button id="editBtn">Editar</button>
+        <button id="deleteBtn">Eliminar</button>
+        <button onclick="window.location.href='playlists.html'">Volver</button>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const playlistId = params.get('id');
+
+        if (!playlistId) {
+            document.getElementById("playlistDetails").innerText = "No se ha proporcionado una playlist válida.";
+        } else {
+            fetch(`http://localhost:8080/api/playlists/${playlistId}`)
+                .then(res => res.json())
+                .then(pl => {
+                    const container = document.getElementById("playlistDetails");
+                    container.innerHTML = `
+                        <p><strong>ID:</strong> ${pl.id}</p>
+                        <p><strong>Propietarios:</strong> ${pl.owners.join(', ')}</p>
+                        <p><strong>Pública:</strong> ${pl.public ? 'Sí' : 'No'}</p>
+                        <p><strong>Número de Canciones:</strong> ${pl.numberOfSongs}</p>
+                        <p><strong>Orden:</strong> ${pl.order.join(', ')}</p>
+                        <p><strong>Canciones:</strong></p>
+                        <ul>${pl.songs.map(song => `<li>${song.name}</li>`).join('')}</ul>
+                    `;
+
+                    document.getElementById("editBtn").onclick = () => {
+                        window.location.href = `edit_playlist.html?id=${pl.id}`;
+                    };
+
+                    document.getElementById("deleteBtn").onclick = () => {
+                        if (confirm("¿Seguro que quieres eliminar esta playlist?")) {
+                            fetch(`http://localhost:8080/api/playlists/${pl.id}`, {
+                                method: "DELETE"
+                            })
+                            .then(() => {
+                                alert("Playlist eliminada correctamente.");
+                                window.location.href = "playlists.html";
+                            });
+                        }
+                    };
+                })
+                .catch(error => {
+                    document.getElementById("playlistDetails").innerText = "Error al cargar los detalles.";
+                    console.error(error);
+                });
+        }
+    </script>
+</body>
+</html>

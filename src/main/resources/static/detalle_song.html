@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle de la Canción</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="side-layout">
+    <div class="main-content">
+        <h2>Detalles de la Canción</h2>
+        <div id="songDetails"></div>
+        <br>
+        <button id="editBtn">Editar</button>
+        <button id="deleteBtn">Eliminar</button>
+        <button onclick="window.location.href='songs.html'">Volver</button>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const songId = params.get('id');
+
+        if (!songId) {
+            document.getElementById("songDetails").innerText = "No se ha proporcionado una canción válida.";
+        } else {
+            fetch(`http://localhost:8080/api/songs/${songId}`)
+                .then(res => res.json())
+                .then(song => {
+                    const container = document.getElementById("songDetails");
+                    container.innerHTML = `
+                        <p><strong>Nombre:</strong> ${song.name}</p>
+                        <p><strong>Artistas:</strong> ${song.artists.join(', ')}</p>
+                        <p><strong>Duración:</strong> ${song.duration} minutos</p>
+                        <p><strong>Géneros:</strong> ${song.genres.join(', ')}</p>
+                        <p><strong>Fecha de Lanzamiento:</strong> ${new Date(song.dateOfRelease).toLocaleDateString()}</p>
+                        <p><strong>Álbum:</strong> ${song.album}</p>
+                    `;
+
+                    document.getElementById("editBtn").onclick = () => {
+                        window.location.href = `edit_song.html?id=${song.id}`;
+                    };
+
+                    document.getElementById("deleteBtn").onclick = () => {
+                        if (confirm("¿Seguro que quieres eliminar esta canción?")) {
+                            fetch(`http://localhost:8080/api/songs/${song.id}`, {
+                                method: "DELETE"
+                            })
+                            .then(() => {
+                                alert("Canción eliminada correctamente.");
+                                window.location.href = "songs.html";
+                            });
+                        }
+                    };
+                })
+                .catch(error => {
+                    document.getElementById("songDetails").innerText = "Error al cargar los detalles.";
+                    console.error(error);
+                });
+        }
+    </script>
+</body>
+</html>

@@ -12,6 +12,8 @@
             <button onclick="window.location.href='add_playlist.html'">Add Playlist</button>
             <button onclick="window.location.href='edit_playlist.html'">Edit Playlist</button>
             <button onclick="window.location.href='delete_playlist.html'">Delete Playlist</button>
+            <button onclick="window.location.href='index.html'">Volver al Inicio</button>
+
         </div>
     </div>
 
@@ -28,7 +30,14 @@
                 playlists.forEach(pl => {
                     const item = document.createElement("li");
                     item.id = `playlist-${pl.id}`;
-                    item.textContent = `Playlist #${pl.id}`;
+
+                    const link = document.createElement("a");
+                    link.href = `detalle_playlist.html?id=${pl.id}`;
+                    link.textContent = `Playlist #${pl.id}`;
+                    link.style.textDecoration = "none";
+                    link.style.color = "inherit";
+
+                    item.appendChild(link);
                     list.appendChild(item);
                 });
             });

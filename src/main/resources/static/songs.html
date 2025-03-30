@@ -12,6 +12,7 @@
             <button onclick="window.location.href='add_song.html'">Add Song</button>
             <button onclick="window.location.href='edit_song.html'">Edit Song</button>
             <button onclick="window.location.href='delete_song.html'">Delete Song</button>
+            <button onclick="window.location.href='index.html'">Volver al Inicio</button>
         </div>
     </div>
 
@@ -28,7 +29,14 @@
                 songs.forEach(song => {
                     const item = document.createElement("li");
                     item.id = `song-${song.id}`;
-                    item.textContent = song.name;
+
+                    const link = document.createElement("a");
+                    link.href = `detalle_song.html?id=${song.id}`;
+                    link.textContent = song.name;
+                    link.style.textDecoration = "none"; 
+                    link.style.color = "inherit"; 
+
+                    item.appendChild(link);
                     list.appendChild(item);
                 });
             });
