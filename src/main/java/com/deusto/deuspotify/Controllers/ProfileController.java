@@ -1,5 +1,4 @@
 package com.deusto.deuspotify.Controllers;
-import com.deusto.deuspotify.repositories.ProfileRepository;
 
 import com.deusto.deuspotify.model.Profile;
 import com.deusto.deuspotify.services.ProfileService;
@@ -15,12 +14,10 @@ import java.util.Optional;
 public class ProfileController {
 
     private final ProfileService profileService;
-    private final ProfileRepository profileRepository;
 
 
-    public ProfileController(ProfileService profileService, ProfileRepository profileRepository) {
+    public ProfileController(ProfileService profileService) {
         this.profileService = profileService;
-        this.profileRepository = profileRepository;
     }
 
     @GetMapping
