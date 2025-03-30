@@ -1,8 +1,9 @@
-package com.deusto.deuspotify.Controllers;
+package com.deusto.deuspotify.controllers;
+import com.deusto.deuspotify.repositories.ProfileRepository;
 
 import com.deusto.deuspotify.model.Profile;
-import com.deusto.deuspotify.repositories.ProfileRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.deusto.deuspotify.services.ProfileService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,48 +14,59 @@ import java.util.Optional;
 @CrossOrigin
 public class ProfileController {
 
-    @Autowired
-    private ProfileRepository profileRepository;
+    private final ProfileService profileService;
+    private final ProfileRepository profileRepository;
+
+
+    public ProfileController(ProfileService profileService, ProfileRepository profileRepository) {
+        this.profileService = profileService;
+        this.profileRepository = profileRepository;
+    }
 
     @GetMapping
-    public List<Profile> getAllProfiles() {
-        return profileRepository.findAll();
+    public ResponseEntity<List<Profile>> getAllProfiles() {
+        return ResponseEntity.ok(profileService.getAllProfiles());
     }
 
     @GetMapping("/{id}")
-    public Profile getProfileById(@PathVariable Long id) {
-        return profileRepository.findById(id).orElse(null);
+    public ResponseEntity<Profile> getProfileById(@PathVariable Long id) {
+        Optional<Profile> profile = profileService.getProfileById(id);
+        return profile.map(ResponseEntity::ok)
+                      .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Profile createProfile(@RequestBody Profile profile) {
-        return profileRepository.save(profile);
-    }
-    @PutMapping("/{id}")
-    public Profile updateProfile(@PathVariable Long id, @RequestBody Profile updatedProfile) {
-        return profileRepository.findById(id).map(profile -> {
-            profile.setUsername(updatedProfile.getUsername());
-            profile.setPassword(updatedProfile.getPassword());
-            profile.setEmail(updatedProfile.getEmail());
-            profile.setFriendsList(updatedProfile.getFriendsList());
-            profile.setFavouriteSongs(updatedProfile.getFavouriteSongs());
-            profile.setPlaylists(updatedProfile.getPlaylists());
-            profile.setAdmin(updatedProfile.isAdmin());
-            return profileRepository.save(profile);
-        }).orElse(null);
+    public ResponseEntity<?> createProfile(@RequestBody Profile profile) {
+        try {
+            Profile savedProfile = profileService.registerUser(profile);
+            return ResponseEntity.ok(savedProfile);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error: " + e.getMessage());
+        }
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateProfile(@PathVariable Long id, @RequestBody Profile updatedProfile) {
+        return profileService.updateProfile(id, updatedProfile)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+    
+
     @DeleteMapping("/{id}")
-    public void deleteProfile(@PathVariable Long id) {
-        profileRepository.deleteById(id);
+    public ResponseEntity<?> deleteProfile(@PathVariable Long id) {
+        if (profileService.deleteProfile(id)) {
+            return ResponseEntity.ok("Perfil eliminado correctamente.");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping("/login")
-    public Profile login(@RequestBody Profile loginRequest) {
-        return profileRepository.findAll().stream()
-                .filter(profile -> profile.getUsername().equals(loginRequest.getUsername())
-                        && profile.getPassword().equals(loginRequest.getPassword()))
-                .findFirst()
-                .orElse(null);
+    public ResponseEntity<?> login(@RequestBody Profile loginRequest) {
+        Optional<Profile> profile = profileService.login(loginRequest.getUsername(), loginRequest.getPassword());
+        return profile.map(ResponseEntity::ok)
+                    .orElseGet(() -> ResponseEntity.status(401).body(null)); // Devolvemos `null` en lugar de un String
     }
+
 }

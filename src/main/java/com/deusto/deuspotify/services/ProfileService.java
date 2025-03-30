@@ -7,14 +7,17 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProfileService implements UserDetailsService {
     private final ProfileRepository profileRepository;
     private final PasswordEncoder passwordEncoder;
 
-    // Usamos @Lazy para evitar que la inyección de ProfileService ocurra antes de tiempo
     public ProfileService(ProfileRepository profileRepository, @Lazy PasswordEncoder passwordEncoder) {
         this.profileRepository = profileRepository;
         this.passwordEncoder = passwordEncoder;
@@ -32,8 +35,50 @@ public class ProfileService implements UserDetailsService {
                 .build();
     }
 
+    public List<Profile> getAllProfiles() {
+        return profileRepository.findAll();
+    }
+
+    public Optional<Profile> getProfileById(Long id) {
+        return profileRepository.findById(id);
+    }
+
+    @Transactional
     public Profile registerUser(Profile profile) {
-        profile.setPassword(passwordEncoder.encode(profile.getPassword())); // Hash password
+        if (profileRepository.findByUsername(profile.getUsername()).isPresent()) {
+            throw new RuntimeException("El usuario ya existe.");
+        }
+        profile.setPassword(passwordEncoder.encode(profile.getPassword()));
         return profileRepository.save(profile);
+    }
+
+    @Transactional
+    public Optional<Profile> updateProfile(Long id, Profile updatedProfile) {
+        return profileRepository.findById(id).map(profile -> {
+            profile.setUsername(updatedProfile.getUsername());
+            if (!updatedProfile.getPassword().isEmpty()) {
+                profile.setPassword(passwordEncoder.encode(updatedProfile.getPassword()));
+            }
+            profile.setEmail(updatedProfile.getEmail());
+            profile.setFriendsList(updatedProfile.getFriendsList());
+            profile.setFavouriteSongs(updatedProfile.getFavouriteSongs());
+            profile.setPlaylists(updatedProfile.getPlaylists());
+            profile.setAdmin(updatedProfile.isAdmin());
+            return profileRepository.save(profile);
+        });
+    }
+
+    @Transactional
+    public boolean deleteProfile(Long id) {
+        if (profileRepository.existsById(id)) {
+            profileRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+    public Optional<Profile> login(String username, String password) {
+        return profileRepository.findByUsername(username)
+                .filter(profile -> passwordEncoder.matches(password, profile.getPassword()));
     }
 }
