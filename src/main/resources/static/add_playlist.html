@@ -1,21 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Add Playlist</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="centered-page">
     <h2>Create a New Playlist</h2>
     <form id="addPlaylistForm">
-        <label for="owners">Owner(s):</label>
-        <input type="text" id="owners" required>
-        <br>
+        <label for="profile_id">Profile ID:</label>
+        <input type="number" id="profile_id" required>
+
+        <label for="number_of_songs">Number of Songs:</label>
+        <input type="number" id="number_of_songs" required>
+
+        <div style="margin-bottom: 1rem;">
+            <label for="is_public" style="display: block; font-weight: bold; margin-bottom: 0.2rem;">Public:</label>
+            <input type="checkbox" id="is_public" style="transform: scale(1.2);">
+        </div>
+
         <button type="submit">Create</button>
     </form>
+
     <script>
         document.getElementById("addPlaylistForm").addEventListener("submit", function(event) {
             event.preventDefault();
-            const playlist = { owners: [document.getElementById("owners").value] };
+            const playlist = {
+                profile_id: parseInt(document.getElementById("profile_id").value),
+                number_of_songs: parseInt(document.getElementById("number_of_songs").value),
+                is_public: document.getElementById("is_public").checked
+            };
             fetch("http://localhost:8080/api/playlists", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

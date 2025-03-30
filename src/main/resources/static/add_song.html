@@ -4,17 +4,34 @@
     <title>Add Song</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+<body class="centered-page">
     <h2>Add a New Song</h2>
     <form id="addSongForm">
         <label for="name">Name:</label>
         <input type="text" id="name" required>
+
+        <label for="album">Album:</label>
+        <input type="text" id="album" required>
+
+        <label for="duration">Duration (minutes):</label>
+        <input type="number" step="0.01" id="duration" required>
+
+        <label for="date_of_release">Release Date:</label>
+        <input type="date" id="date_of_release" required>
+
         <br>
         <button type="submit">Add</button>
     </form>
+
     <script>
         document.getElementById("addSongForm").addEventListener("submit", function(event) {
             event.preventDefault();
-            const song = { name: document.getElementById("name").value };
+            const song = {
+                name: document.getElementById("name").value,
+                album: document.getElementById("album").value,
+                duration: parseFloat(document.getElementById("duration").value),
+                date_of_release: document.getElementById("date_of_release").value
+            };
             fetch("http://localhost:8080/api/songs", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

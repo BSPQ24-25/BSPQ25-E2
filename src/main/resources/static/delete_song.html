@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Delete Song</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="centered-page">
+  <h2>Select a song to delete</h2>
+
+  <select id="songSelect" size="5" required></select>
+
+  <div style="margin-top: 1.5rem;">
+    <button id="confirmDelete">Yes, Delete</button>
+    <button onclick="window.location.href='songs.html'">Cancel</button>
+  </div>
+
+  <script>
+    const select = document.getElementById("songSelect");
+    let songs = [];
+
+    fetch("http://localhost:8080/api/songs")
+      .then(res => res.json())
+      .then(data => {
+        songs = data;
+        data.forEach(song => {
+          const option = document.createElement("option");
+          option.value = song.id;
+          option.textContent = song.name;
+          select.appendChild(option);
+        });
+      });
+
+    document.getElementById("confirmDelete").addEventListener("click", () => {
+      const songId = select.value;
+      if (!songId) return;
+
+      fetch(`http://localhost:8080/api/songs/${songId}`, {
+        method: "DELETE"
+      }).then(() => window.location.href = "songs.html");
+    });
+  </script>
+</body>
+</html>

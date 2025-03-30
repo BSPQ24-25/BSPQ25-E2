@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Delete Playlist</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="centered-page">
+  <h2>Select a playlist to delete</h2>
+
+  <select id="playlistSelect" size="5" required></select>
+
+  <div style="margin-top: 1.5rem;">
+    <button id="confirmDelete">Yes, Delete</button>
+    <button onclick="window.location.href='playlists.html'">Cancel</button>
+  </div>
+
+  <script>
+    const select = document.getElementById("playlistSelect");
+    let playlists = [];
+
+    fetch("http://localhost:8080/api/playlists")
+      .then(res => res.json())
+      .then(data => {
+        playlists = data;
+        data.forEach(pl => {
+          const option = document.createElement("option");
+          option.value = pl.id;
+          option.textContent = `Playlist #${pl.id}`;
+          select.appendChild(option);
+        });
+      });
+
+    document.getElementById("confirmDelete").addEventListener("click", () => {
+      const playlistId = select.value;
+      if (!playlistId) return;
+
+      fetch(`http://localhost:8080/api/playlists/${playlistId}`, {
+        method: "DELETE"
+      }).then(() => window.location.href = "playlists.html");
+    });
+  </script>
+</body>
+</html>

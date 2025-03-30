@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Song</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="centered-page">
+  <h2>Edit Song</h2>
+
+  <label for="songSelect">Choose a song:</label>
+  <select id="songSelect" size="5" required></select>
+
+  <form id="editSongForm" style="margin-top: 2rem;">
+    <label for="name">Name:</label>
+    <input type="text" id="name" required>
+
+    <label for="album">Album:</label>
+    <input type="text" id="album" required>
+
+    <label for="duration">Duration (minutes):</label>
+    <input type="number" step="0.01" id="duration" required>
+
+    <label for="date_of_release">Release Date:</label>
+    <input type="date" id="date_of_release" required>
+
+    <button type="submit">Save Changes</button>
+  </form>
+
+  <script>
+    const select = document.getElementById("songSelect");
+
+    let songs = [];
+
+    fetch("http://localhost:8080/api/songs")
+      .then(res => res.json())
+      .then(data => {
+        songs = data;
+        data.forEach(song => {
+          const option = document.createElement("option");
+          option.value = song.id;
+          option.textContent = song.name;
+          select.appendChild(option);
+        });
+      });
+
+    select.addEventListener("change", () => {
+      const selected = songs.find(s => s.id == select.value);
+      if (selected) {
+        document.getElementById("name").value = selected.name;
+        document.getElementById("album").value = selected.album;
+        document.getElementById("duration").value = selected.duration;
+        document.getElementById("date_of_release").value = selected.date_of_release;
+      }
+    });
+
+    document.getElementById("editSongForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const songId = select.value;
+      const updatedSong = {
+        name: document.getElementById("name").value,
+        album: document.getElementById("album").value,
+        duration: parseFloat(document.getElementById("duration").value),
+        date_of_release: document.getElementById("date_of_release").value
+      };
+
+      fetch(`http://localhost:8080/api/songs/${songId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedSong)
+      }).then(() => window.location.href = "songs.html");
+    });
+  </script>
+</body>
+</html>

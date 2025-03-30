@@ -1,21 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Playlists</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
-    <h2>Playlists</h2>
-    <ul id="playlistsList"></ul>
+<body class="side-layout">
+    <div class="sidebar">
+        <div class="button-group">
+            <button onclick="window.location.href='add_playlist.html'">Add Playlist</button>
+            <button onclick="window.location.href='edit_playlist.html'">Edit Playlist</button>
+            <button onclick="window.location.href='delete_playlist.html'">Delete Playlist</button>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <h2>Your Playlists</h2>
+        <ul id="playlistsList"></ul>
+    </div>
+
     <script>
         fetch("http://localhost:8080/api/playlists")
             .then(response => response.json())
             .then(playlists => {
                 const list = document.getElementById("playlistsList");
-                playlists.forEach(playlist => {
+                playlists.forEach(pl => {
                     const item = document.createElement("li");
-                    item.innerHTML = `<a href="playlist_details.html?id=${playlist.id}">${playlist.owners.join(", ")}'s Playlist</a>`;
+                    item.id = `playlist-${pl.id}`;
+                    item.textContent = `Playlist #${pl.id}`;
                     list.appendChild(item);
                 });
             });
