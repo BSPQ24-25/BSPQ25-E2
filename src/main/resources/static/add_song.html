@@ -3,8 +3,6 @@
 <head>
     <title>Add Song</title>
     <link rel="stylesheet" href="styles.css">
-<<<<<<< HEAD
-=======
 </head>
 <body class="centered-page">
     <h2>Add a New Song</h2>
@@ -25,23 +23,9 @@
         <button type="submit">Add</button>
     </form>
 
->>>>>>> origin/ane
     <script>
         async function addSong(event) {
             event.preventDefault();
-<<<<<<< HEAD
-            
-            const name = document.getElementById("name").value;
-            const artists = document.getElementById("artists").value.split(",").map(a => a.trim());
-            const duration = parseFloat(document.getElementById("duration").value);
-            const genres = document.getElementById("genres").value.split(",").map(g => g.trim());
-            const dateOfRelease = document.getElementById("dateOfRelease").value;
-            const album = document.getElementById("album").value;
-            
-            const song = { name, artists, duration, genres, dateOfRelease, album };
-            
-            const response = await fetch("http://localhost:8080/api/songs", {
-=======
             const song = {
                 name: document.getElementById("name").value,
                 album: document.getElementById("album").value,
@@ -49,7 +33,6 @@
                 date_of_release: document.getElementById("date_of_release").value
             };
             fetch("http://localhost:8080/api/songs", {
->>>>>>> origin/ane
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(song)
