@@ -1,4 +1,4 @@
-package com.deusto.deuspotify.controllers;
+package com.deusto.deuspotify.Controllers;
 import com.deusto.deuspotify.repositories.ProfileRepository;
 
 import com.deusto.deuspotify.model.Profile;
