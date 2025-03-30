@@ -36,6 +36,7 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         // Create songs only if none exist
+        // Verificar y crear canciones si no existen
         if (songRepository.count() == 0) {
             Song song1 = new Song();
             Song song2 = new Song(
@@ -88,6 +89,51 @@ public class DataInitializer implements CommandLineRunner {
             }
         } else {
             System.out.println("Playlists already exist.");
+                new Date(), // fecha actual
+                "A Night at the Opera"
+            );
+
+            songRepository.saveAll(Arrays.asList(song1, song2));
+            System.out.println("Canciones insertadas en la BD.");
+        } else {
+            System.out.println("Las canciones ya existen en la BD.");
+        }
+
+        // Verificar y crear perfiles si no existen
+        if (!profileRepository.findByUsername("asier").isPresent()) {
+            Profile profile1 = new Profile("asier",
+                    passwordEncoder.encode("conhash"),
+                    "asier@example.com",
+                    Arrays.asList("amigo1", "amigo2"),
+                    null, null, false);
+
+            profileRepository.save(profile1);
+            System.out.println("Perfil 'asier' insertado en la BD.");
+        } else {
+            System.out.println("El perfil 'asier' ya existe en la BD.");
+        }
+
+        // Verificar y crear playlists si no existen
+        if (playlistRepository.count() == 0) {
+            Optional<Song> song1 = songRepository.findById(1L);
+            Optional<Song> song2 = songRepository.findById(2L);
+
+            if (song1.isPresent() && song2.isPresent()) {
+                Playlist playlist1 = new Playlist();
+                Playlist playlist2 = new Playlist(
+                    Arrays.asList("juanito99"),
+                    true,
+                    Arrays.asList(song1.get(), song2.get()),
+                    Arrays.asList(1, 2)
+                );
+
+                playlistRepository.saveAll(Arrays.asList(playlist1, playlist2));
+                System.out.println("Playlists insertadas en la BD.");
+            } else {
+                System.out.println("No se encontraron canciones para asociar a las playlists.");
+            }
+        } else {
+            System.out.println("Las playlists ya existen en la BD.");
         }
     }
 }
