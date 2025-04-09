@@ -30,6 +30,8 @@ public class Song {
     private Date dateOfRelease;
 
     private String album;
+    
+    private String filePath;
 
     public Song() {}
 
@@ -42,7 +44,15 @@ public class Song {
         this.album = album;
     }
 
-    // Getters and setters
+    public Song(String name, List<String> artists, double duration, List<String> genres, Date dateOfRelease, String album, String filePath) {
+        this.name = name;
+        this.artists = artists;
+        this.duration = duration;
+        this.genres = genres;
+        this.dateOfRelease = dateOfRelease;
+        this.album = album;
+        this.filePath = filePath;
+    }
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -65,6 +75,9 @@ public class Song {
     public String getAlbum() { return album; }
     public void setAlbum(String album) { this.album = album; }
 
+    public String getFilePath() { return filePath; }
+    public void setFilePath(String filePath) { this.filePath = filePath; }
+
     @Override
     public String toString() {
         return "Song{" +
@@ -74,6 +87,7 @@ public class Song {
                 ", genres=" + genres +
                 ", dateOfRelease=" + dateOfRelease +
                 ", album='" + album + '\'' +
+                ", filePath='" + filePath + '\'' +
                 '}';
     }
 }
