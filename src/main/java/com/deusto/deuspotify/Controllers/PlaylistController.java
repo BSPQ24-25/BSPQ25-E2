@@ -33,4 +33,14 @@ public class PlaylistController {
     public Playlist createPlaylist(@RequestBody Playlist playlist) {
         return deuspotifyService.addPlaylist(playlist);
     }
+
+    @PutMapping("/{id}")
+    public Playlist updatePlaylist(@PathVariable Long id, @RequestBody Playlist playlist) {
+        return deuspotifyService.updatePlaylist(id, playlist);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletePlaylist(@PathVariable Long id) {
+        deuspotifyService.deletePlaylist(id);
+    }
 }
