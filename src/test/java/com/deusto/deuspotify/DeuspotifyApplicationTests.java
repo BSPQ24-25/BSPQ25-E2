@@ -1,14 +1,16 @@
 package com.deusto.deuspotify;
 
 import com.deusto.deuspotify.model.Profile;
-import com.deusto.deuspotify.Controllers.AuthController;
 import com.deusto.deuspotify.model.Playlist;
 import com.deusto.deuspotify.model.Song;
 import com.deusto.deuspotify.repositories.ProfileRepository;
 import com.deusto.deuspotify.repositories.PlaylistRepository;
 import com.deusto.deuspotify.repositories.SongRepository;
 import com.deusto.deuspotify.security.JwtUtil;
+import com.deusto.deuspotify.services.DeuspotifyService;
+import com.deusto.deuspotify.services.DeuspotifyServiceImpl;
 import com.deusto.deuspotify.services.ProfileService;
+import com.deusto.deuspotify.Controllers.AuthController;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,9 +18,15 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -49,11 +57,13 @@ class DeuspotifyApplicationTests {
     private SongRepository songRepository;
 
     private AuthController authController;
+    private DeuspotifyService deuspotifyService;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
         authController = new AuthController(authenticationManager, profileService, jwtUtil);
+        deuspotifyService = new DeuspotifyServiceImpl(songRepository, playlistRepository);
     }
 
     // Auth Controller tests
@@ -93,7 +103,6 @@ class DeuspotifyApplicationTests {
     }
 
     // Profile Repository tests
-    // Test for getting all profiles
     @Test
     void getAllProfilesTest() {
         Profile profile1 = new Profile();
@@ -108,7 +117,6 @@ class DeuspotifyApplicationTests {
         assertTrue(profiles.contains(profile2));
     }
 
-    // Test for creating a new profile
     @Test
     void createProfileTest() {
         Profile newProfile = new Profile();
@@ -124,7 +132,6 @@ class DeuspotifyApplicationTests {
         assertEquals("new@example.com", savedProfile.getEmail());
     }
 
-    // Test for retrieving a profile by ID
     @Test
     void getProfileByIdTest() {
         Profile profile = new Profile();
@@ -138,7 +145,6 @@ class DeuspotifyApplicationTests {
         assertEquals(1L, foundProfile.get().getId());
     }
 
-    // Test for updating a profile
     @Test
     void updateProfileTest() {
         Profile existingProfile = new Profile();
@@ -157,7 +163,6 @@ class DeuspotifyApplicationTests {
         assertEquals("newUser", existingProfile.getUsername());
     }
 
-    // Test for profile login
     @Test
     void profileLoginTest() {
         Profile profile = new Profile();
@@ -176,8 +181,6 @@ class DeuspotifyApplicationTests {
     }
 
     // Playlist Repository tests
-
-    // Test for creating a new playlist
     @Test
     void createPlaylistTest() {
         Playlist newPlaylist = new Playlist();
@@ -193,7 +196,6 @@ class DeuspotifyApplicationTests {
         assertEquals(2, savedPlaylist.getOwners().size());
     }
 
-    // Test for adding a song to a playlist
     @Test
     void addSongToPlaylistTest() {
         Playlist playlist = new Playlist();
@@ -209,7 +211,6 @@ class DeuspotifyApplicationTests {
         assertTrue(playlist.getSongs().contains(song));
     }
 
-    // Test for retrieving all playlists
     @Test
     void getAllPlaylistsTest() {
         Playlist playlist1 = new Playlist();
@@ -224,7 +225,6 @@ class DeuspotifyApplicationTests {
         assertTrue(playlists.contains(playlist2));
     }
 
-    // Test for getting a playlist by ID
     @Test
     void getPlaylistByIdTest() {
         Playlist playlist = new Playlist();
@@ -239,7 +239,6 @@ class DeuspotifyApplicationTests {
     }
 
     // Song Repository tests
-    // Test for retrieving all songs
     @Test
     void getAllSongsTest() {
         Song song1 = new Song();
@@ -254,7 +253,6 @@ class DeuspotifyApplicationTests {
         assertTrue(songs.contains(song2));
     }
 
-    // Test for getting a song by ID
     @Test
     void getSongByIdTest() {
         Song song = new Song();
@@ -268,7 +266,6 @@ class DeuspotifyApplicationTests {
         assertEquals(1L, foundSong.get().getId());
     }
 
-    // Test for adding a new song
     @Test
     void addSongTest() {
         Song newSong = new Song();
@@ -281,6 +278,35 @@ class DeuspotifyApplicationTests {
         assertNotNull(savedSong);
         assertEquals("New Song", savedSong.getName());
     }
-
-
+    
+    @Test
+    void addSongWithFileTest() throws Exception {
+        String originalFilename = "Tom Petty - Love Is A Long Road (Official Audio)[xAgUYyosqVM].mp3";
+        byte[] content = "dummy audio content".getBytes();
+        MultipartFile file = new MockMultipartFile("file", originalFilename, "audio/mp3", content);
+        
+        String name = "Test Song";
+        String album = "Test Album";
+        String artists = "Artist1,Artist2";
+        String genres = "Rock,Pop";
+        double duration = 3.5;
+        Date dateOfRelease = new Date();
+        
+        // When saving, return the same Song instance as argument
+        when(songRepository.save(any(Song.class))).thenAnswer(invocation -> invocation.getArgument(0));
+        
+        Song savedSong = deuspotifyService.addSongWithFile(name, album, artists, genres, duration, dateOfRelease, file);
+        assertNotNull(savedSong);
+        assertNotNull(savedSong.getFilePath());
+        // Check that the filename is sanitized (no spaces or special characters like parentheses)
+        assertFalse(savedSong.getFilePath().contains(" "));
+        assertFalse(savedSong.getFilePath().contains("("));
+        assertFalse(savedSong.getFilePath().contains(")"));
+        
+        // Optionally, verify that the file was created in the uploads directory
+        Path filePath = Paths.get("uploads/songs", savedSong.getFilePath());
+        assertTrue(Files.exists(filePath));
+        // Clean up the file created during test
+        Files.deleteIfExists(filePath);
+    }
 }
