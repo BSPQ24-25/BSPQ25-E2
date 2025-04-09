@@ -53,7 +53,7 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Excepti
             .deleteCookies("JSESSIONID")
         )
         .csrf(csrf -> csrf
-            .ignoringRequestMatchers("/login", "/logout") // if you want to disable CSRF for these
+            .ignoringRequestMatchers("/login", "/logout", "/api/**") // if you want to disable CSRF for these
         );
     
     return http.build();
