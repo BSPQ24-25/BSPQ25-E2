@@ -34,6 +34,15 @@ public class DeuspotifyServiceImpl implements DeuspotifyService {
         return songRepository.save(song);
     }
 
+    public Song updateSong(Long id, Song song) {
+        song.setId(id);
+        return songRepository.save(song);
+    }
+
+    public void deleteSong(Long id) {
+        songRepository.deleteById(id);
+    }
+
     // Playlists
     public List<Playlist> retrieveAllPlaylists() {
         return playlistRepository.findAll();
@@ -45,5 +54,14 @@ public class DeuspotifyServiceImpl implements DeuspotifyService {
 
     public Playlist addPlaylist(Playlist playlist) {
         return playlistRepository.save(playlist);
+    }
+
+    public Playlist updatePlaylist(Long id, Playlist playlist) {
+        playlist.setId(id);
+        return playlistRepository.save(playlist);
+    }
+
+    public void deletePlaylist(Long id) {
+        playlistRepository.deleteById(id);
     }
 }

@@ -31,4 +31,14 @@ public class SongController {
     public Song addSong(@RequestBody Song song) {
         return deuspotifyServiceImpl.addSong(song);
     }
+
+    @PutMapping("/{id}")
+    public Song updateSong(@PathVariable Long id, @RequestBody Song song) {
+        return deuspotifyServiceImpl.updateSong(id, song);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteSong(@PathVariable Long id) {
+        deuspotifyServiceImpl.deleteSong(id);
+    }
 }
