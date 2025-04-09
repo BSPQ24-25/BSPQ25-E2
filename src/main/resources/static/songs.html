@@ -18,28 +18,49 @@
 
     <div class="main-content">
         <h2>Your Songs</h2>
+
+        <input type="text" id="searchInput" placeholder="Search by song name" style="margin-bottom: 10px; width: 100%; padding: 8px; font-size: 16px;">
+
         <ul id="songsList"></ul>
     </div>
 
     <script>
+        let allSongs = [];
+
         fetch("http://localhost:8080/api/songs")
             .then(response => response.json())
             .then(songs => {
-                const list = document.getElementById("songsList");
-                songs.forEach(song => {
-                    const item = document.createElement("li");
-                    item.id = `song-${song.id}`;
-
-                    const link = document.createElement("a");
-                    link.href = `detalle_song.html?id=${song.id}`;
-                    link.textContent = song.name;
-                    link.style.textDecoration = "none"; 
-                    link.style.color = "inherit"; 
-
-                    item.appendChild(link);
-                    list.appendChild(item);
-                });
+                allSongs = songs;
+                renderSongs(songs);
             });
+
+        function renderSongs(songs) {
+            const list = document.getElementById("songsList");
+            list.innerHTML = "";
+
+            songs.forEach(song => {
+                const item = document.createElement("li");
+                item.id = `song-${song.id}`;
+
+                const link = document.createElement("a");
+                link.href = `detalle_song.html?id=${song.id}`;
+                link.textContent = song.name;
+                link.style.textDecoration = "none";
+                link.style.color = "inherit";
+
+                item.appendChild(link);
+                list.appendChild(item);
+            });
+        }
+
+        document.getElementById("searchInput").addEventListener("input", function () {
+            const searchTerm = this.value.toLowerCase();
+            const filteredSongs = allSongs.filter(song =>
+                (song.name ?? "").toLowerCase().includes(searchTerm)
+
+            );
+            renderSongs(filteredSongs);
+        });
     </script>
 </body>
 </html>
