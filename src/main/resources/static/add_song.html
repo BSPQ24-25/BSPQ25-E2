@@ -56,10 +56,12 @@
             });
 
             if (response.ok) {
-                alert("Song added successfully!");
+                const data = await response.json();
+                alert(data.message || "Song added successfully!");
                 window.location.href = "songs.html";
             } else {
-                alert("Failed to add song.");
+                const error = await response.json();
+                alert(error.message || "Failed to add song.");
             }
         }
     </script>

@@ -50,13 +50,19 @@ public class DeuspotifyServiceImpl implements DeuspotifyService {
     
     // New method to handle file upload with cleaned filename to prevent URL issues
     public Song addSongWithFile(String name, String album, String artists, String genres, double duration, Date dateOfRelease, MultipartFile file) {
+        // Check MIME type
+        if (file.getContentType() == null || !file.getContentType().startsWith("audio/")) {
+            throw new IllegalArgumentException("Only audio files are allowed");
+        }
+        // Check allowed file extensions
+        String originalFilename = file.getOriginalFilename();
+        if (originalFilename == null || !originalFilename.toLowerCase().matches(".*\\.(mp3|wav|ogg|flac)$")) {
+            throw new IllegalArgumentException("Invalid audio file extension");
+        }
+        
         try {
             Files.createDirectories(Paths.get(uploadDir));
             // Clean the original filename: allow only alphanumeric characters, dot and dash
-            String originalFilename = file.getOriginalFilename();
-            if (originalFilename == null) {
-                throw new IllegalArgumentException("The uploaded file does not have a valid filename.");
-            }
             String cleanedFilename = System.currentTimeMillis() + "_" + originalFilename.replaceAll("[^a-zA-Z0-9\\.\\-]", "_");
             Path filePath = Paths.get(uploadDir, cleanedFilename);
             Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
