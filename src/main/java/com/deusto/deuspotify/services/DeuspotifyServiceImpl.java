@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.nio.file.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -47,14 +49,12 @@ public class DeuspotifyServiceImpl implements DeuspotifyService {
     public void deleteSong(Long id) {
         songRepository.deleteById(id);
     }
-    
-    // New method to handle file upload with cleaned filename to prevent URL issues
-    public Song addSongWithFile(String name, String album, String artists, String genres, double duration, Date dateOfRelease, MultipartFile file) {
-        // Check MIME type
+
+    public Song addSongWithFile(String name, String album, String artists, String genres,
+                                double duration, Date dateOfRelease, MultipartFile file) {
         if (file.getContentType() == null || !file.getContentType().startsWith("audio/")) {
             throw new IllegalArgumentException("Only audio files are allowed");
         }
-        // Check allowed file extensions
         String originalFilename = file.getOriginalFilename();
         if (originalFilename == null || !originalFilename.toLowerCase().matches(".*\\.(mp3|wav|ogg|flac)$")) {
             throw new IllegalArgumentException("Invalid audio file extension");
@@ -62,7 +62,6 @@ public class DeuspotifyServiceImpl implements DeuspotifyService {
         
         try {
             Files.createDirectories(Paths.get(uploadDir));
-            // Clean the original filename: allow only alphanumeric characters, dot and dash
             String cleanedFilename = System.currentTimeMillis() + "_" + originalFilename.replaceAll("[^a-zA-Z0-9\\.\\-]", "_");
             Path filePath = Paths.get(uploadDir, cleanedFilename);
             Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
@@ -80,6 +79,19 @@ public class DeuspotifyServiceImpl implements DeuspotifyService {
         } catch (IOException e) {
             throw new RuntimeException("Error saving file", e);
         }
+    }
+
+    @Override
+    public Song createSharedSong(String name, String album, String artists, String genres, double duration, Date dateOfRelease, String filePath) {
+        Song sharedSong = new Song();
+        sharedSong.setName(name + " Shared");
+        sharedSong.setAlbum(album);
+        sharedSong.setArtists(new ArrayList<>(Arrays.asList(artists.split("\\s*,\\s*"))));
+        sharedSong.setGenres(new ArrayList<>(Arrays.asList(genres.split("\\s*,\\s*"))));
+        sharedSong.setDuration(duration);
+        sharedSong.setDateOfRelease(dateOfRelease);
+        sharedSong.setFilePath(filePath);
+        return songRepository.save(sharedSong);
     }
 
     // Playlists

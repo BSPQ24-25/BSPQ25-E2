@@ -15,6 +15,7 @@ public interface DeuspotifyService {
     Song updateSong(Long id, Song song);
     void deleteSong(Long id);
     Song addSongWithFile(String name, String album, String artists, String genres, double duration, Date dateOfRelease, MultipartFile file);
+    Song createSharedSong(String name, String album, String artists, String genres, double duration, Date dateOfRelease, String filePath);
 
     // Playlists
     List<Playlist> retrieveAllPlaylists();
