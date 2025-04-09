@@ -54,6 +54,9 @@ public class DeuspotifyServiceImpl implements DeuspotifyService {
             Files.createDirectories(Paths.get(uploadDir));
             // Clean the original filename: allow only alphanumeric characters, dot and dash
             String originalFilename = file.getOriginalFilename();
+            if (originalFilename == null) {
+                throw new IllegalArgumentException("The uploaded file does not have a valid filename.");
+            }
             String cleanedFilename = System.currentTimeMillis() + "_" + originalFilename.replaceAll("[^a-zA-Z0-9\\.\\-]", "_");
             Path filePath = Paths.get(uploadDir, cleanedFilename);
             Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
