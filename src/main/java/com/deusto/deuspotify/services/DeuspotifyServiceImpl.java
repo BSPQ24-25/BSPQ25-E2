@@ -48,12 +48,14 @@ public class DeuspotifyServiceImpl implements DeuspotifyService {
         songRepository.deleteById(id);
     }
     
-    // New method to handle file upload
+    // New method to handle file upload with cleaned filename to prevent URL issues
     public Song addSongWithFile(String name, String album, String artists, String genres, double duration, Date dateOfRelease, MultipartFile file) {
         try {
             Files.createDirectories(Paths.get(uploadDir));
-            String filename = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-            Path filePath = Paths.get(uploadDir, filename);
+            // Clean the original filename: allow only alphanumeric characters, dot and dash
+            String originalFilename = file.getOriginalFilename();
+            String cleanedFilename = System.currentTimeMillis() + "_" + originalFilename.replaceAll("[^a-zA-Z0-9\\.\\-]", "_");
+            Path filePath = Paths.get(uploadDir, cleanedFilename);
             Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
             
             Song song = new Song();
@@ -63,7 +65,7 @@ public class DeuspotifyServiceImpl implements DeuspotifyService {
             song.setGenres(Arrays.asList(genres.split("\\s*,\\s*")));
             song.setDuration(duration);
             song.setDateOfRelease(dateOfRelease);
-            song.setFilePath(filename);
+            song.setFilePath(cleanedFilename);
             
             return songRepository.save(song);
         } catch (IOException e) {
