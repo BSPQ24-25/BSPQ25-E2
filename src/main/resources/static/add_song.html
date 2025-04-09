@@ -3,6 +3,8 @@
 <head>
     <title>Add Song</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Library for reading metadata from song file -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
 </head>
 <body class="centered-page">
     <h2>Add a New Song</h2>
@@ -34,11 +36,53 @@
         <label for="file">Audio File:</label>
         <input type="file" id="file" name="file" accept="audio/*" required>
         <br>
-
+        
+        <label>
+            <input type="checkbox" id="extractMetadata">
+            Automatically extract metadata from file
+        </label>
+        <br>
+        
         <button type="submit">Add</button>
     </form>
 
     <script>
+        // Listener for extracting metadata when a file is selected if the checkbox is checked
+        document.getElementById("file").addEventListener("change", function() {
+            const checkbox = document.getElementById("extractMetadata");
+            if (checkbox.checked && this.files && this.files[0]) {
+                jsmediatags.read(this.files[0], {
+                    onSuccess: function(tag) {
+                        const tags = tag.tags;
+                        console.log("All extracted tags:", tags);
+                        if (tags.title) {
+                            document.getElementById("name").value = tags.title;
+                        }
+                        if (tags.album) {
+                            document.getElementById("album").value = tags.album;
+                        }
+                        if (tags.artist) {
+                            document.getElementById("artists").value = tags.artist;
+                        }
+                        if (tags.genre) {
+                            const genre = Array.isArray(tags.genre) ? tags.genre.join(", ") : tags.genre;
+                            document.getElementById("genres").value = genre;
+                        }
+                        if (tags.duration) {
+                            document.getElementById("duration").value = (tags.duration / 60).toFixed(2);
+                        }
+                        if (tags.release_date) {
+                            document.getElementById("date_of_release").value = tags.release_date;
+                        }
+                        console.log("Metadata extracted successfully:", tags);
+                    },
+                    onError: function(error) {
+                        console.error("Error reading metadata:", error.type, error.info);
+                    }
+                });
+            }
+        });
+        
         async function addSong(event) {
             event.preventDefault();
             const formData = new FormData();
