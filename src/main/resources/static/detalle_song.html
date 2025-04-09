@@ -13,6 +13,7 @@
         <button id="editBtn">Editar</button>
         <button id="deleteBtn">Eliminar</button>
         <button onclick="window.location.href='songs.html'">Volver</button>
+        <button id="shareBtn">Compartir</button>
     </div>
 
     <script>
@@ -30,7 +31,6 @@
                     if (song.filePath) {
                         audioPlayer = `<audio controls>
                                          <source src="/songs_files/${song.filePath}" type="audio/mpeg">
-                                         Your browser does not support the audio element.
                                        </audio>`;
                     }
                     container.innerHTML = `
@@ -48,7 +48,7 @@
                     };
 
                     document.getElementById("deleteBtn").onclick = () => {
-                        if (confirm("Are you sure you want to delete this song?")) {
+                        if (confirm("¿Estás seguro de que quieres eliminar esta canción?")) {
                             fetch(`http://localhost:8080/api/songs/${song.id}`, {
                                 method: "DELETE"
                             })
@@ -58,6 +58,30 @@
                             });
                         }
                     };
+
+                    const formatDate = (date) => {
+                        const d = new Date(date);
+                        return d.toISOString().split('T')[0]; // "YYYY-MM-DD"
+                    };
+
+                    const shareLink = `http://localhost:8080/api/songs/createFromFilePath?` +
+                        `name=${encodeURIComponent(song.name)}` +
+                        `&album=${encodeURIComponent(song.album)}` +
+                        `&artists=${encodeURIComponent(song.artists.join(','))}` +
+                        `&genres=${encodeURIComponent(song.genres.join(','))}` +
+                        `&duration=${encodeURIComponent(song.duration)}` +
+                        `&dateOfRelease=${encodeURIComponent(formatDate(song.dateOfRelease))}` +
+                        `&filePath=${encodeURIComponent(song.filePath)}`;
+
+                    document.getElementById("shareBtn").addEventListener("click", () => {
+                        navigator.clipboard.writeText(shareLink)
+                            .then(() => {
+                                alert("Link copiado: " + shareLink);
+                            })
+                            .catch(err => {
+                                console.error("Error al copiar: ", err);
+                            });
+                    });
                 })
                 .catch(error => {
                     document.getElementById("songDetails").innerText = "Error al cargar los detalles.";
