@@ -58,3 +58,6 @@ Thumbs.db  # Windows
 # Ignore logs and temporary files
 *.log
 *.tmp
+
+#Ignore song files
+uploads/songs/

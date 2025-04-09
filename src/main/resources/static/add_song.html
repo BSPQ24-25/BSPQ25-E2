@@ -6,7 +6,7 @@
 </head>
 <body class="centered-page">
     <h2>Add a New Song</h2>
-    <form id="addSongForm" onsubmit="addSong(event)">
+    <form id="addSongForm" onsubmit="addSong(event)" enctype="multipart/form-data">
         <label for="name">Name:</label>
         <input type="text" id="name" required>
         <br>
@@ -31,26 +31,28 @@
         <input type="date" id="date_of_release" required>
         <br>
 
+        <label for="file">Audio File:</label>
+        <input type="file" id="file" name="file" accept="audio/*" required>
+        <br>
+
         <button type="submit">Add</button>
     </form>
 
     <script>
         async function addSong(event) {
             event.preventDefault();
+            const formData = new FormData();
+            formData.append("name", document.getElementById("name").value);
+            formData.append("album", document.getElementById("album").value);
+            formData.append("artists", document.getElementById("artists").value);
+            formData.append("genres", document.getElementById("genres").value);
+            formData.append("duration", document.getElementById("duration").value);
+            formData.append("date_of_release", document.getElementById("date_of_release").value);
+            formData.append("file", document.getElementById("file").files[0]);
 
-            const song = {
-                name: document.getElementById("name").value,
-                album: document.getElementById("album").value,
-                artists: document.getElementById("artists").value.split(",").map(a => a.trim()),
-                genres: document.getElementById("genres").value.split(",").map(g => g.trim()),
-                duration: parseFloat(document.getElementById("duration").value),
-                date_of_release: document.getElementById("date_of_release").value
-            };
-
-            const response = await fetch("http://localhost:8080/api/songs", {
+            const response = await fetch("http://localhost:8080/api/songs/upload", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(song)
+                body: formData
             });
 
             if (response.ok) {
