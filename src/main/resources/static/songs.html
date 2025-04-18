@@ -41,10 +41,18 @@
             songs.forEach(song => {
                 const item = document.createElement("li");
                 item.id = `song-${song.id}`;
+                console.log(`Generando enlace para la canción con ID: ${song.id}`);
 
+                if (!song.id) {
+                    console.warn("Canción sin ID:", song);
+                    return;
+                }
+
+                console.log(song);
                 const link = document.createElement("a");
                 link.href = `detalle_song.html?id=${song.id}`;
                 link.textContent = song.name;
+                link.style.display = "block"; 
                 link.style.textDecoration = "none";
                 link.style.color = "inherit";
 
