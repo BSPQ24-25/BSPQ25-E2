@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Register</title>
+    <meta charset="UTF-8">
+    <title data-i18n="register.title">Register</title>
     <link rel="stylesheet" href="styles.css">
     <script>
         async function register(event) {
@@ -30,20 +31,22 @@
     </script>
 </head>
 <body class="centered-page">
-    <h2>Register</h2>
+    <h2 data-i18n="register.title">Register</h2>
     <form id="registerForm" onsubmit="register(event)">
-        <label for="username">Username:</label>
+        <label for="username" data-i18n="register.username">Username:</label>
         <input type="text" id="username" required>
         <br>
-        <label for="password">Password:</label>
+        <label for="password" data-i18n="register.password">Password:</label>
         <input type="password" id="password" required>
         <br>
-        <label for="email">Email:</label>
+        <label for="email" data-i18n="register.email">Email:</label>
         <input type="email" id="email" required>
         <br>
-        <button type="submit">Register</button>
+        <button type="submit" data-i18n="register.button">Register</button>
     </form>
     <br>
-    <button onclick="goToLogin()">Back to Login</button>
+    <button onclick="goToLogin()" data-i18n="register.backToLogin">Back to Login</button>
+    <script src="/i18n.js"></script>
+
 </body>
 </html>

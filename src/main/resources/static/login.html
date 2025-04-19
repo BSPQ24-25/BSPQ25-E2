@@ -1,27 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <title data-i18n="login.title">Login</title>
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body class="centered-page">
-    <h2>Login</h2>
-    <!-- Add CSRF token for security (required when CSRF is enabled) -->
+    <h2 data-i18n="login.title">Login</h2>
+
     <form id="loginForm" action="/login" method="POST">
-        <label for="username">Username:</label>
+        <label for="username" data-i18n="login.username">Username:</label>
         <input type="text" id="username" name="username" required>
         <br>
-        <label for="password">Password:</label>
+        <label for="password" data-i18n="login.password">Password:</label>
         <input type="password" id="password" name="password" required>
         <br>
-        <button type="submit">Login</button>
+        <button type="submit" data-i18n="login.button">Login</button>
     </form>
     <br>
-    <button onclick="window.location.href='/register.html'">Create New User</button>
+    <button onclick="window.location.href='/register.html'" data-i18n="login.newUser">Create New User</button>
 
-    <!-- Display error message if login fails -->
-    <div th:if="${param.error}" style="color: red;">
+    <div id="errorMsg" style="color: red;" hidden data-i18n="login.error">
         Invalid username or password
     </div>
+
+    <!-- Carga el archivo de traducción -->
+    <script src="/i18n.js"></script>
 </body>
 </html>
