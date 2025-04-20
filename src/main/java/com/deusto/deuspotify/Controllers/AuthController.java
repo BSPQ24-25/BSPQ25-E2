@@ -42,4 +42,9 @@ public class AuthController {
     public ResponseEntity<?> register(@RequestBody Profile profile) {
         return ResponseEntity.ok(profileService.registerUser(profile));
     }
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout() {
+        // Aquí podrías implementar invalidación del token si usas un blacklist
+        return ResponseEntity.ok(Map.of("message", "Logged out successfully"));
+    }
 }

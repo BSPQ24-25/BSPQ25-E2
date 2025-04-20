@@ -18,14 +18,17 @@ public class I18nController {
 
     private final MessageSource messageSource;
 
-    @Value("classpath:messages.properties") // Cargar el archivo de mensajes general
+    @Value("classpath:messages.properties") // General message file
     private Resource messagesProperties;
 
-    @Value("classpath:messages_es.properties") // Cargar el archivo de mensajes en español
+    @Value("classpath:messages_es.properties") // Spanish messages
     private Resource messagesEsProperties;
 
-    @Value("classpath:messages_en.properties") // Cargar el archivo de mensajes en inglés
+    @Value("classpath:messages_en.properties") // English messages
     private Resource messagesEnProperties;
+
+    @Value("classpath:messages_eu.properties") // Basque messages
+    private Resource messagesEuProperties;
 
     public I18nController(MessageSource messageSource) {
         this.messageSource = messageSource;
@@ -58,6 +61,9 @@ public class I18nController {
         
         // Cargar el archivo de mensajes en inglés
         keys.putAll(loadPropertiesKeys(messagesEnProperties));
+
+        // Cargar el archivo de mensajes en euskera
+        keys.putAll(loadPropertiesKeys(messagesEuProperties));
         
         return keys;
     }
