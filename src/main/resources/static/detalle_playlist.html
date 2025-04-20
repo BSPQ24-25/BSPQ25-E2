@@ -2,17 +2,18 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Detalle de la Playlist</title>
+    <title data-i18n="playlistDetail.title">Detalle de la Playlist</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="i18n.js" defer></script>
 </head>
 <body class="side-layout">
     <div class="main-content">
-        <h2>Detalles de la Playlist</h2>
+        <h2 data-i18n="playlistDetail.heading">Detalles de la Playlist</h2>
         <div id="playlistDetails"></div>
         <br>
-        <button id="editBtn">Editar</button>
-        <button id="deleteBtn">Eliminar</button>
-        <button onclick="window.location.href='playlists.html'">Volver</button>
+        <button id="editBtn" data-i18n="playlistDetail.edit">Editar</button>
+        <button id="deleteBtn" data-i18n="playlistDetail.delete">Eliminar</button>
+        <button onclick="window.location.href='playlists.html'" data-i18n="playlistDetail.back">Volver</button>
     </div>
 
     <script>
@@ -27,12 +28,12 @@
                 .then(pl => {
                     const container = document.getElementById("playlistDetails");
                     container.innerHTML = `
-                        <p><strong>ID:</strong> ${pl.id}</p>
-                        <p><strong>Propietarios:</strong> ${pl.owners.join(', ')}</p>
-                        <p><strong>Pública:</strong> ${pl.public ? 'Sí' : 'No'}</p>
-                        <p><strong>Número de Canciones:</strong> ${pl.numberOfSongs}</p>
-                        <p><strong>Orden:</strong> ${pl.order.join(', ')}</p>
-                        <p><strong>Canciones:</strong></p>
+                        <p><strong data-i18n="playlistDetail.id">ID:</strong> ${pl.id}</p>
+                        <p><strong data-i18n="playlistDetail.owners">Propietarios:</strong> ${pl.owners.join(', ')}</p>
+                        <p><strong data-i18n="playlistDetail.public">Pública:</strong> ${pl.public ? 'Sí' : 'No'}</p>
+                        <p><strong data-i18n="playlistDetail.songCount">Número de Canciones:</strong> ${pl.numberOfSongs}</p>
+                        <p><strong data-i18n="playlistDetail.order">Orden:</strong> ${pl.order.join(', ')}</p>
+                        <p><strong data-i18n="playlistDetail.songs">Canciones:</strong></p>
                         <ul>${pl.songs.map(song => `<li>${song.name}</li>`).join('')}</ul>
                     `;
 

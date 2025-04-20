@@ -2,20 +2,21 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Detalle de la Canción</title>
+    <title data-i18n="songDetail.title">Detalle de la Canción</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="side-layout">
     <div class="main-content">
-        <h2>Detalles de la Canción</h2>
+        <h2 data-i18n="songDetail.heading">Detalles de la Canción</h2>
         <div id="songDetails"></div>
         <br>
-        <button id="editBtn">Editar</button>
-        <button id="deleteBtn">Eliminar</button>
-        <button onclick="window.location.href='songs.html'">Volver</button>
-        <button id="shareBtn">Compartir</button>
+        <button id="editBtn" data-i18n="songDetail.edit">Editar</button>
+        <button id="deleteBtn" data-i18n="songDetail.delete">Eliminar</button>
+        <button onclick="window.location.href='songs.html'" data-i18n="songDetail.back">Volver</button>
+        <button id="shareBtn" data-i18n="songDetail.share">Compartir</button>
     </div>
 
+    <script src="i18n.js"></script>
     <script>
         const params = new URLSearchParams(window.location.search);
         const songId = params.get('id');
@@ -34,12 +35,12 @@
                                        </audio>`;
                     }
                     container.innerHTML = `
-                        <p><strong>Nombre:</strong> ${song.name}</p>
-                        <p><strong>Artistas:</strong> ${song.artists.join(', ')}</p>
-                        <p><strong>Duración:</strong> ${song.duration} minutos</p>
-                        <p><strong>Géneros:</strong> ${song.genres.join(', ')}</p>
-                        <p><strong>Fecha de Lanzamiento:</strong> ${new Date(song.dateOfRelease).toLocaleDateString()}</p>
-                        <p><strong>Álbum:</strong> ${song.album}</p>
+                        <p><strong data-i18n="songDetail.name">Nombre:</strong> ${song.name}</p>
+                        <p><strong data-i18n="songDetail.artists">Artistas:</strong> ${song.artists.join(', ')}</p>
+                        <p><strong data-i18n="songDetail.duration">Duración:</strong> ${song.duration} minutos</p>
+                        <p><strong data-i18n="songDetail.genres">Géneros:</strong> ${song.genres.join(', ')}</p>
+                        <p><strong data-i18n="songDetail.releaseDate">Fecha de Lanzamiento:</strong> ${new Date(song.dateOfRelease).toLocaleDateString()}</p>
+                        <p><strong data-i18n="songDetail.album">Álbum:</strong> ${song.album}</p>
                         ${audioPlayer}
                     `;
 
