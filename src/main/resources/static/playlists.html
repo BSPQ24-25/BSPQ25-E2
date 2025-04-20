@@ -1,46 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Playlists</title>
+    <title data-i18n="playlists.title">Playlists</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="side-layout">
     <div class="sidebar">
         <div class="button-group">
-            <button onclick="window.location.href='add_playlist.html'">Add Playlist</button>
-            <button onclick="window.location.href='edit_playlist.html'">Edit Playlist</button>
-            <button onclick="window.location.href='delete_playlist.html'">Delete Playlist</button>
-            <button onclick="window.location.href='index.html'">Volver al Inicio</button>
-
+            <button onclick="window.location.href='add_playlist.html'" data-i18n="playlists.add">Add Playlist</button>
+            <button onclick="window.location.href='edit_playlist.html'" data-i18n="playlists.edit">Edit Playlist</button>
+            <button onclick="window.location.href='delete_playlist.html'" data-i18n="playlists.delete">Delete Playlist</button>
+            <button onclick="window.location.href='index.html'" data-i18n="playlists.back">Back to Home</button>
         </div>
     </div>
 
     <div class="main-content">
-        <h2>Your Playlists</h2>
+        <h2 data-i18n="playlists.yours">Your Playlists</h2>
         <ul id="playlistsList"></ul>
     </div>
 
+    <script src="/i18n.js"></script>
     <script>
-        fetch("http://localhost:8080/api/playlists")
-            .then(response => response.json())
-            .then(playlists => {
-                const list = document.getElementById("playlistsList");
-                playlists.forEach(pl => {
-                    const item = document.createElement("li");
-                    item.id = `playlist-${pl.id}`;
+        document.addEventListener("DOMContentLoaded", () => {
+            loadTranslations(); 
 
-                    const link = document.createElement("a");
-                    link.href = `detalle_playlist.html?id=${pl.id}`;
-                    link.textContent = `Playlist #${pl.id}`;
-                    link.style.textDecoration = "none";
-                    link.style.color = "inherit";
+            fetch("http://localhost:8080/api/playlists")
+                .then(response => response.json())
+                .then(playlists => {
+                    const list = document.getElementById("playlistsList");
+                    playlists.forEach(pl => {
+                        const item = document.createElement("li");
+                        item.id = `playlist-${pl.id}`;
 
-                    item.appendChild(link);
-                    list.appendChild(item);
+                        const link = document.createElement("a");
+                        link.href = `detalle_playlist.html?id=${pl.id}`;
+                        link.textContent = `Playlist #${pl.id}`;
+                        link.style.textDecoration = "none";
+                        link.style.color = "inherit";
+
+                        item.appendChild(link);
+                        list.appendChild(item);
+                    });
                 });
-            });
+        });
     </script>
 </body>
 </html>

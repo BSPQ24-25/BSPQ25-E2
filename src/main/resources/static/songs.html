@@ -1,73 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Songs</title>
+    <title data-i18n="songs.title">Songs</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="side-layout">
     <div class="sidebar">
         <div class="button-group">
-            <button onclick="window.location.href='add_song.html'">Add Song</button>
-            <button onclick="window.location.href='edit_song.html'">Edit Song</button>
-            <button onclick="window.location.href='delete_song.html'">Delete Song</button>
-            <button onclick="window.location.href='index.html'">Volver al Inicio</button>
+            <button onclick="window.location.href='add_song.html'" data-i18n="songs.add">Add Song</button>
+            <button onclick="window.location.href='edit_song.html'" data-i18n="songs.edit">Edit Song</button>
+            <button onclick="window.location.href='delete_song.html'" data-i18n="songs.delete">Delete Song</button>
+            <button onclick="window.location.href='index.html'" data-i18n="songs.back">Back to Home</button>
         </div>
     </div>
 
     <div class="main-content">
-        <h2>Your Songs</h2>
+        <h2 data-i18n="songs.yours">Your Songs</h2>
 
-        <input type="text" id="searchInput" placeholder="Search by song name" style="margin-bottom: 10px; width: 100%; padding: 8px; font-size: 16px;">
+        <input type="text" id="searchInput" data-i18n-placeholder="songs.search" placeholder="Search by song name" style="margin-bottom: 10px; width: 100%; padding: 8px; font-size: 16px;">
 
         <ul id="songsList"></ul>
     </div>
 
+    <script src="/i18n.js"></script>
     <script>
-        let allSongs = [];
+        document.addEventListener("DOMContentLoaded", () => {
+            loadTranslations();
 
-        fetch("http://localhost:8080/api/songs")
-            .then(response => response.json())
-            .then(songs => {
-                allSongs = songs;
-                renderSongs(songs);
+            let allSongs = [];
+
+            fetch("http://localhost:8080/api/songs")
+                .then(response => response.json())
+                .then(songs => {
+                    allSongs = songs;
+                    renderSongs(songs);
+                });
+
+            function renderSongs(songs) {
+                const list = document.getElementById("songsList");
+                list.innerHTML = "";
+
+                songs.forEach(song => {
+                    if (!song.id) return;
+
+                    const item = document.createElement("li");
+                    item.id = `song-${song.id}`;
+
+                    const link = document.createElement("a");
+                    link.href = `detalle_song.html?id=${song.id}`;
+                    link.textContent = song.name;
+                    link.style.display = "block";
+                    link.style.textDecoration = "none";
+                    link.style.color = "inherit";
+
+                    item.appendChild(link);
+                    list.appendChild(item);
+                });
+            }
+
+            document.getElementById("searchInput").addEventListener("input", function () {
+                const searchTerm = this.value.toLowerCase();
+                const filteredSongs = allSongs.filter(song =>
+                    (song.name ?? "").toLowerCase().includes(searchTerm)
+                );
+                renderSongs(filteredSongs);
             });
-
-        function renderSongs(songs) {
-            const list = document.getElementById("songsList");
-            list.innerHTML = "";
-
-            songs.forEach(song => {
-                const item = document.createElement("li");
-                item.id = `song-${song.id}`;
-                console.log(`Generando enlace para la canción con ID: ${song.id}`);
-
-                if (!song.id) {
-                    console.warn("Canción sin ID:", song);
-                    return;
-                }
-
-                console.log(song);
-                const link = document.createElement("a");
-                link.href = `detalle_song.html?id=${song.id}`;
-                link.textContent = song.name;
-                link.style.display = "block"; 
-                link.style.textDecoration = "none";
-                link.style.color = "inherit";
-
-                item.appendChild(link);
-                list.appendChild(item);
-            });
-        }
-
-        document.getElementById("searchInput").addEventListener("input", function () {
-            const searchTerm = this.value.toLowerCase();
-            const filteredSongs = allSongs.filter(song =>
-                (song.name ?? "").toLowerCase().includes(searchTerm)
-
-            );
-            renderSongs(filteredSongs);
         });
     </script>
 </body>

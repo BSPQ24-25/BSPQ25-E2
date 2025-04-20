@@ -1,21 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Deuspotify</title>
+    <title data-i18n="index.title">Deuspotify</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="homepage-layout">
     <div class="homepage-title">
-        <h2>Welcome to Deuspotify</h2>
+        <h2 data-i18n="index.welcome">Welcome to Deuspotify</h2>
     </div>
     <div class="homepage-menu">
         <ul>
-            <li><a href="songs.html">View Songs</a></li>
-            <li><a href="playlists.html">View Playlists</a></li>
-            <li><a href="add_song.html">Add Song</a></li>
-            <li><a href="add_playlist.html">Add Playlist</a></li>
+            <li><a href="songs.html" data-i18n="index.viewSongs">View Songs</a></li>
+            <li><a href="playlists.html" data-i18n="index.viewPlaylists">View Playlists</a></li>
+            <li><a href="add_song.html" data-i18n="index.addSong">Add Song</a></li>
+            <li><a href="add_playlist.html" data-i18n="index.addPlaylist">Add Playlist</a></li>
         </ul>
+        <button onclick="logout()" class="logout-button" data-i18n="index.logout">Logout</button>
     </div>
+
+    <script src="i18n.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            loadTranslations(); // Traducción automática
+        });
+
+        function logout() {
+            localStorage.removeItem("token");
+            fetch("/auth/logout", { method: "POST" })
+                .then(() => window.location.href = "login.html");
+        }
+    </script>
 </body>
 </html>
