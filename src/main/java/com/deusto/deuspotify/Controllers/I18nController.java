@@ -5,6 +5,8 @@ import org.springframework.context.MessageSource;
 import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 import java.io.IOException;
 import java.util.*;
@@ -35,13 +37,16 @@ public class I18nController {
     }
 
     @GetMapping("/api/i18n")
-    public Map<String, String> getTranslations(HttpServletRequest request) throws IOException {
-        Locale locale = request.getLocale(); // Obtiene el locale del request
+    public Map<String, String> getTranslations(@RequestParam(value = "lang", required = false) String lang) throws IOException {
+        // Usar 'es' como valor por defecto si no se pasa ningún idioma
+        Locale locale = switch (lang != null ? lang : "es") {
+            case "en" -> Locale.ENGLISH;
+            case "eu" -> new Locale("eu");
+            default -> new Locale("es");
+        };
 
-        // Cargar todas las claves de todos los archivos de propiedades
         Map<String, String> allKeys = loadAllPropertiesKeys();
 
-        // Traducir todas las claves usando el MessageSource
         return allKeys.entrySet().stream()
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
