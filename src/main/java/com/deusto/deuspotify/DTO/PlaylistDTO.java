@@ -5,6 +5,7 @@ import java.util.List;
 public class PlaylistDTO {
 
     private Long id;
+    private String name;
     private List<String> owners;
     private boolean isPublic;
     private List<SongDTO> songs;
@@ -15,6 +16,7 @@ public class PlaylistDTO {
 
     public PlaylistDTO(Long id, List<String> owners, boolean isPublic, List<SongDTO> songs, int numberOfSongs, List<Integer> order) {
         this.id = id;
+        this.name = name;
         this.owners = owners;
         this.isPublic = isPublic;
         this.songs = songs;
@@ -26,6 +28,9 @@ public class PlaylistDTO {
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
     public List<String> getOwners() { return owners; }
     public void setOwners(List<String> owners) { this.owners = owners; }
