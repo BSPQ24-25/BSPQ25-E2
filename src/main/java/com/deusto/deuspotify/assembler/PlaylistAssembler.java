@@ -17,6 +17,7 @@ public class PlaylistAssembler {
 
         return new PlaylistDTO(
                 playlist.getId(),
+                playlist.getName(),
                 playlist.getOwners(),
                 playlist.isPublic(),
                 songDTOs,
@@ -32,6 +33,7 @@ public class PlaylistAssembler {
 
         Playlist playlist = new Playlist();
         playlist.setId(dto.getId());
+        playlist.setName(dto.getName());
         playlist.setOwners(dto.getOwners());
         playlist.setPublic(dto.isPublic());
         playlist.setSongs(songs);
