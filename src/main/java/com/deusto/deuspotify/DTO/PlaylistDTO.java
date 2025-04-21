@@ -14,7 +14,7 @@ public class PlaylistDTO {
 
     public PlaylistDTO() {}
 
-    public PlaylistDTO(Long id, List<String> owners, boolean isPublic, List<SongDTO> songs, int numberOfSongs, List<Integer> order) {
+    public PlaylistDTO(Long id, String name, List<String> owners, boolean isPublic, List<SongDTO> songs, int numberOfSongs, List<Integer> order) {
         this.id = id;
         this.name = name;
         this.owners = owners;
@@ -23,6 +23,7 @@ public class PlaylistDTO {
         this.numberOfSongs = numberOfSongs;
         this.order = order;
     }
+    
 
     // Getters and setters
 
