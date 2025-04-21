@@ -84,6 +84,7 @@ public class DataInitializer implements CommandLineRunner {
 
             if (song1.isPresent() && song2.isPresent()) {
                 Playlist playlist = new Playlist(
+                    "MyTestPlaylist",
                     Arrays.asList("juanito99"),
                     true,
                     Arrays.asList(song1.get(), song2.get()),

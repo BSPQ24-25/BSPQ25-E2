@@ -1,113 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Add Song</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Library for reading metadata from song file -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
+  <meta charset="UTF-8">
+  <title data-i18n="add_song_title">Add Song</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
+  <script src="i18n.js" defer></script>
 </head>
 <body class="centered-page">
-    <h2>Add a New Song</h2>
-    <form id="addSongForm" onsubmit="addSong(event)" enctype="multipart/form-data">
-        <label for="name">Name:</label>
-        <input type="text" id="name" required>
-        <br>
+  <!-- Botones para cambiar el idioma -->
+  <div style="position: absolute; top: 10px; right: 20px;">
+    <button onclick="loadTranslations('es')" title="Español">Es</button>
+    <button onclick="loadTranslations('en')" title="English">En</button>
+    <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
+  </div>
 
-        <label for="album">Album:</label>
-        <input type="text" id="album" required>
-        <br>
+  <h2 data-i18n="add_song_title">Add a New Song</h2>
+  <form id="addSongForm" onsubmit="addSong(event)" enctype="multipart/form-data">
+    <label for="name" data-i18n="add_song_name">Name:</label>
+    <input type="text" id="name" required>
+    <br>
 
-        <label for="artists">Artists (comma-separated):</label>
-        <input type="text" id="artists" required>
-        <br>
+    <label for="album" data-i18n="add_song_album">Album:</label>
+    <input type="text" id="album" required>
+    <br>
 
-        <label for="genres">Genres (comma-separated):</label>
-        <input type="text" id="genres" required>
-        <br>
+    <label for="artists" data-i18n="add_song_artists">Artists (comma-separated):</label>
+    <input type="text" id="artists" required>
+    <br>
 
-        <label for="duration">Duration (minutes):</label>
-        <input type="number" step="0.01" id="duration" required>
-        <br>
+    <label for="genres" data-i18n="add_song_genres">Genres (comma-separated):</label>
+    <input type="text" id="genres" required>
+    <br>
 
-        <label for="date_of_release">Release Date:</label>
-        <input type="date" id="date_of_release" required>
-        <br>
+    <label for="duration" data-i18n="add_song_duration">Duration (minutes):</label>
+    <input type="number" step="0.01" id="duration" required>
+    <br>
 
-        <label for="file">Audio File:</label>
-        <input type="file" id="file" name="file" accept="audio/*" required>
-        <br>
-        
-        <label>
-            <input type="checkbox" id="extractMetadata">
-            Automatically extract metadata from file
-        </label>
-        <br>
-        
-        <button type="submit">Add</button>
-    </form>
+    <label for="date_of_release" data-i18n="add_song_release">Release Date:</label>
+    <input type="date" id="date_of_release" required>
+    <br>
 
-    <script>
-        // Listener for extracting metadata when a file is selected if the checkbox is checked
-        document.getElementById("file").addEventListener("change", function() {
-            const checkbox = document.getElementById("extractMetadata");
-            if (checkbox.checked && this.files && this.files[0]) {
-                jsmediatags.read(this.files[0], {
-                    onSuccess: function(tag) {
-                        const tags = tag.tags;
-                        console.log("All extracted tags:", tags);
-                        if (tags.title) {
-                            document.getElementById("name").value = tags.title;
-                        }
-                        if (tags.album) {
-                            document.getElementById("album").value = tags.album;
-                        }
-                        if (tags.artist) {
-                            document.getElementById("artists").value = tags.artist;
-                        }
-                        if (tags.genre) {
-                            const genre = Array.isArray(tags.genre) ? tags.genre.join(", ") : tags.genre;
-                            document.getElementById("genres").value = genre;
-                        }
-                        if (tags.duration) {
-                            document.getElementById("duration").value = (tags.duration / 60).toFixed(2);
-                        }
-                        if (tags.release_date) {
-                            document.getElementById("date_of_release").value = tags.release_date;
-                        }
-                        console.log("Metadata extracted successfully:", tags);
-                    },
-                    onError: function(error) {
-                        console.error("Error reading metadata:", error.type, error.info);
-                    }
-                });
+    <label for="file" data-i18n="add_song_file">Audio File:</label>
+    <input type="file" id="file" name="file" accept="audio/*" required>
+    <br>
+    
+    <label>
+      <input type="checkbox" id="extractMetadata">
+      <span data-i18n="add_song_extract">Automatically extract metadata from file</span>
+    </label>
+    <br>
+    
+    <button type="submit" data-i18n="add_song_button">Add</button>
+  </form>
+
+  <script>
+    document.getElementById("file").addEventListener("change", function () {
+      const checkbox = document.getElementById("extractMetadata");
+      if (checkbox.checked && this.files && this.files[0]) {
+        jsmediatags.read(this.files[0], {
+          onSuccess: function (tag) {
+            const tags = tag.tags;
+            if (tags.title) document.getElementById("name").value = tags.title;
+            if (tags.album) document.getElementById("album").value = tags.album;
+            if (tags.artist) document.getElementById("artists").value = tags.artist;
+            if (tags.genre) {
+              const genre = Array.isArray(tags.genre) ? tags.genre.join(", ") : tags.genre;
+              document.getElementById("genres").value = genre;
             }
+            if (tags.duration) {
+              document.getElementById("duration").value = (tags.duration / 60).toFixed(2);
+            }
+            if (tags.release_date) {
+              document.getElementById("date_of_release").value = tags.release_date;
+            }
+          },
+          onError: function (error) {
+            console.error("Error reading metadata:", error.type, error.info);
+          }
         });
-        
-        async function addSong(event) {
-            event.preventDefault();
-            const formData = new FormData();
-            formData.append("name", document.getElementById("name").value);
-            formData.append("album", document.getElementById("album").value);
-            formData.append("artists", document.getElementById("artists").value);
-            formData.append("genres", document.getElementById("genres").value);
-            formData.append("duration", document.getElementById("duration").value);
-            formData.append("date_of_release", document.getElementById("date_of_release").value);
-            formData.append("file", document.getElementById("file").files[0]);
+      }
+    });
 
-            const response = await fetch("http://localhost:8080/api/songs/upload", {
-                method: "POST",
-                body: formData
-            });
+    async function addSong(event) {
+      event.preventDefault();
+      const formData = new FormData();
+      formData.append("name", document.getElementById("name").value);
+      formData.append("album", document.getElementById("album").value);
+      formData.append("artists", document.getElementById("artists").value);
+      formData.append("genres", document.getElementById("genres").value);
+      formData.append("duration", document.getElementById("duration").value);
+      formData.append("date_of_release", document.getElementById("date_of_release").value);
+      formData.append("file", document.getElementById("file").files[0]);
 
-            if (response.ok) {
-                const data = await response.json();
-                alert(data.message || "Song added successfully!");
-                window.location.href = "songs.html";
-            } else {
-                const error = await response.json();
-                alert(error.message || "Failed to add song.");
-            }
-        }
-    </script>
+      const response = await fetch("http://localhost:8080/api/songs/upload", {
+        method: "POST",
+        body: formData
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        alert(data.message || "Song added successfully!");
+        window.location.href = "songs.html";
+      } else {
+        const error = await response.json();
+        alert(error.message || "Failed to add song.");
+      }
+    }
+  </script>
 </body>
 </html>

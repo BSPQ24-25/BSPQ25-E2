@@ -1,52 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Add Playlist</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title data-i18n="add_playlist_title">Add Playlist</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="i18n.js" defer></script>
 </head>
 <body class="centered-page">
-    <h2>Create a New Playlist</h2>
-    <form id="addPlaylistForm" onsubmit="createPlaylist(event)">
-        <label for="profile_id">Profile ID:</label>
-        <input type="number" id="profile_id" required>
-        <br>
+  <div style="position: absolute; top: 10px; right: 20px;">
+    <button onclick="loadTranslations('es')" title="Español">Es</button>
+    <button onclick="loadTranslations('en')" title="English">En</button>
+    <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
+  </div>
 
-        <label for="number_of_songs">Number of Songs:</label>
-        <input type="number" id="number_of_songs" required>
-        <br>
+  <h2 data-i18n="add_playlist_title">Create a New Playlist</h2>
 
-        <div style="margin-bottom: 1rem;">
-            <label for="is_public" style="display: block; font-weight: bold; margin-bottom: 0.2rem;">Public:</label>
-            <input type="checkbox" id="is_public" style="transform: scale(1.2);">
-        </div>
+  <form id="addPlaylistForm" onsubmit="createPlaylist(event)">
+    <label for="profile_id" data-i18n="add_playlist_profile">Profile ID:</label>
+    <input type="number" id="profile_id" required>
+    <br>
 
-        <button type="submit">Create</button>
-    </form>
+    <label for="number_of_songs" data-i18n="add_playlist_number">Number of Songs:</label>
+    <input type="number" id="number_of_songs" required>
+    <br>
 
-    <script>
-        async function createPlaylist(event) {
-            event.preventDefault();
+    <div style="margin-bottom: 1rem;">
+      <label for="is_public" data-i18n="add_playlist_public" style="display: block; font-weight: bold; margin-bottom: 0.2rem;">Public:</label>
+      <input type="checkbox" id="is_public" style="transform: scale(1.2);">
+    </div>
 
-            const playlist = {
-                profile_id: parseInt(document.getElementById("profile_id").value),
-                number_of_songs: parseInt(document.getElementById("number_of_songs").value),
-                is_public: document.getElementById("is_public").checked
-            };
+    <button type="submit" data-i18n="add_playlist_button">Create</button>
+  </form>
 
-            const response = await fetch("http://localhost:8080/api/playlists", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(playlist)
-            });
+  <script>
+    async function createPlaylist(event) {
+      event.preventDefault();
 
-            if (response.ok) {
-                alert("Playlist created successfully!");
-                window.location.href = "playlists.html";
-            } else {
-                alert("Failed to create playlist");
-            }
-        }
-    </script>
+      const playlist = {
+        profile_id: parseInt(document.getElementById("profile_id").value),
+        number_of_songs: parseInt(document.getElementById("number_of_songs").value),
+        is_public: document.getElementById("is_public").checked
+      };
+
+      const response = await fetch("http://localhost:8080/api/playlists", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(playlist)
+      });
+
+      if (response.ok) {
+        alert("Playlist created successfully!");
+        window.location.href = "playlists.html";
+      } else {
+        alert("Failed to create playlist");
+      }
+    }
+  </script>
 </body>
 </html>

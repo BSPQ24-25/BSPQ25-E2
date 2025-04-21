@@ -11,6 +11,8 @@ public class Playlist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+
     @ElementCollection
     private List<String> owners;
 
@@ -32,7 +34,8 @@ public class Playlist {
 
     public Playlist() {}
 
-    public Playlist(List<String> owners, boolean isPublic, List<Song> songs, List<Integer> order) {
+    public Playlist(String name, List<String> owners, boolean isPublic, List<Song> songs, List<Integer> order) {
+        this.name = name;
         this.owners = owners;
         this.isPublic = isPublic;
         this.songs = songs;
@@ -44,6 +47,10 @@ public class Playlist {
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
 
     public List<String> getOwners() { return owners; }
     public void setOwners(List<String> owners) { this.owners = owners; }
@@ -65,6 +72,7 @@ public class Playlist {
     @Override
     public String toString() {
         return "Playlist{" +
+                "name='" + name + '\'' +
                 "owners=" + owners +
                 ", isPublic=" + isPublic +
                 ", numberOfSongs=" + numberOfSongs +

@@ -2,10 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title data-i18n="login.title">Login</title>
+    <title data-i18n="login.title">Deuspotify - Login</title>
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body class="centered-page">
+    <div style="position: absolute; top: 10px; right: 20px;">
+        <button onclick="loadTranslations('es')" title="Español">Es</button>
+        <button onclick="loadTranslations('en')" title="English">En</button>
+        <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
+    </div>
     <h2 data-i18n="login.title">Login</h2>
 
     <form id="loginForm" action="/login" method="POST">
