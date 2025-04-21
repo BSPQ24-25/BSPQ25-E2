@@ -29,6 +29,7 @@
                     const container = document.getElementById("playlistDetails");
                     container.innerHTML = `
                         <p><strong data-i18n="playlistDetail.id">ID:</strong> ${pl.id}</p>
+                        <p><strong data-i18n="playlistDetail.name">Nombre:</strong> ${pl.name}</p>
                         <p><strong data-i18n="playlistDetail.owners">Propietarios:</strong> ${pl.owners.join(', ')}</p>
                         <p><strong data-i18n="playlistDetail.public">Pública:</strong> ${pl.public ? 'Sí' : 'No'}</p>
                         <p><strong data-i18n="playlistDetail.songCount">Número de Canciones:</strong> ${pl.numberOfSongs}</p>

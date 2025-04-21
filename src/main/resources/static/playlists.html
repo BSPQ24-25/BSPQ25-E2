@@ -36,7 +36,8 @@
 
                         const link = document.createElement("a");
                         link.href = `detalle_playlist.html?id=${pl.id}`;
-                        link.textContent = `Playlist #${pl.id}`;
+                        link.textContent = pl.name || `Playlist #${pl.id}`;
+                        link.style.display = "block";
                         link.style.textDecoration = "none";
                         link.style.color = "inherit";
 
