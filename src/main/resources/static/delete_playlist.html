@@ -1,18 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Delete Playlist</title>
+  <title data-i18n="delete_playlist_title">Delete Playlist</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="i18n.js" defer></script>
 </head>
 <body class="centered-page">
-  <h2>Select a playlist to delete</h2>
+  <!-- Botones de idioma -->
+  <div style="position: absolute; top: 10px; right: 20px;">
+    <button onclick="loadTranslations('es')" title="Español">Es</button>
+    <button onclick="loadTranslations('en')" title="English">En</button>
+    <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
+  </div>
+
+  <h2 data-i18n="delete_playlist_heading">Select a playlist to delete</h2>
 
   <select id="playlistSelect" size="5" required></select>
 
   <div style="margin-top: 1.5rem;">
-    <button id="confirmDelete">Yes, Delete</button>
-    <button onclick="window.location.href='playlists.html'">Cancel</button>
+    <button id="confirmDelete" data-i18n="delete_playlist_confirm">Yes, Delete</button>
+    <button onclick="window.location.href='playlists.html'" data-i18n="delete_playlist_cancel">Cancel</button>
   </div>
 
   <script>

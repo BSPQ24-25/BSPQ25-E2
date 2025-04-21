@@ -1,18 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Delete Song</title>
+  <title data-i18n="delete_song_title">Delete Song</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="i18n.js" defer></script>
 </head>
 <body class="centered-page">
-  <h2>Select a song to delete</h2>
+  <!-- Botones de idioma -->
+  <div style="position: absolute; top: 10px; right: 20px;">
+    <button onclick="loadTranslations('es')" title="Español">Es</button>
+    <button onclick="loadTranslations('en')" title="English">En</button>
+    <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
+  </div>
+
+  <h2 data-i18n="delete_song_heading">Select a song to delete</h2>
 
   <select id="songSelect" size="5" required></select>
 
   <div style="margin-top: 1.5rem;">
-    <button id="confirmDelete">Yes, Delete</button>
-    <button onclick="window.location.href='songs.html'">Cancel</button>
+    <button id="confirmDelete" data-i18n="delete_song_confirm">Yes, Delete</button>
+    <button onclick="window.location.href='songs.html'" data-i18n="delete_song_cancel">Cancel</button>
   </div>
 
   <script>

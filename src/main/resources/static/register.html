@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title data-i18n="register.title">Register</title>
+    <title data-i18n="register.title">Deuspotify - Register</title>
     <link rel="stylesheet" href="styles.css">
     <script>
         async function register(event) {
@@ -31,6 +31,11 @@
     </script>
 </head>
 <body class="centered-page">
+    <div style="position: absolute; top: 10px; right: 20px;">
+        <button onclick="loadTranslations('es')" title="Español">Es</button>
+        <button onclick="loadTranslations('en')" title="English">En</button>
+        <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
+    </div>
     <h2 data-i18n="register.title">Register</h2>
     <form id="registerForm" onsubmit="register(event)">
         <label for="username" data-i18n="register.username">Username:</label>

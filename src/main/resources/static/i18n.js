@@ -46,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Si usas botones de bandera (🇪🇸, 🇬🇧...), activa su funcionalidad
     document.querySelectorAll('[data-lang-btn]').forEach(button => {
         button.addEventListener('click', () => {
             const lang = button.getAttribute('data-lang-btn');

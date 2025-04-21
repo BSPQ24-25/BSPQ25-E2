@@ -1,30 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Edit Playlist</title>
+  <title data-i18n="edit_playlist_title">Edit Playlist</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="i18n.js" defer></script>
 </head>
 <body class="centered-page">
-  <h2>Edit Playlist</h2>
+  
+  <div style="position: absolute; top: 10px; right: 20px;">
+    <button onclick="loadTranslations('es')" title="Español">Es</button>
+    <button onclick="loadTranslations('en')" title="English">En</button>
+    <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
+  </div>
 
-  <label for="playlistSelect">Choose a playlist:</label>
+  <h2 data-i18n="edit_playlist_title">Edit Playlist</h2>
+
+  <label for="playlistSelect" data-i18n="edit_playlist_choose">Choose a playlist:</label>
   <select id="playlistSelect" size="5" required></select>
 
   <form id="editPlaylistForm" style="margin-top: 2rem;">
-    <label for="profile_id">Profile ID:</label>
+    <label for="profile_id" data-i18n="edit_playlist_profile_id">Profile ID:</label>
     <input type="number" id="profile_id" required>
 
-    <label for="number_of_songs">Number of Songs:</label>
+    <label for="number_of_songs" data-i18n="edit_playlist_number_of_songs">Number of Songs:</label>
     <input type="number" id="number_of_songs" required>
 
-    <label for="is_public">Public:</label>
+    <label for="is_public" data-i18n="edit_playlist_public">Public:</label>
     <input type="checkbox" id="is_public">
 
-    <button type="submit">Save Changes</button>
+    <button type="submit" data-i18n="edit_playlist_save">Save Changes</button>
   </form>
 
   <script>
+
+    // Lógica de edición
     const select = document.getElementById("playlistSelect");
     let playlists = [];
 
