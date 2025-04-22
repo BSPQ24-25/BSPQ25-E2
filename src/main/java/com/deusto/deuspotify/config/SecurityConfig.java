@@ -18,6 +18,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
+import org.springframework.http.HttpMethod;
 
 import java.util.List;
 import java.util.Locale;
@@ -43,7 +44,10 @@ public class SecurityConfig {
                     "/register.html",
                     "/styles.css",
                     "/static/**",
-                    "/api/i18n"
+                    "/api/i18n",
+                    "/api/profiles",
+                    "/auth/register",
+                    "/auth/login"
                 ).permitAll()
                 .anyRequest().authenticated()
             )
@@ -60,7 +64,7 @@ public class SecurityConfig {
                 .deleteCookies("JSESSIONID")
             )
             .csrf(csrf -> csrf
-                .ignoringRequestMatchers("/login", "/logout", "/api/**")
+                .ignoringRequestMatchers("/login", "/logout", "/api/**", "/auth/**")
             );
 
         return http.build();

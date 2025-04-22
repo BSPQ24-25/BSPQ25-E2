@@ -16,12 +16,12 @@
   <h2 data-i18n="add_playlist_title">Create a New Playlist</h2>
 
   <form id="addPlaylistForm" onsubmit="createPlaylist(event)">
-    <label for="profile_id" data-i18n="add_playlist_profile">Profile ID:</label>
-    <input type="number" id="profile_id" required>
+    <label for="name" data-i18n="add_playlist_name">Name:</label>
+    <input type="text" id="name" required>
     <br>
 
-    <label for="number_of_songs" data-i18n="add_playlist_number">Number of Songs:</label>
-    <input type="number" id="number_of_songs" required>
+    <label for="profile_id" data-i18n="add_playlist_profile">Profile ID:</label>
+    <input type="number" id="profile_id" required>
     <br>
 
     <div style="margin-bottom: 1rem;">
@@ -37,8 +37,9 @@
       event.preventDefault();
 
       const playlist = {
+        name: document.getElementById("name").value,
         profile_id: parseInt(document.getElementById("profile_id").value),
-        number_of_songs: parseInt(document.getElementById("number_of_songs").value),
+        number_of_songs: 0,
         is_public: document.getElementById("is_public").checked
       };
 

@@ -23,4 +23,6 @@ public interface DeuspotifyService {
     Playlist addPlaylist(Playlist playlist);
     Playlist updatePlaylist(Long id, Playlist playlist);
     void deletePlaylist(Long id);
+    List<Song> findSongsByIds(List<Long> songIds);
+    Playlist updatePlaylistSongs(Long playlistId, List<Long> songIds);
 }

@@ -11,7 +11,7 @@
             const password = document.getElementById("password").value;
             const email = document.getElementById("email").value;
 
-            const response = await fetch("http://localhost:8080/api/profiles", {
+            const response = await fetch("http://localhost:8080/auth/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, password, email, friendsList: [], favouriteSongs: [], playlists: [], isAdmin: false })
@@ -21,7 +21,8 @@
                 alert("User registered successfully! Redirecting to login...");
                 window.location.href = "login.html";
             } else {
-                alert("Registration failed. Please try again.");
+                const errorMessage = await response.text();
+                alert("Registration failed: " + errorMessage);
             }
         }
 

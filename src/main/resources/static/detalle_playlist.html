@@ -19,6 +19,7 @@
         <button id="editBtn" data-i18n="playlistDetail.edit">Editar</button>
         <button id="deleteBtn" data-i18n="playlistDetail.delete">Eliminar</button>
         <button onclick="window.location.href='playlists.html'" data-i18n="playlistDetail.back">Volver</button>
+        <button id="editSongsBtn" data-i18n="playlistDetail.editSongs">Editar canciones</button>
     </div>
 
     <script>
@@ -57,6 +58,10 @@
                                 window.location.href = "playlists.html";
                             });
                         }
+                    };
+
+                    document.getElementById("editSongsBtn").onclick = () => {
+                        window.location.href = `edit_playlist_songs.html?id=${pl.id}`;
                     };
                 })
                 .catch(error => {

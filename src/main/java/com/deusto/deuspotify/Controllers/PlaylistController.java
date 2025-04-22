@@ -1,6 +1,7 @@
 package com.deusto.deuspotify.Controllers;
 
 import com.deusto.deuspotify.model.Playlist;
+import com.deusto.deuspotify.model.Song;
 import com.deusto.deuspotify.services.DeuspotifyService;
 
 import org.springframework.web.bind.annotation.*;
@@ -42,5 +43,19 @@ public class PlaylistController {
     @DeleteMapping("/{id}")
     public void deletePlaylist(@PathVariable Long id) {
         deuspotifyService.deletePlaylist(id);
+    }
+
+    @PutMapping("/{id}/songs")
+    
+    
+    public Playlist updatePlaylistSongs(@PathVariable Long id, @RequestBody List<Long> songIds) {
+
+        Playlist playlist = deuspotifyService.findPlaylist(id)
+            .orElseThrow(() -> new RuntimeException("Playlist no encontrada"));
+
+        List<Song> songs = deuspotifyService.findSongsByIds(songIds);
+        playlist.setSongs(songs);
+
+        return deuspotifyService.updatePlaylist(id, playlist);
     }
 }
