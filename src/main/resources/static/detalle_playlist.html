@@ -41,9 +41,28 @@
                         <p><strong data-i18n="playlistDetail.songCount">Número de Canciones:</strong> ${pl.numberOfSongs}</p>
                         <p><strong data-i18n="playlistDetail.order">Orden:</strong> ${pl.order.join(', ')}</p>
                         <p><strong data-i18n="playlistDetail.songs">Canciones:</strong></p>
-                        <ul>${pl.songs.map(song => `<li>${song.name}</li>`).join('')}</ul>
+                        <p><strong data-i18n="playlistDetail.songs">Canciones:</strong></p>
+                        <ul id="songList"></ul>
                     `;
 
+                    const songList = document.getElementById("songList");
+                    pl.songs.forEach(song => {
+                        if (!song.id) return;
+
+                        const item = document.createElement("li");
+                        item.id = `song-${song.id}`;
+
+                        const link = document.createElement("a");
+                        link.href = `detalle_song.html?id=${song.id}`;
+                        link.textContent = song.name;
+                        link.style.display = "block";
+                        link.style.textDecoration = "none";
+                        link.style.color = "inherit";
+
+                        item.appendChild(link);
+                        songList.appendChild(item);
+                    });
+                    
                     document.getElementById("editBtn").onclick = () => {
                         window.location.href = `edit_playlist.html?id=${pl.id}`;
                     };
