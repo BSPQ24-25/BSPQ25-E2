@@ -115,4 +115,22 @@ public class DeuspotifyServiceImpl implements DeuspotifyService {
     public void deletePlaylist(Long id) {
         playlistRepository.deleteById(id);
     }
+
+    public List<Song> findSongsByIds(List<Long> songIds) {
+        return songRepository.findAllById(songIds);
+    }
+
+    @Override
+    public Playlist updatePlaylistSongs(Long playlistId, List<Long> songIds) {
+        Optional<Playlist> playlistOptional = playlistRepository.findById(playlistId);
+        if (!playlistOptional.isPresent()) {
+            throw new RuntimeException("Playlist no encontrada");
+        }
+
+        Playlist playlist = playlistOptional.get();
+        List<Song> songs = findSongsByIds(songIds);
+        playlist.setSongs(songs);
+
+        return playlistRepository.save(playlist);
+    }
 }

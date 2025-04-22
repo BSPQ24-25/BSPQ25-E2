@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title data-i18n="edit_playlist_songs.title">Editar canciones de la playlist</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="i18n.js" defer></script>
+</head>
+<body class="centered-page">
+
+  <h2 data-i18n="edit_playlist_songs.title">Editar canciones de la playlist</h2>
+  <form id="songsForm"></form>
+  <button id="saveBtn" data-i18n="edit_playlist_songs.save">Guardar cambios</button>
+  <button onclick="window.history.back()" data-i18n="edit_playlist_songs.cancel">Cancelar</button>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const playlistId = params.get("id");
+
+    let playlistSongs = [];
+
+    // Obtener canciones de la playlist actual
+    fetch(`http://localhost:8080/api/playlists/${playlistId}`)
+      .then(res => res.json())
+      .then(playlist => {
+        playlistSongs = playlist.songs.map(song => song.id);
+
+        // Obtener todas las canciones del usuario
+        fetch(`http://localhost:8080/api/songs`)
+          .then(res => res.json())
+          .then(allSongs => {
+            const form = document.getElementById("songsForm");
+            allSongs.forEach(song => {
+              const isInPlaylist = playlistSongs.includes(song.id);
+
+              const label = document.createElement("label");
+              label.className = "song-checkbox-label";
+              const checkbox = document.createElement("input");
+              checkbox.type = "checkbox";
+              checkbox.value = song.id;
+              checkbox.checked = isInPlaylist;
+
+              label.appendChild(checkbox);
+              label.append(` ${song.name}`);
+              form.appendChild(label);
+              form.appendChild(document.createElement("br"));
+            });
+          });
+      });
+
+    document.getElementById("saveBtn").addEventListener("click", () => {
+      const checkboxes = document.querySelectorAll("#songsForm input[type='checkbox']");
+      const selectedIds = Array.from(checkboxes)
+        .filter(cb => cb.checked)
+        .map(cb => parseInt(cb.value));
+
+      fetch(`http://localhost:8080/api/playlists/${playlistId}/songs`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(selectedIds)
+      }).then(() => {
+        alert("Canciones actualizadas.");
+        window.location.href = `detalle_playlist.html?id=${playlistId}`;
+      });
+    });
+  </script>
+</body>
+</html>

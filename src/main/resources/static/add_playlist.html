@@ -24,10 +24,6 @@
     <input type="number" id="profile_id" required>
     <br>
 
-    <label for="number_of_songs" data-i18n="add_playlist_number">Number of Songs:</label>
-    <input type="number" id="number_of_songs" required>
-    <br>
-
     <div style="margin-bottom: 1rem;">
       <label for="is_public" data-i18n="add_playlist_public" style="display: block; font-weight: bold; margin-bottom: 0.2rem;">Public:</label>
       <input type="checkbox" id="is_public" style="transform: scale(1.2);">
@@ -43,7 +39,7 @@
       const playlist = {
         name: document.getElementById("name").value,
         profile_id: parseInt(document.getElementById("profile_id").value),
-        number_of_songs: parseInt(document.getElementById("number_of_songs").value),
+        number_of_songs: 0,
         is_public: document.getElementById("is_public").checked
       };
 
