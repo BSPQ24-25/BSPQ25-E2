@@ -20,6 +20,9 @@
   <select id="playlistSelect" size="5" required></select>
 
   <form id="editPlaylistForm" style="margin-top: 2rem;">
+    <label for="name" data-i18n="edit_playlist_name">Name:</label>
+    <input type="text" id="name" required>
+
     <label for="profile_id" data-i18n="edit_playlist_profile_id">Profile ID:</label>
     <input type="number" id="profile_id" required>
 
@@ -53,6 +56,7 @@
     select.addEventListener("change", () => {
       const selected = playlists.find(p => p.id == select.value);
       if (selected) {
+        document.getElementById("name").value = selected.name;
         document.getElementById("profile_id").value = selected.profile_id;
         document.getElementById("number_of_songs").value = selected.number_of_songs;
         document.getElementById("is_public").checked = selected.is_public;
@@ -63,6 +67,7 @@
       event.preventDefault();
       const playlistId = select.value;
       const updated = {
+        name: document.getElementById("name").value,
         profile_id: parseInt(document.getElementById("profile_id").value),
         number_of_songs: parseInt(document.getElementById("number_of_songs").value),
         is_public: document.getElementById("is_public").checked
