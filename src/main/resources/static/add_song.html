@@ -33,10 +33,6 @@
     <input type="text" id="genres" required>
     <br>
 
-    <label for="duration" data-i18n="add_song_duration">Duration (minutes):</label>
-    <input type="number" step="0.01" id="duration" required>
-    <br>
-
     <label for="date_of_release" data-i18n="add_song_release">Release Date:</label>
     <input type="date" id="date_of_release" required>
     <br>
@@ -44,6 +40,9 @@
     <label for="file" data-i18n="add_song_file">Audio File:</label>
     <input type="file" id="file" name="file" accept="audio/*" required>
     <br>
+
+    <!-- Campo oculto para duración en minutos -->
+    <input type="hidden" id="duration" name="duration">
     
     <label>
       <input type="checkbox" id="extractMetadata">
@@ -55,30 +54,41 @@
   </form>
 
   <script>
-    document.getElementById("file").addEventListener("change", function () {
+    const fileInput = document.getElementById("file");
+
+    fileInput.addEventListener("change", function () {
       const checkbox = document.getElementById("extractMetadata");
-      if (checkbox.checked && this.files && this.files[0]) {
-        jsmediatags.read(this.files[0], {
-          onSuccess: function (tag) {
-            const tags = tag.tags;
-            if (tags.title) document.getElementById("name").value = tags.title;
-            if (tags.album) document.getElementById("album").value = tags.album;
-            if (tags.artist) document.getElementById("artists").value = tags.artist;
-            if (tags.genre) {
-              const genre = Array.isArray(tags.genre) ? tags.genre.join(", ") : tags.genre;
-              document.getElementById("genres").value = genre;
+      const file = this.files[0];
+
+      if (file) {
+        // Extraer duración del archivo
+        const audio = new Audio(URL.createObjectURL(file));
+        audio.onloadedmetadata = function () {
+          const durationMinutes = (audio.duration / 60).toFixed(2);
+          document.getElementById("duration").value = durationMinutes;
+        };
+
+        // Extraer metadata si checkbox está activado
+        if (checkbox.checked) {
+          jsmediatags.read(file, {
+            onSuccess: function (tag) {
+              const tags = tag.tags;
+              if (tags.title) document.getElementById("name").value = tags.title;
+              if (tags.album) document.getElementById("album").value = tags.album;
+              if (tags.artist) document.getElementById("artists").value = tags.artist;
+              if (tags.genre) {
+                const genre = Array.isArray(tags.genre) ? tags.genre.join(", ") : tags.genre;
+                document.getElementById("genres").value = genre;
+              }
+              if (tags.release_date) {
+                document.getElementById("date_of_release").value = tags.release_date;
+              }
+            },
+            onError: function (error) {
+              console.error("Error reading metadata:", error.type, error.info);
             }
-            if (tags.duration) {
-              document.getElementById("duration").value = (tags.duration / 60).toFixed(2);
-            }
-            if (tags.release_date) {
-              document.getElementById("date_of_release").value = tags.release_date;
-            }
-          },
-          onError: function (error) {
-            console.error("Error reading metadata:", error.type, error.info);
-          }
-        });
+          });
+        }
       }
     });
 
@@ -91,7 +101,7 @@
       formData.append("genres", document.getElementById("genres").value);
       formData.append("duration", document.getElementById("duration").value);
       formData.append("date_of_release", document.getElementById("date_of_release").value);
-      formData.append("file", document.getElementById("file").files[0]);
+      formData.append("file", fileInput.files[0]);
 
       const response = await fetch("http://localhost:8080/api/songs/upload", {
         method: "POST",

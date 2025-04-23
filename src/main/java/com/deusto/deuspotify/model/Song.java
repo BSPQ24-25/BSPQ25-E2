@@ -35,6 +35,10 @@ public class Song {
 
     public Song() {}
 
+        public Song(Long id) {
+        this.id = id;
+    }
+
     public Song(String name, List<String> artists, double duration, List<String> genres, Date dateOfRelease, String album) {
         this.name = name;
         this.artists = artists;

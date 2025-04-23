@@ -47,8 +47,24 @@ public class DeuspotifyServiceImpl implements DeuspotifyService {
     }
 
     public void deleteSong(Long id) {
-        songRepository.deleteById(id);
+        List<Playlist> playlists = playlistRepository.findAll();
+        Optional<Song> songOpt = songRepository.findById(id);
+        
+        if (songOpt.isPresent()) {
+            Song song = songOpt.get();
+            for (Playlist playlist : playlists) {
+                if (playlist.getSongs().contains(song)) {
+                    playlist.getSongs().remove(song);  // Eliminar el objeto Song, no solo por el ID
+                    playlistRepository.save(playlist);
+                }
+            }
+            
+            songRepository.delete(song);
+        } else {
+            throw new RuntimeException("Canción no encontrada");
+        }
     }
+
 
     public Song addSongWithFile(String name, String album, String artists, String genres,
                                 double duration, Date dateOfRelease, MultipartFile file) {

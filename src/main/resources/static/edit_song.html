@@ -5,6 +5,7 @@
   <title data-i18n="edit_song_title">Edit Song</title>
   <link rel="stylesheet" href="styles.css">
   <script src="i18n.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
 </head>
 <body class="centered-page">
   <div style="position: absolute; top: 10px; right: 20px;">
@@ -25,11 +26,23 @@
     <label for="album" data-i18n="edit_song_album">Album:</label>
     <input type="text" id="album" required>
 
+    <label for="artists" data-i18n="edit_song_artists">Artists (comma-separated):</label>
+    <input type="text" id="artists" required>
+
+    <label for="genres" data-i18n="edit_song_genres">Genres (comma-separated):</label>
+    <input type="text" id="genres" required>
+
     <label for="duration" data-i18n="edit_song_duration">Duration (minutes):</label>
     <input type="number" step="0.01" id="duration" required>
 
     <label for="date_of_release" data-i18n="edit_song_release">Release Date:</label>
     <input type="date" id="date_of_release" required>
+
+    <label for="file" data-i18n="edit_song_file">Audio File:</label>
+    <input type="file" id="file" name="file" accept="audio/*">
+
+    <!-- Campo oculto para mantener la duración -->
+    <input type="hidden" id="durationHidden" name="duration">
 
     <button type="submit" data-i18n="edit_song_save">Save Changes</button>
   </form>
@@ -48,6 +61,34 @@
           option.textContent = song.name;
           select.appendChild(option);
         });
+
+        // Obtener el ID desde los parámetros de la URL
+        const params = new URLSearchParams(window.location.search);
+        const selectedId = params.get("id");
+
+        if (selectedId) {
+          select.value = selectedId;
+          const selected = songs.find(s => s.id == selectedId);
+          if (selected) {
+            document.getElementById("name").value = selected.name;
+            document.getElementById("album").value = selected.album;
+            document.getElementById("artists").value = selected.artists?.join(', ') || '';
+            document.getElementById("genres").value = selected.genres?.join(', ') || '';
+            document.getElementById("duration").value = selected.duration;
+
+            const formattedDate = selected.date_of_release
+              ? new Date(selected.date_of_release).toISOString().split('T')[0]
+              : '';
+            document.getElementById("date_of_release").value = formattedDate;
+            document.getElementById("durationHidden").value = selected.duration;
+
+            if (selected.file) {
+              const audioFileInput = document.getElementById("file");
+              const audioFileName = selected.file.split("/").pop();
+              audioFileInput.setAttribute("data-filename", audioFileName);
+            }
+          }
+        }
       });
 
     select.addEventListener("change", () => {
@@ -55,25 +96,55 @@
       if (selected) {
         document.getElementById("name").value = selected.name;
         document.getElementById("album").value = selected.album;
+        document.getElementById("artists").value = selected.artists ? selected.artists.join(', ') : '';
+        document.getElementById("genres").value = selected.genres ? selected.genres.join(', ') : '';
         document.getElementById("duration").value = selected.duration;
-        document.getElementById("date_of_release").value = selected.date_of_release;
+
+        const dateOfRelease = selected.date_of_release;
+        const formattedDate = dateOfRelease ? new Date(dateOfRelease).toISOString().split('T')[0] : '';
+        document.getElementById("date_of_release").value = formattedDate;
+        document.getElementById("durationHidden").value = selected.duration;
+
+        if (selected.file) {
+          const audioFileInput = document.getElementById("file");
+          const audioFileName = selected.file.split("/").pop();
+          audioFileInput.setAttribute("data-filename", audioFileName);
+        }
       }
     });
 
     document.getElementById("editSongForm").addEventListener("submit", function(event) {
       event.preventDefault();
       const songId = select.value;
+      const formData = new FormData();
+
       const updatedSong = {
         name: document.getElementById("name").value,
         album: document.getElementById("album").value,
+        artists: document.getElementById("artists").value.split(',').map(artist => artist.trim()),
+        genres: document.getElementById("genres").value.split(',').map(genre => genre.trim()),
         duration: parseFloat(document.getElementById("duration").value),
-        date_of_release: document.getElementById("date_of_release").value
+        date_of_release: document.getElementById("date_of_release").value,
       };
+
+      formData.append("name", updatedSong.name);
+      formData.append("album", updatedSong.album);
+      formData.append("artists", updatedSong.artists);
+      formData.append("genres", updatedSong.genres);
+      formData.append("duration", updatedSong.duration);
+      formData.append("date_of_release", updatedSong.date_of_release);
+
+      const fileInput = document.getElementById("file");
+      if (fileInput.files.length > 0) {
+        formData.append("file", fileInput.files[0]);
+      } else {
+        const existingFile = document.getElementById("file").getAttribute("data-filename");
+        formData.append("file", existingFile);
+      }
 
       fetch(`http://localhost:8080/api/songs/${songId}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedSong)
+        body: formData
       }).then(() => window.location.href = "songs.html");
     });
   </script>
