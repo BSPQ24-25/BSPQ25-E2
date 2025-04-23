@@ -51,7 +51,6 @@
     const select = document.getElementById("songSelect");
     let songs = [];
 
-    // Cargar canciones
     fetch("http://localhost:8080/api/songs")
       .then(res => res.json())
       .then(data => {
@@ -62,30 +61,54 @@
           option.textContent = song.name;
           select.appendChild(option);
         });
+
+        // Obtener el ID desde los parámetros de la URL
+        const params = new URLSearchParams(window.location.search);
+        const selectedId = params.get("id");
+
+        if (selectedId) {
+          select.value = selectedId;
+          const selected = songs.find(s => s.id == selectedId);
+          if (selected) {
+            document.getElementById("name").value = selected.name;
+            document.getElementById("album").value = selected.album;
+            document.getElementById("artists").value = selected.artists?.join(', ') || '';
+            document.getElementById("genres").value = selected.genres?.join(', ') || '';
+            document.getElementById("duration").value = selected.duration;
+
+            const formattedDate = selected.date_of_release
+              ? new Date(selected.date_of_release).toISOString().split('T')[0]
+              : '';
+            document.getElementById("date_of_release").value = formattedDate;
+            document.getElementById("durationHidden").value = selected.duration;
+
+            if (selected.file) {
+              const audioFileInput = document.getElementById("file");
+              const audioFileName = selected.file.split("/").pop();
+              audioFileInput.setAttribute("data-filename", audioFileName);
+            }
+          }
+        }
       });
 
-    // Cargar los datos cuando se elige una canción
-    // Cargar los datos cuando se elige una canción
     select.addEventListener("change", () => {
       const selected = songs.find(s => s.id == select.value);
       if (selected) {
-        // Asignar valores a los campos
         document.getElementById("name").value = selected.name;
         document.getElementById("album").value = selected.album;
-        document.getElementById("artists").value = selected.artists ? selected.artists.join(', ') : '';  
-        document.getElementById("genres").value = selected.genres ? selected.genres.join(', ') : '';  
+        document.getElementById("artists").value = selected.artists ? selected.artists.join(', ') : '';
+        document.getElementById("genres").value = selected.genres ? selected.genres.join(', ') : '';
         document.getElementById("duration").value = selected.duration;
 
         const dateOfRelease = selected.date_of_release;
-        const formattedDate = dateOfRelease ? new Date(dateOfRelease).toISOString().split('T')[0] : '';  // Convertir a formato adecuado
-        document.getElementById("date_of_release").value = formattedDate;        
-
+        const formattedDate = dateOfRelease ? new Date(dateOfRelease).toISOString().split('T')[0] : '';
+        document.getElementById("date_of_release").value = formattedDate;
         document.getElementById("durationHidden").value = selected.duration;
 
         if (selected.file) {
           const audioFileInput = document.getElementById("file");
           const audioFileName = selected.file.split("/").pop();
-          audioFileInput.setAttribute("data-filename", audioFileName);  
+          audioFileInput.setAttribute("data-filename", audioFileName);
         }
       }
     });
@@ -98,8 +121,8 @@
       const updatedSong = {
         name: document.getElementById("name").value,
         album: document.getElementById("album").value,
-        artists: document.getElementById("artists").value.split(',').map(artist => artist.trim()),  // Convertir a arreglo
-        genres: document.getElementById("genres").value.split(',').map(genre => genre.trim()),  // Convertir a arreglo
+        artists: document.getElementById("artists").value.split(',').map(artist => artist.trim()),
+        genres: document.getElementById("genres").value.split(',').map(genre => genre.trim()),
         duration: parseFloat(document.getElementById("duration").value),
         date_of_release: document.getElementById("date_of_release").value,
       };
@@ -111,12 +134,10 @@
       formData.append("duration", updatedSong.duration);
       formData.append("date_of_release", updatedSong.date_of_release);
 
-      // Mantener el archivo si no se ha seleccionado uno nuevo
       const fileInput = document.getElementById("file");
       if (fileInput.files.length > 0) {
         formData.append("file", fileInput.files[0]);
       } else {
-        // Agregar el archivo existente al formData si no se ha cambiado
         const existingFile = document.getElementById("file").getAttribute("data-filename");
         formData.append("file", existingFile);
       }
