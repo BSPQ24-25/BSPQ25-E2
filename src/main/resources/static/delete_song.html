@@ -26,27 +26,43 @@
   <script>
     const select = document.getElementById("songSelect");
     let songs = [];
-
+  
     fetch("http://localhost:8080/api/songs")
       .then(res => res.json())
       .then(data => {
         songs = data;
-        data.forEach(song => {
+        console.log("Canciones recibidas:", songs);
+        songs.forEach(song => {
           const option = document.createElement("option");
           option.value = song.id;
           option.textContent = song.name;
           select.appendChild(option);
         });
+      })
+      .catch(err => {
+        console.error("Error al cargar canciones:", err);
+        alert("No se pudieron cargar las canciones.");
       });
-
-    document.getElementById("confirmDelete").addEventListener("click", () => {
-      const songId = select.value;
-      if (!songId) return;
-
-      fetch(`http://localhost:8080/api/songs/${songId}`, {
-        method: "DELETE"
-      }).then(() => window.location.href = "songs.html");
-    });
-  </script>
+  
+      document.getElementById("confirmDelete").addEventListener("click", () => {
+        const songId = select.value;
+        if (!songId) return; // Si no se selecciona una canción, no hacer nada
+    
+        fetch(`http://localhost:8080/api/songs/${songId}`, {
+            method: "DELETE"
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Error al eliminar la canción");
+            }
+            alert("Canción eliminada correctamente.");
+            window.location.href = "songs.html";
+        })
+        .catch(error => {
+            console.error("Error en la eliminación:", error);
+            alert("No se pudo eliminar la canción.");
+        });
+    });    
+  </script>  
 </body>
 </html>

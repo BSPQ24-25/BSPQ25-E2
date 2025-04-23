@@ -55,15 +55,23 @@
 
                     document.getElementById("deleteBtn").onclick = () => {
                         if (confirm("¿Estás seguro de que quieres eliminar esta canción?")) {
-                            fetch(`http://localhost:8080/api/songs/${song.id}`, {
-                                method: "DELETE"
-                            })
-                            .then(() => {
-                                alert("Canción eliminada correctamente.");
-                                window.location.href = "songs.html";
-                            });
+                          fetch(`http://localhost:8080/api/songs/${song.id}`, {
+                            method: "DELETE"
+                          })
+                          .then(response => {
+                            if (!response.ok) {
+                              throw new Error("Error al eliminar la canción");
+                            }
+                            alert("Canción eliminada correctamente.");
+                            window.location.href = "songs.html";
+                          })
+                          .catch(error => {
+                            console.error("Error en la eliminación:", error);
+                            alert("No se pudo eliminar la canción.");
+                          });
                         }
-                    };
+                      };
+                      
 
                     const formatDate = (date) => {
                         const d = new Date(date);

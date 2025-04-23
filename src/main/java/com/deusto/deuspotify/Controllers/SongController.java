@@ -88,8 +88,29 @@ public class SongController {
 
     @PutMapping("/{id}")
     public Song updateSong(@PathVariable Long id, @RequestBody Song song) {
-        return deuspotifyServiceImpl.updateSong(id, song);
+        Optional<Song> existingSongOpt = deuspotifyServiceImpl.findSong(id);
+        if (existingSongOpt.isPresent()) {
+            Song existingSong = existingSongOpt.get();
+            
+            // Actualizar los demás campos
+            existingSong.setName(song.getName());
+            existingSong.setAlbum(song.getAlbum());
+            existingSong.setArtists(song.getArtists());
+            existingSong.setGenres(song.getGenres());
+            existingSong.setDuration(song.getDuration());
+            
+            // Asegurarte de actualizar la fecha correctamente
+            if (song.getDateOfRelease() != null) {
+                existingSong.setDateOfRelease(song.getDateOfRelease());
+            }
+
+            // Guardar la canción actualizada
+            return deuspotifyServiceImpl.updateSong(id, existingSong);
+        } else {
+            throw new RuntimeException("Canción no encontrada");
+        }
     }
+
 
     @DeleteMapping("/{id}")
     public void deleteSong(@PathVariable Long id) {
