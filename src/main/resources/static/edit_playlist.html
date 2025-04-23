@@ -56,15 +56,17 @@
         }
       });
 
-    select.addEventListener("change", () => {
-      const selected = playlists.find(p => p.id == select.value);
-      if (selected) {
-        document.getElementById("name").value = selected.name;
-        document.getElementById("profile_id").value = selected.profile_id;
-        const numberOfSongs = selected.songs ? selected.songs.length : 0;
-        document.getElementById("is_public").checked = selected.is_public;
-      }
-    });
+      select.addEventListener("change", () => {
+        const selected = playlists.find(p => p.id == select.value);
+        if (selected) {
+          document.getElementById("name").value = selected.name;
+          document.getElementById("profile_id").value = selected.profile_id;
+          document.getElementById("is_public").checked = selected.is_public;
+      
+          select.dataset.songs = JSON.stringify(selected.songs || []);
+          select.dataset.order = JSON.stringify(selected.order || []);
+        }
+      });      
 
     document.getElementById("editPlaylistForm").addEventListener("submit", function(event) {
       event.preventDefault();
@@ -72,8 +74,10 @@
       const updated = {
         name: document.getElementById("name").value,
         profile_id: parseInt(document.getElementById("profile_id").value),
-        is_public: document.getElementById("is_public").checked
-      };
+        is_public: document.getElementById("is_public").checked,
+        songs: JSON.parse(select.dataset.songs || "[]"),
+        order: JSON.parse(select.dataset.order || "[]")
+      };      
 
       fetch(`http://localhost:8080/api/playlists/${playlistId}`, {
         method: "PUT",

@@ -25,7 +25,7 @@
     <script>
         const params = new URLSearchParams(window.location.search);
         const playlistId = params.get('id');
-
+    
         if (!playlistId) {
             document.getElementById("playlistDetails").innerText = "No se ha proporcionado una playlist válida.";
         } else {
@@ -41,32 +41,38 @@
                         <p><strong data-i18n="playlistDetail.songCount">Número de Canciones:</strong> ${pl.numberOfSongs}</p>
                         <p><strong data-i18n="playlistDetail.order">Orden:</strong> ${pl.order.join(', ')}</p>
                         <p><strong data-i18n="playlistDetail.songs">Canciones:</strong></p>
-                        <p><strong data-i18n="playlistDetail.songs">Canciones:</strong></p>
                         <ul id="songList"></ul>
+    
+                        <button id="playAllBtn" data-i18n="playlistDetail.playAll">Reproducir todas</button>
+                        <div id="playerSection" style="margin-top: 1em;">
+                            <p id="currentSongName" style="font-weight: bold;"></p>
+                            <audio id="playlistAudio" controls></audio><br>
+                            <button id="prevBtn">⏮️ Anterior</button>
+                            <button id="nextBtn">⏭️ Siguiente</button>
+                        </div>
                     `;
-
+    
                     const songList = document.getElementById("songList");
                     pl.songs.forEach(song => {
                         if (!song.id) return;
-
                         const item = document.createElement("li");
                         item.id = `song-${song.id}`;
-
+    
                         const link = document.createElement("a");
                         link.href = `detalle_song.html?id=${song.id}`;
                         link.textContent = song.name;
                         link.style.display = "block";
                         link.style.textDecoration = "none";
                         link.style.color = "inherit";
-
+    
                         item.appendChild(link);
                         songList.appendChild(item);
                     });
-                    
+    
                     document.getElementById("editBtn").onclick = () => {
                         window.location.href = `edit_playlist.html?id=${pl.id}`;
                     };
-
+    
                     document.getElementById("deleteBtn").onclick = () => {
                         if (confirm("¿Seguro que quieres eliminar esta playlist?")) {
                             fetch(`http://localhost:8080/api/playlists/${pl.id}`, {
@@ -78,9 +84,58 @@
                             });
                         }
                     };
-
+    
                     document.getElementById("editSongsBtn").onclick = () => {
                         window.location.href = `edit_playlist_songs.html?id=${pl.id}`;
+                    };
+    
+                    // 🎵 Reproductor de playlist
+                    const playAllBtn = document.getElementById("playAllBtn");
+                    const audio = document.getElementById("playlistAudio");
+                    const currentSongName = document.getElementById("currentSongName");
+                    const prevBtn = document.getElementById("prevBtn");
+                    const nextBtn = document.getElementById("nextBtn");
+    
+                    let playlist = [];
+                    let currentIndex = 0;
+    
+                    playAllBtn.onclick = () => {
+                        playlist = pl.songs.filter(song => song.filePath);
+                        if (playlist.length === 0) {
+                            currentSongName.innerText = "No hay canciones reproducibles en esta playlist.";
+                            return;
+                        }
+                        currentIndex = 0;
+                        playCurrentSong();
+                    };
+    
+                    function playCurrentSong() {
+                        if (playlist.length === 0) return;
+                        const song = playlist[currentIndex];
+                        audio.src = `/songs_files/${song.filePath}`;
+                        currentSongName.innerText = `🎵 Reproduciendo: ${song.name}`;
+                        audio.play();
+                    }
+    
+                    audio.addEventListener("ended", () => {
+                        if (currentIndex + 1 < playlist.length) {
+                            currentIndex++;
+                            playCurrentSong();
+                        }
+                    });
+    
+                    prevBtn.onclick = () => {
+                        if (currentIndex > 0) {
+                            currentIndex--;
+                            playCurrentSong();
+                        }
+                    };
+    
+                    nextBtn.onclick = () => {
+                        if (currentIndex + 1 < playlist.length) {
+                            currentIndex++;
+                            playCurrentSong();
+                        }
                     };
                 })
                 .catch(error => {
@@ -88,6 +143,6 @@
                     console.error(error);
                 });
         }
-    </script>
+    </script>    
 </body>
 </html>
