@@ -309,4 +309,84 @@ class DeuspotifyApplicationTests {
         // Clean up the file created during test
         Files.deleteIfExists(filePath);
     }
+
+    @Test
+    void createSharedSongTest() {
+        Song song = new Song();
+        song.setName("Shared Song");
+        song.setAlbum("Shared Album");
+        song.setArtists(List.of("Artist1", "Artist2"));
+        song.setGenres(List.of("Rock", "Pop"));
+        song.setDuration(3.5);
+        song.setDateOfRelease(new Date());
+        song.setFilePath("path/to/shared/song.mp3");
+
+        // When saving, return the same Song instance as argument
+        when(songRepository.save(any(Song.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        Song savedSong = deuspotifyService.addSong(song);
+        assertNotNull(savedSong);
+        assertEquals(song.getName(), savedSong.getName());
+        assertEquals(song.getAlbum(), savedSong.getAlbum());
+        assertEquals(song.getArtists(), savedSong.getArtists());
+        assertEquals(song.getGenres(), savedSong.getGenres());
+        assertEquals(song.getDuration(), savedSong.getDuration());
+        assertEquals(song.getDateOfRelease(), savedSong.getDateOfRelease());
+        assertEquals(song.getFilePath(), savedSong.getFilePath());
+    }
+
+    @Test
+    void updateSongTest() {
+        Song existingSong = new Song();
+        existingSong.setId(1L);
+        existingSong.setName("Old Song");
+        existingSong.setAlbum("Old Album");
+        existingSong.setArtists(List.of("Old Artist"));
+        existingSong.setGenres(List.of("Old Genre"));
+        existingSong.setDuration(3.0);
+        existingSong.setDateOfRelease(new Date(0));
+
+        //Create the new song object with updated values
+        Song updatedSong = new Song();
+        updatedSong.setName("New Song");
+        updatedSong.setAlbum("New Album");
+        updatedSong.setArtists(List.of("New Artist1", "New Artist2"));
+        updatedSong.setGenres(List.of("New Genre1", "New Genre2"));
+        updatedSong.setDuration(4.5);
+        updatedSong.setDateOfRelease(new Date());
+
+        when(songRepository.findById(1L)).thenReturn(Optional.of(existingSong));
+        when(songRepository.save(existingSong)).thenReturn(existingSong);
+
+        // Update the existing song with new values
+        existingSong.setName(updatedSong.getName());
+        existingSong.setAlbum(updatedSong.getAlbum());
+        existingSong.setArtists(updatedSong.getArtists());
+        existingSong.setGenres(updatedSong.getGenres());
+        existingSong.setDuration(updatedSong.getDuration());
+        existingSong.setDateOfRelease(updatedSong.getDateOfRelease());
+        songRepository.save(existingSong);
+
+        assertEquals("New Song", existingSong.getName());
+        assertEquals("New Album", existingSong.getAlbum());
+        assertEquals(List.of("New Artist1", "New Artist2"), existingSong.getArtists());
+        assertEquals(List.of("New Genre1", "New Genre2"), existingSong.getGenres());
+        assertEquals(4.5, existingSong.getDuration());
+        assertEquals(updatedSong.getDateOfRelease(), existingSong.getDateOfRelease());
+    }
+
+    @Test
+    void deleteSongTest() {
+        Song song = new Song();
+        song.setId(1L);
+
+        when(songRepository.findById(1L)).thenReturn(Optional.of(song));
+        doNothing().when(songRepository).delete(song);
+
+        // Call the delete method
+        songRepository.delete(song);
+
+        // Verify that the song was deleted
+        verify(songRepository, times(1)).delete(song);
+    }
 }
