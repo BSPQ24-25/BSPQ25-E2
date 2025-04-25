@@ -86,31 +86,23 @@ public class SongController {
                 .body(htmlResponse);
     }
 
-    @PutMapping("/{id}")
-    public Song updateSong(@PathVariable Long id, @RequestBody Song song) {
+    @PutMapping(value = "/{id}", consumes = "multipart/form-data")
+    public ResponseEntity<?> updateSongDate(
+            @PathVariable Long id,
+            @RequestParam("date_of_release") long dateOfReleaseMillis) {
+    
+        Date releaseDate = new Date(dateOfReleaseMillis);
+    
         Optional<Song> existingSongOpt = deuspotifyServiceImpl.findSong(id);
         if (existingSongOpt.isPresent()) {
             Song existingSong = existingSongOpt.get();
-            
-            // Actualizar los demás campos
-            existingSong.setName(song.getName());
-            existingSong.setAlbum(song.getAlbum());
-            existingSong.setArtists(song.getArtists());
-            existingSong.setGenres(song.getGenres());
-            existingSong.setDuration(song.getDuration());
-            
-            // Asegurarte de actualizar la fecha correctamente
-            if (song.getDateOfRelease() != null) {
-                existingSong.setDateOfRelease(song.getDateOfRelease());
-            }
-
-            // Guardar la canción actualizada
-            return deuspotifyServiceImpl.updateSong(id, existingSong);
+            existingSong.setDateOfRelease(releaseDate);
+            deuspotifyServiceImpl.updateSong(id, existingSong);
+            return ResponseEntity.ok().build();
         } else {
-            throw new RuntimeException("Canción no encontrada");
+            return ResponseEntity.notFound().build();
         }
     }
-
 
     @DeleteMapping("/{id}")
     public void deleteSong(@PathVariable Long id) {
