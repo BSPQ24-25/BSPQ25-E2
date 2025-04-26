@@ -3,6 +3,7 @@ package com.deusto.deuspotify.Controllers;
 import com.deusto.deuspotify.model.Playlist;
 import com.deusto.deuspotify.model.Song;
 import com.deusto.deuspotify.services.DeuspotifyService;
+import com.deusto.deuspotify.services.ProfileService;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -15,9 +16,12 @@ import java.util.Optional;
 public class PlaylistController {
 
     private final DeuspotifyService deuspotifyService;
+    private final ProfileService profileService;
 
-    public PlaylistController(DeuspotifyService deuspotifyService) {
+
+    public PlaylistController(DeuspotifyService deuspotifyService, ProfileService profileService) {
         this.deuspotifyService = deuspotifyService;
+        this.profileService = profileService;
     }
 
     @GetMapping
@@ -32,7 +36,8 @@ public class PlaylistController {
 
     @PostMapping
     public Playlist createPlaylist(@RequestBody Playlist playlist) {
-        return deuspotifyService.addPlaylist(playlist);
+        Playlist savedPlaylist = deuspotifyService.addPlaylist(playlist);
+        return savedPlaylist;
     }
 
     @PutMapping("/{id}")

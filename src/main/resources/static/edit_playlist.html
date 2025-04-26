@@ -23,8 +23,8 @@
     <label for="name" data-i18n="edit_playlist_name">Name:</label>
     <input type="text" id="name" required>
 
-    <label for="profile_id" data-i18n="edit_playlist_profile_id">Profile ID:</label>
-    <input type="number" id="profile_id" required>
+    <label for="owner" data-i18n="edit_playlist_owner">Owner (username):</label>
+    <input type="text" id="owner" disabled>
 
     <label for="is_public" data-i18n="edit_playlist_public">Public:</label>
     <input type="checkbox" id="is_public">
@@ -56,24 +56,23 @@
         }
       });
 
-      select.addEventListener("change", () => {
-        const selected = playlists.find(p => p.id == select.value);
-        if (selected) {
-          document.getElementById("name").value = selected.name;
-          document.getElementById("profile_id").value = selected.profile_id;
-          document.getElementById("is_public").checked = selected.is_public;
-      
-          select.dataset.songs = JSON.stringify(selected.songs || []);
-          select.dataset.order = JSON.stringify(selected.order || []);
-        }
-      });      
+    select.addEventListener("change", () => {
+      const selected = playlists.find(p => p.id == select.value);
+      if (selected) {
+        document.getElementById("name").value = selected.name;
+        document.getElementById("owner").value = selected.owners[0] || ""; // Mostrar el username
+        document.getElementById("is_public").checked = selected.public;
+        
+        select.dataset.songs = JSON.stringify(selected.songs || []);
+        select.dataset.order = JSON.stringify(selected.order || []);
+      }
+    });      
 
     document.getElementById("editPlaylistForm").addEventListener("submit", function(event) {
       event.preventDefault();
       const playlistId = select.value;
       const updated = {
         name: document.getElementById("name").value,
-        profile_id: parseInt(document.getElementById("profile_id").value),
         is_public: document.getElementById("is_public").checked,
         songs: JSON.parse(select.dataset.songs || "[]"),
         order: JSON.parse(select.dataset.order || "[]")
