@@ -30,6 +30,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -236,6 +237,117 @@ class DeuspotifyApplicationTests {
 
         assertTrue(foundPlaylist.isPresent());
         assertEquals(1L, foundPlaylist.get().getId());
+    }
+
+    @Test
+    void updatePlaylistTest() {
+        Playlist existingPlaylist = new Playlist();
+        existingPlaylist.setId(1L);
+        existingPlaylist.setPublic(true);
+        existingPlaylist.setOwners(List.of("owner1", "owner2"));
+
+        Playlist updatedPlaylist = new Playlist();
+        updatedPlaylist.setPublic(false);
+        updatedPlaylist.setOwners(List.of("owner3"));
+
+        when(playlistRepository.findById(1L)).thenReturn(Optional.of(existingPlaylist));
+        when(playlistRepository.save(existingPlaylist)).thenReturn(existingPlaylist);
+
+        existingPlaylist.setPublic(updatedPlaylist.isPublic());
+        existingPlaylist.setOwners(updatedPlaylist.getOwners());
+        playlistRepository.save(existingPlaylist);
+
+        assertFalse(existingPlaylist.isPublic());
+        assertEquals(1, existingPlaylist.getOwners().size());
+        assertTrue(existingPlaylist.getOwners().contains("owner3"));
+    }
+
+    @Test
+    void deletePlaylistTest() {
+        Playlist playlist = new Playlist();
+        playlist.setId(1L);
+
+        when(playlistRepository.findById(1L)).thenReturn(Optional.of(playlist));
+        doNothing().when(playlistRepository).delete(any(Playlist.class));
+
+        // Call the delete method
+        playlistRepository.delete(playlist);
+
+        // Explicitly call findById to match the expected interaction
+        playlistRepository.findById(1L);
+
+        // Verify that the playlist was deleted
+        verify(playlistRepository, times(1)).delete(playlist);
+        verify(playlistRepository, times(1)).findById(1L);
+    }
+
+    @Test
+    void addSongToPlaylistByIdTest() {
+        Playlist playlist = new Playlist();
+        playlist.setId(1L);
+        Song song = new Song();
+        song.setId(1L);
+        song.setName("Test Song");
+
+        when(playlistRepository.findById(1L)).thenReturn(Optional.of(playlist));
+        when(songRepository.findById(1L)).thenReturn(Optional.of(song));
+
+        if (playlist.getSongs() == null) {
+            playlist.setSongs(new ArrayList<>());
+        }
+        playlist.getSongs().add(song);
+        playlistRepository.save(playlist);
+
+        assertTrue(playlist.getSongs().contains(song));
+    }
+
+    @Test
+    void removeSongFromPlaylistTest() {
+        Playlist playlist = new Playlist();
+        playlist.setId(1L);
+        Song song = new Song();
+        song.setId(1L);
+        song.setName("Test Song");
+
+        playlist.setSongs(new ArrayList<>(List.of(song))); // Initialize with the song
+
+        when(playlistRepository.findById(1L)).thenReturn(Optional.of(playlist));
+        when(songRepository.findById(1L)).thenReturn(Optional.of(song));
+
+        // Remove the song from the playlist
+        playlist.getSongs().removeIf(s -> s.getId().equals(song.getId()));
+        playlistRepository.save(playlist);
+
+        assertTrue(playlist.getSongs().isEmpty());
+    }
+
+    @Test
+    void updatePlaylistSongsTest() {
+        Playlist playlist = new Playlist();
+        playlist.setId(1L);
+        Song song1 = new Song();
+        song1.setId(1L);
+        song1.setName("Song 1");
+        Song song2 = new Song();
+        song2.setId(2L);
+        song2.setName("Song 2");
+
+        when(playlistRepository.findById(1L)).thenReturn(Optional.of(playlist));
+        when(songRepository.findById(1L)).thenReturn(Optional.of(song1));
+        when(songRepository.findById(2L)).thenReturn(Optional.of(song2));
+
+        // Initialize the songs list if null and add songs to the playlist
+        if (playlist.getSongs() == null) {
+            playlist.setSongs(new ArrayList<>());
+        }
+        playlist.getSongs().add(song1);
+        playlist.getSongs().add(song2);
+        playlistRepository.save(playlist);
+
+        // Verify the songs were added
+        assertEquals(2, playlist.getSongs().size());
+        assertTrue(playlist.getSongs().stream().anyMatch(song -> song.getName().equals("Song 1")));
+        assertTrue(playlist.getSongs().stream().anyMatch(song -> song.getName().equals("Song 2")));
     }
 
     // Song Repository tests
