@@ -22,6 +22,10 @@ public class ProfileService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
     private JwtUtil jwtUtil;
   
+    @Autowired
+    public void setJwtUtil(JwtUtil jwtUtil) {
+        this.jwtUtil = jwtUtil;
+    }
 
     public ProfileService(ProfileRepository profileRepository, @Lazy PasswordEncoder passwordEncoder) {
         this.profileRepository = profileRepository;
