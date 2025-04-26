@@ -12,7 +12,20 @@
         <p><strong>Email:</strong> <span id="email">Loading...</span></p>
     </div>
 
+    <!-- 🔽 Nuevo formulario para editar el nombre de usuario -->
+    <div id="edit-username-form" style="margin-top: 20px;">
+        <h3>Change Username</h3>
+        <form id="usernameForm">
+            <label for="newUsername">New Username:</label>
+            <input type="text" id="newUsername" name="newUsername" required>
+            <button type="submit">Update</button>
+        </form>
+        <div id="updateMsg" style="color: green; display: none;">Username updated!</div>
+    </div>
+
     <script>
+        let userId = null; // Lo usamos para el PUT
+
         document.addEventListener("DOMContentLoaded", () => {
             const token = localStorage.getItem("token");
 
@@ -22,6 +35,7 @@
                 return;
             }
 
+            // Obtener el perfil actual
             fetch("/api/profiles/me", {
                 method: "GET",
                 headers: {
@@ -35,6 +49,7 @@
                 return response.json();
             })
             .then(data => {
+                userId = data.id; // Guardamos el ID del usuario para luego actualizarlo
                 document.getElementById("username").textContent = data.username;
                 document.getElementById("email").textContent = data.email;
             })
@@ -43,6 +58,42 @@
                 alert("Could not load profile. Please login again.");
                 localStorage.removeItem("token");
                 window.location.href = "login.html";
+            });
+
+            // Manejador del formulario de cambio de nombre
+            document.getElementById("usernameForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const newUsername = document.getElementById("newUsername").value;
+
+                if (!userId) {
+                    alert("User ID not loaded yet.");
+                    return;
+                }
+
+                fetch(`/api/profiles/${userId}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ username: newUsername })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Failed to update username");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById("username").textContent = data.username;
+                    document.getElementById("updateMsg").style.display = "block";
+                    document.getElementById("newUsername").value = "";
+                })
+                .catch(error => {
+                    console.error("Update error:", error);
+                    alert("Error updating username.");
+                });
             });
         });
     </script>
