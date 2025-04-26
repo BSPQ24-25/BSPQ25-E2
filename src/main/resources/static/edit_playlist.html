@@ -60,7 +60,7 @@
       const selected = playlists.find(p => p.id == select.value);
       if (selected) {
         document.getElementById("name").value = selected.name;
-        document.getElementById("owner").value = selected.owners[0] || ""; // Mostrar el username
+        document.getElementById("owner").value = selected.owners[0] || ""; 
         document.getElementById("is_public").checked = selected.public;
         
         select.dataset.songs = JSON.stringify(selected.songs || []);
@@ -75,7 +75,7 @@
         name: document.getElementById("name").value,
         is_public: document.getElementById("is_public").checked,
         songs: JSON.parse(select.dataset.songs || "[]"),
-        order: JSON.parse(select.dataset.order || "[]")
+        order: JSON.parse(select.dataset.order || [])
       };      
 
       fetch(`http://localhost:8080/api/playlists/${playlistId}`, {

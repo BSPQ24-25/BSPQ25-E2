@@ -50,7 +50,7 @@
         name: document.getElementById("name").value,
         number_of_songs: 0,
         is_public: document.getElementById("is_public").checked,
-        owners: [username]  
+        owners: [username]
       };
     
       const response = await fetch("http://localhost:8080/api/playlists", {
@@ -68,7 +68,7 @@
       } else {
         alert("Failed to create playlist");
       }
-    }    
+    }
   </script>
 </body>
 </html>

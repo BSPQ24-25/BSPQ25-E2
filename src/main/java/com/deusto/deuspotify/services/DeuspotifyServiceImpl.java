@@ -125,8 +125,26 @@ public class DeuspotifyServiceImpl implements DeuspotifyService {
 
     public Playlist updatePlaylist(Long id, Playlist playlist) {
         playlist.setId(id);
+    
+        if (playlist.getSongs() != null && playlist.getOrder() != null) {
+            String orderType = playlist.getOrderType();
+    
+            if ("duration".equalsIgnoreCase(orderType)) {
+                playlist.getSongs().sort((s1, s2) -> Double.compare(s2.getDuration(), s1.getDuration()));
+            } else if ("release_date".equalsIgnoreCase(orderType)) {
+                playlist.getSongs().sort((s1, s2) -> {
+                    if (s1.getDateOfRelease() == null || s2.getDateOfRelease() == null) {
+                        return 0; 
+                    }
+                    return s2.getDateOfRelease().compareTo(s1.getDateOfRelease());
+                });
+            }
+            
+        }
+    
         return playlistRepository.save(playlist);
     }
+    
 
     public void deletePlaylist(Long id) {
         playlistRepository.deleteById(id);
