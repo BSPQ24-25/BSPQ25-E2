@@ -7,21 +7,27 @@
 </head>
 <body>
     <h1>Edit Profile</h1>
+
     <div id="profile-container">
         <p><strong>Username:</strong> <span id="username">Loading...</span></p>
         <p><strong>Email:</strong> <span id="email">Loading...</span></p>
     </div>
 
-    <!-- 🔽 Formulario actualizado para editar username y email -->
     <div id="edit-profile-form" style="margin-top: 20px;">
         <h3>Update Profile</h3>
         <form id="profileForm">
             <label for="newUsername">New Username:</label>
             <input type="text" id="newUsername" name="newUsername" required>
             <br><br>
+
             <label for="newEmail">New Email:</label>
             <input type="email" id="newEmail" name="newEmail" required>
             <br><br>
+
+            <label for="newPassword">New Password (optional):</label>
+            <input type="password" id="newPassword" name="newPassword" placeholder="Leave blank to keep current">
+            <br><br>
+
             <button type="submit">Update</button>
         </form>
         <div id="updateMsg" style="color: green; display: none;">Profile updated!</div>
@@ -29,7 +35,7 @@
 
     <script>
         let userId = null;
-        let currentProfile = {}; // Guardamos perfil completo
+        let currentProfile = {};
 
         document.addEventListener("DOMContentLoaded", () => {
             const token = localStorage.getItem("token");
@@ -40,7 +46,6 @@
                 return;
             }
 
-            // Obtener el perfil actual
             fetch("/api/profiles/me", {
                 method: "GET",
                 headers: {
@@ -68,25 +73,25 @@
                 window.location.href = "login.html";
             });
 
-            // Manejador del formulario
             document.getElementById("profileForm").addEventListener("submit", function (e) {
                 e.preventDefault();
 
                 const newUsername = document.getElementById("newUsername").value;
                 const newEmail = document.getElementById("newEmail").value;
+                const newPassword = document.getElementById("newPassword").value;
 
                 if (!userId) {
                     alert("User ID not loaded yet.");
                     return;
                 }
 
-                // Actualizamos el objeto actual para mandarlo completo
                 currentProfile.username = newUsername;
                 currentProfile.email = newEmail;
 
-                // Asegurar que password esté presente (aunque sea "")
-                if (!currentProfile.password) {
-                    currentProfile.password = "";
+                if (newPassword && newPassword.trim() !== "") {
+                    currentProfile.password = newPassword;
+                } else {
+                    delete currentProfile.password; // no incluir si está vacía
                 }
 
                 fetch(`/api/profiles/${userId}`, {
@@ -107,6 +112,7 @@
                     document.getElementById("username").textContent = data.username;
                     document.getElementById("email").textContent = data.email;
                     document.getElementById("updateMsg").style.display = "block";
+                    document.getElementById("newPassword").value = ""; // limpiar campo
                 })
                 .catch(error => {
                     console.error("Update error:", error);

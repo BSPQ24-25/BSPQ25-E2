@@ -22,11 +22,13 @@ public class ProfileService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
     private JwtUtil jwtUtil;
   
-
-    public ProfileService(ProfileRepository profileRepository, @Lazy PasswordEncoder passwordEncoder) {
+    @Autowired
+    public ProfileService(ProfileRepository profileRepository, @Lazy PasswordEncoder passwordEncoder, JwtUtil jwtUtil) {
         this.profileRepository = profileRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtUtil = jwtUtil;
     }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -61,7 +63,7 @@ public class ProfileService implements UserDetailsService {
     public Optional<Profile> updateProfile(Long id, Profile updatedProfile) {
         return profileRepository.findById(id).map(profile -> {
             profile.setUsername(updatedProfile.getUsername());
-            if (!updatedProfile.getPassword().isEmpty()) {
+            if (updatedProfile.getPassword() != null && !updatedProfile.getPassword().isEmpty()) {
                 profile.setPassword(passwordEncoder.encode(updatedProfile.getPassword()));
             }
             profile.setEmail(updatedProfile.getEmail());
