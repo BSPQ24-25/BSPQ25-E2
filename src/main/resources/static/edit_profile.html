@@ -113,6 +113,10 @@
                     document.getElementById("email").textContent = data.email;
                     document.getElementById("updateMsg").style.display = "block";
                     document.getElementById("newPassword").value = ""; // limpiar campo
+
+                    setTimeout(() => {
+                        window.location.href = "index.html";
+                    }, 250);
                 })
                 .catch(error => {
                     console.error("Update error:", error);
