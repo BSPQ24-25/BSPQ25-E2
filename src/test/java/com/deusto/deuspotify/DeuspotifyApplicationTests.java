@@ -103,6 +103,7 @@ class DeuspotifyApplicationTests {
         assertEquals(newProfile, response.getBody());
     }
 
+
     // Profile Repository tests
     @Test
     void getAllProfilesTest() {
@@ -179,6 +180,35 @@ class DeuspotifyApplicationTests {
 
         assertNotNull(loggedInProfile);
         assertEquals("testUser", loggedInProfile.getUsername());
+    }
+
+    @Test
+    void deleteProfileTest() {
+        Profile profile = new Profile();
+        profile.setId(1L);
+
+        when(profileRepository.findById(1L)).thenReturn(Optional.of(profile));
+        doNothing().when(profileRepository).delete(any(Profile.class));
+
+        // Call the delete method
+        profileRepository.delete(profile);
+
+        // Verify that the profile was deleted
+        verify(profileRepository, times(1)).delete(profile);
+    }
+
+    @Test
+    void getMyProfileTest() {
+        Profile profile = new Profile();
+        profile.setId(1L);
+        profile.setUsername("testUser");
+
+        when(profileRepository.findById(1L)).thenReturn(Optional.of(profile));
+
+        Optional<Profile> foundProfile = profileRepository.findById(1L);
+
+        assertTrue(foundProfile.isPresent());
+        assertEquals("testUser", foundProfile.get().getUsername());
     }
 
     // Playlist Repository tests
