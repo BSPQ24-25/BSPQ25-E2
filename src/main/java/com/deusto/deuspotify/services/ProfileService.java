@@ -22,10 +22,6 @@ public class ProfileService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
     private JwtUtil jwtUtil;
   
-    @Autowired
-    public void setJwtUtil(JwtUtil jwtUtil) {
-        this.jwtUtil = jwtUtil;
-    }
 
     public ProfileService(ProfileRepository profileRepository, @Lazy PasswordEncoder passwordEncoder) {
         this.profileRepository = profileRepository;
@@ -65,7 +61,7 @@ public class ProfileService implements UserDetailsService {
     public Optional<Profile> updateProfile(Long id, Profile updatedProfile) {
         return profileRepository.findById(id).map(profile -> {
             profile.setUsername(updatedProfile.getUsername());
-            if (updatedProfile.getPassword() != null && !updatedProfile.getPassword().isEmpty()) {
+            if (!updatedProfile.getPassword().isEmpty()) {
                 profile.setPassword(passwordEncoder.encode(updatedProfile.getPassword()));
             }
             profile.setEmail(updatedProfile.getEmail());
