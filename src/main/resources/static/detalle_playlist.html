@@ -1,148 +1,176 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title data-i18n="playlistDetail.title">Detalle de la Playlist</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="i18n.js" defer></script>
+  <meta charset="UTF-8">
+  <title data-i18n="playlistDetail.title">Detalle de la Playlist</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="i18n.js" defer></script>
 </head>
 <body class="side-layout">
-    <div style="position: absolute; top: 10px; right: 20px;">
-        <button onclick="loadTranslations('es')" title="Español">Es</button>
-        <button onclick="loadTranslations('en')" title="English">En</button>
-        <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
-      </div>
-    <div class="main-content">
-        <h2 data-i18n="playlistDetail.heading">Detalles de la Playlist</h2>
-        <div id="playlistDetails"></div>
-        <br>
-        <button id="editBtn" data-i18n="playlistDetail.edit">Editar</button>
-        <button id="deleteBtn" data-i18n="playlistDetail.delete">Eliminar</button>
-        <button onclick="window.location.href='playlists.html'" data-i18n="playlistDetail.back">Volver</button>
-        <button id="editSongsBtn" data-i18n="playlistDetail.editSongs">Editar canciones</button>
+  <div style="position: absolute; top: 10px; right: 20px;">
+    <button onclick="loadTranslations('es')" title="Español">Es</button>
+    <button onclick="loadTranslations('en')" title="English">En</button>
+    <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
+  </div>
+
+  <div class="main-content">
+    <h2 data-i18n="playlistDetail.heading">Detalles de la Playlist</h2>
+    <div id="playlistDetails"></div>
+
+    <div style="margin: 1rem 0;">
+      <label for="orderSelector" data-i18n="playlistDetail.order">Ordenar canciones:</label>
+      <select id="orderSelector">
+        <option value="default" data-i18n="playlistDetail.order.default">Por defecto</option>
+        <option value="duration" data-i18n="playlistDetail.order.duration">Duración</option>
+        <option value="releaseDate" data-i18n="playlistDetail.order.releaseDate">Fecha de lanzamiento</option>
+        <option value="name" data-i18n="playlistDetail.order.name">Nombre</option>
+      </select>
     </div>
 
-    <script>
-        const params = new URLSearchParams(window.location.search);
-        const playlistId = params.get('id');
-    
-        if (!playlistId) {
-            document.getElementById("playlistDetails").innerText = "No se ha proporcionado una playlist válida.";
-        } else {
-            fetch(`http://localhost:8080/api/playlists/${playlistId}`)
-                .then(res => res.json())
-                .then(pl => {
-                    const container = document.getElementById("playlistDetails");
-                    container.innerHTML = `
-                        <p><strong data-i18n="playlistDetail.id">ID:</strong> ${pl.id}</p>
-                        <p><strong data-i18n="playlistDetail.name">Nombre:</strong> ${pl.name}</p>
-                        <p><strong data-i18n="playlistDetail.owners">Propietarios:</strong> ${pl.owners.join(', ')}</p>
-                        <p><strong data-i18n="playlistDetail.public">Pública:</strong> ${pl.public ? 'Sí' : 'No'}</p>
-                        <p><strong data-i18n="playlistDetail.songCount">Número de Canciones:</strong> ${pl.numberOfSongs}</p>
-                        <p><strong data-i18n="playlistDetail.order">Orden:</strong> ${pl.order.join(', ')}</p>
-                        <p><strong data-i18n="playlistDetail.songs">Canciones:</strong></p>
-                        <ul id="songList"></ul>
-    
-                        <button id="playAllBtn" data-i18n="playlistDetail.playAll">Reproducir todas</button>
-                        <div id="playerSection" style="margin-top: 1em;">
-                            <p id="currentSongName" style="font-weight: bold;"></p>
-                            <audio id="playlistAudio" controls></audio><br>
-                            <button id="prevBtn">⏮️ Anterior</button>
-                            <button id="nextBtn">⏭️ Siguiente</button>
-                        </div>
-                    `;
-    
-                    const songList = document.getElementById("songList");
-                    pl.songs.forEach(song => {
-                        if (!song.id) return;
-                        const item = document.createElement("li");
-                        item.id = `song-${song.id}`;
-    
-                        const link = document.createElement("a");
-                        link.href = `detalle_song.html?id=${song.id}`;
-                        link.textContent = song.name;
-                        link.style.display = "block";
-                        link.style.textDecoration = "none";
-                        link.style.color = "inherit";
-    
-                        item.appendChild(link);
-                        songList.appendChild(item);
-                    });
-    
-                    document.getElementById("editBtn").onclick = () => {
-                        window.location.href = `edit_playlist.html?id=${pl.id}`;
-                    };
-    
-                    document.getElementById("deleteBtn").onclick = () => {
-                        if (confirm("¿Seguro que quieres eliminar esta playlist?")) {
-                            fetch(`http://localhost:8080/api/playlists/${pl.id}`, {
-                                method: "DELETE"
-                            })
-                            .then(() => {
-                                alert("Playlist eliminada correctamente.");
-                                window.location.href = "playlists.html";
-                            });
-                        }
-                    };
-    
-                    document.getElementById("editSongsBtn").onclick = () => {
-                        window.location.href = `edit_playlist_songs.html?id=${pl.id}`;
-                    };
-    
-                    // 🎵 Reproductor de playlist
-                    const playAllBtn = document.getElementById("playAllBtn");
-                    const audio = document.getElementById("playlistAudio");
-                    const currentSongName = document.getElementById("currentSongName");
-                    const prevBtn = document.getElementById("prevBtn");
-                    const nextBtn = document.getElementById("nextBtn");
-    
-                    let playlist = [];
-                    let currentIndex = 0;
-    
-                    playAllBtn.onclick = () => {
-                        playlist = pl.songs.filter(song => song.filePath);
-                        if (playlist.length === 0) {
-                            currentSongName.innerText = "No hay canciones reproducibles en esta playlist.";
-                            return;
-                        }
-                        currentIndex = 0;
-                        playCurrentSong();
-                    };
-    
-                    function playCurrentSong() {
-                        if (playlist.length === 0) return;
-                        const song = playlist[currentIndex];
-                        audio.src = `/songs_files/${song.filePath}`;
-                        currentSongName.innerText = `🎵 Reproduciendo: ${song.name}`;
-                        audio.play();
-                    }
-    
-                    audio.addEventListener("ended", () => {
-                        if (currentIndex + 1 < playlist.length) {
-                            currentIndex++;
-                            playCurrentSong();
-                        }
-                    });
-    
-                    prevBtn.onclick = () => {
-                        if (currentIndex > 0) {
-                            currentIndex--;
-                            playCurrentSong();
-                        }
-                    };
-    
-                    nextBtn.onclick = () => {
-                        if (currentIndex + 1 < playlist.length) {
-                            currentIndex++;
-                            playCurrentSong();
-                        }
-                    };
-                })
-                .catch(error => {
-                    document.getElementById("playlistDetails").innerText = "Error al cargar los detalles.";
-                    console.error(error);
+    <ul id="songList"></ul>
+
+    <button id="playAllBtn" data-i18n="playlistDetail.playAll">Reproducir todas</button>
+    <div id="playerSection" style="margin-top: 1em;">
+      <p id="currentSongName" style="font-weight: bold;"></p>
+      <audio id="playlistAudio" controls></audio><br>
+      <button id="prevBtn">⏮️ Anterior</button>
+      <button id="nextBtn">⏭️ Siguiente</button>
+    </div>
+
+    <br><br>
+    <button id="editBtn" data-i18n="playlistDetail.edit">Editar</button>
+    <button id="deleteBtn" data-i18n="playlistDetail.delete">Eliminar</button>
+    <button onclick="window.location.href='playlists.html'" data-i18n="playlistDetail.back">Volver</button>
+    <button id="editSongsBtn" data-i18n="playlistDetail.editSongs">Editar canciones</button>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const playlistId = params.get('id');
+    let originalSongs = [];
+
+    if (!playlistId) {
+      document.getElementById("playlistDetails").innerText = "No se ha proporcionado una playlist válida.";
+    } else {
+      fetch(`http://localhost:8080/api/playlists/${playlistId}`)
+        .then(res => res.json())
+        .then(pl => {
+          const container = document.getElementById("playlistDetails");
+          container.innerHTML = `
+            <p><strong>ID:</strong> ${pl.id}</p>
+            <p><strong>Nombre:</strong> ${pl.name}</p>
+            <p><strong>Propietarios:</strong> ${pl.owners.join(', ')}</p>
+            <p><strong>Pública:</strong> ${pl.public ? 'Sí' : 'No'}</p>
+            <p><strong>Número de Canciones:</strong> ${pl.numberOfSongs}</p>
+          `;
+
+          originalSongs = pl.songs || [];
+          displaySongs(originalSongs);
+
+          // reproductor
+          document.getElementById("playAllBtn").onclick = () => {
+            playlist = originalSongs.filter(song => song.filePath);
+            if (playlist.length === 0) {
+              document.getElementById("currentSongName").innerText = "No hay canciones reproducibles.";
+              return;
+            }
+            currentIndex = 0;
+            playCurrentSong();
+          };
+
+          document.getElementById("editBtn").onclick = () => {
+            window.location.href = `edit_playlist.html?id=${pl.id}`;
+          };
+
+          document.getElementById("deleteBtn").onclick = () => {
+            if (confirm("¿Seguro que quieres eliminar esta playlist?")) {
+              fetch(`http://localhost:8080/api/playlists/${pl.id}`, { method: "DELETE" })
+                .then(() => {
+                  alert("Playlist eliminada correctamente.");
+                  window.location.href = "playlists.html";
                 });
-        }
-    </script>    
+            }
+          };
+
+          document.getElementById("editSongsBtn").onclick = () => {
+            window.location.href = `edit_playlist_songs.html?id=${pl.id}`;
+          };
+        })
+        .catch(error => {
+          document.getElementById("playlistDetails").innerText = "Error al cargar los detalles.";
+          console.error(error);
+        });
+    }
+
+    // Ordenar canciones
+    document.getElementById("orderSelector").addEventListener("change", () => {
+      const order = document.getElementById("orderSelector").value;
+      let sorted = [...originalSongs];
+
+      if (order === "duration") {
+        sorted.sort((a, b) => a.duration - b.duration);
+      } else if (order === "releaseDate") {
+        sorted.sort((a, b) => new Date(a.dateOfRelease) - new Date(b.dateOfRelease));
+      } else if (order === "name") {
+        sorted.sort((a, b) => a.name.localeCompare(b.name));
+      }
+
+      displaySongs(sorted);
+    });
+
+    function displaySongs(songs) {
+      const songList = document.getElementById("songList");
+      songList.innerHTML = "";
+      songs.forEach((song, index) => {
+        if (!song.id) return;
+        const item = document.createElement("li");
+        item.id = `song-${song.id}`;
+        const link = document.createElement("a");
+        link.href = `detalle_song.html?id=${song.id}`;
+        link.textContent = `${index + 1}. ${song.name}`;
+        link.style.display = "block";
+        link.style.textDecoration = "none";
+        link.style.color = "inherit";
+        item.appendChild(link);
+        songList.appendChild(item);
+      });
+    }
+
+    // Reproductor
+    let playlist = [];
+    let currentIndex = 0;
+
+    function playCurrentSong() {
+      const audio = document.getElementById("playlistAudio");
+      const currentSongName = document.getElementById("currentSongName");
+      if (playlist.length === 0) return;
+
+      const song = playlist[currentIndex];
+      audio.src = `/songs_files/${song.filePath}`;
+      currentSongName.innerText = `🎵 Reproduciendo: ${song.name}`;
+      audio.play();
+    }
+
+    document.getElementById("playlistAudio").addEventListener("ended", () => {
+      if (currentIndex + 1 < playlist.length) {
+        currentIndex++;
+        playCurrentSong();
+      }
+    });
+
+    document.getElementById("prevBtn").onclick = () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        playCurrentSong();
+      }
+    };
+
+    document.getElementById("nextBtn").onclick = () => {
+      if (currentIndex + 1 < playlist.length) {
+        currentIndex++;
+        playCurrentSong();
+      }
+    };
+  </script>
 </body>
 </html>

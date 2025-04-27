@@ -9,6 +9,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.context.annotation.Lazy;
+import com.deusto.deuspotify.security.JwtUtil;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,11 +20,15 @@ import java.util.Optional;
 public class ProfileService implements UserDetailsService {
     private final ProfileRepository profileRepository;
     private final PasswordEncoder passwordEncoder;
-
-    public ProfileService(ProfileRepository profileRepository, @Lazy PasswordEncoder passwordEncoder) {
+    private JwtUtil jwtUtil;
+  
+    @Autowired
+    public ProfileService(ProfileRepository profileRepository, @Lazy PasswordEncoder passwordEncoder, JwtUtil jwtUtil) {
         this.profileRepository = profileRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtUtil = jwtUtil;
     }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -56,7 +63,7 @@ public class ProfileService implements UserDetailsService {
     public Optional<Profile> updateProfile(Long id, Profile updatedProfile) {
         return profileRepository.findById(id).map(profile -> {
             profile.setUsername(updatedProfile.getUsername());
-            if (!updatedProfile.getPassword().isEmpty()) {
+            if (updatedProfile.getPassword() != null && !updatedProfile.getPassword().isEmpty()) {
                 profile.setPassword(passwordEncoder.encode(updatedProfile.getPassword()));
             }
             profile.setEmail(updatedProfile.getEmail());
@@ -80,5 +87,19 @@ public class ProfileService implements UserDetailsService {
     public Optional<Profile> login(String username, String password) {
         return profileRepository.findByUsername(username)
                 .filter(profile -> passwordEncoder.matches(password, profile.getPassword()));
+    }
+
+    public Profile getAuthenticatedUser(HttpServletRequest request) {
+        String authHeader = request.getHeader("Authorization");
+    
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            throw new RuntimeException("No JWT token found");
+        }
+    
+        String token = authHeader.substring(7);
+        String username = jwtUtil.extractUsername(token);
+    
+        return profileRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 }

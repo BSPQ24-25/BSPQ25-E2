@@ -117,6 +117,8 @@
       event.preventDefault();
       const songId = select.value;
       const formData = new FormData();
+      const dateInputValue = document.getElementById("date_of_release").value;
+      const releaseDateMillis = new Date(dateInputValue).getTime();
 
       const updatedSong = {
         name: document.getElementById("name").value,
@@ -132,8 +134,8 @@
       formData.append("artists", updatedSong.artists);
       formData.append("genres", updatedSong.genres);
       formData.append("duration", updatedSong.duration);
-      formData.append("date_of_release", updatedSong.date_of_release);
-
+      formData.append("date_of_release", releaseDateMillis);
+      
       const fileInput = document.getElementById("file");
       if (fileInput.files.length > 0) {
         formData.append("file", fileInput.files[0]);

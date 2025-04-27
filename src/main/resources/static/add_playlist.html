@@ -21,7 +21,7 @@
     <br>
 
     <label for="profile_id" data-i18n="add_playlist_profile">Profile ID:</label>
-    <input type="number" id="profile_id" required>
+    <input type="number" id="profile_id" disabled>
     <br>
 
     <div style="margin-bottom: 1rem;">
@@ -33,22 +33,35 @@
   </form>
 
   <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const userId = localStorage.getItem("userId");
+      if (userId) {
+        document.getElementById("profile_id").value = userId;
+      }
+    });
+
     async function createPlaylist(event) {
       event.preventDefault();
-
+    
+      const token = localStorage.getItem("token");
+      const username = localStorage.getItem("username");  
+    
       const playlist = {
         name: document.getElementById("name").value,
-        profile_id: parseInt(document.getElementById("profile_id").value),
         number_of_songs: 0,
-        is_public: document.getElementById("is_public").checked
+        is_public: document.getElementById("is_public").checked,
+        owners: [username]
       };
-
+    
       const response = await fetch("http://localhost:8080/api/playlists", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
         body: JSON.stringify(playlist)
       });
-
+    
       if (response.ok) {
         alert("Playlist created successfully!");
         window.location.href = "playlists.html";

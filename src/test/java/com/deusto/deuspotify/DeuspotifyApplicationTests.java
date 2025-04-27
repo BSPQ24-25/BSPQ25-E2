@@ -103,6 +103,15 @@ class DeuspotifyApplicationTests {
         assertEquals(newProfile, response.getBody());
     }
 
+    @Test
+    void logoutTest() {
+        ResponseEntity<?> response = authController.logout();
+
+        assertNotNull(response);
+        assertEquals(200, response.getStatusCode().value());
+        Map<?, ?> responseBody = (Map<?, ?>) response.getBody();
+        assertEquals("Logged out successfully", responseBody.get("message"));
+    }
 
     // Profile Repository tests
     @Test
