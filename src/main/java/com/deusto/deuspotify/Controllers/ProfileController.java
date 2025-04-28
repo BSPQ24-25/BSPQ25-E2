@@ -1,17 +1,11 @@
 package com.deusto.deuspotify.Controllers;
 
 import com.deusto.deuspotify.model.Profile;
-import com.deusto.deuspotify.security.JwtUtil;
 import com.deusto.deuspotify.services.ProfileService;
-
-import jakarta.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -20,8 +14,6 @@ import java.util.Optional;
 public class ProfileController {
 
     private final ProfileService profileService;
-    @Autowired
-    private JwtUtil jwtUtil;
 
 
     public ProfileController(ProfileService profileService) {
@@ -69,25 +61,9 @@ public class ProfileController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Profile loginRequest) {
-        Optional<Profile> profileOpt = profileService.login(loginRequest.getUsername(), loginRequest.getPassword());
-        if (profileOpt.isPresent()) {
-            String token = jwtUtil.generateToken(profileOpt.get().getUsername());
-            return ResponseEntity.ok().body(Map.of("token", token));
-        } else {
-            return ResponseEntity.status(401).body("Invalid credentials");
-        }
+        Optional<Profile> profile = profileService.login(loginRequest.getUsername(), loginRequest.getPassword());
+        return profile.map(ResponseEntity::ok)
+                    .orElseGet(() -> ResponseEntity.status(401).body(null)); // Devolvemos `null` en lugar de un String
     }
-
-    @GetMapping("/me")
-    public ResponseEntity<Profile> getMyProfile(HttpServletRequest request) {
-        try {
-            Profile profile = profileService.getAuthenticatedUser(request);
-            return ResponseEntity.ok(profile);
-        } catch (Exception e) {
-            return ResponseEntity.status(401).body(null);
-        }
-    }
-
-
 
 }
