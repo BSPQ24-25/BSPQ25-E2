@@ -4,6 +4,8 @@ import com.deusto.deuspotify.model.Profile;
 import com.deusto.deuspotify.repositories.ProfileRepository;
 import com.deusto.deuspotify.security.JwtUtil;
 import com.deusto.deuspotify.services.ProfileService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,6 +21,7 @@ public class AuthController {
 
     private final AuthenticationManager authenticationManager;
     private final ProfileService profileService;
+    @Autowired
     private final JwtUtil jwtUtil;
 
     public AuthController(AuthenticationManager authenticationManager, ProfileService profileService, JwtUtil jwtUtil) {

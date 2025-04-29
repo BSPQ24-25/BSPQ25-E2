@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Edit Profile</h1>
+
+    <div id="profile-container">
+        <p><strong>Username:</strong> <span id="username">Loading...</span></p>
+        <p><strong>Email:</strong> <span id="email">Loading...</span></p>
+    </div>
+
+    <div id="edit-profile-form" style="margin-top: 20px;">
+        <h3>Update Profile</h3>
+        <form id="profileForm">
+            <label for="newUsername">New Username:</label>
+            <input type="text" id="newUsername" name="newUsername" required>
+            <br><br>
+
+            <label for="newEmail">New Email:</label>
+            <input type="email" id="newEmail" name="newEmail" required>
+            <br><br>
+
+            <label for="newPassword">New Password (optional):</label>
+            <input type="password" id="newPassword" name="newPassword" placeholder="Leave blank to keep current">
+            <br><br>
+
+            <button type="submit">Update</button>
+        </form>
+        <div id="updateMsg" style="color: green; display: none;">Profile updated!</div>
+    </div>
+
+    <script>
+        let userId = null;
+        let currentProfile = {};
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const token = localStorage.getItem("token");
+
+            if (!token) {
+                alert("No token found. Please log in.");
+                window.location.href = "login.html";
+                return;
+            }
+
+            fetch("/api/profiles/me", {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Unauthorized or failed to fetch profile.");
+                }
+                return response.json();
+            })
+            .then(data => {
+                userId = data.id;
+                currentProfile = data;
+                document.getElementById("username").textContent = data.username;
+                document.getElementById("email").textContent = data.email;
+                document.getElementById("newUsername").value = data.username;
+                document.getElementById("newEmail").value = data.email;
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Could not load profile. Please login again.");
+                localStorage.removeItem("token");
+                window.location.href = "login.html";
+            });
+
+            document.getElementById("profileForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const newUsername = document.getElementById("newUsername").value;
+                const newEmail = document.getElementById("newEmail").value;
+                const newPassword = document.getElementById("newPassword").value;
+
+                if (!userId) {
+                    alert("User ID not loaded yet.");
+                    return;
+                }
+
+                currentProfile.username = newUsername;
+                currentProfile.email = newEmail;
+
+                if (newPassword && newPassword.trim() !== "") {
+                    currentProfile.password = newPassword;
+                } else {
+                    delete currentProfile.password; // no incluir si está vacía
+                }
+
+                fetch(`/api/profiles/${userId}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify(currentProfile)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Failed to update profile");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById("username").textContent = data.username;
+                    document.getElementById("email").textContent = data.email;
+                    document.getElementById("updateMsg").style.display = "block";
+                    document.getElementById("newPassword").value = ""; // limpiar campo
+
+                    setTimeout(() => {
+                        window.location.href = "index.html";
+                    }, 250);
+                })
+                .catch(error => {
+                    console.error("Update error:", error);
+                    alert("Error updating profile.");
+                });
+            });
+        });
+    </script>
+</body>
+</html>
