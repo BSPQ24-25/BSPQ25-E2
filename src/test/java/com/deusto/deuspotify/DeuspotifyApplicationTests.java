@@ -10,10 +10,14 @@ import com.deusto.deuspotify.security.JwtUtil;
 import com.deusto.deuspotify.services.DeuspotifyService;
 import com.deusto.deuspotify.services.DeuspotifyServiceImpl;
 import com.deusto.deuspotify.services.ProfileService;
+
+import jakarta.servlet.http.HttpServletRequest;
+
 import com.deusto.deuspotify.Controllers.AuthController;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +25,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.nio.file.Files;
@@ -31,6 +39,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.ArrayList;
+import java.util.Collections;
+import org.springframework.security.core.GrantedAuthority;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -41,9 +51,6 @@ class DeuspotifyApplicationTests {
 
     @Mock
     private AuthenticationManager authenticationManager;
-
-    @Mock
-    private ProfileService profileService;
 
     @Mock
     private JwtUtil jwtUtil;
@@ -57,12 +64,19 @@ class DeuspotifyApplicationTests {
     @Mock
     private SongRepository songRepository;
 
+    @Mock
+    private PasswordEncoder passwordEncoder;
+
+    @InjectMocks
+    private ProfileService profileService;
+
     private AuthController authController;
     private DeuspotifyService deuspotifyService;
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
+        // profileService is now automatically injected with mocks
+        profileService = new ProfileService(profileRepository, passwordEncoder);
         authController = new AuthController(authenticationManager, profileService, jwtUtil);
         deuspotifyService = new DeuspotifyServiceImpl(songRepository, playlistRepository);
     }
@@ -218,6 +232,68 @@ class DeuspotifyApplicationTests {
 
         assertTrue(foundProfile.isPresent());
         assertEquals("testUser", foundProfile.get().getUsername());
+    }
+
+    //User tests
+    @Test
+    void loadUserByUsernameTest() {
+        // Arrange: prepare mock profile
+        Profile profile = new Profile();
+        profile.setUsername("testUser");
+        profile.setPassword("encodedPass");
+        profile.setAdmin(true);
+
+        // Mock behavior: profileRepository returns the profile when called with "testUser"
+        when(profileRepository.findByUsername("testUser")).thenReturn(Optional.of(profile));
+
+        // Act: call the real method under test
+        UserDetails userDetails = profileService.loadUserByUsername("testUser");
+
+        // Assert: validate output
+        assertNotNull(userDetails);
+        assertEquals("testUser", userDetails.getUsername());
+        assertEquals("encodedPass", userDetails.getPassword());
+        assertTrue(userDetails.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN")));
+    }
+
+    @Test
+    void loadUserByUsernameNotFoundTest() {
+        when(profileRepository.findByUsername("unknownUser")).thenReturn(Optional.empty());
+
+        assertThrows(UsernameNotFoundException.class, () -> {
+            profileService.loadUserByUsername("unknownUser");
+        });
+    }
+
+    @Test
+    void getAuthenticatedUserTest() {
+        String token = "valid.jwt.token";
+        String username = "testUser";
+
+        Profile profile = new Profile();
+        profile.setUsername(username);
+
+        HttpServletRequest request = mock(HttpServletRequest.class);
+        when(request.getHeader("Authorization")).thenReturn("Bearer " + token);
+        when(jwtUtil.extractUsername(token)).thenReturn(username);
+        when(profileRepository.findByUsername(username)).thenReturn(Optional.of(profile));
+
+        // Inject mocked jwtUtil into service (if needed via reflection or setter)
+        ReflectionTestUtils.setField(profileService, "jwtUtil", jwtUtil);
+
+        Profile authenticated = profileService.getAuthenticatedUser(request);
+
+        assertEquals(username, authenticated.getUsername());
+    }
+
+    @Test
+    void getAuthenticatedUserMissingTokenTest() {
+        HttpServletRequest request = mock(HttpServletRequest.class);
+        when(request.getHeader("Authorization")).thenReturn(null);
+
+        assertThrows(RuntimeException.class, () -> {
+            profileService.getAuthenticatedUser(request);
+        });
     }
 
     // Playlist Repository tests
@@ -466,18 +542,6 @@ class DeuspotifyApplicationTests {
         assertEquals(song2, updated.getSongs().get(0));
     }
 
-    @Test
-    void findSongsByIdsTest() {
-        Song song1 = new Song(); song1.setId(1L);
-        Song song2 = new Song(); song2.setId(2L);
-        when(songRepository.findAllById(List.of(1L, 2L))).thenReturn(List.of(song1, song2));
-
-        List<Song> result = deuspotifyService.findSongsByIds(List.of(1L, 2L));
-
-        assertEquals(2, result.size());
-        verify(songRepository).findAllById(List.of(1L, 2L));
-    }
-
     // Song Repository tests
     void getAllSongsTest() {
         Song song1 = new Song();
@@ -654,4 +718,53 @@ class DeuspotifyApplicationTests {
         assertTrue(result.isPresent());
         assertEquals(1L, result.get().getId());
     }
+
+    @Test
+    void findSongsByIdsTest() {
+        Song song1 = new Song(); song1.setId(1L);
+        Song song2 = new Song(); song2.setId(2L);
+        when(songRepository.findAllById(List.of(1L, 2L))).thenReturn(List.of(song1, song2));
+
+        List<Song> result = deuspotifyService.findSongsByIds(List.of(1L, 2L));
+
+        assertEquals(2, result.size());
+        verify(songRepository).findAllById(List.of(1L, 2L));
+    }
+
+    // Test for models
+    @Test
+    void testSong() {
+        Song song = new Song();
+        song.setId(1L);
+        song.setName("Test Song");
+        song.setAlbum("Test Album");
+        song.setArtists(List.of("Artist1", "Artist2"));
+        song.setGenres(List.of("Rock", "Pop"));
+        song.setDuration(3.5);
+        song.setDateOfRelease(new Date());
+
+        assertEquals(1L, song.getId());
+        assertEquals("Test Song", song.getName());
+        assertEquals("Test Album", song.getAlbum());
+        assertEquals(List.of("Artist1", "Artist2"), song.getArtists());
+        assertEquals(List.of("Rock", "Pop"), song.getGenres());
+        assertEquals(3.5, song.getDuration());
+    }
+    @Test
+    void testPlaylist() {
+        Playlist playlist = new Playlist();
+        playlist.setId(1L);
+        playlist.setName("Test Playlist");
+        playlist.setOwners(List.of("Owner1", "Owner2"));
+        playlist.setPublic(true);
+        playlist.setOrder(List.of(1, 2, 3));
+
+        assertEquals(1L, playlist.getId());
+        assertEquals("Test Playlist", playlist.getName());
+        assertEquals(List.of("Owner1", "Owner2"), playlist.getOwners());
+        assertTrue(playlist.isPublic());
+        assertEquals(0, playlist.getNumberOfSongs());
+    }
+   
 }
+    
