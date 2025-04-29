@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Edit Profile</h1>
+
+    <div id="profile-container">
+        <p><strong>Username:</strong> <span id="username">Loading...</span></p>
+        <p><strong>Email:</strong> <span id="email">Loading...</span></p>
+    </div>
+
+    <div id="edit-profile-form" style="margin-top: 20px;">
+        <h3>Update Profile</h3>
+        <form id="profileForm">
+            <label for="newUsername">New Username:</label>
+            <input type="text" id="newUsername" name="newUsername" required>
+            <br><br>
+
+            <label for="newEmail">New Email:</label>
+            <input type="email" id="newEmail" name="newEmail" required>
+            <br><br>
+
+            <label for="newPassword">New Password (optional):</label>
+            <input type="password" id="newPassword" name="newPassword" placeholder="Leave blank to keep current">
+            <br><br>
+
+            <button type="submit">Update</button>
+        </form>
+        <div id="updateMsg" style="color: green; display: none;">Profile updated!</div>
+    </div>
+</body>
+</html>
