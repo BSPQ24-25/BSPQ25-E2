@@ -1,3 +1,8 @@
+// Get the host of the current page
+const full = window.location.origin;
+const match = full.match(/^(https?:\/\/[^\/:]+)/);
+const appUrl = match ? match[0] : '';
+
 async function loadTranslations(lang = null) {
     try {
         // Usa el idioma proporcionado o el que esté guardado, por defecto 'es'

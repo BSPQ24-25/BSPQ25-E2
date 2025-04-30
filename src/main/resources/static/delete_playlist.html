@@ -27,7 +27,7 @@
     const select = document.getElementById("playlistSelect");
     let playlists = [];
 
-    fetch("http://localhost:8080/api/playlists")
+    fetch(`${appUrl || "http://localhost"}:8080/api/playlists`)
       .then(res => res.json())
       .then(data => {
         playlists = data;
@@ -43,7 +43,7 @@
       const playlistId = select.value;
       if (!playlistId) return;
 
-      fetch(`http://localhost:8080/api/playlists/${playlistId}`, {
+      fetch(`${appUrl || "http://localhost"}:8080/api/playlists/${playlistId}`, {
         method: "DELETE"
       }).then(() => window.location.href = "playlists.html");
     });

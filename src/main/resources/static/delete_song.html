@@ -27,7 +27,7 @@
     const select = document.getElementById("songSelect");
     let songs = [];
   
-    fetch("http://localhost:8080/api/songs")
+    fetch(`${appUrl || "http://localhost"}:8080/api/songs`)
       .then(res => res.json())
       .then(data => {
         songs = data;
@@ -48,7 +48,7 @@
         const songId = select.value;
         if (!songId) return; // Si no se selecciona una canción, no hacer nada
     
-        fetch(`http://localhost:8080/api/songs/${songId}`, {
+        fetch(`${appUrl || "http://localhost"}:8080/api/songs/${songId}`, {
             method: "DELETE"
         })
         .then(response => {

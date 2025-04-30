@@ -63,7 +63,7 @@
         document.addEventListener("DOMContentLoaded", () => {
             loadTranslations();
 
-            fetch("http://localhost:8080/api/playlists")
+            fetch(`${appUrl || "http://localhost"}:8080/api/playlists`)
                 .then(response => response.json())
                 .then(data => {
                     playlists = data;

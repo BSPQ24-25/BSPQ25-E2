@@ -53,7 +53,7 @@
         owners: [username]
       };
     
-      const response = await fetch("http://localhost:8080/api/playlists", {
+      const response = await fetch(`${appUrl || "http://localhost"}:8080/api/playlists`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

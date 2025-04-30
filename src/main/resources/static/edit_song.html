@@ -51,7 +51,7 @@
     const select = document.getElementById("songSelect");
     let songs = [];
 
-    fetch("http://localhost:8080/api/songs")
+    fetch(`${appUrl || "http://localhost"}:8080/api/songs`)
       .then(res => res.json())
       .then(data => {
         songs = data;
@@ -144,7 +144,7 @@
         formData.append("file", existingFile);
       }
 
-      fetch(`http://localhost:8080/api/songs/${songId}`, {
+      fetch(`${appUrl || "http://localhost"}:8080/api/songs/${songId}`, {
         method: "PUT",
         body: formData
       }).then(() => window.location.href = "songs.html");
