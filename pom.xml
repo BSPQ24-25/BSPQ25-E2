@@ -30,6 +30,13 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+		<!-- JUnit 5 for testing -->
+		<dependency>
+			<groupId>com.github.noconnor</groupId>
+			<artifactId>junitperf-junit5</artifactId>
+			<version>1.37.0</version>
+			<scope>test</scope>
+		</dependency>
 		<!-- Log4j2 (Replace Logback) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
