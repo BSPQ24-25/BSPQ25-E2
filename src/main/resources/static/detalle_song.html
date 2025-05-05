@@ -29,7 +29,7 @@
         if (!songId) {
             document.getElementById("songDetails").innerText = "No se ha proporcionado una canción válida.";
         } else {
-            fetch(`http://localhost:8080/api/songs/${songId}`)
+            fetch(`${appUrl || "http://localhost"}:8080/api/songs/${songId}`)
                 .then(res => res.json())
                 .then(song => {
                     const container = document.getElementById("songDetails");
@@ -55,7 +55,7 @@
 
                     document.getElementById("deleteBtn").onclick = () => {
                         if (confirm("¿Estás seguro de que quieres eliminar esta canción?")) {
-                          fetch(`http://localhost:8080/api/songs/${song.id}`, {
+                          fetch(`${appUrl || "http://localhost"}:8080/api/songs/${song.id}`, {
                             method: "DELETE"
                           })
                           .then(response => {

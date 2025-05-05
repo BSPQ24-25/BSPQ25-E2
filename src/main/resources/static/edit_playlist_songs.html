@@ -20,13 +20,13 @@
     let playlistSongs = [];
 
     // Obtener canciones de la playlist actual
-    fetch(`http://localhost:8080/api/playlists/${playlistId}`)
+    fetch(`${appUrl || "http://localhost"}:8080/api/playlists/${playlistId}`)
       .then(res => res.json())
       .then(playlist => {
         playlistSongs = playlist.songs.map(song => song.id);
 
         // Obtener todas las canciones del usuario
-        fetch(`http://localhost:8080/api/songs`)
+        fetch(`${appUrl || "http://localhost"}:8080/api/songs`)
           .then(res => res.json())
           .then(allSongs => {
             const form = document.getElementById("songsForm");
@@ -54,7 +54,7 @@
         .filter(cb => cb.checked)
         .map(cb => parseInt(cb.value));
 
-      fetch(`http://localhost:8080/api/playlists/${playlistId}/songs`, {
+      fetch(`${appUrl || "http://localhost"}:8080/api/playlists/${playlistId}/songs`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(selectedIds)

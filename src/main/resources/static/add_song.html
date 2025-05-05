@@ -103,7 +103,7 @@
       formData.append("date_of_release", document.getElementById("date_of_release").value);
       formData.append("file", fileInput.files[0]);
 
-      const response = await fetch("http://localhost:8080/api/songs/upload", {
+      const response = await fetch(`${appUrl || "http://localhost"}:8080/api/songs/upload`, {
         method: "POST",
         body: formData
       });

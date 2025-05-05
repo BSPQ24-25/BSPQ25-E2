@@ -36,7 +36,7 @@
     const select = document.getElementById("playlistSelect");
     let playlists = [];
 
-    fetch("http://localhost:8080/api/playlists")
+    fetch(`${appUrl || "http://localhost"}:8080/api/playlists`)
       .then(res => res.json())
       .then(data => {
         playlists = data;
@@ -78,7 +78,7 @@
         order: JSON.parse(select.dataset.order || [])
       };      
 
-      fetch(`http://localhost:8080/api/playlists/${playlistId}`, {
+      fetch(`${appUrl || "http://localhost"}:8080/api/playlists/${playlistId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updated)

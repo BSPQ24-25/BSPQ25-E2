@@ -52,7 +52,7 @@
     if (!playlistId) {
       document.getElementById("playlistDetails").innerText = "No se ha proporcionado una playlist válida.";
     } else {
-      fetch(`http://localhost:8080/api/playlists/${playlistId}`)
+      fetch(`${appUrl || "http://localhost"}:8080/api/playlists/${playlistId}`)
         .then(res => res.json())
         .then(pl => {
           const container = document.getElementById("playlistDetails");
@@ -84,7 +84,7 @@
 
           document.getElementById("deleteBtn").onclick = () => {
             if (confirm("¿Seguro que quieres eliminar esta playlist?")) {
-              fetch(`http://localhost:8080/api/playlists/${pl.id}`, { method: "DELETE" })
+              fetch(`${appUrl || "http://localhost"}:8080/api/playlists/${pl.id}`, { method: "DELETE" })
                 .then(() => {
                   alert("Playlist eliminada correctamente.");
                   window.location.href = "playlists.html";

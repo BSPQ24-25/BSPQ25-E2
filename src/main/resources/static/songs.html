@@ -36,7 +36,7 @@
 
             let allSongs = [];
 
-            fetch("http://localhost:8080/api/songs")
+            fetch(`${appUrl || "http://localhost"}:8080/api/songs`)
                 .then(response => response.json())
                 .then(songs => {
                     allSongs = songs;

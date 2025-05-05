@@ -11,7 +11,7 @@
             const password = document.getElementById("password").value;
             const email = document.getElementById("email").value;
 
-            const response = await fetch("http://localhost:8080/auth/register", {
+            const response = await fetch(`${appUrl || "http://localhost"}:8080/auth/register`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, password, email, friendsList: [], favouriteSongs: [], playlists: [], isAdmin: false })
