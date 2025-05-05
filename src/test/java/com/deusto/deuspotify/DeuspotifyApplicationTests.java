@@ -13,7 +13,7 @@ import com.deusto.deuspotify.services.ProfileService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-import com.deusto.deuspotify.Controllers.AuthController;
+import com.deusto.deuspotify.controllers.AuthController;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

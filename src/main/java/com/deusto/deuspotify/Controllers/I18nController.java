@@ -1,4 +1,4 @@
-package com.deusto.deuspotify.Controllers;
+package com.deusto.deuspotify.controllers;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
