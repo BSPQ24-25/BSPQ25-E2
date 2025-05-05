@@ -1,0 +1,39 @@
+services:
+  mariadb:
+    image: mariadb:10.6
+    container_name: deuspotify_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: deuspotify
+      MYSQL_USER: deuspotify_admin
+      MYSQL_PASSWORD: adminpassword
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    restart: always
+
+  deuspotify:
+    image: endikablanco/deuspotify:latest
+    container_name: deuspotify_app
+    depends_on:
+      - mariadb
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mariadb:3306/deuspotify
+      SPRING_DATASOURCE_USERNAME: deuspotify_admin
+      SPRING_DATASOURCE_PASSWORD: adminpassword
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "8080:8080"
+    restart: always
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 300 deuspotify_app
+    restart: always
+
+volumes:
+  db_data:
