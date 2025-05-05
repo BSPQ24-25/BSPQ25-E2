@@ -2,6 +2,7 @@ package com.deusto.deuspotify;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Collections;
 import java.util.Optional;
 
 import org.springframework.boot.CommandLineRunner;
@@ -23,8 +24,10 @@ public class DataInitializer implements CommandLineRunner {
     private final PlaylistRepository playlistRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public DataInitializer(SongRepository songRepository, ProfileRepository profileRepository,
-                           PlaylistRepository playlistRepository, PasswordEncoder passwordEncoder) {
+    public DataInitializer(SongRepository songRepository,
+                           ProfileRepository profileRepository,
+                           PlaylistRepository playlistRepository,
+                           PasswordEncoder passwordEncoder) {
         this.songRepository = songRepository;
         this.profileRepository = profileRepository;
         this.playlistRepository = playlistRepository;
@@ -45,8 +48,7 @@ public class DataInitializer implements CommandLineRunner {
 
     private void insertSongs() {
         if (songRepository.count() == 0) {
-            Song song1 = new Song();
-            Song song2 = new Song(
+            Song bohemian = new Song(
                 "Bohemian Rhapsody",
                 Arrays.asList("Queen"),
                 5.55,
@@ -55,7 +57,7 @@ public class DataInitializer implements CommandLineRunner {
                 "A Night at the Opera"
             );
 
-            songRepository.saveAll(Arrays.asList(song1, song2));
+            songRepository.save(bohemian);
             System.out.println("Canciones insertadas en la BD.");
         } else {
             System.out.println("Las canciones ya existen en la BD.");
@@ -64,11 +66,15 @@ public class DataInitializer implements CommandLineRunner {
 
     private void insertProfiles() {
         if (!profileRepository.findByUsername("user").isPresent()) {
-            Profile profile = new Profile("user",
-                    passwordEncoder.encode("pass"),
-                    "user@example.com",
-                    Arrays.asList("amigo1", "amigo2"),
-                    null, null, false);
+            Profile profile = new Profile(
+                "user",
+                passwordEncoder.encode("pass"),
+                "user@example.com",
+                Arrays.asList("amigo1", "amigo2"),
+                Collections.emptyList(),
+                Collections.emptyList(),
+                false
+            );
 
             profileRepository.save(profile);
             System.out.println("Perfil 'user' insertado en la BD.");
@@ -88,13 +94,13 @@ public class DataInitializer implements CommandLineRunner {
                     Arrays.asList("juanito99"),
                     true,
                     Arrays.asList(song1.get(), song2.get()),
-                    Arrays.asList(1, 2)
+                    Arrays.asList(song1.get().getId().intValue(), song2.get().getId().intValue())
                 );
 
                 playlistRepository.save(playlist);
                 System.out.println("Playlist insertada en la BD.");
             } else {
-                System.out.println(" No se encontraron canciones para asociar a la playlist.");
+                System.out.println("No se encontraron canciones para asociar a la playlist.");
             }
         } else {
             System.out.println("La playlist ya existe en la BD.");
