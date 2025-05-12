@@ -29,7 +29,8 @@ public class ProfileAssembler {
                 profile.getFriendsList(),
                 songDTOs,
                 playlistDTOs,
-                profile.isAdmin()
+                profile.isAdmin(),
+                profile.getProfileImageUrl()
         );
     }
 

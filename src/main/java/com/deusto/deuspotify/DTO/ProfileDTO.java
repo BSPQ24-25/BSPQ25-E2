@@ -15,7 +15,7 @@ public class ProfileDTO {
 
     public ProfileDTO() {}
 
-    public ProfileDTO(Long id, String username, String email, List<String> friendsList, List<SongDTO> favouriteSongs, List<PlaylistDTO> playlists, boolean isAdmin) {
+    public ProfileDTO(Long id, String username, String email, List<String> friendsList, List<SongDTO> favouriteSongs, List<PlaylistDTO> playlists, boolean isAdmin, String profileImageUrl) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -23,6 +23,7 @@ public class ProfileDTO {
         this.favouriteSongs = favouriteSongs;
         this.playlists = playlists;
         this.isAdmin = isAdmin;
+        this.profileImageUrl = profileImageUrl;
     }
 
     // Getters and setters
