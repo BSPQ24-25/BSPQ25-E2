@@ -25,4 +25,5 @@ public interface DeuspotifyService {
     void deletePlaylist(Long id);
     List<Song> findSongsByIds(List<Long> songIds);
     Playlist updatePlaylistSongs(Long playlistId, List<Long> songIds);
+    String saveUploadedFile(MultipartFile file);
 }

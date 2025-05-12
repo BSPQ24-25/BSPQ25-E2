@@ -167,4 +167,30 @@ public class DeuspotifyServiceImpl implements DeuspotifyService {
 
         return playlistRepository.save(playlist);
     }
+
+    public String saveUploadedFile(MultipartFile file) {
+        if (file.isEmpty()) {
+            throw new IllegalArgumentException("No file uploaded");
+        }
+
+        try {
+            String uploadDir = "src/main/resources/static/images/subidas/";
+            
+            String originalFilename = file.getOriginalFilename();
+            if (originalFilename == null) {
+                throw new IllegalArgumentException("Invalid file name");
+            }
+            
+            Path path = Paths.get(uploadDir + originalFilename);
+            
+            // Copiar el archivo a la ruta
+            Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+            
+            // Devuelve la URL que se podrá utilizar para acceder a la imagen
+            return "/uploads/imagenes_subidas/" + originalFilename;
+        } catch (IOException e) {
+            throw new RuntimeException("Error while saving the file", e);
+        }
+    }
+
 }

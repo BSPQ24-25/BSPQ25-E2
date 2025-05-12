@@ -100,4 +100,8 @@ public class ProfileService implements UserDetailsService {
         return profileRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
+    public Profile saveProfile(Profile profile) {
+        return profileRepository.save(profile);
+    }
+
 }

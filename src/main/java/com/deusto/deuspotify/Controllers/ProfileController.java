@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.web.multipart.MultipartFile;
+import java.nio.file.*;
+
 @RestController
 @RequestMapping("/api/profiles")
 @CrossOrigin
@@ -64,6 +67,34 @@ public class ProfileController {
         Optional<Profile> profile = profileService.login(loginRequest.getUsername(), loginRequest.getPassword());
         return profile.map(ResponseEntity::ok)
                     .orElseGet(() -> ResponseEntity.status(401).body(null)); // Devolvemos `null` en lugar de un String
+    }
+
+   @PostMapping("/{id}/upload-image")
+    public ResponseEntity<?> uploadProfileImage(@PathVariable Long id, @RequestParam("file") MultipartFile file) {
+        Optional<Profile> optionalProfile = profileService.getProfileById(id);
+        if (!optionalProfile.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Profile profile = optionalProfile.get();
+
+        try {
+            String uploadDir = "src/main/resources/static/images/subidas";
+            Files.createDirectories(Paths.get(uploadDir));
+
+            String filename = System.currentTimeMillis() + "_" + file.getOriginalFilename().replaceAll("[^a-zA-Z0-9\\.\\-]", "_");
+            Path filePath = Paths.get(uploadDir, filename);
+            Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+            // Ruta relativa accesible por el navegador
+            String imageUrl = "/images/subidas/" + filename;
+            profile.setProfileImageUrl(imageUrl);
+            profileService.saveProfile(profile);
+
+            return ResponseEntity.ok(profile);
+        } catch (IOException e) {
+            return ResponseEntity.status(500).body("Error al guardar la imagen: " + e.getMessage());
+        }
     }
 
 }
