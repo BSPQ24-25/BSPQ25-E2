@@ -5,6 +5,9 @@
     <title data-i18n="register.title">Deuspotify - Register</title>
     <link rel="stylesheet" href="styles.css">
     <script>
+    const full = window.location.origin;
+    const match = full.match(/^(https?:\/\/[^\/:]+)/);
+    const appUrl = match ? match[0] : '';
         async function register(event) {
             event.preventDefault();
             const username = document.getElementById("username").value;

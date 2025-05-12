@@ -48,6 +48,9 @@
   </form>
 
   <script>
+    const full = window.location.origin;
+    const match = full.match(/^(https?:\/\/[^\/:]+)/);
+    const appUrl = match ? match[0] : '';
     const select = document.getElementById("songSelect");
     let songs = [];
 

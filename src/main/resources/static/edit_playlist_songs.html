@@ -14,6 +14,9 @@
   <button onclick="window.history.back()" data-i18n="edit_playlist_songs.cancel">Cancelar</button>
 
   <script>
+    const full = window.location.origin;
+    const match = full.match(/^(https?:\/\/[^\/:]+)/);
+    const appUrl = match ? match[0] : '';
     const params = new URLSearchParams(window.location.search);
     const playlistId = params.get("id");
 
