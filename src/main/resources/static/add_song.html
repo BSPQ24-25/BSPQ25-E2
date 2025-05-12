@@ -54,6 +54,9 @@
   </form>
 
   <script>
+    const full = window.location.origin;
+    const match = full.match(/^(https?:\/\/[^\/:]+)/);
+    const appUrl = match ? match[0] : '';
     const fileInput = document.getElementById("file");
 
     fileInput.addEventListener("change", function () {

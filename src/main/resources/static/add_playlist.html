@@ -33,6 +33,9 @@
   </form>
 
   <script>
+    const full = window.location.origin;
+    const match = full.match(/^(https?:\/\/[^\/:]+)/);
+    const appUrl = match ? match[0] : '';
     document.addEventListener("DOMContentLoaded", () => {
       const userId = localStorage.getItem("userId");
       if (userId) {

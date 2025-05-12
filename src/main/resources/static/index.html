@@ -27,6 +27,9 @@
 
     <script src="i18n.js"></script>
     <script>
+    const full = window.location.origin;
+    const match = full.match(/^(https?:\/\/[^\/:]+)/);
+    const appUrl = match ? match[0] : '';
         document.addEventListener("DOMContentLoaded", () => {
             loadTranslations();
         });
