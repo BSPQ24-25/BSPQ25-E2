@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import org.springframework.web.multipart.MultipartFile;
 import java.nio.file.*;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/profiles")
@@ -17,7 +18,6 @@ import java.nio.file.*;
 public class ProfileController {
 
     private final ProfileService profileService;
-
 
     public ProfileController(ProfileService profileService) {
         this.profileService = profileService;
@@ -33,6 +33,14 @@ public class ProfileController {
         Optional<Profile> profile = profileService.getProfileById(id);
         return profile.map(ResponseEntity::ok)
                       .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    // Nuevo endpoint para obtener el perfil por nombre de usuario
+    @GetMapping("/username/{username}")
+    public ResponseEntity<Profile> getProfileByUsername(@PathVariable String username) {
+        Optional<Profile> profile = profileService.getProfileByUsername(username);
+        return profile.map(ResponseEntity::ok)
+                    .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
@@ -51,7 +59,6 @@ public class ProfileController {
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
-    
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteProfile(@PathVariable Long id) {
@@ -69,7 +76,7 @@ public class ProfileController {
                     .orElseGet(() -> ResponseEntity.status(401).body(null)); // Devolvemos `null` en lugar de un String
     }
 
-   @PostMapping("/{id}/upload-image")
+    @PostMapping("/{id}/upload-image")
     public ResponseEntity<?> uploadProfileImage(@PathVariable Long id, @RequestParam("file") MultipartFile file) {
         Optional<Profile> optionalProfile = profileService.getProfileById(id);
         if (!optionalProfile.isPresent()) {
@@ -96,5 +103,4 @@ public class ProfileController {
             return ResponseEntity.status(500).body("Error al guardar la imagen: " + e.getMessage());
         }
     }
-
 }

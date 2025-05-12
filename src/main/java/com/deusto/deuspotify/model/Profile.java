@@ -45,6 +45,7 @@ public class Profile {
         this.favouriteSongs = favouriteSongs;
         this.playlists = playlists;
         this.isAdmin = isAdmin;
+        this.profileImageUrl = "/images/default-profile.png";
     }
 
     // Getters and setters

@@ -18,16 +18,20 @@ import java.util.Optional;
 
 @Service
 public class ProfileService implements UserDetailsService {
+    
     private final ProfileRepository profileRepository;
     private final PasswordEncoder passwordEncoder;
-    private JwtUtil jwtUtil;
-  
+    
+    @Autowired
+    private JwtUtil jwtUtil;  // Inyectando JwtUtil
 
+    // Constructor de la clase
     public ProfileService(ProfileRepository profileRepository, @Lazy PasswordEncoder passwordEncoder) {
         this.profileRepository = profileRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
+    // Implementación de UserDetailsService
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Profile profile = profileRepository.findByUsername(username)
@@ -40,6 +44,7 @@ public class ProfileService implements UserDetailsService {
                 .build();
     }
 
+    // Métodos para manejar los perfiles
     public List<Profile> getAllProfiles() {
         return profileRepository.findAll();
     }
@@ -95,13 +100,17 @@ public class ProfileService implements UserDetailsService {
         }
     
         String token = authHeader.substring(7);
-        String username = jwtUtil.extractUsername(token);
+        String username = jwtUtil.extractUsername(token); // Usamos jwtUtil para extraer el nombre de usuario del token
     
         return profileRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
+
+    public Optional<Profile> getProfileByUsername(String username) {
+        return profileRepository.findByUsername(username);
+    }
+
     public Profile saveProfile(Profile profile) {
         return profileRepository.save(profile);
     }
-
 }

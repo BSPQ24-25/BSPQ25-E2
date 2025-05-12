@@ -6,11 +6,15 @@
 </head>
 
 <body class="homepage-layout">
-    <div style="position: absolute; top: 10px; right: 20px;">
+    <div style="position: absolute; top: 10px; right: 20px; display: flex; align-items: center;">
         <button onclick="loadTranslations('es')" title="Español">Es</button>
         <button onclick="loadTranslations('en')" title="English">En</button>
         <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
+
+        <!-- Imagen de perfil -->
+        <img id="profileImage" src="" alt="Profile Image" style="border-radius: 50%; width: 40px; height: 40px; margin-left: 10px;">
     </div>
+
     <div class="homepage-title">
         <h2 data-i18n="index.welcome">Welcome to Deuspotify</h2>
     </div>
@@ -27,15 +31,45 @@
 
     <script src="i18n.js"></script>
     <script>
-    const full = window.location.origin;
-    const match = full.match(/^(https?:\/\/[^\/:]+)/);
-    const appUrl = match ? match[0] : '';
+        const full = window.location.origin;
+        const match = full.match(/^(https?:\/\/[^\/:]+)/);
+        const appUrl = match ? match[0] : '';
+
         document.addEventListener("DOMContentLoaded", () => {
             loadTranslations();
+
+            const profileId = localStorage.getItem("profileId");
+
+            if (!profileId) {
+                console.error("No profile ID found in localStorage.");
+                return;
+            }
+
+            fetch(`/api/profiles/${profileId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("No se pudo obtener el perfil");
+                    }
+                    return response.json();
+                })
+                .then(profile => {
+                    console.log("Perfil cargado:", profile);
+                    const imageUrl = profile.profileImageUrl || "/images/default-profile.png";
+                    document.getElementById("profileImage").src = imageUrl;
+
+                    // Si quieres guardar la URL en localStorage:
+                    localStorage.setItem("profileImageUrl", imageUrl);
+                })
+                .catch(error => {
+                    console.error("Error al cargar el perfil:", error);
+                });
         });
+
+
 
         function logout() {
             localStorage.removeItem("token");
+            localStorage.removeItem("profileImageUrl"); // También eliminamos la imagen de perfil
             fetch("/auth/logout", { method: "POST" })
                 .then(() => window.location.href = "login.html");
         }
