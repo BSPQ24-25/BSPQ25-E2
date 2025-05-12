@@ -14,6 +14,7 @@ public class Profile {
     private String username;
     private String password;
     private String email;
+    private String profileImageUrl;
 
     @ElementCollection
     @CollectionTable(name = "profile_friends", joinColumns = @JoinColumn(name = "profile_id"))
@@ -71,6 +72,9 @@ public class Profile {
 
     public boolean isAdmin() { return isAdmin; }
     public void setAdmin(boolean isAdmin) { this.isAdmin = isAdmin; }
+
+    public String getProfileImageUrl() { return profileImageUrl; }
+    public void setProfileImageUrl(String profileImageUrl) { this.profileImageUrl = profileImageUrl; }
 
     @Override
     public String toString() {

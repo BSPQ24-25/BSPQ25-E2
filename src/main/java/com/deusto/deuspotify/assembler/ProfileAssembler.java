@@ -15,6 +15,10 @@ public class ProfileAssembler {
     public static ProfileDTO toDTO(Profile profile) {
         if (profile == null) return null;
 
+        if (profile.getProfileImageUrl() == null || profile.getProfileImageUrl().isEmpty()) {
+            profile.setProfileImageUrl("/images/default-profile.png");
+        }
+        
         List<SongDTO> songDTOs = SongAssembler.toDTOList(profile.getFavouriteSongs());
         List<PlaylistDTO> playlistDTOs = PlaylistAssembler.toDTOList(profile.getPlaylists());
 

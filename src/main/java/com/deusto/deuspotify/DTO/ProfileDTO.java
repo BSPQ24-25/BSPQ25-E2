@@ -7,6 +7,7 @@ public class ProfileDTO {
     private Long id;
     private String username;
     private String email;
+    private String profileImageUrl;
     private List<String> friendsList;
     private List<SongDTO> favouriteSongs;
     private List<PlaylistDTO> playlists;
@@ -34,6 +35,9 @@ public class ProfileDTO {
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
+
+    public String getProfileImageUrl() { return profileImageUrl; }
+    public void setProfileImageUrl(String profileImageUrl) { this.profileImageUrl = profileImageUrl; }
 
     public List<String> getFriendsList() { return friendsList; }
     public void setFriendsList(List<String> friendsList) { this.friendsList = friendsList; }
