@@ -8,7 +8,7 @@
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>3.4.4</version>
-    <relativePath/>
+    <relativePath />
   </parent>
 
   <groupId>com.deusto</groupId>
@@ -29,7 +29,7 @@
       <version>1.37.0</version>
       <scope>test</scope>
     </dependency>
-    <!-- Spring Boot & Log4j2 -->
+    <!-- Spring Boot & Logging -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-log4j2</artifactId>
@@ -144,13 +144,12 @@
 
   <build>
     <plugins>
-      <!-- Spring Boot -->
+      <!-- Spring Boot Maven Plugin -->
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
-
-      <!-- JaCoCo -->
+      <!-- JaCoCo Plugin -->
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
@@ -170,67 +169,28 @@
           </execution>
         </executions>
       </plugin>
-
-      <!-- Default Surefire: only Unit Tests -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.1.2</version>
-        <configuration>
-          <includes>
-            <include>**/*Test.java</include>
-            <include>**/*Tests.java</include>
-          </includes>
-          <excludes>
-            <exclude>**/*IT.java</exclude>
-            <exclude>**/*PerfIT.java</exclude>
-          </excludes>
-        </configuration>
-      </plugin>
-
-      <!-- Default Failsafe: Integration + Performance on install -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <version>3.1.2</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>integration-test</goal>
-              <goal>verify</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <includes>
-            <include>**/*IT.java</include>
-            <include>**/*PerfIT.java</include>
-          </includes>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
 
   <profiles>
-    <!-- Sólo Integration Tests -->
+    <!-- Profile 'all': default, runs unit and all integration tests -->
     <profile>
-      <id>integration</id>
+      <id>all</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
       <build>
         <plugins>
-          <!-- skip unit tests -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>3.1.2</version>
-            <configuration>
-              <skipTests>true</skipTests>
-            </configuration>
-          </plugin>
-          <!-- only IT (excludes PerfIT) -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-failsafe-plugin</artifactId>
             <version>3.1.2</version>
+            <configuration>
+              <includes>
+                <include>**/*IT.java</include>
+                <include>**/*PerfIT.java</include>
+              </includes>
+            </configuration>
             <executions>
               <execution>
                 <goals>
@@ -239,6 +199,28 @@
                 </goals>
               </execution>
             </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- Profile 'integration': only integration tests -->
+    <profile>
+      <id>integration</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.1.2</version>
+            <configuration>
+              <skipTests>true</skipTests>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <version>3.1.2</version>
             <configuration>
               <includes>
                 <include>**/*IT.java</include>
@@ -247,30 +229,6 @@
                 <exclude>**/*PerfIT.java</exclude>
               </excludes>
             </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <!-- Sólo Performance Tests -->
-    <profile>
-      <id>performance</id>
-      <build>
-        <plugins>
-          <!-- skip unit tests -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>3.1.2</version>
-            <configuration>
-              <skipTests>true</skipTests>
-            </configuration>
-          </plugin>
-          <!-- only PerfIT -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-failsafe-plugin</artifactId>
-            <version>3.1.2</version>
             <executions>
               <execution>
                 <goals>
@@ -279,15 +237,69 @@
                 </goals>
               </execution>
             </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- Profile 'performance': only performance tests -->
+    <profile>
+      <id>performance</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.1.2</version>
+            <configuration>
+              <skipTests>true</skipTests>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <version>3.1.2</version>
             <configuration>
               <includes>
                 <include>**/*PerfIT.java</include>
               </includes>
             </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>integration-test</goal>
+                  <goal>verify</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>3.3.1</version>
+            <executions>
+              <execution>
+                <id>copy-perf-report</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <resources>
+                    <resource>
+                      <directory>${project.build.directory}/perf-reports</directory>
+                      <includes>
+                        <include>**/*</include>
+                      </includes>
+                    </resource>
+                  </resources>
+                  <outputDirectory>${project.build.directory}/reports</outputDirectory>
+                </configuration>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
     </profile>
   </profiles>
-
 </project>
