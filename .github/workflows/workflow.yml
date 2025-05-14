@@ -66,9 +66,6 @@ jobs:
 
       - name: Generate Maven Site
         run: mvn site
-
-      - name: Ensure that the performance reports are also moved into the target\site\reports folder
-        run: mvn -Pperformance resources:copy-resources@copy-perf-report
       
       - name: Install pandoc
         run: sudo apt-get update && sudo apt-get install -y pandoc
