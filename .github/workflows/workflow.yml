@@ -63,9 +63,19 @@ jobs:
 
       - name: Run Unit tests and generate converage report
         run: mvn test jacoco:report
+      
+      - name: Run Integration Tests
+        run: mvn -Pintegration integration-test
+
+      - name: Run Performance Tests
+        run: mvn -Pperformance integration-test
 
       - name: Generate Maven Site
         run: mvn site
+
+      - name: Ensure that the performance reports are also moved into the target\site\reports folder
+        run: mvn -Pperformance resources:copy-resources@copy-perf-report
+      
       
       - name: Install pandoc
         run: sudo apt-get update && sudo apt-get install -y pandoc
