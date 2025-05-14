@@ -30,6 +30,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.multipart.MultipartFile;
+import io.jsonwebtoken.Claims;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -39,6 +40,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Date;
+import java.util.Arrays;
 import java.util.Collections;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -615,27 +619,37 @@ class DeuspotifyApplicationTests {
 
     @Test
     void createSharedSongTest() {
-        Song song = new Song();
-        song.setName("Shared Song");
-        song.setAlbum("Shared Album");
-        song.setArtists(List.of("Artist1", "Artist2"));
-        song.setGenres(List.of("Rock", "Pop"));
-        song.setDuration(3.5);
-        song.setDateOfRelease(new Date());
-        song.setFilePath("path/to/shared/song.mp3");
+        // Arrange test inputs
+        String name = "Original Song";
+        String album = "Greatest Hits";
+        String artists = "Artist1, Artist2";
+        String genres = "Pop, Rock";
+        double duration = 3.5;
+        Date dateOfRelease = new Date();
+        String filePath = "uploads/songs/song123.mp3";
 
-        // When saving, return the same Song instance as argument
+        // Expected values after processing
+        String expectedName = name + " Shared";
+        List<String> expectedArtists = List.of("Artist1", "Artist2");
+        List<String> expectedGenres = List.of("Pop", "Rock");
+
+        // Stub songRepository to return the saved song as-is
         when(songRepository.save(any(Song.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
-        Song savedSong = deuspotifyService.addSong(song);
-        assertNotNull(savedSong);
-        assertEquals(song.getName(), savedSong.getName());
-        assertEquals(song.getAlbum(), savedSong.getAlbum());
-        assertEquals(song.getArtists(), savedSong.getArtists());
-        assertEquals(song.getGenres(), savedSong.getGenres());
-        assertEquals(song.getDuration(), savedSong.getDuration());
-        assertEquals(song.getDateOfRelease(), savedSong.getDateOfRelease());
-        assertEquals(song.getFilePath(), savedSong.getFilePath());
+        // Act
+        Song result = deuspotifyService.createSharedSong(name, album, artists, genres, duration, dateOfRelease, filePath);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(expectedName, result.getName());
+        assertEquals(album, result.getAlbum());
+        assertEquals(expectedArtists, result.getArtists());
+        assertEquals(expectedGenres, result.getGenres());
+        assertEquals(duration, result.getDuration());
+        assertEquals(dateOfRelease, result.getDateOfRelease());
+        assertEquals(filePath, result.getFilePath());
+
+        verify(songRepository, times(1)).save(any(Song.class));
     }
 
     @Test
@@ -684,7 +698,7 @@ class DeuspotifyApplicationTests {
         song.setId(1L);
 
         when(songRepository.findById(1L)).thenReturn(Optional.of(song));
-        doNothing().when(songRepository).delete(song);
+        doNothing().when(songRepository).delete(any(Song.class));
 
         // Call the delete method
         songRepository.delete(song);
@@ -692,8 +706,6 @@ class DeuspotifyApplicationTests {
         // Verify that the song was deleted
         verify(songRepository, times(1)).delete(song);
     }
-
-    //
 
     @Test
     void retrieveAllSongsTest() {
@@ -765,6 +777,76 @@ class DeuspotifyApplicationTests {
         assertTrue(playlist.isPublic());
         assertEquals(0, playlist.getNumberOfSongs());
     }
-   
+
+    @Test
+    void testEmptyConstructor() {
+        Song song = new Song();
+        assertNotNull(song);  // Just verifying it creates an object
+    }
+
+    @Test
+    void testIdConstructor() {
+        Song song = new Song(42L);
+        assertEquals(42L, song.getId());
+    }
+
+    @Test
+    void testConstructorWithoutFilePath() {
+        List<String> artists = Arrays.asList("Artist1", "Artist2");
+        List<String> genres = Arrays.asList("Pop", "Rock");
+        Date releaseDate = new Date();
+
+        Song song = new Song("My Song", artists, 3.5, genres, releaseDate, "Best Album");
+
+        assertEquals("My Song", song.getName());
+        assertEquals(artists, song.getArtists());
+        assertEquals(3.5, song.getDuration());
+        assertEquals(genres, song.getGenres());
+        assertEquals(releaseDate, song.getDateOfRelease());
+        assertEquals("Best Album", song.getAlbum());
+        assertNull(song.getFilePath());
+    }
+
+    @Test
+    void testConstructorWithFilePath() {
+        List<String> artists = Arrays.asList("Artist1", "Artist2");
+        List<String> genres = Arrays.asList("Pop", "Rock");
+        Date releaseDate = new Date();
+
+        Song song = new Song("My Song", artists, 3.5, genres, releaseDate, "Best Album", "music/file.mp3");
+
+        assertEquals("My Song", song.getName());
+        assertEquals(artists, song.getArtists());
+        assertEquals(3.5, song.getDuration());
+        assertEquals(genres, song.getGenres());
+        assertEquals(releaseDate, song.getDateOfRelease());
+        assertEquals("Best Album", song.getAlbum());
+        assertEquals("music/file.mp3", song.getFilePath());
+    }
+
+    @Test
+    void testPlaylistFullConstructor() {
+        // Arrange input values
+        String name = "PLAYLIST_NAME";
+        List<String> owners = Arrays.asList("user1", "user2");
+        boolean isPublic = true;
+
+        Song song1 = new Song(1L);
+        Song song2 = new Song(2L);
+        List<Song> songs = Arrays.asList(song1, song2);
+
+        List<Integer> order = Arrays.asList(0, 1);
+
+        // Act: use the constructor
+        Playlist playlist = new Playlist(name, owners, isPublic, songs, order);
+
+        // Assert: check that fields were set properly
+        assertEquals(name, playlist.getName());
+        assertEquals(owners, playlist.getOwners());
+        assertTrue(playlist.isPublic());
+        assertEquals(songs, playlist.getSongs());
+        assertEquals(2, playlist.getNumberOfSongs());
+        assertEquals(order, playlist.getOrder());
+    }
 }
     

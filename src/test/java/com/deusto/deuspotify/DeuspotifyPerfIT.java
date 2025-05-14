@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @ExtendWith({ SpringExtension.class, JUnitPerfInterceptor.class })
 @SpringBootTest
-public class DeuspotifyPerformanceTest {
+public class DeuspotifyPerfIT {
 
     @Autowired
     private DeuspotifyService deuspotifyService;
