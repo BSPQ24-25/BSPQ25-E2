@@ -46,6 +46,7 @@ public class SecurityConfig {
                     "/static/**",
                     "/api/i18n",
                     "/api/profiles",
+                    "/api/profiles/username/**",
                     "/auth/register",
                     "/auth/login"
                 ).permitAll()
