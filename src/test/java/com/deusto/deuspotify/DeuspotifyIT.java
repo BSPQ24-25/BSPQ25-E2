@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc(addFilters = false)
 @AutoConfigureTestDatabase
 @Transactional
-public class DeuspotifyIntegrationTests {
+public class DeuspotifyIT {
 
     @Autowired
     private MockMvc mockMvc;
