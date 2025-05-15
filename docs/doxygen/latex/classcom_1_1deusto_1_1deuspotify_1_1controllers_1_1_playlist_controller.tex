@@ -1,0 +1,107 @@
+\doxysection{com.\+deusto.\+deuspotify.\+controllers.\+Playlist\+Controller Class Reference}
+\hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller}{}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller}\index{com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a47c3de5be06c446c93bf27d1b8d2d608}{Playlist\+Controller}} (Deuspotify\+Service deuspotify\+Service, Profile\+Service profile\+Service)
+\item 
+List$<$ Playlist $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_aa51a48ee778c2bfa3e4b0d4a2a76eb12}{get\+All\+Playlists}} ()
+\item 
+Optional$<$ Playlist $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_adfbe041c33785976643d0382cc03f260}{get\+Playlist\+By\+Id}} (@Path\+Variable Long id)
+\item 
+Playlist \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a3e356e143e63a70116a91406ac7270d6}{create\+Playlist}} (@Request\+Body Playlist playlist)
+\item 
+Playlist \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a2d5767a6881bce6e8bc2a0ddeb46f7f4}{update\+Playlist}} (@Path\+Variable Long id, @Request\+Body Playlist playlist)
+\item 
+void \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_af563b84c67efbbe33d44ac6b2ba781a2}{delete\+Playlist}} (@Path\+Variable Long id)
+\item 
+Playlist \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a5d4c21632f49645f79d9c419cb82b7b4}{update\+Playlist\+Songs}} (@Path\+Variable Long id, @Request\+Body List$<$ Long $>$ song\+Ids)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00016}{16}} of file \mbox{\hyperlink{_playlist_controller_8java_source}{Playlist\+Controller.\+java}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a47c3de5be06c446c93bf27d1b8d2d608}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a47c3de5be06c446c93bf27d1b8d2d608} 
+\index{com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}!PlaylistController@{PlaylistController}}
+\index{PlaylistController@{PlaylistController}!com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}}
+\doxysubsubsection{\texorpdfstring{PlaylistController()}{PlaylistController()}}
+{\footnotesize\ttfamily com.\+deusto.\+deuspotify.\+controllers.\+Playlist\+Controller.\+Playlist\+Controller (\begin{DoxyParamCaption}\item[{Deuspotify\+Service}]{deuspotify\+Service,  }\item[{Profile\+Service}]{profile\+Service }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00022}{22}} of file \mbox{\hyperlink{_playlist_controller_8java_source}{Playlist\+Controller.\+java}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a3e356e143e63a70116a91406ac7270d6}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a3e356e143e63a70116a91406ac7270d6} 
+\index{com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}!createPlaylist@{createPlaylist}}
+\index{createPlaylist@{createPlaylist}!com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}}
+\doxysubsubsection{\texorpdfstring{createPlaylist()}{createPlaylist()}}
+{\footnotesize\ttfamily Playlist com.\+deusto.\+deuspotify.\+controllers.\+Playlist\+Controller.\+create\+Playlist (\begin{DoxyParamCaption}\item[{@Request\+Body Playlist}]{playlist }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00038}{38}} of file \mbox{\hyperlink{_playlist_controller_8java_source}{Playlist\+Controller.\+java}}.
+
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_af563b84c67efbbe33d44ac6b2ba781a2}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_af563b84c67efbbe33d44ac6b2ba781a2} 
+\index{com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}!deletePlaylist@{deletePlaylist}}
+\index{deletePlaylist@{deletePlaylist}!com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}}
+\doxysubsubsection{\texorpdfstring{deletePlaylist()}{deletePlaylist()}}
+{\footnotesize\ttfamily void com.\+deusto.\+deuspotify.\+controllers.\+Playlist\+Controller.\+delete\+Playlist (\begin{DoxyParamCaption}\item[{@Path\+Variable Long}]{id }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00049}{49}} of file \mbox{\hyperlink{_playlist_controller_8java_source}{Playlist\+Controller.\+java}}.
+
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_aa51a48ee778c2bfa3e4b0d4a2a76eb12}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_aa51a48ee778c2bfa3e4b0d4a2a76eb12} 
+\index{com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}!getAllPlaylists@{getAllPlaylists}}
+\index{getAllPlaylists@{getAllPlaylists}!com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}}
+\doxysubsubsection{\texorpdfstring{getAllPlaylists()}{getAllPlaylists()}}
+{\footnotesize\ttfamily List$<$ Playlist $>$ com.\+deusto.\+deuspotify.\+controllers.\+Playlist\+Controller.\+get\+All\+Playlists (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00028}{28}} of file \mbox{\hyperlink{_playlist_controller_8java_source}{Playlist\+Controller.\+java}}.
+
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_adfbe041c33785976643d0382cc03f260}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_adfbe041c33785976643d0382cc03f260} 
+\index{com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}!getPlaylistById@{getPlaylistById}}
+\index{getPlaylistById@{getPlaylistById}!com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}}
+\doxysubsubsection{\texorpdfstring{getPlaylistById()}{getPlaylistById()}}
+{\footnotesize\ttfamily Optional$<$ Playlist $>$ com.\+deusto.\+deuspotify.\+controllers.\+Playlist\+Controller.\+get\+Playlist\+By\+Id (\begin{DoxyParamCaption}\item[{@Path\+Variable Long}]{id }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00033}{33}} of file \mbox{\hyperlink{_playlist_controller_8java_source}{Playlist\+Controller.\+java}}.
+
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a2d5767a6881bce6e8bc2a0ddeb46f7f4}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a2d5767a6881bce6e8bc2a0ddeb46f7f4} 
+\index{com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}!updatePlaylist@{updatePlaylist}}
+\index{updatePlaylist@{updatePlaylist}!com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}}
+\doxysubsubsection{\texorpdfstring{updatePlaylist()}{updatePlaylist()}}
+{\footnotesize\ttfamily Playlist com.\+deusto.\+deuspotify.\+controllers.\+Playlist\+Controller.\+update\+Playlist (\begin{DoxyParamCaption}\item[{@Path\+Variable Long}]{id,  }\item[{@Request\+Body Playlist}]{playlist }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00044}{44}} of file \mbox{\hyperlink{_playlist_controller_8java_source}{Playlist\+Controller.\+java}}.
+
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a5d4c21632f49645f79d9c419cb82b7b4}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a5d4c21632f49645f79d9c419cb82b7b4} 
+\index{com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}!updatePlaylistSongs@{updatePlaylistSongs}}
+\index{updatePlaylistSongs@{updatePlaylistSongs}!com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}}
+\doxysubsubsection{\texorpdfstring{updatePlaylistSongs()}{updatePlaylistSongs()}}
+{\footnotesize\ttfamily Playlist com.\+deusto.\+deuspotify.\+controllers.\+Playlist\+Controller.\+update\+Playlist\+Songs (\begin{DoxyParamCaption}\item[{@Path\+Variable Long}]{id,  }\item[{@Request\+Body List$<$ Long $>$}]{song\+Ids }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00056}{56}} of file \mbox{\hyperlink{_playlist_controller_8java_source}{Playlist\+Controller.\+java}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/com/deusto/deuspotify/controllers/\mbox{\hyperlink{_playlist_controller_8java}{Playlist\+Controller.\+java}}\end{DoxyCompactItemize}

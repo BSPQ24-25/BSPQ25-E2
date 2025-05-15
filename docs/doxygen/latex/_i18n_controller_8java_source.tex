@@ -1,0 +1,95 @@
+\doxysection{I18n\+Controller.\+java}
+\hypertarget{_i18n_controller_8java_source}{}\label{_i18n_controller_8java_source}\index{src/main/java/com/deusto/deuspotify/controllers/I18nController.java@{src/main/java/com/deusto/deuspotify/controllers/I18nController.java}}
+\mbox{\hyperlink{_i18n_controller_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00001}00001\ \textcolor{keyword}{package\ }com.deusto.deuspotify.controllers;}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00003}00003\ \textcolor{keyword}{import}\ org.springframework.beans.factory.annotation.Value;}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00004}00004\ \textcolor{keyword}{import}\ org.springframework.context.MessageSource;}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00005}00005\ \textcolor{keyword}{import}\ org.springframework.core.io.Resource;}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00006}00006\ \textcolor{keyword}{import}\ org.springframework.web.bind.annotation.GetMapping;}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00007}00007\ \textcolor{keyword}{import}\ org.springframework.web.bind.annotation.RestController;}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00008}00008\ \textcolor{keyword}{import}\ org.springframework.web.bind.annotation.RequestParam;}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00011}00011\ \textcolor{keyword}{import}\ java.io.IOException;}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00012}00012\ \textcolor{keyword}{import}\ java.util.*;}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00013}00013\ \textcolor{keyword}{import}\ java.util.stream.Collectors;}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00014}00014\ \textcolor{keyword}{import}\ java.io.InputStreamReader;}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00015}00015\ \textcolor{keyword}{import}\ java.io.Reader;}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00016}00016\ \textcolor{keyword}{import}\ jakarta.servlet.http.HttpServletRequest;}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00018}00018\ @RestController}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00019}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller}{00019}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller}{I18nController}}\ \{}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00021}00021\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ MessageSource\ messageSource;}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00023}00023\ \ \ \ \ @Value(\textcolor{stringliteral}{"{}classpath:messages.properties"{}})\ \textcolor{comment}{//\ General\ message\ file}}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00024}00024\ \ \ \ \ \textcolor{keyword}{private}\ Resource\ messagesProperties;}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00026}00026\ \ \ \ \ @Value(\textcolor{stringliteral}{"{}classpath:messages\_es.properties"{}})\ \textcolor{comment}{//\ Spanish\ messages}}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00027}00027\ \ \ \ \ \textcolor{keyword}{private}\ Resource\ messagesEsProperties;}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00029}00029\ \ \ \ \ @Value(\textcolor{stringliteral}{"{}classpath:messages\_en.properties"{}})\ \textcolor{comment}{//\ English\ messages}}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00030}00030\ \ \ \ \ \textcolor{keyword}{private}\ Resource\ messagesEnProperties;}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00032}00032\ \ \ \ \ @Value(\textcolor{stringliteral}{"{}classpath:messages\_eu.properties"{}})\ \textcolor{comment}{//\ Basque\ messages}}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00033}00033\ \ \ \ \ \textcolor{keyword}{private}\ Resource\ messagesEuProperties;}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00035}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller_a98395c12cb003c8ec087d335e262a113}{00035}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller_a98395c12cb003c8ec087d335e262a113}{I18nController}}(MessageSource\ messageSource)\ \{}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00036}00036\ \ \ \ \ \ \ \ \ this.messageSource\ =\ messageSource;}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00037}00037\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00039}00039\ \ \ \ \ @GetMapping(\textcolor{stringliteral}{"{}/api/i18n"{}})}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00040}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller_a2508f2c3c5582a01647c84c24225ca93}{00040}}\ \ \ \ \ public\ Map<String,\ String>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller_a2508f2c3c5582a01647c84c24225ca93}{getTranslations}}(@RequestParam(value\ =\ "{}lang"{},\ required\ =\ false)\ String\ lang)\ throws\ IOException\ \{}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Usar\ 'es'\ como\ valor\ por\ defecto\ si\ no\ se\ pasa\ ningún\ idioma}}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00042}00042\ \ \ \ \ \ \ \ \ Locale\ locale\ =\ \textcolor{keywordflow}{switch}\ (lang\ !=\ \textcolor{keyword}{null}\ ?\ lang\ :\ \textcolor{stringliteral}{"{}es"{}})\ \{}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}en"{}}\ -\/>\ Locale.ENGLISH;}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}eu"{}}\ -\/>\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}eu"{}});}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}\ -\/>\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}});}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00046}00046\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00048}00048\ \ \ \ \ \ \ \ \ Map<String,\ String>\ allKeys\ =\ loadAllPropertiesKeys();}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ allKeys.entrySet().stream()}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .collect(Collectors.toMap(}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Map.Entry::getKey,}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ entry\ -\/>\ messageSource.getMessage(entry.getKey(),\ \textcolor{keyword}{null},\ locale)}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00055}00055\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00057}00057\ \ \ \ \ \textcolor{keyword}{private}\ Map<String,\ String>\ loadAllPropertiesKeys()\ throws\ IOException\ \{}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cargar\ todas\ las\ propiedades\ de\ los\ archivos\ de\ mensajes}}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ Map<String,\ String>\ keys\ =\ \textcolor{keyword}{new}\ HashMap<>();}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00060}00060\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cargar\ el\ archivo\ de\ mensajes\ general}}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00062}00062\ \ \ \ \ \ \ \ \ keys.putAll(loadPropertiesKeys(messagesProperties));}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00063}00063\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cargar\ el\ archivo\ de\ mensajes\ en\ español}}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00065}00065\ \ \ \ \ \ \ \ \ keys.putAll(loadPropertiesKeys(messagesEsProperties));}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00066}00066\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cargar\ el\ archivo\ de\ mensajes\ en\ inglés}}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00068}00068\ \ \ \ \ \ \ \ \ keys.putAll(loadPropertiesKeys(messagesEnProperties));}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cargar\ el\ archivo\ de\ mensajes\ en\ euskera}}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00071}00071\ \ \ \ \ \ \ \ \ keys.putAll(loadPropertiesKeys(messagesEuProperties));}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00072}00072\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ keys;}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00074}00074\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00076}00076\ \ \ \ \ \textcolor{keyword}{private}\ Map<String,\ String>\ loadPropertiesKeys(Resource\ resource)\ \textcolor{keywordflow}{throws}\ IOException\ \{}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00077}00077\ \ \ \ \ \ \ \ \ Map<String,\ String>\ keys\ =\ \textcolor{keyword}{new}\ HashMap<>();}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ (Reader\ reader\ =\ \textcolor{keyword}{new}\ InputStreamReader(resource.getInputStream()))\ \{}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ Properties\ properties\ =\ \textcolor{keyword}{new}\ Properties();}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ properties.load(reader);}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Guardar\ todas\ las\ claves\ del\ archivo\ en\ el\ mapa}}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (String\ key\ :\ properties.stringPropertyNames())\ \{}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ keys.put(key,\ properties.getProperty(key));}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00086}00086\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ keys;}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00088}00088\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00089}00089\ \}}
+
+\end{DoxyCode}

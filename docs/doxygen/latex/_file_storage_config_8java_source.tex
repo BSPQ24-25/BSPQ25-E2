@@ -1,0 +1,21 @@
+\doxysection{File\+Storage\+Config.\+java}
+\hypertarget{_file_storage_config_8java_source}{}\label{_file_storage_config_8java_source}\index{src/main/java/com/deusto/deuspotify/config/FileStorageConfig.java@{src/main/java/com/deusto/deuspotify/config/FileStorageConfig.java}}
+\mbox{\hyperlink{_file_storage_config_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_file_storage_config_8java_source_l00001}\mbox{\hyperlink{namespacecom_1_1deusto_1_1deuspotify_1_1config}{00001}}\ \textcolor{keyword}{package\ }com.deusto.deuspotify.config;}
+\DoxyCodeLine{\Hypertarget{_file_storage_config_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_file_storage_config_8java_source_l00003}00003\ \textcolor{keyword}{import}\ org.springframework.context.annotation.Configuration;}
+\DoxyCodeLine{\Hypertarget{_file_storage_config_8java_source_l00004}00004\ \textcolor{keyword}{import}\ org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;}
+\DoxyCodeLine{\Hypertarget{_file_storage_config_8java_source_l00005}00005\ \textcolor{keyword}{import}\ org.springframework.web.servlet.config.annotation.WebMvcConfigurer;}
+\DoxyCodeLine{\Hypertarget{_file_storage_config_8java_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_file_storage_config_8java_source_l00007}00007\ @Configuration}
+\DoxyCodeLine{\Hypertarget{_file_storage_config_8java_source_l00008}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_file_storage_config}{00008}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_file_storage_config}{FileStorageConfig}}\ \textcolor{keyword}{implements}\ WebMvcConfigurer\ \{}
+\DoxyCodeLine{\Hypertarget{_file_storage_config_8java_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_file_storage_config_8java_source_l00010}00010\ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_file_storage_config_8java_source_l00011}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_file_storage_config_a2acddb9382fb992edc15e37b30a721c1}{00011}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_file_storage_config_a2acddb9382fb992edc15e37b30a721c1}{addResourceHandlers}}(ResourceHandlerRegistry\ registry)\ \{}
+\DoxyCodeLine{\Hypertarget{_file_storage_config_8java_source_l00012}00012\ \ \ \ \ \ \ \ \ registry.addResourceHandler(\textcolor{stringliteral}{"{}/songs\_files/**"{}})}
+\DoxyCodeLine{\Hypertarget{_file_storage_config_8java_source_l00013}00013\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .addResourceLocations(\textcolor{stringliteral}{"{}file:uploads/songs/"{}});}
+\DoxyCodeLine{\Hypertarget{_file_storage_config_8java_source_l00014}00014\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_file_storage_config_8java_source_l00015}00015\ \}}
+
+\end{DoxyCode}
