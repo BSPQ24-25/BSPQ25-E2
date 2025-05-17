@@ -1,3 +1,8 @@
+/**
+ * @file DataInitializer.java
+ * @brief Class that initializes test data in the database when the application starts.
+ */
+
 package com.deusto.deuspotify;
 
 import java.util.Arrays;
@@ -16,6 +21,12 @@ import com.deusto.deuspotify.model.Playlist;
 import com.deusto.deuspotify.model.Profile;
 import com.deusto.deuspotify.model.Song;
 
+/**
+ * @class DataInitializer
+ * @brief Component that runs at application startup and inserts initial data into the database.
+ *
+ * This component inserts one song, one user profile, and one playlist if they do not already exist.
+ */
 @Component
 public class DataInitializer implements CommandLineRunner {
 
@@ -24,6 +35,14 @@ public class DataInitializer implements CommandLineRunner {
     private final PlaylistRepository playlistRepository;
     private final PasswordEncoder passwordEncoder;
 
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param songRepository Song repository.
+     * @param profileRepository Profile repository.
+     * @param playlistRepository Playlist repository.
+     * @param passwordEncoder Password encoder for encrypting user passwords.
+     */
     public DataInitializer(SongRepository songRepository,
                            ProfileRepository profileRepository,
                            PlaylistRepository playlistRepository,
@@ -34,6 +53,12 @@ public class DataInitializer implements CommandLineRunner {
         this.passwordEncoder = passwordEncoder;
     }
 
+    /**
+     * Executes at application startup.
+     *
+     * @param args Command-line arguments.
+     * @throws Exception In case of any error during initialization.
+     */
     @Override
     public void run(String... args) throws Exception {
         try {
@@ -41,11 +66,14 @@ public class DataInitializer implements CommandLineRunner {
             insertProfiles();
             insertPlaylists();
         } catch (Exception e) {
-            System.err.println("Error al inicializar los datos: " + e.getMessage());
+            System.err.println("Error while initializing data: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
+    /**
+     * Inserts a demo song into the database if no songs exist.
+     */
     private void insertSongs() {
         if (songRepository.count() == 0) {
             Song bohemian = new Song(
@@ -58,31 +86,37 @@ public class DataInitializer implements CommandLineRunner {
             );
 
             songRepository.save(bohemian);
-            System.out.println("Canciones insertadas en la BD.");
+            System.out.println("Songs inserted into the database.");
         } else {
-            System.out.println("Las canciones ya existen en la BD.");
+            System.out.println("Songs already exist in the database.");
         }
     }
 
+    /**
+     * Inserts a demo user profile if it does not already exist.
+     */
     private void insertProfiles() {
         if (!profileRepository.findByUsername("user").isPresent()) {
             Profile profile = new Profile(
                 "user",
                 passwordEncoder.encode("pass"),
                 "user@example.com",
-                Arrays.asList("amigo1", "amigo2"),
+                Arrays.asList("friend1", "friend2"),
                 Collections.emptyList(),
                 Collections.emptyList(),
                 false
             );
 
             profileRepository.save(profile);
-            System.out.println("Perfil 'user' insertado en la BD.");
+            System.out.println("User profile 'user' inserted into the database.");
         } else {
-            System.out.println("El perfil 'user' ya existe en la BD.");
+            System.out.println("User profile 'user' already exists in the database.");
         }
     }
 
+    /**
+     * Inserts a demo playlist if none exist, using songs already saved in the database.
+     */
     private void insertPlaylists() {
         if (playlistRepository.count() == 0) {
             Optional<Song> song1 = songRepository.findById(1L);
@@ -98,12 +132,12 @@ public class DataInitializer implements CommandLineRunner {
                 );
 
                 playlistRepository.save(playlist);
-                System.out.println("Playlist insertada en la BD.");
+                System.out.println("Playlist inserted into the database.");
             } else {
-                System.out.println("No se encontraron canciones para asociar a la playlist.");
+                System.out.println("No songs found to associate with the playlist.");
             }
         } else {
-            System.out.println("La playlist ya existe en la BD.");
+            System.out.println("Playlists already exist in the database.");
         }
     }
 }
