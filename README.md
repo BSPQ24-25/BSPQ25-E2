@@ -1,5 +1,6 @@
 # BSPQ25-E2
 
+
 Welcome to the BSPQ25-E2 project: Deuspotify
 
 ## 💻 Members
