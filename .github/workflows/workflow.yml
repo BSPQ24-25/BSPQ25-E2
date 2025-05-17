@@ -93,6 +93,9 @@ jobs:
           cp -r target/site/* docs/site/
           cp -r target/doxygen/* docs/doxygen/
 
+      - name: Disable Jekyll on GitHub Pages
+        run: touch docs/.nojekyll
+
       - name: Commit and push docs
         run: |
           git config --global user.name "github-actions"
@@ -102,3 +105,4 @@ jobs:
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
