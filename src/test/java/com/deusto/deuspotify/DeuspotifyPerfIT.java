@@ -16,6 +16,19 @@ import com.github.noconnor.junitperf.reporting.providers.HtmlReportGenerator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * @file DeuspotifyPerfIT.java
+ * @brief Performance integration tests for Deuspotify using JUnitPerf.
+ *
+ * This class defines performance benchmarks for key service methods in the Deuspotify application.
+ * It uses the JUnitPerf library to simulate concurrent load and validate performance metrics such as
+ * throughput and latency percentiles.
+ *
+ * The results are saved in an HTML report under `target/reports/perf-report.html`.
+ *
+ * @author 
+ * @date 2025
+ */
 @ExtendWith({ SpringExtension.class, JUnitPerfInterceptor.class })
 @SpringBootTest
 public class DeuspotifyPerfIT {
@@ -26,6 +39,10 @@ public class DeuspotifyPerfIT {
     @Autowired
     private ProfileService profileService;
 
+    /**
+     * Global JUnitPerf configuration for HTML reporting.
+     * Report file is generated in: /target/reports/perf-report.html
+     */
     // Configuración global de reporting de JUnitPerf
     @JUnitPerfTestActiveConfig
     private static final JUnitPerfReportingConfig PERF_CONFIG = JUnitPerfReportingConfig.builder()
@@ -33,6 +50,11 @@ public class DeuspotifyPerfIT {
             System.getProperty("user.dir") + "/target/reports/perf-report.html"))
         .build();
 
+    /**
+     * @test Tests performance of retrieving all songs from the database.
+     * @junitperf 10 threads, 10 seconds, 2 seconds warm-up.
+     * @requirement 50 executions/sec with 95% under 250ms.
+     */
     @Test
     @JUnitPerfTest(threads = 10, durationMs = 10_000, warmUpMs = 2_000)
     @JUnitPerfTestRequirement(executionsPerSec = 50, percentiles = "95:250ms")
@@ -40,6 +62,11 @@ public class DeuspotifyPerfIT {
         deuspotifyService.retrieveAllSongs();
     }
 
+    /**
+     * @test Tests performance of retrieving all playlists.
+     * @junitperf 20 threads, 8 seconds, 1.5 seconds warm-up.
+     * @requirement 75 executions/sec with 90% under 200ms and 95% under 300ms.
+     */
     @Test
     @JUnitPerfTest(threads = 20, durationMs = 8_000, warmUpMs = 1_500)
     @JUnitPerfTestRequirement(executionsPerSec = 75, percentiles = "90:200ms,95:300ms")
@@ -47,6 +74,11 @@ public class DeuspotifyPerfIT {
         deuspotifyService.retrieveAllPlaylists();
     }
 
+    /**
+     * @test Tests performance of finding a song by ID.
+     * @junitperf 5 threads, 6 seconds, 1 second warm-up.
+     * @requirement 25 executions/sec with 95% under 500ms.
+     */
     @Test
     @JUnitPerfTest(threads = 5, durationMs = 6_000, warmUpMs = 1_000)
     @JUnitPerfTestRequirement(executionsPerSec = 25, percentiles = "95:500ms")
@@ -54,6 +86,11 @@ public class DeuspotifyPerfIT {
         deuspotifyService.findSong(1L);
     }
 
+    /**
+     * @test Tests performance of finding a playlist by ID.
+     * @junitperf 10 threads, 6 seconds, 1 second warm-up.
+     * @requirement 40 executions/sec with 95% under 300ms.
+     */
     @Test
     @JUnitPerfTest(threads = 10, durationMs = 6_000, warmUpMs = 1_000)
     @JUnitPerfTestRequirement(executionsPerSec = 40, percentiles = "95:300ms")
@@ -61,6 +98,11 @@ public class DeuspotifyPerfIT {
         deuspotifyService.findPlaylist(1L);
     }
 
+    /**
+     * @test Tests performance of retrieving all user profiles.
+     * @junitperf 15 threads, 8 seconds, 1.5 seconds warm-up.
+     * @requirement 50 executions/sec with 90% under 200ms and 95% under 300ms.
+     */
     @Test
     @JUnitPerfTest(threads = 15, durationMs = 8_000, warmUpMs = 1_500)
     @JUnitPerfTestRequirement(executionsPerSec = 50, percentiles = "90:200ms,95:300ms")
@@ -68,6 +110,11 @@ public class DeuspotifyPerfIT {
         profileService.getAllProfiles();
     }
 
+     /**
+     * @test Tests performance of the login operation.
+     * @junitperf 10 threads, 8 seconds, 1 second warm-up.
+     * @requirement 40 executions/sec with 95% under 350ms.
+     */
     @Test
     @JUnitPerfTest(threads = 10, durationMs = 8_000, warmUpMs = 1_000)
     @JUnitPerfTestRequirement(executionsPerSec = 40, percentiles = "95:350ms")

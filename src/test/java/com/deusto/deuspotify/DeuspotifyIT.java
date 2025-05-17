@@ -24,16 +24,32 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
+/**
+ * @file DeuspotifyIT.java
+ * @brief Integration tests for the main functionalities of the Deuspotify application.
+ *
+ * This test suite uses MockMvc to simulate HTTP requests and validate the end-to-end behavior
+ * of user registration, login, and CRUD operations on songs, playlists, and profiles.
+ *
+ * The tests are transactional and use an in-memory database for isolation and repeatability.
+ *
+ * @author 
+ * @date 2025
+ */
 @SpringBootTest
 @AutoConfigureMockMvc(addFilters = false)
 @AutoConfigureTestDatabase
 @Transactional
 public class DeuspotifyIT {
 
+    /**
+     * MockMvc used to perform HTTP requests in test scenarios.
+     */
     @Autowired
     private MockMvc mockMvc;
-
+    /**
+     * ObjectMapper for serializing and deserializing JSON.
+     */
     @Autowired
     private ObjectMapper objectMapper;
 
@@ -41,6 +57,9 @@ public class DeuspotifyIT {
     private Song testSong;
     private Playlist testPlaylist;
 
+    /**
+     * Initializes test data before each test case.
+     */
     @BeforeEach
     void setUp() {
         testProfile = new Profile();
@@ -64,7 +83,10 @@ public class DeuspotifyIT {
         testPlaylist.setSongs(List.of());
         testPlaylist.setOrder(List.of());
     }
-
+    /**
+     * @test Tests user registration and login via the /auth endpoint.
+     * Ensures that a user can be registered and a JWT token can be retrieved on login.
+     */
     @Test
     void testAuthRegisterAndLogin() throws Exception {
         // Register
@@ -85,6 +107,11 @@ public class DeuspotifyIT {
             .andExpect(jsonPath("$.token").exists());
     }
 
+    /**
+     * @test Performs full CRUD operations for profiles:
+     * create, read (all and by ID), update, and delete.
+     * Verifies HTTP responses and data integrity after each operation.
+     */
     @Test
     void testProfileCrud() throws Exception {
         // Create
@@ -120,6 +147,11 @@ public class DeuspotifyIT {
             .andExpect(status().isNotFound());
     }
 
+    /**
+     * @test Performs full CRUD operations for songs:
+     * creation, retrieval, update (release date), and deletion.
+     * Ensures that deleted songs return null on retrieval.
+     */
     @Test
     void testSongCrud() throws Exception {
         // Add song
@@ -157,6 +189,11 @@ public class DeuspotifyIT {
             .andExpect(content().string("null"));
     }
 
+    /**
+     * @test Performs full CRUD operations for playlists including:
+     * creation, retrieval (all and by ID), song assignment, update, and deletion.
+     * Verifies song linking and response payloads.
+     */
     @Test
     void testPlaylistCrud() throws Exception {
         String songJson = mockMvc.perform(post("/api/songs")
