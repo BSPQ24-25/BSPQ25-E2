@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title data-i18n="allPlaylists.title">All Playlists</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="side-layout">
+    <div style="position: absolute; top: 10px; right: 20px;">
+        <button onclick="loadTranslations('es')" title="Español">Es</button>
+        <button onclick="loadTranslations('en')" title="English">En</button>
+        <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
+    </div>
+
+    <div class="sidebar">
+        <div class="button-group">
+            <button onclick="window.location.href='index.html'" data-i18n="allPlaylists.back">Back to Home</button>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <h2 data-i18n="allPlaylists.title">All Playlists</h2>
+
+        <div style="margin: 1rem 0;">
+            <label for="playlistOrder" data-i18n="playlistList.order">Ordenar por:</label>
+            <select id="playlistOrder">
+                <option value="id" data-i18n="playlistList.order.id">ID</option>
+                <option value="name" data-i18n="playlistList.order.name">Nombre</option>
+                <option value="numberOfSongs" data-i18n="playlistList.order.numberOfSongs">Número de canciones</option>
+            </select>
+        </div>
+
+        <ul id="playlistsList"></ul>
+    </div>
+
+    <script src="/i18n.js"></script>
+    <script>
+        const full = window.location.origin;
+        const match = full.match(/^(https?:\/\/[^\/:]+)/);
+        const appUrl = match ? match[0] : '';
+        let playlists = [];
+
+        function renderPlaylists(list) {
+            const ul = document.getElementById("playlistsList");
+            ul.innerHTML = "";
+            list.forEach(pl => {
+                const li = document.createElement("li");
+                li.id = `playlist-${pl.id}`;
+
+                const link = document.createElement("a");
+                link.href = `detalle_playlist.html?id=${pl.id}`;
+                link.textContent = `${pl.name || `Playlist #${pl.id}`} [By: ${pl.owners?.join(', ') || 'N/A'}]`;
+                link.style.display = "block";
+                link.style.textDecoration = "none";
+                link.style.color = "inherit";
+
+                li.appendChild(link);
+                ul.appendChild(li);
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadTranslations();
+
+            fetch(`${appUrl || "http://localhost"}:8080/api/playlists`)
+                .then(response => response.json())
+                .then(data => {
+                    playlists = data;
+                    renderPlaylists(playlists);
+                });
+
+            document.getElementById("playlistOrder").addEventListener("change", () => {
+                const sortBy = document.getElementById("playlistOrder").value;
+                const sorted = [...playlists];
+
+                if (sortBy === "id") {
+                    sorted.sort((a, b) => a.id - b.id);
+                } else if (sortBy === "name") {
+                    sorted.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+                } else if (sortBy === "numberOfSongs") {
+                    sorted.sort((a, b) => (a.numberOfSongs || 0) - (b.numberOfSongs || 0));
+                }
+
+                renderPlaylists(sorted);
+            });
+        });
+    </script>
+</body>
+</html>
