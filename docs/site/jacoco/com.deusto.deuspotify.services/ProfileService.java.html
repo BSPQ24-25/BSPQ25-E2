@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProfileService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deuspotify</a> &gt; <a href="index.source.html" class="el_package">com.deusto.deuspotify.services</a> &gt; <span class="el_source">ProfileService.java</span></div><h1>ProfileService.java</h1><pre class="source lang-java linenums">package com.deusto.deuspotify.services;
+
+import com.deusto.deuspotify.model.Profile;
+import com.deusto.deuspotify.repositories.ProfileRepository;
+import com.deusto.deuspotify.security.JwtUtil;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * Service for managing user profiles, authentication, and user-related logic.
+ */
+@Service
+public class ProfileService implements UserDetailsService {
+
+    private final ProfileRepository profileRepository;
+    private final PasswordEncoder passwordEncoder;
+    private JwtUtil jwtUtil;
+
+    /**
+     * Constructor for ProfileService.
+     *
+     * @param profileRepository the profile repository
+     * @param passwordEncoder   the password encoder
+     */
+<span class="fc" id="L35">    public ProfileService(ProfileRepository profileRepository, @Lazy PasswordEncoder passwordEncoder) {</span>
+<span class="fc" id="L36">        this.profileRepository = profileRepository;</span>
+<span class="fc" id="L37">        this.passwordEncoder = passwordEncoder;</span>
+<span class="fc" id="L38">    }</span>
+
+    /**
+     * Setter for injecting JwtUtil bean.
+     *
+     * @param jwtUtil the JWT utility component
+     */
+    @Autowired
+    public void setJwtUtil(JwtUtil jwtUtil) {
+<span class="fc" id="L47">        this.jwtUtil = jwtUtil;</span>
+<span class="fc" id="L48">    }</span>
+
+    /**
+     * Loads user details by username for Spring Security authentication.
+     *
+     * @param username the username
+     * @return UserDetails object
+     * @throws UsernameNotFoundException if the user does not exist
+     */
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+<span class="fc" id="L59">        Profile profile = profileRepository.findByUsername(username)</span>
+<span class="fc" id="L60">                .orElseThrow(() -&gt; new UsernameNotFoundException(&quot;User not found: &quot; + username));</span>
+
+<span class="fc" id="L62">        return org.springframework.security.core.userdetails.User</span>
+<span class="fc" id="L63">                .withUsername(profile.getUsername())</span>
+<span class="fc" id="L64">                .password(profile.getPassword())</span>
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">                .roles(profile.isAdmin() ? &quot;ADMIN&quot; : &quot;USER&quot;)</span>
+<span class="fc" id="L66">                .build();</span>
+    }
+
+    /**
+     * Retrieves all profiles in the system.
+     *
+     * @return list of all profiles
+     */
+    public List&lt;Profile&gt; getAllProfiles() {
+<span class="nc" id="L75">        return profileRepository.findAll();</span>
+    }
+
+    /**
+     * Finds a profile by ID.
+     *
+     * @param id the profile ID
+     * @return optional containing the profile if found
+     */
+    public Optional&lt;Profile&gt; getProfileById(Long id) {
+<span class="nc" id="L85">        return profileRepository.findById(id);</span>
+    }
+
+    /**
+     * Registers a new user with encoded password.
+     *
+     * @param profile the profile to register
+     * @return the saved profile
+     */
+    @Transactional
+    public Profile registerUser(Profile profile) {
+<span class="pc bpc" id="L96" title="1 of 2 branches missed.">        if (profileRepository.findByUsername(profile.getUsername()).isPresent()) {</span>
+<span class="nc" id="L97">            throw new RuntimeException(&quot;User already exists.&quot;);</span>
+        }
+<span class="fc" id="L99">        profile.setPassword(passwordEncoder.encode(profile.getPassword()));</span>
+<span class="fc" id="L100">        return profileRepository.save(profile);</span>
+    }
+
+    /**
+     * Updates a profile by its ID.
+     *
+     * @param id              the profile ID
+     * @param updatedProfile  the updated profile data
+     * @return optional containing the updated profile
+     */
+    @Transactional
+    public Optional&lt;Profile&gt; updateProfile(Long id, Profile updatedProfile) {
+<span class="nc" id="L112">        return profileRepository.findById(id).map(profile -&gt; {</span>
+<span class="nc" id="L113">            profile.setUsername(updatedProfile.getUsername());</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">            if (!updatedProfile.getPassword().isEmpty()) {</span>
+<span class="nc" id="L115">                profile.setPassword(passwordEncoder.encode(updatedProfile.getPassword()));</span>
+            }
+<span class="nc" id="L117">            profile.setEmail(updatedProfile.getEmail());</span>
+<span class="nc" id="L118">            profile.setFriendsList(updatedProfile.getFriendsList());</span>
+<span class="nc" id="L119">            profile.setFavouriteSongs(updatedProfile.getFavouriteSongs());</span>
+<span class="nc" id="L120">            profile.setPlaylists(updatedProfile.getPlaylists());</span>
+<span class="nc" id="L121">            profile.setAdmin(updatedProfile.isAdmin());</span>
+<span class="nc" id="L122">            return profileRepository.save(profile);</span>
+        });
+    }
+
+    /**
+     * Deletes a profile by its ID.
+     *
+     * @param id the profile ID
+     * @return true if deleted, false if not found
+     */
+    @Transactional
+    public boolean deleteProfile(Long id) {
+<span class="nc bnc" id="L134" title="All 2 branches missed.">        if (profileRepository.existsById(id)) {</span>
+<span class="nc" id="L135">            profileRepository.deleteById(id);</span>
+<span class="nc" id="L136">            return true;</span>
+        }
+<span class="nc" id="L138">        return false;</span>
+    }
+
+    /**
+     * Attempts login by validating username and password.
+     *
+     * @param username the username
+     * @param password the raw password
+     * @return optional profile if credentials are valid
+     */
+    public Optional&lt;Profile&gt; login(String username, String password) {
+<span class="nc" id="L149">        return profileRepository.findByUsername(username)</span>
+<span class="nc" id="L150">                .filter(profile -&gt; passwordEncoder.matches(password, profile.getPassword()));</span>
+    }
+
+    /**
+     * Retrieves the authenticated profile from the JWT in the request.
+     *
+     * @param request the HTTP request
+     * @return the authenticated profile
+     */
+    public Profile getAuthenticatedUser(HttpServletRequest request) {
+<span class="fc" id="L160">        String authHeader = request.getHeader(&quot;Authorization&quot;);</span>
+
+<span class="pc bpc" id="L162" title="1 of 4 branches missed.">        if (authHeader == null || !authHeader.startsWith(&quot;Bearer &quot;)) {</span>
+<span class="fc" id="L163">            throw new RuntimeException(&quot;No JWT token found&quot;);</span>
+        }
+
+<span class="fc" id="L166">        String token = authHeader.substring(7);</span>
+<span class="fc" id="L167">        String username = jwtUtil.extractUsername(token);</span>
+
+<span class="fc" id="L169">        return profileRepository.findByUsername(username)</span>
+<span class="pc" id="L170">                .orElseThrow(() -&gt; new RuntimeException(&quot;User not found&quot;));</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

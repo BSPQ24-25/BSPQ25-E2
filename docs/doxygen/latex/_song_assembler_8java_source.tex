@@ -1,0 +1,58 @@
+\doxysection{Song\+Assembler.\+java}
+\hypertarget{_song_assembler_8java_source}{}\label{_song_assembler_8java_source}\index{src/main/java/com/deusto/deuspotify/assembler/SongAssembler.java@{src/main/java/com/deusto/deuspotify/assembler/SongAssembler.java}}
+\mbox{\hyperlink{_song_assembler_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00001}00001\ \textcolor{keyword}{package\ }com.deusto.deuspotify.assembler;}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00003}00003\ \textcolor{keyword}{import}\ com.deusto.deuspotify.model.Song;}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00004}00004\ \textcolor{keyword}{import}\ com.deusto.deuspotify.DTO.SongDTO;}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00006}00006\ \textcolor{keyword}{import}\ java.util.List;}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00007}00007\ \textcolor{keyword}{import}\ java.util.stream.Collectors;}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00012}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler}{00012}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler}{SongAssembler}}\ \{}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00020}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a36fb72e20b0373156932cd9466971940}{00020}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ SongDTO\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a36fb72e20b0373156932cd9466971940}{toDTO}}(Song\ song)\ \{}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (song\ ==\ \textcolor{keyword}{null})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ SongDTO(}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ song.getId(),}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ song.getName(),}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ song.getArtists(),}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ song.getDuration(),}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ song.getGenres(),}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ song.getDateOfRelease(),}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ song.getAlbum()}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00030}00030\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00031}00031\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00039}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a7947ec00c3f8098991a31c395808882d}{00039}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ Song\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a7947ec00c3f8098991a31c395808882d}{toEntity}}(SongDTO\ dto)\ \{}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dto\ ==\ \textcolor{keyword}{null})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00042}00042\ \ \ \ \ \ \ \ \ Song\ song\ =\ \textcolor{keyword}{new}\ Song();}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ song.setId(dto.getId());}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00044}00044\ \ \ \ \ \ \ \ \ song.setName(dto.getName());}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00045}00045\ \ \ \ \ \ \ \ \ song.setArtists(dto.getArtists());}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00046}00046\ \ \ \ \ \ \ \ \ song.setDuration(dto.getDuration());}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00047}00047\ \ \ \ \ \ \ \ \ song.setGenres(dto.getGenres());}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00048}00048\ \ \ \ \ \ \ \ \ song.setDateOfRelease(dto.getDateOfRelease());}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00049}00049\ \ \ \ \ \ \ \ \ song.setAlbum(dto.getAlbum());}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ song;}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00052}00052\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00060}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a79a720faf60db34ee2c33398e4b7cb61}{00060}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ List<SongDTO>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a79a720faf60db34ee2c33398e4b7cb61}{toDTOList}}(List<Song>\ songs)\ \{}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (songs\ ==\ \textcolor{keyword}{null})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ songs.stream()}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .map(\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a36fb72e20b0373156932cd9466971940}{SongAssembler::toDTO}})}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .collect(Collectors.toList());}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00065}00065\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00073}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_afc7bf8dcea2b2f7bd1cb25c7cea1b35d}{00073}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ List<Song>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_afc7bf8dcea2b2f7bd1cb25c7cea1b35d}{toEntityList}}(List<SongDTO>\ dtos)\ \{}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dtos\ ==\ \textcolor{keyword}{null})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ dtos.stream()}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .map(\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a7947ec00c3f8098991a31c395808882d}{SongAssembler::toEntity}})}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .collect(Collectors.toList());}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00078}00078\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_song_assembler_8java_source_l00079}00079\ \}}
+
+\end{DoxyCode}

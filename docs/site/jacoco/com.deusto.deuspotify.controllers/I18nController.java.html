@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>I18nController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deuspotify</a> &gt; <a href="index.source.html" class="el_package">com.deusto.deuspotify.controllers</a> &gt; <span class="el_source">I18nController.java</span></div><h1>I18nController.java</h1><pre class="source lang-java linenums">/**
+ * @file I18nController.java
+ * @brief Provides internationalization (i18n) support by loading translation keys and values.
+ */
+
+package com.deusto.deuspotify.controllers;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.MessageSource;
+import org.springframework.core.io.Resource;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.io.IOException;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import jakarta.servlet.http.HttpServletRequest;
+
+/**
+ * @class I18nController
+ * @brief REST controller for internationalization messages in multiple languages.
+ */
+@RestController
+public class I18nController {
+
+    private final MessageSource messageSource;
+
+    @Value(&quot;classpath:messages.properties&quot;)
+    private Resource messagesProperties;
+
+    @Value(&quot;classpath:messages_es.properties&quot;)
+    private Resource messagesEsProperties;
+
+    @Value(&quot;classpath:messages_en.properties&quot;)
+    private Resource messagesEnProperties;
+
+    @Value(&quot;classpath:messages_eu.properties&quot;)
+    private Resource messagesEuProperties;
+
+    /**
+     * Constructor for I18nController.
+     * @param messageSource Spring message source for localization.
+     */
+<span class="fc" id="L47">    public I18nController(MessageSource messageSource) {</span>
+<span class="fc" id="L48">        this.messageSource = messageSource;</span>
+<span class="fc" id="L49">    }</span>
+
+    /**
+     * Loads translated messages for the requested language.
+     * @param lang Language code (e.g. &quot;es&quot;, &quot;en&quot;, &quot;eu&quot;).
+     * @return A map containing translation keys and their values.
+     * @throws IOException If reading message files fails.
+     */
+    @GetMapping(&quot;/api/i18n&quot;)
+    public Map&lt;String, String&gt; getTranslations(@RequestParam(value = &quot;lang&quot;, required = false) String lang) throws IOException {
+<span class="nc bnc" id="L59" title="All 5 branches missed.">        Locale locale = switch (lang != null ? lang : &quot;es&quot;) {</span>
+<span class="nc" id="L60">            case &quot;en&quot; -&gt; Locale.ENGLISH;</span>
+<span class="nc" id="L61">            case &quot;eu&quot; -&gt; new Locale(&quot;eu&quot;);</span>
+<span class="nc" id="L62">            default -&gt; new Locale(&quot;es&quot;);</span>
+        };
+
+<span class="nc" id="L65">        Map&lt;String, String&gt; allKeys = loadAllPropertiesKeys();</span>
+
+<span class="nc" id="L67">        return allKeys.entrySet().stream()</span>
+<span class="nc" id="L68">                .collect(Collectors.toMap(</span>
+                        Map.Entry::getKey,
+<span class="nc" id="L70">                        entry -&gt; messageSource.getMessage(entry.getKey(), null, locale)</span>
+                ));
+    }
+
+    /**
+     * Loads all translation keys from all message files.
+     * @return A map of all translation keys and values.
+     * @throws IOException If reading from the files fails.
+     */
+    private Map&lt;String, String&gt; loadAllPropertiesKeys() throws IOException {
+<span class="nc" id="L80">        Map&lt;String, String&gt; keys = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L81">        keys.putAll(loadPropertiesKeys(messagesProperties));</span>
+<span class="nc" id="L82">        keys.putAll(loadPropertiesKeys(messagesEsProperties));</span>
+<span class="nc" id="L83">        keys.putAll(loadPropertiesKeys(messagesEnProperties));</span>
+<span class="nc" id="L84">        keys.putAll(loadPropertiesKeys(messagesEuProperties));</span>
+<span class="nc" id="L85">        return keys;</span>
+    }
+
+    /**
+     * Helper method to load keys from a specific properties file.
+     * @param resource The resource to load.
+     * @return A map of keys and values from the file.
+     * @throws IOException If reading the file fails.
+     */
+    private Map&lt;String, String&gt; loadPropertiesKeys(Resource resource) throws IOException {
+<span class="nc" id="L95">        Map&lt;String, String&gt; keys = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L96">        try (Reader reader = new InputStreamReader(resource.getInputStream())) {</span>
+<span class="nc" id="L97">            Properties properties = new Properties();</span>
+<span class="nc" id="L98">            properties.load(reader);</span>
+
+<span class="nc bnc" id="L100" title="All 2 branches missed.">            for (String key : properties.stringPropertyNames()) {</span>
+<span class="nc" id="L101">                keys.put(key, properties.getProperty(key));</span>
+<span class="nc" id="L102">            }</span>
+        }
+<span class="nc" id="L104">        return keys;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

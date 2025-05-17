@@ -1,0 +1,54 @@
+\doxysection{Jwt\+Util.\+java}
+\hypertarget{_jwt_util_8java_source}{}\label{_jwt_util_8java_source}\index{src/main/java/com/deusto/deuspotify/security/JwtUtil.java@{src/main/java/com/deusto/deuspotify/security/JwtUtil.java}}
+\mbox{\hyperlink{_jwt_util_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00001}\mbox{\hyperlink{namespacecom_1_1deusto_1_1deuspotify_1_1security}{00001}}\ \textcolor{keyword}{package\ }com.deusto.deuspotify.security;}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00003}00003\ \textcolor{keyword}{import}\ io.jsonwebtoken.Claims;}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00004}00004\ \textcolor{keyword}{import}\ io.jsonwebtoken.Jws;}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00005}00005\ \textcolor{keyword}{import}\ io.jsonwebtoken.Jwts;}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00006}00006\ \textcolor{keyword}{import}\ io.jsonwebtoken.SignatureAlgorithm;}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00007}00007\ \textcolor{keyword}{import}\ io.jsonwebtoken.security.Keys;}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00008}00008\ \textcolor{keyword}{import}\ org.springframework.stereotype.Component;}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00010}00010\ \textcolor{keyword}{import}\ java.security.Key;}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00011}00011\ \textcolor{keyword}{import}\ java.util.Date;}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00012}00012\ \textcolor{keyword}{import}\ java.util.function.Function;}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00021}00021\ @Component}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00022}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util}{00022}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util}{JwtUtil}}\ \{}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00025}00025\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ Key\ SECRET\_KEY\ =\ Keys.secretKeyFor(SignatureAlgorithm.HS256);\ \textcolor{comment}{//\ Secure\ key}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00033}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_a9e50d85a65148666b857fef37d4b26aa}{00033}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_a9e50d85a65148666b857fef37d4b26aa}{generateToken}}(String\ username)\ \{}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Jwts.builder()}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .setSubject(username)}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .setIssuedAt(\textcolor{keyword}{new}\ Date())}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .setExpiration(\textcolor{keyword}{new}\ Date(System.currentTimeMillis()\ +\ 1000\ *\ 60\ *\ 60\ *\ 10))\ \textcolor{comment}{//\ 10\ hours}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .signWith(SECRET\_KEY)}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .compact();}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00040}00040\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00048}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_af5221644adf143531653f0dc9877d9cb}{00048}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_af5221644adf143531653f0dc9877d9cb}{extractUsername}}(String\ token)\ \{}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ extractClaim(token,\ Claims::getSubject);}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00050}00050\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00060}00060\ \ \ \ \ public\ <T>\ T\ extractClaim(String\ token,\ Function<Claims,\ T>\ claimsResolver)\ \{}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00061}00061\ \ \ \ \ \ \ \ \ Claims\ claims\ =\ extractAllClaims(token);}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ claimsResolver.apply(claims);}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00063}00063\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00071}00071\ \ \ \ \ \textcolor{keyword}{private}\ Claims\ extractAllClaims(String\ token)\ \{}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00072}00072\ \ \ \ \ \ \ \ \ Jws<Claims>\ claimsJws\ =\ Jwts.parserBuilder()}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .setSigningKey(SECRET\_KEY)\ \textcolor{comment}{//\ Use\ parserBuilder()}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .build()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Build\ before\ parsing}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .parseClaimsJws(token);}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ claimsJws.getBody();}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00077}00077\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00086}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_a1562935918d787cfa4ff3a54ba029a96}{00086}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_a1562935918d787cfa4ff3a54ba029a96}{validateToken}}(String\ token,\ String\ username)\ \{}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_af5221644adf143531653f0dc9877d9cb}{extractUsername}}(token).equals(username);}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00088}00088\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_jwt_util_8java_source_l00089}00089\ \}}
+
+\end{DoxyCode}

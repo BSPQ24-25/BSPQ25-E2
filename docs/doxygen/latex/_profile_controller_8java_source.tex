@@ -1,0 +1,72 @@
+\doxysection{Profile\+Controller.\+java}
+\hypertarget{_profile_controller_8java_source}{}\label{_profile_controller_8java_source}\index{src/main/java/com/deusto/deuspotify/controllers/ProfileController.java@{src/main/java/com/deusto/deuspotify/controllers/ProfileController.java}}
+\mbox{\hyperlink{_profile_controller_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00001}00001\ \textcolor{keyword}{package\ }com.deusto.deuspotify.controllers;}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00003}00003\ \textcolor{keyword}{import}\ com.deusto.deuspotify.model.Profile;}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00004}00004\ \textcolor{keyword}{import}\ com.deusto.deuspotify.services.ProfileService;}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00005}00005\ \textcolor{keyword}{import}\ org.springframework.http.ResponseEntity;}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00006}00006\ \textcolor{keyword}{import}\ org.springframework.web.bind.annotation.*;}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00008}00008\ \textcolor{keyword}{import}\ java.util.List;}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00009}00009\ \textcolor{keyword}{import}\ java.util.Optional;}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00015}00015\ @RestController}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00016}00016\ @RequestMapping(\textcolor{stringliteral}{"{}/api/profiles"{}})}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00017}00017\ @CrossOrigin}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00018}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller}{00018}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller}{ProfileController}}\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00020}00020\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ ProfileService\ profileService;}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00026}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aafd928d8bffb499cfe909c06b585dcf1}{00026}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aafd928d8bffb499cfe909c06b585dcf1}{ProfileController}}(ProfileService\ profileService)\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00027}00027\ \ \ \ \ \ \ \ \ this.profileService\ =\ profileService;}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00028}00028\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00034}00034\ \ \ \ \ @GetMapping}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00035}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aa2b47fa3227ab5e0d89a13b987218cd2}{00035}}\ \ \ \ \ \textcolor{keyword}{public}\ ResponseEntity<List<Profile>>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aa2b47fa3227ab5e0d89a13b987218cd2}{getAllProfiles}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ResponseEntity.ok(profileService.getAllProfiles());}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00037}00037\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00044}00044\ \ \ \ \ @GetMapping(\textcolor{stringliteral}{"{}/\{id\}"{}})}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00045}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a6f28d1db06d26dce4b424c7adca3fb93}{00045}}\ \ \ \ \ public\ ResponseEntity<Profile>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a6f28d1db06d26dce4b424c7adca3fb93}{getProfileById}}(@PathVariable\ Long\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00046}00046\ \ \ \ \ \ \ \ \ Optional<Profile>\ profile\ =\ profileService.getProfileById(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ profile.map(ResponseEntity::ok)}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .orElseGet(()\ -\/>\ ResponseEntity.notFound().build());}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00049}00049\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00056}00056\ \ \ \ \ @PostMapping}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00057}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a85c323ac44c3137d04d87e52bf5e85be}{00057}}\ \ \ \ \ \textcolor{keyword}{public}\ ResponseEntity<?>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a85c323ac44c3137d04d87e52bf5e85be}{createProfile}}(@RequestBody\ Profile\ profile)\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ Profile\ savedProfile\ =\ profileService.registerUser(profile);}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ResponseEntity.ok(savedProfile);}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00061}00061\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (Exception\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ResponseEntity.badRequest().body(\textcolor{stringliteral}{"{}Error:\ "{}}\ +\ e.getMessage());}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00063}00063\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00064}00064\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00072}00072\ \ \ \ \ @PutMapping(\textcolor{stringliteral}{"{}/\{id\}"{}})}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00073}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aca483baea8c901ccd60208ac5a2f2bb3}{00073}}\ \ \ \ \ public\ ResponseEntity<?>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aca483baea8c901ccd60208ac5a2f2bb3}{updateProfile}}(@PathVariable\ Long\ \textcolor{keywordtype}{id},\ @RequestBody\ Profile\ updatedProfile)\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ profileService.updateProfile(\textcolor{keywordtype}{id},\ updatedProfile)}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .map(ResponseEntity::ok)}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .orElseGet(()\ -\/>\ ResponseEntity.notFound().build());}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00077}00077\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00084}00084\ \ \ \ \ @DeleteMapping(\textcolor{stringliteral}{"{}/\{id\}"{}})}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00085}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a99435c5acd0ce62086457fe294b0c7cb}{00085}}\ \ \ \ \ public\ ResponseEntity<?>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a99435c5acd0ce62086457fe294b0c7cb}{deleteProfile}}(@PathVariable\ Long\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (profileService.deleteProfile(\textcolor{keywordtype}{id}))\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ResponseEntity.ok(\textcolor{stringliteral}{"{}Profile\ successfully\ deleted."{}});}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00088}00088\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ResponseEntity.notFound().build();}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00090}00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00091}00091\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00098}00098\ \ \ \ \ @PostMapping(\textcolor{stringliteral}{"{}/login"{}})}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00099}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_ab8fafce1acbdc49400d0a2c00a656b6d}{00099}}\ \ \ \ \ public\ ResponseEntity<?>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_ab8fafce1acbdc49400d0a2c00a656b6d}{login}}(@RequestBody\ Profile\ loginRequest)\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00100}00100\ \ \ \ \ \ \ \ \ Optional<Profile>\ profile\ =\ profileService.login(loginRequest.getUsername(),\ loginRequest.getPassword());}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ profile.map(ResponseEntity::ok)}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .orElseGet(()\ -\/>\ ResponseEntity.status(401).body(\textcolor{keyword}{null}));}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00103}00103\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_controller_8java_source_l00104}00104\ \}}
+
+\end{DoxyCode}

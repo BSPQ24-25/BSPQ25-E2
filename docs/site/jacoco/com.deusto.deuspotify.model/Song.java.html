@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Song.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deuspotify</a> &gt; <a href="index.source.html" class="el_package">com.deusto.deuspotify.model</a> &gt; <span class="el_source">Song.java</span></div><h1>Song.java</h1><pre class="source lang-java linenums">package com.deusto.deuspotify.model;
+
+import jakarta.persistence.*;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * Entity representing a song in the Deuspotify application.
+ * Includes metadata such as name, artists, duration, genres, release date, album, and file path.
+ */
+@Entity
+@Table(name = &quot;songs&quot;)
+public class Song {
+
+    /** Unique identifier of the song. */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    /** Name or title of the song. */
+    private String name;
+
+    /** List of artist names who performed the song. */
+    @ElementCollection
+    @CollectionTable(name = &quot;song_artists&quot;, joinColumns = @JoinColumn(name = &quot;song_id&quot;))
+    @Column(name = &quot;artist&quot;)
+    private List&lt;String&gt; artists;
+
+    /** Duration of the song in seconds. */
+    private double duration;
+
+    /** List of genres the song belongs to. */
+    @ElementCollection
+    @CollectionTable(name = &quot;song_genres&quot;, joinColumns = @JoinColumn(name = &quot;song_id&quot;))
+    @Column(name = &quot;genre&quot;)
+    private List&lt;String&gt; genres;
+
+    /** Date when the song was released. */
+    @Temporal(TemporalType.DATE)
+    private Date dateOfRelease;
+
+    /** Name of the album the song belongs to. */
+    private String album;
+
+    /** Path to the audio file stored on the server. */
+    private String filePath;
+
+    /** Default constructor. */
+<span class="fc" id="L49">    public Song() {}</span>
+
+    /**
+     * Constructor with ID.
+     * 
+     * @param id The unique identifier of the song.
+     */
+<span class="fc" id="L56">    public Song(Long id) {</span>
+<span class="fc" id="L57">        this.id = id;</span>
+<span class="fc" id="L58">    }</span>
+
+    /**
+     * Constructs a Song without file path.
+     *
+     * @param name           the song name
+     * @param artists        the list of artists
+     * @param duration       the song duration in seconds
+     * @param genres         the list of genres
+     * @param dateOfRelease  the date of release
+     * @param album          the album name
+     */
+<span class="fc" id="L70">    public Song(String name, List&lt;String&gt; artists, double duration, List&lt;String&gt; genres, Date dateOfRelease, String album) {</span>
+<span class="fc" id="L71">        this.name = name;</span>
+<span class="fc" id="L72">        this.artists = artists;</span>
+<span class="fc" id="L73">        this.duration = duration;</span>
+<span class="fc" id="L74">        this.genres = genres;</span>
+<span class="fc" id="L75">        this.dateOfRelease = dateOfRelease;</span>
+<span class="fc" id="L76">        this.album = album;</span>
+<span class="fc" id="L77">    }</span>
+
+    /**
+     * Constructs a Song with all fields.
+     *
+     * @param name           the song name
+     * @param artists        the list of artists
+     * @param duration       the song duration in seconds
+     * @param genres         the list of genres
+     * @param dateOfRelease  the date of release
+     * @param album          the album name
+     * @param filePath       the file path to the audio file
+     */
+<span class="fc" id="L90">    public Song(String name, List&lt;String&gt; artists, double duration, List&lt;String&gt; genres, Date dateOfRelease, String album, String filePath) {</span>
+<span class="fc" id="L91">        this.name = name;</span>
+<span class="fc" id="L92">        this.artists = artists;</span>
+<span class="fc" id="L93">        this.duration = duration;</span>
+<span class="fc" id="L94">        this.genres = genres;</span>
+<span class="fc" id="L95">        this.dateOfRelease = dateOfRelease;</span>
+<span class="fc" id="L96">        this.album = album;</span>
+<span class="fc" id="L97">        this.filePath = filePath;</span>
+<span class="fc" id="L98">    }</span>
+
+    /** @return the unique ID of the song */
+<span class="fc" id="L101">    public Long getId() { return id; }</span>
+
+    /** @param id the unique ID to set */
+<span class="fc" id="L104">    public void setId(Long id) { this.id = id; }</span>
+
+    /** @return the name of the song */
+<span class="fc" id="L107">    public String getName() { return name; }</span>
+
+    /** @param name the name of the song to set */
+<span class="fc" id="L110">    public void setName(String name) { this.name = name; }</span>
+
+    /** @return the list of artists */
+<span class="fc" id="L113">    public List&lt;String&gt; getArtists() { return artists; }</span>
+
+    /** @param artists the list of artists to set */
+<span class="fc" id="L116">    public void setArtists(List&lt;String&gt; artists) { this.artists = artists; }</span>
+
+    /** @return the duration of the song in seconds */
+<span class="fc" id="L119">    public double getDuration() { return duration; }</span>
+
+    /** @param duration the song duration in seconds */
+<span class="fc" id="L122">    public void setDuration(double duration) { this.duration = duration; }</span>
+
+    /** @return the list of genres */
+<span class="fc" id="L125">    public List&lt;String&gt; getGenres() { return genres; }</span>
+
+    /** @param genres the list of genres to set */
+<span class="fc" id="L128">    public void setGenres(List&lt;String&gt; genres) { this.genres = genres; }</span>
+
+    /** @return the release date of the song */
+<span class="fc" id="L131">    public Date getDateOfRelease() { return dateOfRelease; }</span>
+
+    /** @param dateOfRelease the release date to set */
+<span class="fc" id="L134">    public void setDateOfRelease(Date dateOfRelease) { this.dateOfRelease = dateOfRelease; }</span>
+
+    /** @return the album the song belongs to */
+<span class="fc" id="L137">    public String getAlbum() { return album; }</span>
+
+    /** @param album the album name to set */
+<span class="fc" id="L140">    public void setAlbum(String album) { this.album = album; }</span>
+
+    /** @return the file path to the audio file */
+<span class="fc" id="L143">    public String getFilePath() { return filePath; }</span>
+
+    /** @param filePath the file path to set */
+<span class="nc" id="L146">    public void setFilePath(String filePath) { this.filePath = filePath; }</span>
+
+    @Override
+    public String toString() {
+<span class="nc" id="L150">        return &quot;Song{&quot; +</span>
+                &quot;name='&quot; + name + '\'' +
+                &quot;, artists=&quot; + artists +
+                &quot;, duration=&quot; + duration +
+                &quot;, genres=&quot; + genres +
+                &quot;, dateOfRelease=&quot; + dateOfRelease +
+                &quot;, album='&quot; + album + '\'' +
+                &quot;, filePath='&quot; + filePath + '\'' +
+                '}';
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

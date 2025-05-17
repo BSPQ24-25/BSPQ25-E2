@@ -1,0 +1,115 @@
+\doxysection{Data\+Initializer.\+java}
+\hypertarget{_data_initializer_8java_source}{}\label{_data_initializer_8java_source}\index{src/main/java/com/deusto/deuspotify/DataInitializer.java@{src/main/java/com/deusto/deuspotify/DataInitializer.java}}
+\mbox{\hyperlink{_data_initializer_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00001}00001\ \textcolor{keyword}{package\ }com.deusto.deuspotify;}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00003}00003\ \textcolor{keyword}{import}\ java.util.Arrays;}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00004}00004\ \textcolor{keyword}{import}\ java.util.Date;}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00005}00005\ \textcolor{keyword}{import}\ java.util.Collections;}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00006}00006\ \textcolor{keyword}{import}\ java.util.Optional;}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00008}00008\ \textcolor{keyword}{import}\ org.springframework.boot.CommandLineRunner;}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00009}00009\ \textcolor{keyword}{import}\ org.springframework.security.crypto.password.PasswordEncoder;}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00010}00010\ \textcolor{keyword}{import}\ org.springframework.stereotype.Component;}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00012}00012\ \textcolor{keyword}{import}\ com.deusto.deuspotify.repositories.SongRepository;}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00013}00013\ \textcolor{keyword}{import}\ com.deusto.deuspotify.repositories.ProfileRepository;}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00014}00014\ \textcolor{keyword}{import}\ com.deusto.deuspotify.repositories.PlaylistRepository;}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00015}00015\ \textcolor{keyword}{import}\ com.deusto.deuspotify.model.Playlist;}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00016}00016\ \textcolor{keyword}{import}\ com.deusto.deuspotify.model.Profile;}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00017}00017\ \textcolor{keyword}{import}\ com.deusto.deuspotify.model.Song;}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00019}00019\ @Component}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00020}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1_data_initializer}{00020}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1_data_initializer}{DataInitializer}}\ \textcolor{keyword}{implements}\ CommandLineRunner\ \{}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00022}00022\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ SongRepository\ songRepository;}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00023}00023\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ ProfileRepository\ profileRepository;}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00024}00024\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ PlaylistRepository\ playlistRepository;}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00025}00025\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ PasswordEncoder\ passwordEncoder;}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00027}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1_data_initializer_aea109135bbbeb99e59ca760ce3798b76}{00027}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1_data_initializer_aea109135bbbeb99e59ca760ce3798b76}{DataInitializer}}(SongRepository\ songRepository,}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ProfileRepository\ profileRepository,}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PlaylistRepository\ playlistRepository,}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PasswordEncoder\ passwordEncoder)\ \{}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00031}00031\ \ \ \ \ \ \ \ \ this.songRepository\ =\ songRepository;}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00032}00032\ \ \ \ \ \ \ \ \ this.profileRepository\ =\ profileRepository;}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ this.playlistRepository\ =\ playlistRepository;}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00034}00034\ \ \ \ \ \ \ \ \ this.passwordEncoder\ =\ passwordEncoder;}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00035}00035\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00037}00037\ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00038}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1_data_initializer_aa516307dcce418217e552fd50fac49f5}{00038}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1_data_initializer_aa516307dcce418217e552fd50fac49f5}{run}}(String...\ args)\ \textcolor{keywordflow}{throws}\ Exception\ \{}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ insertSongs();}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ insertProfiles();}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ insertPlaylists();}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (Exception\ e)\ \{}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ System.err.println(\textcolor{stringliteral}{"{}Error\ al\ inicializar\ los\ datos:\ "{}}\ +\ e.getMessage());}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ e.printStackTrace();}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00046}00046\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00047}00047\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00049}00049\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ insertSongs()\ \{}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (songRepository.count()\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ Song\ bohemian\ =\ \textcolor{keyword}{new}\ Song(}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Bohemian\ Rhapsody"{}},}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Arrays.asList(\textcolor{stringliteral}{"{}Queen"{}}),}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 5.55,}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Arrays.asList(\textcolor{stringliteral}{"{}Rock"{}},\ \textcolor{stringliteral}{"{}Classic\ Rock"{}}),}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ Date(),}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}A\ Night\ at\ the\ Opera"{}}}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ songRepository.save(bohemian);}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println(\textcolor{stringliteral}{"{}Canciones\ insertadas\ en\ la\ BD."{}});}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00062}00062\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println(\textcolor{stringliteral}{"{}Las\ canciones\ ya\ existen\ en\ la\ BD."{}});}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00064}00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00065}00065\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00067}00067\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ insertProfiles()\ \{}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00068}00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!profileRepository.findByUsername(\textcolor{stringliteral}{"{}user"{}}).isPresent())\ \{}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ Profile\ profile\ =\ \textcolor{keyword}{new}\ Profile(}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}user"{}},}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ passwordEncoder.encode(\textcolor{stringliteral}{"{}pass"{}}),}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}user@example.com"{}},}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Arrays.asList(\textcolor{stringliteral}{"{}amigo1"{}},\ \textcolor{stringliteral}{"{}amigo2"{}}),}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Collections.emptyList(),}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Collections.emptyList(),}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false}}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ profileRepository.save(profile);}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println(\textcolor{stringliteral}{"{}Perfil\ 'user'\ insertado\ en\ la\ BD."{}});}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00081}00081\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println(\textcolor{stringliteral}{"{}El\ perfil\ 'user'\ ya\ existe\ en\ la\ BD."{}});}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00083}00083\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00084}00084\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00086}00086\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ insertPlaylists()\ \{}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (playlistRepository.count()\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ Optional<Song>\ song1\ =\ songRepository.findById(1L);}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ Optional<Song>\ song2\ =\ songRepository.findById(2L);}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (song1.isPresent()\ \&\&\ song2.isPresent())\ \{}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Playlist\ playlist\ =\ \textcolor{keyword}{new}\ Playlist(}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}MyTestPlaylist"{}},}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Arrays.asList(\textcolor{stringliteral}{"{}juanito99"{}}),}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{true},}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Arrays.asList(song1.get(),\ song2.get()),}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Arrays.asList(song1.get().getId().intValue(),\ song2.get().getId().intValue())}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playlistRepository.save(playlist);}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println(\textcolor{stringliteral}{"{}Playlist\ insertada\ en\ la\ BD."{}});}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println(\textcolor{stringliteral}{"{}No\ se\ encontraron\ canciones\ para\ asociar\ a\ la\ playlist."{}});}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00105}00105\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println(\textcolor{stringliteral}{"{}La\ playlist\ ya\ existe\ en\ la\ BD."{}});}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00107}00107\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00108}00108\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_data_initializer_8java_source_l00109}00109\ \}}
+
+\end{DoxyCode}

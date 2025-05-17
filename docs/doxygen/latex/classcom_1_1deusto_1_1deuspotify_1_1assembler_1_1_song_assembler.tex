@@ -1,0 +1,108 @@
+\doxysection{com.\+deusto.\+deuspotify.\+assembler.\+Song\+Assembler Class Reference}
+\hypertarget{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler}{}\label{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler}\index{com.deusto.deuspotify.assembler.SongAssembler@{com.deusto.deuspotify.assembler.SongAssembler}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Song\+DTO \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a36fb72e20b0373156932cd9466971940}{to\+DTO}} (Song song)
+\item 
+static Song \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a7947ec00c3f8098991a31c395808882d}{to\+Entity}} (Song\+DTO dto)
+\item 
+static List$<$ Song\+DTO $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a79a720faf60db34ee2c33398e4b7cb61}{to\+DTOList}} (List$<$ Song $>$ songs)
+\item 
+static List$<$ Song $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_afc7bf8dcea2b2f7bd1cb25c7cea1b35d}{to\+Entity\+List}} (List$<$ Song\+DTO $>$ dtos)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Utility class for converting between Song entities and Song\+DTOs. 
+
+Definition at line \mbox{\hyperlink{_song_assembler_8java_source_l00012}{12}} of file \mbox{\hyperlink{_song_assembler_8java_source}{Song\+Assembler.\+java}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a36fb72e20b0373156932cd9466971940}\label{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a36fb72e20b0373156932cd9466971940} 
+\index{com.deusto.deuspotify.assembler.SongAssembler@{com.deusto.deuspotify.assembler.SongAssembler}!toDTO@{toDTO}}
+\index{toDTO@{toDTO}!com.deusto.deuspotify.assembler.SongAssembler@{com.deusto.deuspotify.assembler.SongAssembler}}
+\doxysubsubsection{\texorpdfstring{toDTO()}{toDTO()}}
+{\footnotesize\ttfamily static Song\+DTO com.\+deusto.\+deuspotify.\+assembler.\+Song\+Assembler.\+to\+DTO (\begin{DoxyParamCaption}\item[{Song}]{song }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Converts a Song entity to a Song\+DTO.
+
+
+\begin{DoxyParams}{Parameters}
+{\em song} & the Song entity to convert \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the corresponding Song\+DTO 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_song_assembler_8java_source_l00020}{20}} of file \mbox{\hyperlink{_song_assembler_8java_source}{Song\+Assembler.\+java}}.
+
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a79a720faf60db34ee2c33398e4b7cb61}\label{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a79a720faf60db34ee2c33398e4b7cb61} 
+\index{com.deusto.deuspotify.assembler.SongAssembler@{com.deusto.deuspotify.assembler.SongAssembler}!toDTOList@{toDTOList}}
+\index{toDTOList@{toDTOList}!com.deusto.deuspotify.assembler.SongAssembler@{com.deusto.deuspotify.assembler.SongAssembler}}
+\doxysubsubsection{\texorpdfstring{toDTOList()}{toDTOList()}}
+{\footnotesize\ttfamily static List$<$ Song\+DTO $>$ com.\+deusto.\+deuspotify.\+assembler.\+Song\+Assembler.\+to\+DTOList (\begin{DoxyParamCaption}\item[{List$<$ Song $>$}]{songs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Converts a list of Song entities to a list of Song\+DTOs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em songs} & the list of Song entities \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list of Song\+DTOs 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_song_assembler_8java_source_l00060}{60}} of file \mbox{\hyperlink{_song_assembler_8java_source}{Song\+Assembler.\+java}}.
+
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a7947ec00c3f8098991a31c395808882d}\label{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a7947ec00c3f8098991a31c395808882d} 
+\index{com.deusto.deuspotify.assembler.SongAssembler@{com.deusto.deuspotify.assembler.SongAssembler}!toEntity@{toEntity}}
+\index{toEntity@{toEntity}!com.deusto.deuspotify.assembler.SongAssembler@{com.deusto.deuspotify.assembler.SongAssembler}}
+\doxysubsubsection{\texorpdfstring{toEntity()}{toEntity()}}
+{\footnotesize\ttfamily static Song com.\+deusto.\+deuspotify.\+assembler.\+Song\+Assembler.\+to\+Entity (\begin{DoxyParamCaption}\item[{Song\+DTO}]{dto }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Converts a Song\+DTO to a Song entity.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dto} & the Song\+DTO to convert \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the corresponding Song entity 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_song_assembler_8java_source_l00039}{39}} of file \mbox{\hyperlink{_song_assembler_8java_source}{Song\+Assembler.\+java}}.
+
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_afc7bf8dcea2b2f7bd1cb25c7cea1b35d}\label{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_afc7bf8dcea2b2f7bd1cb25c7cea1b35d} 
+\index{com.deusto.deuspotify.assembler.SongAssembler@{com.deusto.deuspotify.assembler.SongAssembler}!toEntityList@{toEntityList}}
+\index{toEntityList@{toEntityList}!com.deusto.deuspotify.assembler.SongAssembler@{com.deusto.deuspotify.assembler.SongAssembler}}
+\doxysubsubsection{\texorpdfstring{toEntityList()}{toEntityList()}}
+{\footnotesize\ttfamily static List$<$ Song $>$ com.\+deusto.\+deuspotify.\+assembler.\+Song\+Assembler.\+to\+Entity\+List (\begin{DoxyParamCaption}\item[{List$<$ Song\+DTO $>$}]{dtos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Converts a list of Song\+DTOs to a list of Song entities.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dtos} & the list of Song\+DTOs \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list of Song entities 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_song_assembler_8java_source_l00073}{73}} of file \mbox{\hyperlink{_song_assembler_8java_source}{Song\+Assembler.\+java}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/com/deusto/deuspotify/assembler/\mbox{\hyperlink{_song_assembler_8java}{Song\+Assembler.\+java}}\end{DoxyCompactItemize}

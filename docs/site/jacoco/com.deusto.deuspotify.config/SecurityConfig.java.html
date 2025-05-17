@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SecurityConfig.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deuspotify</a> &gt; <a href="index.source.html" class="el_package">com.deusto.deuspotify.config</a> &gt; <span class="el_source">SecurityConfig.java</span></div><h1>SecurityConfig.java</h1><pre class="source lang-java linenums">package com.deusto.deuspotify.config;
+
+import com.deusto.deuspotify.services.ProfileService;
+import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
+
+import java.util.List;
+import java.util.Locale;
+
+/**
+ * Main security configuration for the application.
+ * &lt;p&gt;
+ * Configures login, logout, password encoding, authorization rules, and i18n support.
+ * &lt;/p&gt;
+ */
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    private final ProfileService profileService;
+
+    /**
+     * Constructor for injecting the profile service.
+     *
+     * @param profileService the user profile service implementing UserDetailsService
+     */
+<span class="fc" id="L40">    public SecurityConfig(ProfileService profileService) {</span>
+<span class="fc" id="L41">        this.profileService = profileService;</span>
+<span class="fc" id="L42">    }</span>
+
+    /**
+     * Defines the main HTTP security configuration.
+     *
+     * @param http the HTTP security object
+     * @return the configured SecurityFilterChain
+     * @throws Exception if configuration fails
+     */
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+<span class="fc" id="L53">        http</span>
+<span class="fc" id="L54">            .authorizeHttpRequests(auth -&gt; auth</span>
+<span class="fc" id="L55">                .requestMatchers(</span>
+                    &quot;/&quot;, &quot;/login&quot;, &quot;/login.html&quot;, &quot;/register.html&quot;,
+                    &quot;/styles.css&quot;, &quot;/static/**&quot;, &quot;/api/i18n&quot;,
+                    &quot;/api/profiles&quot;, &quot;/auth/register&quot;, &quot;/auth/login&quot;
+<span class="fc" id="L59">                ).permitAll()</span>
+<span class="fc" id="L60">                .anyRequest().authenticated()</span>
+            )
+<span class="fc" id="L62">            .formLogin(form -&gt; form</span>
+<span class="fc" id="L63">                .loginPage(&quot;/login.html&quot;)</span>
+<span class="fc" id="L64">                .loginProcessingUrl(&quot;/login&quot;)</span>
+<span class="fc" id="L65">                .defaultSuccessUrl(&quot;/index.html&quot;, true)</span>
+<span class="fc" id="L66">                .failureUrl(&quot;/login.html?error=true&quot;)</span>
+            )
+<span class="fc" id="L68">            .logout(logout -&gt; logout</span>
+<span class="fc" id="L69">                .logoutUrl(&quot;/logout&quot;)</span>
+<span class="fc" id="L70">                .logoutSuccessUrl(&quot;/login.html&quot;)</span>
+<span class="fc" id="L71">                .invalidateHttpSession(true)</span>
+<span class="fc" id="L72">                .deleteCookies(&quot;JSESSIONID&quot;)</span>
+            )
+<span class="fc" id="L74">            .csrf(csrf -&gt; csrf</span>
+<span class="fc" id="L75">                .ignoringRequestMatchers(&quot;/login&quot;, &quot;/logout&quot;, &quot;/api/**&quot;, &quot;/auth/**&quot;)</span>
+            );
+
+<span class="fc" id="L78">        return http.build();</span>
+    }
+
+    /**
+     * Configures the AuthenticationManager with custom authentication provider.
+     *
+     * @param authenticationConfiguration the base authentication config
+     * @return a configured AuthenticationManager
+     * @throws Exception if setup fails
+     */
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+<span class="fc" id="L90">        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();</span>
+<span class="fc" id="L91">        authProvider.setUserDetailsService(profileService);</span>
+<span class="fc" id="L92">        authProvider.setPasswordEncoder(passwordEncoder());</span>
+
+<span class="fc" id="L94">        return new ProviderManager(List.of(authProvider));</span>
+    }
+
+    /**
+     * Provides a BCrypt password encoder.
+     *
+     * @return BCryptPasswordEncoder instance
+     */
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+<span class="fc" id="L104">        return new BCryptPasswordEncoder();</span>
+    }
+
+    // === Internationalization ===
+
+    /**
+     * Configures the message source for i18n (messages.properties).
+     *
+     * @return the message source
+     */
+    @Bean
+    public MessageSource messageSource() {
+<span class="fc" id="L116">        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();</span>
+<span class="fc" id="L117">        messageSource.setBasename(&quot;messages&quot;);</span>
+<span class="fc" id="L118">        messageSource.setDefaultEncoding(&quot;UTF-8&quot;);</span>
+<span class="fc" id="L119">        return messageSource;</span>
+    }
+
+    /**
+     * Configures the default locale as Spanish and resolves locale from the &quot;Accept-Language&quot; header.
+     *
+     * @return the locale resolver
+     */
+    @Bean
+    public LocaleResolver localeResolver() {
+<span class="fc" id="L129">        AcceptHeaderLocaleResolver resolver = new AcceptHeaderLocaleResolver();</span>
+<span class="fc" id="L130">        resolver.setDefaultLocale(new Locale(&quot;es&quot;));</span>
+<span class="fc" id="L131">        return resolver;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

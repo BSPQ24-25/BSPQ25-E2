@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlaylistAssembler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deuspotify</a> &gt; <a href="index.source.html" class="el_package">com.deusto.deuspotify.assembler</a> &gt; <span class="el_source">PlaylistAssembler.java</span></div><h1>PlaylistAssembler.java</h1><pre class="source lang-java linenums">package com.deusto.deuspotify.assembler;
+
+import com.deusto.deuspotify.model.Playlist;
+import com.deusto.deuspotify.model.Song;
+import com.deusto.deuspotify.DTO.PlaylistDTO;
+import com.deusto.deuspotify.DTO.SongDTO;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ * Utility class to convert between {@link Playlist} entities and {@link PlaylistDTO} data transfer objects.
+ */
+<span class="nc" id="L14">public class PlaylistAssembler {</span>
+
+    /**
+     * Converts a {@link Playlist} entity to a {@link PlaylistDTO}.
+     *
+     * @param playlist the Playlist entity to convert
+     * @return the corresponding PlaylistDTO, or null if input is null
+     */
+    public static PlaylistDTO toDTO(Playlist playlist) {
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        if (playlist == null) return null;</span>
+
+<span class="nc" id="L25">        List&lt;SongDTO&gt; songDTOs = SongAssembler.toDTOList(playlist.getSongs());</span>
+
+<span class="nc" id="L27">        return new PlaylistDTO(</span>
+<span class="nc" id="L28">                playlist.getId(),</span>
+<span class="nc" id="L29">                playlist.getName(),</span>
+<span class="nc" id="L30">                playlist.getOwners(),</span>
+<span class="nc" id="L31">                playlist.isPublic(),</span>
+                songDTOs,
+<span class="nc" id="L33">                playlist.getNumberOfSongs(),</span>
+<span class="nc" id="L34">                playlist.getOrder()</span>
+        );
+    }
+
+    /**
+     * Converts a {@link PlaylistDTO} to a {@link Playlist} entity.
+     *
+     * @param dto the PlaylistDTO to convert
+     * @return the corresponding Playlist entity, or null if input is null
+     */
+    public static Playlist toEntity(PlaylistDTO dto) {
+<span class="nc bnc" id="L45" title="All 2 branches missed.">        if (dto == null) return null;</span>
+
+<span class="nc" id="L47">        List&lt;Song&gt; songs = SongAssembler.toEntityList(dto.getSongs());</span>
+
+<span class="nc" id="L49">        Playlist playlist = new Playlist();</span>
+<span class="nc" id="L50">        playlist.setId(dto.getId());</span>
+<span class="nc" id="L51">        playlist.setName(dto.getName());</span>
+<span class="nc" id="L52">        playlist.setOwners(dto.getOwners());</span>
+<span class="nc" id="L53">        playlist.setPublic(dto.isPublic());</span>
+<span class="nc" id="L54">        playlist.setSongs(songs);</span>
+<span class="nc" id="L55">        playlist.setOrder(dto.getOrder());</span>
+
+<span class="nc" id="L57">        return playlist;</span>
+    }
+
+    /**
+     * Converts a list of {@link Playlist} entities to a list of {@link PlaylistDTO}s.
+     *
+     * @param playlists list of Playlist entities
+     * @return list of PlaylistDTOs, or null if input is null
+     */
+    public static List&lt;PlaylistDTO&gt; toDTOList(List&lt;Playlist&gt; playlists) {
+<span class="nc bnc" id="L67" title="All 2 branches missed.">        if (playlists == null) return null;</span>
+
+<span class="nc" id="L69">        return playlists.stream()</span>
+<span class="nc" id="L70">                .map(PlaylistAssembler::toDTO)</span>
+<span class="nc" id="L71">                .collect(Collectors.toList());</span>
+    }
+
+    /**
+     * Converts a list of {@link PlaylistDTO}s to a list of {@link Playlist} entities.
+     *
+     * @param dtos list of PlaylistDTOs
+     * @return list of Playlist entities, or null if input is null
+     */
+    public static List&lt;Playlist&gt; toEntityList(List&lt;PlaylistDTO&gt; dtos) {
+<span class="nc bnc" id="L81" title="All 2 branches missed.">        if (dtos == null) return null;</span>
+
+<span class="nc" id="L83">        return dtos.stream()</span>
+<span class="nc" id="L84">                .map(PlaylistAssembler::toEntity)</span>
+<span class="nc" id="L85">                .collect(Collectors.toList());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SongDTO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deuspotify</a> &gt; <a href="index.source.html" class="el_package">com.deusto.deuspotify.DTO</a> &gt; <span class="el_source">SongDTO.java</span></div><h1>SongDTO.java</h1><pre class="source lang-java linenums">package com.deusto.deuspotify.DTO;
+
+import java.util.Date;
+import java.util.List;
+
+/**
+ * Data Transfer Object representing a song.
+ * Used for transferring song data between layers of the application.
+ */
+public class SongDTO {
+
+    /** Unique identifier of the song. */
+    private Long id;
+
+    /** Title of the song. */
+    private String name;
+
+    /** List of artist names who performed the song. */
+    private List&lt;String&gt; artists;
+
+    /** Duration of the song in seconds. */
+    private double duration;
+
+    /** List of genres associated with the song. */
+    private List&lt;String&gt; genres;
+
+    /** Release date of the song. */
+    private Date dateOfRelease;
+
+    /** Name of the album the song belongs to. */
+    private String album;
+
+    /** Path to the audio file or its storage location. */
+    private String filePath;
+
+    /** Default constructor. */
+<span class="nc" id="L37">    public SongDTO() {}</span>
+
+    /**
+     * Constructs a SongDTO with all attributes except the file path.
+     *
+     * @param id             the ID of the song
+     * @param name           the name of the song
+     * @param artists        the list of artists
+     * @param duration       the duration of the song in seconds
+     * @param genres         the genres of the song
+     * @param dateOfRelease  the release date
+     * @param album          the album name
+     */
+<span class="nc" id="L50">    public SongDTO(Long id, String name, List&lt;String&gt; artists, double duration, List&lt;String&gt; genres, Date dateOfRelease, String album) {</span>
+<span class="nc" id="L51">        this.id = id;</span>
+<span class="nc" id="L52">        this.name = name;</span>
+<span class="nc" id="L53">        this.artists = artists;</span>
+<span class="nc" id="L54">        this.duration = duration;</span>
+<span class="nc" id="L55">        this.genres = genres;</span>
+<span class="nc" id="L56">        this.dateOfRelease = dateOfRelease;</span>
+<span class="nc" id="L57">        this.album = album;</span>
+<span class="nc" id="L58">    }</span>
+
+    /**
+     * Constructs a SongDTO with all attributes.
+     *
+     * @param id             the ID of the song
+     * @param name           the name of the song
+     * @param artists        the list of artists
+     * @param duration       the duration of the song in seconds
+     * @param genres         the genres of the song
+     * @param dateOfRelease  the release date
+     * @param album          the album name
+     * @param filePath       the file path to the song
+     */
+<span class="nc" id="L72">    public SongDTO(Long id, String name, List&lt;String&gt; artists, double duration, List&lt;String&gt; genres, Date dateOfRelease, String album, String filePath) {</span>
+<span class="nc" id="L73">        this.id = id;</span>
+<span class="nc" id="L74">        this.name = name;</span>
+<span class="nc" id="L75">        this.artists = artists;</span>
+<span class="nc" id="L76">        this.duration = duration;</span>
+<span class="nc" id="L77">        this.genres = genres;</span>
+<span class="nc" id="L78">        this.dateOfRelease = dateOfRelease;</span>
+<span class="nc" id="L79">        this.album = album;</span>
+<span class="nc" id="L80">        this.filePath = filePath;</span>
+<span class="nc" id="L81">    }</span>
+
+    /** @return the song ID */
+<span class="nc" id="L84">    public Long getId() { return id; }</span>
+
+    /** @param id the song ID */
+<span class="nc" id="L87">    public void setId(Long id) { this.id = id; }</span>
+
+    /** @return the name of the song */
+<span class="nc" id="L90">    public String getName() { return name; }</span>
+
+    /** @param name the name of the song */
+<span class="nc" id="L93">    public void setName(String name) { this.name = name; }</span>
+
+    /** @return the list of artist names */
+<span class="nc" id="L96">    public List&lt;String&gt; getArtists() { return artists; }</span>
+
+    /** @param artists the list of artist names */
+<span class="nc" id="L99">    public void setArtists(List&lt;String&gt; artists) { this.artists = artists; }</span>
+
+    /** @return the duration in seconds */
+<span class="nc" id="L102">    public double getDuration() { return duration; }</span>
+
+    /** @param duration the duration in seconds */
+<span class="nc" id="L105">    public void setDuration(double duration) { this.duration = duration; }</span>
+
+    /** @return the list of genres */
+<span class="nc" id="L108">    public List&lt;String&gt; getGenres() { return genres; }</span>
+
+    /** @param genres the list of genres */
+<span class="nc" id="L111">    public void setGenres(List&lt;String&gt; genres) { this.genres = genres; }</span>
+
+    /** @return the release date */
+<span class="nc" id="L114">    public Date getDateOfRelease() { return dateOfRelease; }</span>
+
+    /** @param dateOfRelease the release date */
+<span class="nc" id="L117">    public void setDateOfRelease(Date dateOfRelease) { this.dateOfRelease = dateOfRelease; }</span>
+
+    /** @return the album name */
+<span class="nc" id="L120">    public String getAlbum() { return album; }</span>
+
+    /** @param album the album name */
+<span class="nc" id="L123">    public void setAlbum(String album) { this.album = album; }</span>
+
+    /** @return the file path */
+<span class="nc" id="L126">    public String getFilePath() { return filePath; }</span>
+
+    /** @param filePath the file path */
+<span class="nc" id="L129">    public void setFilePath(String filePath) { this.filePath = filePath; }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

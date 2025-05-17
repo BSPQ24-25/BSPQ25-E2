@@ -1,0 +1,149 @@
+\doxysection{com.\+deusto.\+deuspotify.\+config.\+Security\+Config Class Reference}
+\hypertarget{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config}{}\label{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config}\index{com.deusto.deuspotify.config.SecurityConfig@{com.deusto.deuspotify.config.SecurityConfig}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_acccfc17d27560b6c577cd85bece0fce7}{Security\+Config}} (Profile\+Service profile\+Service)
+\item 
+Security\+Filter\+Chain \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a4bbc1c0d6335e7f6601b3ba8b1720bf0}{security\+Filter\+Chain}} (Http\+Security http)  throws Exception 
+\item 
+Authentication\+Manager \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a6a115a32dce5b830cadd4c16c1222751}{authentication\+Manager}} (Authentication\+Configuration authentication\+Configuration)  throws Exception 
+\item 
+Password\+Encoder \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a1427d9905588cf474d92bff56b768623}{password\+Encoder}} ()
+\item 
+Message\+Source \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a180e2fcb3870ced7787c61e136ae1be4}{message\+Source}} ()
+\item 
+Locale\+Resolver \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_af26250e3431df4b7dec3319533c6013e}{locale\+Resolver}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main security configuration for the application. 
+
+Configures login, logout, password encoding, authorization rules, and i18n support. 
+
+Definition at line \mbox{\hyperlink{_security_config_8java_source_l00031}{31}} of file \mbox{\hyperlink{_security_config_8java_source}{Security\+Config.\+java}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_acccfc17d27560b6c577cd85bece0fce7}\label{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_acccfc17d27560b6c577cd85bece0fce7} 
+\index{com.deusto.deuspotify.config.SecurityConfig@{com.deusto.deuspotify.config.SecurityConfig}!SecurityConfig@{SecurityConfig}}
+\index{SecurityConfig@{SecurityConfig}!com.deusto.deuspotify.config.SecurityConfig@{com.deusto.deuspotify.config.SecurityConfig}}
+\doxysubsubsection{\texorpdfstring{SecurityConfig()}{SecurityConfig()}}
+{\footnotesize\ttfamily com.\+deusto.\+deuspotify.\+config.\+Security\+Config.\+Security\+Config (\begin{DoxyParamCaption}\item[{Profile\+Service}]{profile\+Service }\end{DoxyParamCaption})}
+
+Constructor for injecting the profile service.
+
+
+\begin{DoxyParams}{Parameters}
+{\em profile\+Service} & the user profile service implementing User\+Details\+Service \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_security_config_8java_source_l00040}{40}} of file \mbox{\hyperlink{_security_config_8java_source}{Security\+Config.\+java}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a6a115a32dce5b830cadd4c16c1222751}\label{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a6a115a32dce5b830cadd4c16c1222751} 
+\index{com.deusto.deuspotify.config.SecurityConfig@{com.deusto.deuspotify.config.SecurityConfig}!authenticationManager@{authenticationManager}}
+\index{authenticationManager@{authenticationManager}!com.deusto.deuspotify.config.SecurityConfig@{com.deusto.deuspotify.config.SecurityConfig}}
+\doxysubsubsection{\texorpdfstring{authenticationManager()}{authenticationManager()}}
+{\footnotesize\ttfamily Authentication\+Manager com.\+deusto.\+deuspotify.\+config.\+Security\+Config.\+authentication\+Manager (\begin{DoxyParamCaption}\item[{Authentication\+Configuration}]{authentication\+Configuration }\end{DoxyParamCaption}) throws Exception}
+
+Configures the Authentication\+Manager with custom authentication provider.
+
+
+\begin{DoxyParams}{Parameters}
+{\em authentication\+Configuration} & the base authentication config \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a configured Authentication\+Manager 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & if setup fails \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{_security_config_8java_source_l00089}{89}} of file \mbox{\hyperlink{_security_config_8java_source}{Security\+Config.\+java}}.
+
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_af26250e3431df4b7dec3319533c6013e}\label{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_af26250e3431df4b7dec3319533c6013e} 
+\index{com.deusto.deuspotify.config.SecurityConfig@{com.deusto.deuspotify.config.SecurityConfig}!localeResolver@{localeResolver}}
+\index{localeResolver@{localeResolver}!com.deusto.deuspotify.config.SecurityConfig@{com.deusto.deuspotify.config.SecurityConfig}}
+\doxysubsubsection{\texorpdfstring{localeResolver()}{localeResolver()}}
+{\footnotesize\ttfamily Locale\+Resolver com.\+deusto.\+deuspotify.\+config.\+Security\+Config.\+locale\+Resolver (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Configures the default locale as Spanish and resolves locale from the "{}\+Accept-\/\+Language"{} header.
+
+\begin{DoxyReturn}{Returns}
+the locale resolver 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_security_config_8java_source_l00128}{128}} of file \mbox{\hyperlink{_security_config_8java_source}{Security\+Config.\+java}}.
+
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a180e2fcb3870ced7787c61e136ae1be4}\label{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a180e2fcb3870ced7787c61e136ae1be4} 
+\index{com.deusto.deuspotify.config.SecurityConfig@{com.deusto.deuspotify.config.SecurityConfig}!messageSource@{messageSource}}
+\index{messageSource@{messageSource}!com.deusto.deuspotify.config.SecurityConfig@{com.deusto.deuspotify.config.SecurityConfig}}
+\doxysubsubsection{\texorpdfstring{messageSource()}{messageSource()}}
+{\footnotesize\ttfamily Message\+Source com.\+deusto.\+deuspotify.\+config.\+Security\+Config.\+message\+Source (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Configures the message source for i18n (messages.\+properties).
+
+\begin{DoxyReturn}{Returns}
+the message source 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_security_config_8java_source_l00115}{115}} of file \mbox{\hyperlink{_security_config_8java_source}{Security\+Config.\+java}}.
+
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a1427d9905588cf474d92bff56b768623}\label{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a1427d9905588cf474d92bff56b768623} 
+\index{com.deusto.deuspotify.config.SecurityConfig@{com.deusto.deuspotify.config.SecurityConfig}!passwordEncoder@{passwordEncoder}}
+\index{passwordEncoder@{passwordEncoder}!com.deusto.deuspotify.config.SecurityConfig@{com.deusto.deuspotify.config.SecurityConfig}}
+\doxysubsubsection{\texorpdfstring{passwordEncoder()}{passwordEncoder()}}
+{\footnotesize\ttfamily Password\+Encoder com.\+deusto.\+deuspotify.\+config.\+Security\+Config.\+password\+Encoder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Provides a BCrypt password encoder.
+
+\begin{DoxyReturn}{Returns}
+BCrypt\+Password\+Encoder instance 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_security_config_8java_source_l00103}{103}} of file \mbox{\hyperlink{_security_config_8java_source}{Security\+Config.\+java}}.
+
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a4bbc1c0d6335e7f6601b3ba8b1720bf0}\label{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a4bbc1c0d6335e7f6601b3ba8b1720bf0} 
+\index{com.deusto.deuspotify.config.SecurityConfig@{com.deusto.deuspotify.config.SecurityConfig}!securityFilterChain@{securityFilterChain}}
+\index{securityFilterChain@{securityFilterChain}!com.deusto.deuspotify.config.SecurityConfig@{com.deusto.deuspotify.config.SecurityConfig}}
+\doxysubsubsection{\texorpdfstring{securityFilterChain()}{securityFilterChain()}}
+{\footnotesize\ttfamily Security\+Filter\+Chain com.\+deusto.\+deuspotify.\+config.\+Security\+Config.\+security\+Filter\+Chain (\begin{DoxyParamCaption}\item[{Http\+Security}]{http }\end{DoxyParamCaption}) throws Exception}
+
+Defines the main HTTP security configuration.
+
+
+\begin{DoxyParams}{Parameters}
+{\em http} & the HTTP security object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the configured Security\+Filter\+Chain 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & if configuration fails \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{_security_config_8java_source_l00052}{52}} of file \mbox{\hyperlink{_security_config_8java_source}{Security\+Config.\+java}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/com/deusto/deuspotify/config/\mbox{\hyperlink{_security_config_8java}{Security\+Config.\+java}}\end{DoxyCompactItemize}

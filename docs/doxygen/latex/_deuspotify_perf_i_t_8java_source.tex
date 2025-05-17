@@ -1,0 +1,83 @@
+\doxysection{Deuspotify\+Perf\+IT.\+java}
+\hypertarget{_deuspotify_perf_i_t_8java_source}{}\label{_deuspotify_perf_i_t_8java_source}\index{src/test/java/com/deusto/deuspotify/DeuspotifyPerfIT.java@{src/test/java/com/deusto/deuspotify/DeuspotifyPerfIT.java}}
+\mbox{\hyperlink{_deuspotify_perf_i_t_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00001}00001\ \textcolor{keyword}{package\ }com.deusto.deuspotify;}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00003}00003\ \textcolor{keyword}{import}\ org.junit.jupiter.api.Test;}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00004}00004\ \textcolor{keyword}{import}\ org.junit.jupiter.api.extension.ExtendWith;}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00005}00005\ \textcolor{keyword}{import}\ org.springframework.boot.test.context.SpringBootTest;}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00006}00006\ \textcolor{keyword}{import}\ org.springframework.test.context.junit.jupiter.SpringExtension;}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00008}00008\ \textcolor{keyword}{import}\ com.deusto.deuspotify.services.DeuspotifyService;}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00009}00009\ \textcolor{keyword}{import}\ com.deusto.deuspotify.services.ProfileService;}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00010}00010\ \textcolor{keyword}{import}\ com.github.noconnor.junitperf.JUnitPerfInterceptor;}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00011}00011\ \textcolor{keyword}{import}\ com.github.noconnor.junitperf.JUnitPerfReportingConfig;}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00012}00012\ \textcolor{keyword}{import}\ com.github.noconnor.junitperf.JUnitPerfTest;}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00013}00013\ \textcolor{keyword}{import}\ com.github.noconnor.junitperf.JUnitPerfTestActiveConfig;}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00014}00014\ \textcolor{keyword}{import}\ com.github.noconnor.junitperf.JUnitPerfTestRequirement;}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00015}00015\ \textcolor{keyword}{import}\ com.github.noconnor.junitperf.reporting.providers.HtmlReportGenerator;}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00017}00017\ \textcolor{keyword}{import}\ org.springframework.beans.factory.annotation.Autowired;}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00019}00019\ @ExtendWith(\{\ SpringExtension.class,\ JUnitPerfInterceptor.class\ \})}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00020}00020\ @SpringBootTest}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00021}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1_deuspotify_perf_i_t}{00021}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1_deuspotify_perf_i_t}{DeuspotifyPerfIT}}\ \{}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00023}00023\ \ \ \ \ @Autowired}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00024}00024\ \ \ \ \ \textcolor{keyword}{private}\ DeuspotifyService\ deuspotifyService;}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00026}00026\ \ \ \ \ @Autowired}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00027}00027\ \ \ \ \ \textcolor{keyword}{private}\ ProfileService\ profileService;}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00029}00029\ \ \ \ \ \textcolor{comment}{//\ Configuración\ global\ de\ reporting\ de\ JUnitPerf}}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00030}00030\ \ \ \ \ @JUnitPerfTestActiveConfig}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00031}00031\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ JUnitPerfReportingConfig\ PERF\_CONFIG\ =\ JUnitPerfReportingConfig.builder()}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00032}00032\ \ \ \ \ \ \ \ \ .reportGenerator(\textcolor{keyword}{new}\ HtmlReportGenerator(}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ System.getProperty(\textcolor{stringliteral}{"{}user.dir"{}})\ +\ \textcolor{stringliteral}{"{}/target/reports/perf-\/report.html"{}}))}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00034}00034\ \ \ \ \ \ \ \ \ .build();}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00036}00036\ \ \ \ \ @Test}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00037}00037\ \ \ \ \ @JUnitPerfTest(threads\ =\ 10,\ durationMs\ =\ 10\_000,\ warmUpMs\ =\ 2\_000)}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00038}00038\ \ \ \ \ @JUnitPerfTestRequirement(executionsPerSec\ =\ 50,\ percentiles\ =\ \textcolor{stringliteral}{"{}95:250ms"{}})}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00039}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1_deuspotify_perf_i_t_aeb6d9d92daf7457d86ee5d20a166aa72}{00039}}\ \ \ \ \ public\ \textcolor{keywordtype}{void}\ testRetrieveAllSongsPerformance()\ \{}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00040}00040\ \ \ \ \ \ \ \ \ deuspotifyService.retrieveAllSongs();}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00041}00041\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00043}00043\ \ \ \ \ @Test}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00044}00044\ \ \ \ \ @JUnitPerfTest(threads\ =\ 20,\ durationMs\ =\ 8\_000,\ warmUpMs\ =\ 1\_500)}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00045}00045\ \ \ \ \ @JUnitPerfTestRequirement(executionsPerSec\ =\ 75,\ percentiles\ =\ \textcolor{stringliteral}{"{}90:200ms,95:300ms"{}})}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00046}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1_deuspotify_perf_i_t_a1224ab3e104c5f88028530ac600fb920}{00046}}\ \ \ \ \ public\ \textcolor{keywordtype}{void}\ testRetrieveAllPlaylistsPerformance()\ \{}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00047}00047\ \ \ \ \ \ \ \ \ deuspotifyService.retrieveAllPlaylists();}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00048}00048\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00050}00050\ \ \ \ \ @Test}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00051}00051\ \ \ \ \ @JUnitPerfTest(threads\ =\ 5,\ durationMs\ =\ 6\_000,\ warmUpMs\ =\ 1\_000)}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00052}00052\ \ \ \ \ @JUnitPerfTestRequirement(executionsPerSec\ =\ 25,\ percentiles\ =\ \textcolor{stringliteral}{"{}95:500ms"{}})}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00053}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1_deuspotify_perf_i_t_a97a302051702747b2ef5c312692ae656}{00053}}\ \ \ \ \ public\ \textcolor{keywordtype}{void}\ testFindSongByIdPerformance()\ \{}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ deuspotifyService.findSong(1L);}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00055}00055\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00057}00057\ \ \ \ \ @Test}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00058}00058\ \ \ \ \ @JUnitPerfTest(threads\ =\ 10,\ durationMs\ =\ 6\_000,\ warmUpMs\ =\ 1\_000)}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00059}00059\ \ \ \ \ @JUnitPerfTestRequirement(executionsPerSec\ =\ 40,\ percentiles\ =\ \textcolor{stringliteral}{"{}95:300ms"{}})}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00060}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1_deuspotify_perf_i_t_aa1e705595754e5fb00b01137a4b72ba3}{00060}}\ \ \ \ \ public\ \textcolor{keywordtype}{void}\ testFindPlaylistByIdPerformance()\ \{}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00061}00061\ \ \ \ \ \ \ \ \ deuspotifyService.findPlaylist(1L);}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00062}00062\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00064}00064\ \ \ \ \ @Test}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00065}00065\ \ \ \ \ @JUnitPerfTest(threads\ =\ 15,\ durationMs\ =\ 8\_000,\ warmUpMs\ =\ 1\_500)}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00066}00066\ \ \ \ \ @JUnitPerfTestRequirement(executionsPerSec\ =\ 50,\ percentiles\ =\ \textcolor{stringliteral}{"{}90:200ms,95:300ms"{}})}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00067}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1_deuspotify_perf_i_t_a2650c6e6e1a4a9b8bc40f05d0bdbd189}{00067}}\ \ \ \ \ public\ \textcolor{keywordtype}{void}\ testGetAllProfilesPerformance()\ \{}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00068}00068\ \ \ \ \ \ \ \ \ profileService.getAllProfiles();}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00069}00069\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00071}00071\ \ \ \ \ @Test}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00072}00072\ \ \ \ \ @JUnitPerfTest(threads\ =\ 10,\ durationMs\ =\ 8\_000,\ warmUpMs\ =\ 1\_000)}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00073}00073\ \ \ \ \ @JUnitPerfTestRequirement(executionsPerSec\ =\ 40,\ percentiles\ =\ \textcolor{stringliteral}{"{}95:350ms"{}})}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00074}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1_deuspotify_perf_i_t_ae86d90ff0a2fc25d7c29e859200c4a66}{00074}}\ \ \ \ \ public\ \textcolor{keywordtype}{void}\ testLoginPerformance()\ \{}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00075}00075\ \ \ \ \ \ \ \ \ profileService.login(\textcolor{stringliteral}{"{}admin"{}},\ \textcolor{stringliteral}{"{}password"{}});}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00076}00076\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_deuspotify_perf_i_t_8java_source_l00077}00077\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Profile.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deuspotify</a> &gt; <a href="index.source.html" class="el_package">com.deusto.deuspotify.model</a> &gt; <span class="el_source">Profile.java</span></div><h1>Profile.java</h1><pre class="source lang-java linenums">package com.deusto.deuspotify.model;
+
+import jakarta.persistence.*;
+import java.util.List;
+
+/**
+ * Entity representing a user profile in the system.
+ * Each profile includes user credentials, social connections, favorite songs, and playlists.
+ */
+@Entity
+@Table(name = &quot;profiles&quot;)
+public class Profile {
+
+    /** Unique identifier of the profile. */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    /** Username used for login and identification. */
+    private String username;
+
+    /** User's password (should be stored in hashed form in a real-world application). */
+    private String password;
+
+    /** Email address associated with the user profile. */
+    private String email;
+
+    /** List of usernames representing the profile's friends. */
+    @ElementCollection
+    @CollectionTable(name = &quot;profile_friends&quot;, joinColumns = @JoinColumn(name = &quot;profile_id&quot;))
+    @Column(name = &quot;friend&quot;)
+    private List&lt;String&gt; friendsList;
+
+    /** Songs marked as favorites by the user. */
+    @ManyToMany
+    @JoinTable(
+        name = &quot;profile_favourite_song&quot;,
+        joinColumns = @JoinColumn(name = &quot;profile_id&quot;),
+        inverseJoinColumns = @JoinColumn(name = &quot;song_id&quot;)
+    )
+    private List&lt;Song&gt; favouriteSongs;
+
+    /** Playlists created by the user. */
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = &quot;profile_id&quot;)
+    private List&lt;Playlist&gt; playlists;
+
+    /** Indicates whether the profile belongs to an administrator. */
+    private boolean isAdmin;
+
+    /** Default constructor. */
+<span class="fc" id="L52">    public Profile() {}</span>
+
+    /**
+     * Constructs a Profile with the specified attributes.
+     *
+     * @param username        the username
+     * @param password        the password
+     * @param email           the email address
+     * @param friendsList     the list of friends
+     * @param favouriteSongs  the list of favorite songs
+     * @param playlists       the user's playlists
+     * @param isAdmin         true if the user is an admin
+     */
+    public Profile(String username, String password, String email, List&lt;String&gt; friendsList,
+<span class="fc" id="L66">                   List&lt;Song&gt; favouriteSongs, List&lt;Playlist&gt; playlists, boolean isAdmin) {</span>
+<span class="fc" id="L67">        this.username = username;</span>
+<span class="fc" id="L68">        this.password = password;</span>
+<span class="fc" id="L69">        this.email = email;</span>
+<span class="fc" id="L70">        this.friendsList = friendsList;</span>
+<span class="fc" id="L71">        this.favouriteSongs = favouriteSongs;</span>
+<span class="fc" id="L72">        this.playlists = playlists;</span>
+<span class="fc" id="L73">        this.isAdmin = isAdmin;</span>
+<span class="fc" id="L74">    }</span>
+
+    /** @return the profile ID */
+<span class="fc" id="L77">    public Long getId() { return id; }</span>
+
+    /** @param id the profile ID to set */
+<span class="fc" id="L80">    public void setId(Long id) { this.id = id; }</span>
+
+    /** @return the username */
+<span class="fc" id="L83">    public String getUsername() { return username; }</span>
+
+    /** @param username the username to set */
+<span class="fc" id="L86">    public void setUsername(String username) { this.username = username; }</span>
+
+    /** @return the password */
+<span class="fc" id="L89">    public String getPassword() { return password; }</span>
+
+    /** @param password the password to set */
+<span class="fc" id="L92">    public void setPassword(String password) { this.password = password; }</span>
+
+    /** @return the email address */
+<span class="fc" id="L95">    public String getEmail() { return email; }</span>
+
+    /** @param email the email address to set */
+<span class="fc" id="L98">    public void setEmail(String email) { this.email = email; }</span>
+
+    /** @return the list of friends */
+<span class="nc" id="L101">    public List&lt;String&gt; getFriendsList() { return friendsList; }</span>
+
+    /** @param friendsList the list of friends to set */
+<span class="nc" id="L104">    public void setFriendsList(List&lt;String&gt; friendsList) { this.friendsList = friendsList; }</span>
+
+    /** @return the list of favorite songs */
+<span class="nc" id="L107">    public List&lt;Song&gt; getFavouriteSongs() { return favouriteSongs; }</span>
+
+    /** @param favouriteSongs the list of favorite songs to set */
+<span class="nc" id="L110">    public void setFavouriteSongs(List&lt;Song&gt; favouriteSongs) { this.favouriteSongs = favouriteSongs; }</span>
+
+    /** @return the list of playlists created by the user */
+<span class="nc" id="L113">    public List&lt;Playlist&gt; getPlaylists() { return playlists; }</span>
+
+    /** @param playlists the list of playlists to set */
+<span class="nc" id="L116">    public void setPlaylists(List&lt;Playlist&gt; playlists) { this.playlists = playlists; }</span>
+
+    /** @return true if the profile has admin privileges */
+<span class="fc" id="L119">    public boolean isAdmin() { return isAdmin; }</span>
+
+    /** @param isAdmin sets whether the profile has admin privileges */
+<span class="fc" id="L122">    public void setAdmin(boolean isAdmin) { this.isAdmin = isAdmin; }</span>
+
+    @Override
+    public String toString() {
+<span class="nc" id="L126">        return &quot;Profile{&quot; +</span>
+                &quot;username='&quot; + username + '\'' +
+                &quot;, email='&quot; + email + '\'' +
+                &quot;, isAdmin=&quot; + isAdmin +
+                '}';
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

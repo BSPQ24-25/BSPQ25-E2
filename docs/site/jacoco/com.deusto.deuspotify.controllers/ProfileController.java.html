@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProfileController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deuspotify</a> &gt; <a href="index.source.html" class="el_package">com.deusto.deuspotify.controllers</a> &gt; <span class="el_source">ProfileController.java</span></div><h1>ProfileController.java</h1><pre class="source lang-java linenums">package com.deusto.deuspotify.controllers;
+
+import com.deusto.deuspotify.model.Profile;
+import com.deusto.deuspotify.services.ProfileService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * REST controller for managing user profiles.
+ * Handles CRUD operations and login for Profile entities.
+ */
+@RestController
+@RequestMapping(&quot;/api/profiles&quot;)
+@CrossOrigin
+public class ProfileController {
+
+    private final ProfileService profileService;
+
+    /**
+     * Constructs the ProfileController with a ProfileService.
+     * @param profileService the service managing profile logic
+     */
+<span class="fc" id="L26">    public ProfileController(ProfileService profileService) {</span>
+<span class="fc" id="L27">        this.profileService = profileService;</span>
+<span class="fc" id="L28">    }</span>
+
+    /**
+     * Retrieves a list of all user profiles.
+     * @return ResponseEntity containing the list of profiles
+     */
+    @GetMapping
+    public ResponseEntity&lt;List&lt;Profile&gt;&gt; getAllProfiles() {
+<span class="nc" id="L36">        return ResponseEntity.ok(profileService.getAllProfiles());</span>
+    }
+
+    /**
+     * Retrieves a profile by its ID.
+     * @param id the profile's ID
+     * @return ResponseEntity with the profile or 404 if not found
+     */
+    @GetMapping(&quot;/{id}&quot;)
+    public ResponseEntity&lt;Profile&gt; getProfileById(@PathVariable Long id) {
+<span class="nc" id="L46">        Optional&lt;Profile&gt; profile = profileService.getProfileById(id);</span>
+<span class="nc" id="L47">        return profile.map(ResponseEntity::ok)</span>
+<span class="nc" id="L48">                      .orElseGet(() -&gt; ResponseEntity.notFound().build());</span>
+    }
+
+    /**
+     * Creates a new user profile.
+     * @param profile the profile data to create
+     * @return ResponseEntity with created profile or error message
+     */
+    @PostMapping
+    public ResponseEntity&lt;?&gt; createProfile(@RequestBody Profile profile) {
+        try {
+<span class="nc" id="L59">            Profile savedProfile = profileService.registerUser(profile);</span>
+<span class="nc" id="L60">            return ResponseEntity.ok(savedProfile);</span>
+<span class="nc" id="L61">        } catch (Exception e) {</span>
+<span class="nc" id="L62">            return ResponseEntity.badRequest().body(&quot;Error: &quot; + e.getMessage());</span>
+        }
+    }
+
+    /**
+     * Updates an existing profile by ID.
+     * @param id the profile ID
+     * @param updatedProfile the updated profile data
+     * @return ResponseEntity with the updated profile or 404 if not found
+     */
+    @PutMapping(&quot;/{id}&quot;)
+    public ResponseEntity&lt;?&gt; updateProfile(@PathVariable Long id, @RequestBody Profile updatedProfile) {
+<span class="nc" id="L74">        return profileService.updateProfile(id, updatedProfile)</span>
+<span class="nc" id="L75">                .map(ResponseEntity::ok)</span>
+<span class="nc" id="L76">                .orElseGet(() -&gt; ResponseEntity.notFound().build());</span>
+    }
+
+    /**
+     * Deletes a profile by ID.
+     * @param id the profile ID
+     * @return ResponseEntity indicating the result of the deletion
+     */
+    @DeleteMapping(&quot;/{id}&quot;)
+    public ResponseEntity&lt;?&gt; deleteProfile(@PathVariable Long id) {
+<span class="nc bnc" id="L86" title="All 2 branches missed.">        if (profileService.deleteProfile(id)) {</span>
+<span class="nc" id="L87">            return ResponseEntity.ok(&quot;Profile successfully deleted.&quot;);</span>
+        } else {
+<span class="nc" id="L89">            return ResponseEntity.notFound().build();</span>
+        }
+    }
+
+    /**
+     * Attempts to log in a user with given credentials.
+     * @param loginRequest the profile object containing username and password
+     * @return ResponseEntity with the logged-in profile or 401 if unauthorized
+     */
+    @PostMapping(&quot;/login&quot;)
+    public ResponseEntity&lt;?&gt; login(@RequestBody Profile loginRequest) {
+<span class="nc" id="L100">        Optional&lt;Profile&gt; profile = profileService.login(loginRequest.getUsername(), loginRequest.getPassword());</span>
+<span class="nc" id="L101">        return profile.map(ResponseEntity::ok)</span>
+<span class="nc" id="L102">                    .orElseGet(() -&gt; ResponseEntity.status(401).body(null));</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

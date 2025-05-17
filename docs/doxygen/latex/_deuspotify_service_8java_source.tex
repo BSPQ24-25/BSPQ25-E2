@@ -1,0 +1,54 @@
+\doxysection{Deuspotify\+Service.\+java}
+\hypertarget{_deuspotify_service_8java_source}{}\label{_deuspotify_service_8java_source}\index{src/main/java/com/deusto/deuspotify/services/DeuspotifyService.java@{src/main/java/com/deusto/deuspotify/services/DeuspotifyService.java}}
+\mbox{\hyperlink{_deuspotify_service_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00001}\mbox{\hyperlink{namespacecom_1_1deusto_1_1deuspotify_1_1services}{00001}}\ \textcolor{keyword}{package\ }com.deusto.deuspotify.services;}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00003}00003\ \textcolor{keyword}{import}\ com.deusto.deuspotify.model.Song;}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00004}00004\ \textcolor{keyword}{import}\ com.deusto.deuspotify.model.Playlist;}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00005}00005\ \textcolor{keyword}{import}\ org.springframework.web.multipart.MultipartFile;}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00007}00007\ \textcolor{keyword}{import}\ java.util.Date;}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00008}00008\ \textcolor{keyword}{import}\ java.util.List;}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00009}00009\ \textcolor{keyword}{import}\ java.util.Optional;}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00015}\mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service}{00015}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{interface\ }\mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service}{DeuspotifyService}}\ \{}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00017}00017\ \ \ \ \ \textcolor{comment}{//\ ======================}}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00018}00018\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ SONGS}}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00019}00019\ \ \ \ \ \textcolor{comment}{//\ ======================}}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00026}\mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_af609bc67de04d7ef9d2490ff2ce08d08}{00026}}\ \ \ \ \ List<Song>\ \mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_af609bc67de04d7ef9d2490ff2ce08d08}{retrieveAllSongs}}();}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00034}\mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_a68dc4017bff9d31d6ff10ec0897a76fd}{00034}}\ \ \ \ \ Optional<Song>\ \mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_a68dc4017bff9d31d6ff10ec0897a76fd}{findSong}}(Long\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00042}\mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_acc152071a89e437316d0fbfda7bb83ae}{00042}}\ \ \ \ \ Song\ \mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_acc152071a89e437316d0fbfda7bb83ae}{addSong}}(Song\ song);}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00051}\mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_af2fbb74eb4233aef9426d18f7862d47a}{00051}}\ \ \ \ \ Song\ \mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_af2fbb74eb4233aef9426d18f7862d47a}{updateSong}}(Long\ \textcolor{keywordtype}{id},\ Song\ song);}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00058}\mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_af206180ca25b464b968ac5d847d1b89d}{00058}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_af206180ca25b464b968ac5d847d1b89d}{deleteSong}}(Long\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00072}\mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_a680acca3c2a4037f3580904fea58239b}{00072}}\ \ \ \ \ Song\ \mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_a680acca3c2a4037f3580904fea58239b}{addSongWithFile}}(String\ name,\ String\ album,\ String\ artists,\ String\ genres,\ \textcolor{keywordtype}{double}\ duration,\ Date\ dateOfRelease,\ MultipartFile\ file);}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00086}\mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_ab018d0694d5a5a40667ba9e86bc0891b}{00086}}\ \ \ \ \ Song\ \mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_ab018d0694d5a5a40667ba9e86bc0891b}{createSharedSong}}(String\ name,\ String\ album,\ String\ artists,\ String\ genres,\ \textcolor{keywordtype}{double}\ duration,\ Date\ dateOfRelease,\ String\ filePath);}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00088}00088\ \ \ \ \ \textcolor{comment}{//\ ======================}}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00089}00089\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ PLAYLISTS}}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00090}00090\ \ \ \ \ \textcolor{comment}{//\ ======================}}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00097}\mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_a471a37b4ccc64f072c9d816bbc47c3b8}{00097}}\ \ \ \ \ List<Playlist>\ \mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_a471a37b4ccc64f072c9d816bbc47c3b8}{retrieveAllPlaylists}}();}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00105}\mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_a1654dcedef67db71ad00b8fb9b98ae56}{00105}}\ \ \ \ \ Optional<Playlist>\ \mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_a1654dcedef67db71ad00b8fb9b98ae56}{findPlaylist}}(Long\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00113}\mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_aa8fe910a152b3bd97e89626e4c07382e}{00113}}\ \ \ \ \ Playlist\ \mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_aa8fe910a152b3bd97e89626e4c07382e}{addPlaylist}}(Playlist\ playlist);}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00122}\mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_ae73b4bbf1b880cea8429776ae0e6e651}{00122}}\ \ \ \ \ Playlist\ \mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_ae73b4bbf1b880cea8429776ae0e6e651}{updatePlaylist}}(Long\ \textcolor{keywordtype}{id},\ Playlist\ playlist);}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00129}\mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_af2262f240471a981dad00f1b7395caed}{00129}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_af2262f240471a981dad00f1b7395caed}{deletePlaylist}}(Long\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00137}\mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_a30255d0495bf004f3ecd0b977e1c01ea}{00137}}\ \ \ \ \ List<Song>\ \mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_a30255d0495bf004f3ecd0b977e1c01ea}{findSongsByIds}}(List<Long>\ songIds);}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00146}\mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_a84f729f346c82fcb7c0416c7ca8854a6}{00146}}\ \ \ \ \ Playlist\ \mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_a84f729f346c82fcb7c0416c7ca8854a6}{updatePlaylistSongs}}(Long\ playlistId,\ List<Long>\ songIds);}
+\DoxyCodeLine{\Hypertarget{_deuspotify_service_8java_source_l00147}00147\ \}}
+
+\end{DoxyCode}

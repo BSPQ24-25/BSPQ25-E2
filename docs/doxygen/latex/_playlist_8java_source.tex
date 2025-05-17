@@ -1,0 +1,98 @@
+\doxysection{Playlist.\+java}
+\hypertarget{_playlist_8java_source}{}\label{_playlist_8java_source}\index{src/main/java/com/deusto/deuspotify/model/Playlist.java@{src/main/java/com/deusto/deuspotify/model/Playlist.java}}
+\mbox{\hyperlink{_playlist_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00001}\mbox{\hyperlink{namespacecom_1_1deusto_1_1deuspotify_1_1model}{00001}}\ \textcolor{keyword}{package\ }com.deusto.deuspotify.model;}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00003}00003\ \textcolor{keyword}{import}\ jakarta.persistence.*;}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00004}00004\ \textcolor{keyword}{import}\ java.util.List;}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00010}00010\ @Entity}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00011}00011\ @Table(name\ =\ \textcolor{stringliteral}{"{}playlists"{}})}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00012}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{00012}}\ public\ class\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}}\ \{}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00015}00015\ \ \ \ \ @Id}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00016}00016\ \ \ \ \ @GeneratedValue(strategy\ =\ GenerationType.IDENTITY)}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00017}00017\ \ \ \ \ \textcolor{keyword}{private}\ Long\ id;}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00020}00020\ \ \ \ \ \textcolor{keyword}{private}\ String\ name;}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00023}00023\ \ \ \ \ @ElementCollection}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00024}00024\ \ \ \ \ \textcolor{keyword}{private}\ List<String>\ owners;}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00027}00027\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{boolean}\ isPublic;}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00030}00030\ \ \ \ \ @ManyToMany}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00031}00031\ \ \ \ \ @JoinTable(}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00032}00032\ \ \ \ \ \ \ \ \ name\ =\ \textcolor{stringliteral}{"{}playlist\_song"{}},}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ joinColumns\ =\ @JoinColumn(name\ =\ \textcolor{stringliteral}{"{}playlist\_id"{}}),}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00034}00034\ \ \ \ \ \ \ \ \ inverseJoinColumns\ =\ @JoinColumn(name\ =\ \textcolor{stringliteral}{"{}song\_id"{}})}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00035}00035\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00036}00036\ \ \ \ \ \textcolor{keyword}{private}\ List<Song>\ songs;}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00039}00039\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{int}\ numberOfSongs;}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00042}00042\ \ \ \ \ @ElementCollection}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00043}00043\ \ \ \ \ @Column(name\ =\ \textcolor{stringliteral}{"{}song\_order"{}})}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00044}00044\ \ \ \ \ \textcolor{keyword}{private}\ List<Integer>\ order;}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00047}00047\ \ \ \ \ \textcolor{keyword}{private}\ String\ orderType\ =\ \textcolor{stringliteral}{"{}none"{}};}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00050}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_adb80f1b338e664a7e4536cb69ba17135}{00050}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_adb80f1b338e664a7e4536cb69ba17135}{Playlist}}()\ \{\}}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00061}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a43414a5506f093b36226ee030ad6b173}{00061}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a43414a5506f093b36226ee030ad6b173}{Playlist}}(String\ name,\ List<String>\ owners,\ \textcolor{keywordtype}{boolean}\ isPublic,\ List<Song>\ songs,\ List<Integer>\ order)\ \{}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00062}00062\ \ \ \ \ \ \ \ \ this.name\ =\ name;}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00063}00063\ \ \ \ \ \ \ \ \ this.owners\ =\ owners;}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00064}00064\ \ \ \ \ \ \ \ \ this.isPublic\ =\ isPublic;}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00065}00065\ \ \ \ \ \ \ \ \ this.songs\ =\ songs;}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00066}00066\ \ \ \ \ \ \ \ \ this.numberOfSongs\ =\ songs\ !=\ \textcolor{keyword}{null}\ ?\ songs.size()\ :\ 0;}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00067}00067\ \ \ \ \ \ \ \ \ this.order\ =\ order;}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00068}00068\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00071}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_ad4c00ec19de66dd60e5d14fbaa3beb30}{00071}}\ \ \ \ \ \textcolor{keyword}{public}\ Long\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_ad4c00ec19de66dd60e5d14fbaa3beb30}{getId}}()\ \{\ \textcolor{keywordflow}{return}\ id;\ \}}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00074}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a1b5d50353efdd55486875ca756bb65fe}{00074}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a1b5d50353efdd55486875ca756bb65fe}{setId}}(Long\ \textcolor{keywordtype}{id})\ \{\ this.id\ =\ id;\ \}}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00077}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a168e32ed6a17d95b8e04aeb31e7ed645}{00077}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a168e32ed6a17d95b8e04aeb31e7ed645}{getName}}()\ \{\ \textcolor{keywordflow}{return}\ name;\ \}}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00080}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a962e49d054176316410d07d45d80ef4b}{00080}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a962e49d054176316410d07d45d80ef4b}{setName}}(String\ name)\ \{\ this.name\ =\ name;\ \}}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00083}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_ac120abcefd2925b18b2603c381b3cd9b}{00083}}\ \ \ \ \ \textcolor{keyword}{public}\ List<String>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_ac120abcefd2925b18b2603c381b3cd9b}{getOwners}}()\ \{\ \textcolor{keywordflow}{return}\ owners;\ \}}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00086}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a839490a7218c52464c90c69a8563b9aa}{00086}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a839490a7218c52464c90c69a8563b9aa}{setOwners}}(List<String>\ owners)\ \{\ this.owners\ =\ owners;\ \}}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00089}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_afc9a13235acbe12194e1c71d094ddf40}{00089}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_afc9a13235acbe12194e1c71d094ddf40}{isPublic}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_afc9a13235acbe12194e1c71d094ddf40}{isPublic}};\ \}}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00092}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_abbc76280f389509b495a53a0cd7440c8}{00092}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_abbc76280f389509b495a53a0cd7440c8}{setPublic}}(\textcolor{keywordtype}{boolean}\ isPublic)\ \{\ this.isPublic\ =\ isPublic;\ \}}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00095}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a40719e6c50d7791c214ed6130339c3ce}{00095}}\ \ \ \ \ \textcolor{keyword}{public}\ List<Song>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a40719e6c50d7791c214ed6130339c3ce}{getSongs}}()\ \{\ \textcolor{keywordflow}{return}\ songs;\ \}}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00102}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_af922ddea356269da7af372a5dffefe72}{00102}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_af922ddea356269da7af372a5dffefe72}{setSongs}}(List<Song>\ songs)\ \{}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00103}00103\ \ \ \ \ \ \ \ \ this.songs\ =\ songs;}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00104}00104\ \ \ \ \ \ \ \ \ this.numberOfSongs\ =\ songs\ !=\ \textcolor{keyword}{null}\ ?\ songs.size()\ :\ 0;}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00105}00105\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00108}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a7adfaaf6a76b2f42e8013752d82934df}{00108}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a7adfaaf6a76b2f42e8013752d82934df}{getNumberOfSongs}}()\ \{\ \textcolor{keywordflow}{return}\ numberOfSongs;\ \}}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00111}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a86ae5f81c0820faaadcb4b7ab7b8e701}{00111}}\ \ \ \ \ \textcolor{keyword}{public}\ List<Integer>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a86ae5f81c0820faaadcb4b7ab7b8e701}{getOrder}}()\ \{\ \textcolor{keywordflow}{return}\ order;\ \}}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00114}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_ad90c303b764cc92b8082e172b3876bd0}{00114}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_ad90c303b764cc92b8082e172b3876bd0}{setOrder}}(List<Integer>\ order)\ \{\ this.order\ =\ order;\ \}}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00117}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a66032954125f999ebb94087a98ddb515}{00117}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a66032954125f999ebb94087a98ddb515}{getOrderType}}()\ \{\ \textcolor{keywordflow}{return}\ orderType;\ \}}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00120}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_ae7873f9e86f3ff242284c190f7355da1}{00120}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_ae7873f9e86f3ff242284c190f7355da1}{setOrderType}}(String\ orderType)\ \{\ this.orderType\ =\ orderType;\ \}}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00122}00122\ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00123}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a2e20bfb527fead39df19889257d78bdd}{00123}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a2e20bfb527fead39df19889257d78bdd}{toString}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00124}00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Playlist\{"{}}\ +}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}name='"{}}\ +\ name\ +\ \textcolor{charliteral}{'\(\backslash\)''}\ +}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{},\ owners="{}}\ +\ owners\ +}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{},\ isPublic="{}}\ +\ isPublic\ +}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{},\ numberOfSongs="{}}\ +\ numberOfSongs\ +}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{},\ order="{}}\ +\ order\ +}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{},\ orderType="{}}\ +\ orderType\ +}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{charliteral}{'\}'};}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00132}00132\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_playlist_8java_source_l00133}00133\ \}}
+
+\end{DoxyCode}
