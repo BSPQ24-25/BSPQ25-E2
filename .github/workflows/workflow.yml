@@ -85,13 +85,15 @@ jobs:
           mkdir -p docs
           pandoc README.md -o docs/index.html
 
-      - name: Copy site output to docs/site and docs/doxygen folder to docs/doxygen
+      - name: Copy site output to docs/site, docs/doxygen folder to docs/doxygen and perf-reports to docs/perf
         run: |
           mkdir -p docs
           mkdir -p docs/site
           mkdir -p docs/doxygen
+          mkdir -p docs/perf
           cp -r target/site/* docs/site/
           cp -r target/doxygen/* docs/doxygen/
+          cp -r target/reports/* docs/perf
 
       - name: Disable Jekyll on GitHub Pages
         run: touch docs/.nojekyll
