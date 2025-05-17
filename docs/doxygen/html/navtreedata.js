@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "SpringBootLibrary", "index.html", [
+    [ "Test List", "test.html", null ],
     [ "Packages", "namespaces.html", [
       [ "Package List", "namespaces.html", null ]
     ] ],

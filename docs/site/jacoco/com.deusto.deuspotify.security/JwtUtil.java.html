@@ -10,40 +10,82 @@ import org.springframework.stereotype.Component;
 import java.security.Key;
 import java.util.Date;
 import java.util.function.Function;
-
+/**
+ * @class JwtUtil
+ * @brief Utility class for generating and validating JSON Web Tokens (JWT).
+ *
+ * This class handles the creation of JWT tokens and provides methods for extracting claims
+ * and validating tokens.
+ */
 @Component
-<span class="fc" id="L15">public class JwtUtil {</span>
+<span class="fc" id="L21">public class JwtUtil {</span>
 
-<span class="fc" id="L17">    private final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256); // Clave segura</span>
+    /**
+     * Secret key used to sign JWT tokens using HS256 algorithm.
+     */
+<span class="fc" id="L26">    private final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);</span>
 
+    /**
+     * Generates a JWT token for the given username.
+     * 
+     * @param username The username for which the token is generated.
+     * @return A signed JWT token string.
+     */
     public String generateToken(String username) {
-<span class="nc" id="L20">        return Jwts.builder()</span>
-<span class="nc" id="L21">                .setSubject(username)</span>
-<span class="nc" id="L22">                .setIssuedAt(new Date())</span>
-<span class="nc" id="L23">                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // 10 horas</span>
-<span class="nc" id="L24">                .signWith(SECRET_KEY)</span>
-<span class="nc" id="L25">                .compact();</span>
+<span class="nc" id="L35">        return Jwts.builder()</span>
+<span class="nc" id="L36">                .setSubject(username)</span>
+<span class="nc" id="L37">                .setIssuedAt(new Date())</span>
+<span class="nc" id="L38">                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // 10 hours</span>
+<span class="nc" id="L39">                .signWith(SECRET_KEY)</span>
+<span class="nc" id="L40">                .compact();</span>
     }
 
+    /**
+     * Extracts the username from the given token.
+     * 
+     * @param token The JWT token.
+     * @return The username (subject) embedded in the token.
+     */
     public String extractUsername(String token) {
-<span class="nc" id="L29">        return extractClaim(token, Claims::getSubject);</span>
+<span class="nc" id="L50">        return extractClaim(token, Claims::getSubject);</span>
     }
 
+    /**
+     * Extracts a specific claim from the token using a claim resolver function.
+     * 
+     * @param token The JWT token.
+     * @param claimsResolver A function to extract a specific claim.
+     * @param &lt;T&gt; The type of the claim.
+     * @return The extracted claim value.
+     */
     public &lt;T&gt; T extractClaim(String token, Function&lt;Claims, T&gt; claimsResolver) {
-<span class="nc" id="L33">        Claims claims = extractAllClaims(token);</span>
-<span class="nc" id="L34">        return claimsResolver.apply(claims);</span>
+<span class="nc" id="L62">        Claims claims = extractAllClaims(token);</span>
+<span class="nc" id="L63">        return claimsResolver.apply(claims);</span>
     }
 
+    /**
+     * Extracts all claims from the token.
+     * 
+     * @param token The JWT token.
+     * @return All claims contained in the token.
+     */
     private Claims extractAllClaims(String token) {
-<span class="nc" id="L38">        Jws&lt;Claims&gt; claimsJws = Jwts.parserBuilder()</span>
-<span class="nc" id="L39">                .setSigningKey(SECRET_KEY) // Usar parserBuilder()</span>
-<span class="nc" id="L40">                .build() // Construir antes de parsear</span>
-<span class="nc" id="L41">                .parseClaimsJws(token);</span>
-<span class="nc" id="L42">        return claimsJws.getBody();</span>
+<span class="nc" id="L73">        Jws&lt;Claims&gt; claimsJws = Jwts.parserBuilder()</span>
+<span class="nc" id="L74">                .setSigningKey(SECRET_KEY)</span>
+<span class="nc" id="L75">                .build()</span>
+<span class="nc" id="L76">                .parseClaimsJws(token);</span>
+<span class="nc" id="L77">        return claimsJws.getBody();</span>
     }
 
+    /**
+     * Validates the token by checking if it belongs to the provided username.
+     * 
+     * @param token The JWT token.
+     * @param username The username to compare with the token's subject.
+     * @return True if the token is valid and belongs to the username; otherwise, false.
+     */
     public boolean validateToken(String token, String username) {
-<span class="nc" id="L46">        return extractUsername(token).equals(username);</span>
+<span class="nc" id="L88">        return extractUsername(token).equals(username);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

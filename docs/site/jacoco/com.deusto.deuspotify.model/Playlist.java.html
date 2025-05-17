@@ -3,21 +3,35 @@
 import jakarta.persistence.*;
 import java.util.List;
 
+/**
+ * @class Playlist
+ * @brief Represents a music playlist in the system.
+ *
+ * A playlist contains a name, list of owners, visibility flag, songs, and order information.
+ */
 @Entity
 @Table(name = &quot;playlists&quot;)
 public class Playlist {
 
+    /** Unique identifier of the playlist (primary key). */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /** Name of the playlist. */
     private String name;
 
+    /** List of usernames who own the playlist. */
     @ElementCollection
     private List&lt;String&gt; owners;
 
+    /** Flag indicating if the playlist is public. */
     private boolean isPublic;
 
+    /**
+     * List of songs included in the playlist.
+     * Many-to-many relationship mapped through the playlist_song join table.
+     */
     @ManyToMany
     @JoinTable(
         name = &quot;playlist_song&quot;,
@@ -26,56 +40,106 @@ public class Playlist {
     )
     private List&lt;Song&gt; songs;
 
+    /** Number of songs in the playlist. */
     private int numberOfSongs;
 
+    /** Custom order of songs (list of song indices). */
     @ElementCollection
     @Column(name = &quot;song_order&quot;)
     private List&lt;Integer&gt; order;
 
-<span class="fc" id="L35">    private String orderType = &quot;none&quot;; // 🔥 Nuevo campo: &quot;none&quot;, &quot;duration&quot;, &quot;creation&quot;</span>
+    /**
+     * Type of order applied to the playlist.
+     * Possible values: &quot;none&quot;, &quot;duration&quot;, &quot;creation&quot;.
+     */
+<span class="fc" id="L55">    private String orderType = &quot;none&quot;;</span>
 
-<span class="fc" id="L37">    public Playlist() {}</span>
+    /**
+     * Default constructor.
+     */
+<span class="fc" id="L60">    public Playlist() {}</span>
 
-<span class="fc" id="L39">    public Playlist(String name, List&lt;String&gt; owners, boolean isPublic, List&lt;Song&gt; songs, List&lt;Integer&gt; order) {</span>
-<span class="fc" id="L40">        this.name = name;</span>
-<span class="fc" id="L41">        this.owners = owners;</span>
-<span class="fc" id="L42">        this.isPublic = isPublic;</span>
-<span class="fc" id="L43">        this.songs = songs;</span>
-<span class="pc bpc" id="L44" title="1 of 2 branches missed.">        this.numberOfSongs = songs != null ? songs.size() : 0;</span>
-<span class="fc" id="L45">        this.order = order;</span>
-<span class="fc" id="L46">    }</span>
+    /**
+     * Full constructor.
+     *
+     * @param name Name of the playlist.
+     * @param owners List of playlist owners.
+     * @param isPublic Visibility flag.
+     * @param songs List of songs.
+     * @param order Custom order of songs.
+     */
+<span class="fc" id="L71">    public Playlist(String name, List&lt;String&gt; owners, boolean isPublic, List&lt;Song&gt; songs, List&lt;Integer&gt; order) {</span>
+<span class="fc" id="L72">        this.name = name;</span>
+<span class="fc" id="L73">        this.owners = owners;</span>
+<span class="fc" id="L74">        this.isPublic = isPublic;</span>
+<span class="fc" id="L75">        this.songs = songs;</span>
+<span class="pc bpc" id="L76" title="1 of 2 branches missed.">        this.numberOfSongs = songs != null ? songs.size() : 0;</span>
+<span class="fc" id="L77">        this.order = order;</span>
+<span class="fc" id="L78">    }</span>
 
-    // Getters y setters
+    /// @name Getters and Setters
+    /// @{
 
-<span class="fc" id="L50">    public Long getId() { return id; }</span>
-<span class="fc" id="L51">    public void setId(Long id) { this.id = id; }</span>
+    /** @return Playlist ID. */
+<span class="fc" id="L84">    public Long getId() { return id; }</span>
 
-<span class="fc" id="L53">    public String getName() { return name; }</span>
-<span class="fc" id="L54">    public void setName(String name) { this.name = name; }</span>
+    /** @param id Playlist ID. */
+<span class="fc" id="L87">    public void setId(Long id) { this.id = id; }</span>
 
-<span class="fc" id="L56">    public List&lt;String&gt; getOwners() { return owners; }</span>
-<span class="fc" id="L57">    public void setOwners(List&lt;String&gt; owners) { this.owners = owners; }</span>
+    /** @return Playlist name. */
+<span class="fc" id="L90">    public String getName() { return name; }</span>
 
-<span class="fc" id="L59">    public boolean isPublic() { return isPublic; }</span>
-<span class="fc" id="L60">    public void setPublic(boolean isPublic) { this.isPublic = isPublic; }</span>
+    /** @param name New name. */
+<span class="fc" id="L93">    public void setName(String name) { this.name = name; }</span>
 
-<span class="fc" id="L62">    public List&lt;Song&gt; getSongs() { return songs; }</span>
+    /** @return List of owners. */
+<span class="fc" id="L96">    public List&lt;String&gt; getOwners() { return owners; }</span>
+
+    /** @param owners New list of owners. */
+<span class="fc" id="L99">    public void setOwners(List&lt;String&gt; owners) { this.owners = owners; }</span>
+
+    /** @return True if the playlist is public. */
+<span class="fc" id="L102">    public boolean isPublic() { return isPublic; }</span>
+
+    /** @param isPublic Set playlist visibility. */
+<span class="fc" id="L105">    public void setPublic(boolean isPublic) { this.isPublic = isPublic; }</span>
+
+    /** @return List of songs in the playlist. */
+<span class="fc" id="L108">    public List&lt;Song&gt; getSongs() { return songs; }</span>
+
+    /**
+     * Set the list of songs and update the number of songs.
+     * @param songs New list of songs.
+     */
     public void setSongs(List&lt;Song&gt; songs) {
-<span class="fc" id="L64">        this.songs = songs;</span>
-<span class="pc bpc" id="L65" title="1 of 2 branches missed.">        this.numberOfSongs = songs != null ? songs.size() : 0;</span>
-<span class="fc" id="L66">    }</span>
+<span class="fc" id="L115">        this.songs = songs;</span>
+<span class="pc bpc" id="L116" title="1 of 2 branches missed.">        this.numberOfSongs = songs != null ? songs.size() : 0;</span>
+<span class="fc" id="L117">    }</span>
 
-<span class="fc" id="L68">    public int getNumberOfSongs() { return numberOfSongs; }</span>
+    /** @return Number of songs. */
+<span class="fc" id="L120">    public int getNumberOfSongs() { return numberOfSongs; }</span>
 
-<span class="fc" id="L70">    public List&lt;Integer&gt; getOrder() { return order; }</span>
-<span class="fc" id="L71">    public void setOrder(List&lt;Integer&gt; order) { this.order = order; }</span>
+    /** @return Custom song order. */
+<span class="fc" id="L123">    public List&lt;Integer&gt; getOrder() { return order; }</span>
 
-<span class="fc" id="L73">    public String getOrderType() { return orderType; }</span>
-<span class="fc" id="L74">    public void setOrderType(String orderType) { this.orderType = orderType; }</span>
+    /** @param order New order. */
+<span class="fc" id="L126">    public void setOrder(List&lt;Integer&gt; order) { this.order = order; }</span>
 
+    /** @return Type of order applied to the playlist. */
+<span class="fc" id="L129">    public String getOrderType() { return orderType; }</span>
+
+    /** @param orderType Set the type of order. */
+<span class="fc" id="L132">    public void setOrderType(String orderType) { this.orderType = orderType; }</span>
+
+    /// @}
+
+    /**
+     * @brief String representation of the playlist object.
+     * @return Formatted string.
+     */
     @Override
     public String toString() {
-<span class="nc" id="L78">        return &quot;Playlist{&quot; +</span>
+<span class="nc" id="L142">        return &quot;Playlist{&quot; +</span>
                 &quot;name='&quot; + name + '\'' +
                 &quot;, owners=&quot; + owners +
                 &quot;, isPublic=&quot; + isPublic +

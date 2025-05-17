@@ -95,27 +95,38 @@ $(document).ready(function(){initNavTree('classcom_1_1deusto_1_1deuspotify_1_1co
   <div class="headertitle"><div class="title">com.deusto.deuspotify.controllers.SongController Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Controller that provides endpoints to manage songs including CRUD operations and file upload.  
+ <a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a49839a11b943fded422a64110178f380" id="r_a49839a11b943fded422a64110178f380"><td class="memItemLeft" align="right" valign="top">List&lt; Song &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller.html#a49839a11b943fded422a64110178f380">getAllSongs</a> ()</td></tr>
+<tr class="memdesc:a49839a11b943fded422a64110178f380"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves all songs.  <br /></td></tr>
 <tr class="separator:a49839a11b943fded422a64110178f380"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a0942dab7084044f04969e56749f45e" id="r_a5a0942dab7084044f04969e56749f45e"><td class="memItemLeft" align="right" valign="top">Optional&lt; Song &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller.html#a5a0942dab7084044f04969e56749f45e">getSongById</a> (@PathVariable Long id)</td></tr>
+<tr class="memdesc:a5a0942dab7084044f04969e56749f45e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a song by its ID.  <br /></td></tr>
 <tr class="separator:a5a0942dab7084044f04969e56749f45e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7582865a2113822f5da04fbc440d078e" id="r_a7582865a2113822f5da04fbc440d078e"><td class="memItemLeft" align="right" valign="top">Song&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller.html#a7582865a2113822f5da04fbc440d078e">addSong</a> (@RequestBody Song song)</td></tr>
+<tr class="memdesc:a7582865a2113822f5da04fbc440d078e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new song without a file upload.  <br /></td></tr>
 <tr class="separator:a7582865a2113822f5da04fbc440d078e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37512e9e2be49f40a819c2a7bb0044e5" id="r_a37512e9e2be49f40a819c2a7bb0044e5"><td class="memItemLeft" align="right" valign="top">Song&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller.html#a37512e9e2be49f40a819c2a7bb0044e5">addSongWithFile</a> ( @RequestParam(&quot;name&quot;) String name, @RequestParam(&quot;album&quot;) String album, @RequestParam(&quot;artists&quot;) String artists, @RequestParam(&quot;genres&quot;) String genres, @RequestParam(&quot;duration&quot;) double duration, @RequestParam(&quot;date_of_release&quot;) @DateTimeFormat(pattern=&quot;yyyy-MM-dd&quot;) Date dateOfRelease, @RequestParam(&quot;file&quot;) org.springframework.web.multipart.MultipartFile file)</td></tr>
+<tr class="memdesc:a37512e9e2be49f40a819c2a7bb0044e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new song with an audio file upload.  <br /></td></tr>
 <tr class="separator:a37512e9e2be49f40a819c2a7bb0044e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17999e85947ce5bddd6cae3f2d0527fc" id="r_a17999e85947ce5bddd6cae3f2d0527fc"><td class="memItemLeft" align="right" valign="top">ResponseEntity&lt; String &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller.html#a17999e85947ce5bddd6cae3f2d0527fc">createSharedSong</a> ( @RequestParam(&quot;name&quot;) String name, @RequestParam(&quot;album&quot;) String album, @RequestParam(&quot;artists&quot;) String artists, @RequestParam(&quot;genres&quot;) String genres, @RequestParam(&quot;duration&quot;) double duration, @RequestParam(&quot;dateOfRelease&quot;) String dateOfRelease, @RequestParam(&quot;filePath&quot;) String filePath)</td></tr>
+<tr class="memdesc:a17999e85947ce5bddd6cae3f2d0527fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a shared song using metadata and file path.  <br /></td></tr>
 <tr class="separator:a17999e85947ce5bddd6cae3f2d0527fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e8968316ee8153e8a6f3f372633b7b7" id="r_a4e8968316ee8153e8a6f3f372633b7b7"><td class="memItemLeft" align="right" valign="top">ResponseEntity&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller.html#a4e8968316ee8153e8a6f3f372633b7b7">updateSongDate</a> ( @PathVariable Long id, @RequestParam(&quot;date_of_release&quot;) long dateOfReleaseMillis)</td></tr>
+<tr class="memdesc:a4e8968316ee8153e8a6f3f372633b7b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the release date of a song.  <br /></td></tr>
 <tr class="separator:a4e8968316ee8153e8a6f3f372633b7b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85dfa1284cb139f2c1471bb72965c7ae" id="r_a85dfa1284cb139f2c1471bb72965c7ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller.html#a85dfa1284cb139f2c1471bb72965c7ae">deleteSong</a> (@PathVariable Long id)</td></tr>
+<tr class="memdesc:a85dfa1284cb139f2c1471bb72965c7ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a song by ID.  <br /></td></tr>
 <tr class="separator:a85dfa1284cb139f2c1471bb72965c7ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_song_controller_8java_source.html#l00026">26</a> of file <a class="el" href="_song_controller_8java_source.html">SongController.java</a>.</p>
+<div class="textblock"><p>Controller that provides endpoints to manage songs including CRUD operations and file upload. </p>
+
+<p class="definition">Definition at line <a class="el" href="_song_controller_8java_source.html#l00025">25</a> of file <a class="el" href="_song_controller_8java_source.html">SongController.java</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a7582865a2113822f5da04fbc440d078e" name="a7582865a2113822f5da04fbc440d078e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7582865a2113822f5da04fbc440d078e">&#9670;&#160;</a></span>addSong()</h2>
@@ -133,7 +144,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_song_controller_8java_source.html#l00042">42</a> of file <a class="el" href="_song_controller_8java_source.html">SongController.java</a>.</p>
+<p>Adds a new song without a file upload. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">song</td><td>The song object to be added. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The saved song. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_song_controller_8java_source.html#l00055">55</a> of file <a class="el" href="_song_controller_8java_source.html">SongController.java</a>.</p>
 
 </div>
 </div>
@@ -193,7 +213,22 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_song_controller_8java_source.html#l00047">47</a> of file <a class="el" href="_song_controller_8java_source.html">SongController.java</a>.</p>
+<p>Adds a new song with an audio file upload. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Name of the song. </td></tr>
+    <tr><td class="paramname">album</td><td>Name of the album. </td></tr>
+    <tr><td class="paramname">artists</td><td>Comma-separated list of artists. </td></tr>
+    <tr><td class="paramname">genres</td><td>Comma-separated list of genres. </td></tr>
+    <tr><td class="paramname">duration</td><td>Duration in seconds. </td></tr>
+    <tr><td class="paramname">dateOfRelease</td><td>Release date. </td></tr>
+    <tr><td class="paramname">file</td><td>Multipart file upload of the song. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The saved song. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_song_controller_8java_source.html#l00071">71</a> of file <a class="el" href="_song_controller_8java_source.html">SongController.java</a>.</p>
 
 </div>
 </div>
@@ -253,7 +288,22 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_song_controller_8java_source.html#l00059">59</a> of file <a class="el" href="_song_controller_8java_source.html">SongController.java</a>.</p>
+<p>Creates a shared song using metadata and file path. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Name of the song. </td></tr>
+    <tr><td class="paramname">album</td><td>Album name. </td></tr>
+    <tr><td class="paramname">artists</td><td>Artists involved. </td></tr>
+    <tr><td class="paramname">genres</td><td>Music genres. </td></tr>
+    <tr><td class="paramname">duration</td><td>Duration in seconds. </td></tr>
+    <tr><td class="paramname">dateOfRelease</td><td>Date string in yyyy-MM-dd format. </td></tr>
+    <tr><td class="paramname">filePath</td><td>Local path to the song file. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>HTML response that redirects to the songs page. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_song_controller_8java_source.html#l00094">94</a> of file <a class="el" href="_song_controller_8java_source.html">SongController.java</a>.</p>
 
 </div>
 </div>
@@ -273,7 +323,15 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_song_controller_8java_source.html#l00108">108</a> of file <a class="el" href="_song_controller_8java_source.html">SongController.java</a>.</p>
+<p>Deletes a song by ID. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>ID of the song. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_song_controller_8java_source.html#l00152">152</a> of file <a class="el" href="_song_controller_8java_source.html">SongController.java</a>.</p>
 
 </div>
 </div>
@@ -292,7 +350,10 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_song_controller_8java_source.html#l00032">32</a> of file <a class="el" href="_song_controller_8java_source.html">SongController.java</a>.</p>
+<p>Retrieves all songs. </p>
+<dl class="section return"><dt>Returns</dt><dd>List of all songs in the system. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_song_controller_8java_source.html#l00035">35</a> of file <a class="el" href="_song_controller_8java_source.html">SongController.java</a>.</p>
 
 </div>
 </div>
@@ -312,7 +373,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_song_controller_8java_source.html#l00037">37</a> of file <a class="el" href="_song_controller_8java_source.html">SongController.java</a>.</p>
+<p>Retrieves a song by its ID. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>ID of the song. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Optional containing the song if found. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_song_controller_8java_source.html#l00045">45</a> of file <a class="el" href="_song_controller_8java_source.html">SongController.java</a>.</p>
 
 </div>
 </div>
@@ -342,7 +412,17 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_song_controller_8java_source.html#l00090">90</a> of file <a class="el" href="_song_controller_8java_source.html">SongController.java</a>.</p>
+<p>Updates the release date of a song. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>ID of the song. </td></tr>
+    <tr><td class="paramname">dateOfReleaseMillis</td><td>New release date in milliseconds. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ResponseEntity with status OK or NotFound. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_song_controller_8java_source.html#l00130">130</a> of file <a class="el" href="_song_controller_8java_source.html">SongController.java</a>.</p>
 
 </div>
 </div>
@@ -355,7 +435,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>com</b></li><li class="navelem"><b>deusto</b></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify.html">deuspotify</a></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify_1_1controllers.html">controllers</a></li><li class="navelem"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller.html">SongController</a></li>
-    <li class="footer">Generated on Sat May 17 2025 18:28:41 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Sat May 17 2025 18:51:33 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

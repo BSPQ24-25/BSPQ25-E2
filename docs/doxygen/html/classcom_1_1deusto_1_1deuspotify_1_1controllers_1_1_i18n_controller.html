@@ -95,17 +95,23 @@ $(document).ready(function(){initNavTree('classcom_1_1deusto_1_1deuspotify_1_1co
   <div class="headertitle"><div class="title">com.deusto.deuspotify.controllers.I18nController Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>REST controller for retrieving internationalized message strings based on locale.  
+ <a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a98395c12cb003c8ec087d335e262a113" id="r_a98395c12cb003c8ec087d335e262a113"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller.html#a98395c12cb003c8ec087d335e262a113">I18nController</a> (MessageSource messageSource)</td></tr>
+<tr class="memdesc:a98395c12cb003c8ec087d335e262a113"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for I18nController.  <br /></td></tr>
 <tr class="separator:a98395c12cb003c8ec087d335e262a113"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2508f2c3c5582a01647c84c24225ca93" id="r_a2508f2c3c5582a01647c84c24225ca93"><td class="memItemLeft" align="right" valign="top">Map&lt; String, String &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller.html#a2508f2c3c5582a01647c84c24225ca93">getTranslations</a> (@RequestParam(value=&quot;lang&quot;, required=false) String lang)  throws IOException </td></tr>
+<tr class="memdesc:a2508f2c3c5582a01647c84c24225ca93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns translated key-value pairs based on the provided language.  <br /></td></tr>
 <tr class="separator:a2508f2c3c5582a01647c84c24225ca93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_i18n_controller_8java_source.html#l00019">19</a> of file <a class="el" href="_i18n_controller_8java_source.html">I18nController.java</a>.</p>
+<div class="textblock"><p>REST controller for retrieving internationalized message strings based on locale. </p>
+
+<p class="definition">Definition at line <a class="el" href="_i18n_controller_8java_source.html#l00026">26</a> of file <a class="el" href="_i18n_controller_8java_source.html">I18nController.java</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a98395c12cb003c8ec087d335e262a113" name="a98395c12cb003c8ec087d335e262a113"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a98395c12cb003c8ec087d335e262a113">&#9670;&#160;</a></span>I18nController()</h2>
@@ -123,7 +129,15 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_i18n_controller_8java_source.html#l00035">35</a> of file <a class="el" href="_i18n_controller_8java_source.html">I18nController.java</a>.</p>
+<p>Constructor for I18nController. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">messageSource</td><td>Spring's message source for resolving messages. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_i18n_controller_8java_source.html#l00046">46</a> of file <a class="el" href="_i18n_controller_8java_source.html">I18nController.java</a>.</p>
 
 </div>
 </div>
@@ -144,7 +158,22 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_i18n_controller_8java_source.html#l00040">40</a> of file <a class="el" href="_i18n_controller_8java_source.html">I18nController.java</a>.</p>
+<p>Returns translated key-value pairs based on the provided language. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lang</td><td>Language code ("es", "en", "eu"). Defaults to "es". </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A map of message keys and their localized translations. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">IOException</td><td>If there's an error reading the property files. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_i18n_controller_8java_source.html#l00057">57</a> of file <a class="el" href="_i18n_controller_8java_source.html">I18nController.java</a>.</p>
 
 </div>
 </div>
@@ -157,7 +186,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>com</b></li><li class="navelem"><b>deusto</b></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify.html">deuspotify</a></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify_1_1controllers.html">controllers</a></li><li class="navelem"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller.html">I18nController</a></li>
-    <li class="footer">Generated on Sat May 17 2025 18:28:41 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Sat May 17 2025 18:51:33 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

@@ -1,5 +1,10 @@
 \doxysection{com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service Interface Reference}
 \hypertarget{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service}{}\label{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service}\index{com.deusto.deuspotify.services.DeuspotifyService@{com.deusto.deuspotify.services.DeuspotifyService}}
+
+
+Defines the service layer operations for managing songs and playlists.  
+
+
 Inheritance diagram for com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -40,9 +45,11 @@ Playlist \mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_d
 
 
 \doxysubsection{Detailed Description}
+Defines the service layer operations for managing songs and playlists. 
 
+This interface provides abstract methods for CRUD operations on songs and playlists, including operations for file uploads and playlist-\/song associations. 
 
-Definition at line \mbox{\hyperlink{_deuspotify_service_8java_source_l00010}{10}} of file \mbox{\hyperlink{_deuspotify_service_8java_source}{Deuspotify\+Service.\+java}}.
+Definition at line \mbox{\hyperlink{_deuspotify_service_8java_source_l00016}{16}} of file \mbox{\hyperlink{_deuspotify_service_8java_source}{Deuspotify\+Service.\+java}}.
 
 
 
@@ -53,6 +60,16 @@ Definition at line \mbox{\hyperlink{_deuspotify_service_8java_source_l00010}{10}
 \doxysubsubsection{\texorpdfstring{addPlaylist()}{addPlaylist()}}
 {\footnotesize\ttfamily Playlist com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service.\+add\+Playlist (\begin{DoxyParamCaption}\item[{Playlist}]{playlist }\end{DoxyParamCaption})}
 
+Adds a new playlist.
+
+
+\begin{DoxyParams}{Parameters}
+{\em playlist} & The playlist to add. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The saved playlist. 
+\end{DoxyReturn}
 
 
 Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl_a11b2fb37cb5824345d471f95f92c9f33}{com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service\+Impl}}.
@@ -63,6 +80,16 @@ Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1
 \doxysubsubsection{\texorpdfstring{addSong()}{addSong()}}
 {\footnotesize\ttfamily Song com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service.\+add\+Song (\begin{DoxyParamCaption}\item[{Song}]{song }\end{DoxyParamCaption})}
 
+Adds a new song.
+
+
+\begin{DoxyParams}{Parameters}
+{\em song} & The song to be added. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The saved song. 
+\end{DoxyReturn}
 
 
 Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl_a223546a7b7cd1fb9bfe5ff874fc4cc58}{com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service\+Impl}}.
@@ -73,6 +100,28 @@ Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1
 \doxysubsubsection{\texorpdfstring{addSongWithFile()}{addSongWithFile()}}
 {\footnotesize\ttfamily Song com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service.\+add\+Song\+With\+File (\begin{DoxyParamCaption}\item[{String}]{name,  }\item[{String}]{album,  }\item[{String}]{artists,  }\item[{String}]{genres,  }\item[{double}]{duration,  }\item[{Date}]{date\+Of\+Release,  }\item[{Multipart\+File}]{file }\end{DoxyParamCaption})}
 
+Adds a new song along with an audio file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the song. \\
+\hline
+{\em album} & The album name. \\
+\hline
+{\em artists} & Comma-\/separated list of artists. \\
+\hline
+{\em genres} & Comma-\/separated list of genres. \\
+\hline
+{\em duration} & Duration of the song in seconds. \\
+\hline
+{\em date\+Of\+Release} & The release date of the song. \\
+\hline
+{\em file} & The audio file to upload. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created song. 
+\end{DoxyReturn}
 
 
 Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl_a182836b007cf9443ba7c11389d44c54b}{com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service\+Impl}}.
@@ -83,6 +132,28 @@ Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1
 \doxysubsubsection{\texorpdfstring{createSharedSong()}{createSharedSong()}}
 {\footnotesize\ttfamily Song com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service.\+create\+Shared\+Song (\begin{DoxyParamCaption}\item[{String}]{name,  }\item[{String}]{album,  }\item[{String}]{artists,  }\item[{String}]{genres,  }\item[{double}]{duration,  }\item[{Date}]{date\+Of\+Release,  }\item[{String}]{file\+Path }\end{DoxyParamCaption})}
 
+Creates a shared song entry from an existing file path.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the song. \\
+\hline
+{\em album} & The album name. \\
+\hline
+{\em artists} & Comma-\/separated list of artists. \\
+\hline
+{\em genres} & Comma-\/separated list of genres. \\
+\hline
+{\em duration} & Duration in seconds. \\
+\hline
+{\em date\+Of\+Release} & Date of release. \\
+\hline
+{\em file\+Path} & Path to the audio file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created Song entity. 
+\end{DoxyReturn}
 
 
 Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl_a50ea7ea504910f76d28249b5acea94e1}{com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service\+Impl}}.
@@ -93,6 +164,13 @@ Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1
 \doxysubsubsection{\texorpdfstring{deletePlaylist()}{deletePlaylist()}}
 {\footnotesize\ttfamily void com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service.\+delete\+Playlist (\begin{DoxyParamCaption}\item[{Long}]{id }\end{DoxyParamCaption})}
 
+Deletes a playlist by its ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the playlist to delete. \\
+\hline
+\end{DoxyParams}
 
 
 Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl_aa1a2951ce1781c6b888c39cf511f7ef4}{com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service\+Impl}}.
@@ -103,6 +181,13 @@ Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1
 \doxysubsubsection{\texorpdfstring{deleteSong()}{deleteSong()}}
 {\footnotesize\ttfamily void com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service.\+delete\+Song (\begin{DoxyParamCaption}\item[{Long}]{id }\end{DoxyParamCaption})}
 
+Deletes a song by its ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the song to delete. \\
+\hline
+\end{DoxyParams}
 
 
 Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl_af552f4ddb7201472406c38c63e3e8473}{com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service\+Impl}}.
@@ -113,6 +198,16 @@ Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1
 \doxysubsubsection{\texorpdfstring{findPlaylist()}{findPlaylist()}}
 {\footnotesize\ttfamily Optional$<$ Playlist $>$ com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service.\+find\+Playlist (\begin{DoxyParamCaption}\item[{Long}]{id }\end{DoxyParamCaption})}
 
+Finds a specific playlist by its ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the playlist. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An Optional containing the playlist if found, or empty otherwise. 
+\end{DoxyReturn}
 
 
 Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl_a73510c67446d418af9e4109b808c0610}{com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service\+Impl}}.
@@ -123,6 +218,16 @@ Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1
 \doxysubsubsection{\texorpdfstring{findSong()}{findSong()}}
 {\footnotesize\ttfamily Optional$<$ Song $>$ com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service.\+find\+Song (\begin{DoxyParamCaption}\item[{Long}]{id }\end{DoxyParamCaption})}
 
+Finds a specific song by its ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the song. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An Optional containing the song if found, or empty otherwise. 
+\end{DoxyReturn}
 
 
 Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl_ab0ba768d7ce62e01269c1201b18149fe}{com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service\+Impl}}.
@@ -133,6 +238,16 @@ Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1
 \doxysubsubsection{\texorpdfstring{findSongsByIds()}{findSongsByIds()}}
 {\footnotesize\ttfamily List$<$ Song $>$ com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service.\+find\+Songs\+By\+Ids (\begin{DoxyParamCaption}\item[{List$<$ Long $>$}]{song\+Ids }\end{DoxyParamCaption})}
 
+Finds a list of songs by their IDs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em song\+Ids} & A list of song IDs. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A list of corresponding Song entities. 
+\end{DoxyReturn}
 
 
 Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl_a070b8955874b90467a7bfad956f02f71}{com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service\+Impl}}.
@@ -143,6 +258,11 @@ Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1
 \doxysubsubsection{\texorpdfstring{retrieveAllPlaylists()}{retrieveAllPlaylists()}}
 {\footnotesize\ttfamily List$<$ Playlist $>$ com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service.\+retrieve\+All\+Playlists (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+Retrieves all playlists in the system.
+
+\begin{DoxyReturn}{Returns}
+A list of all playlists. 
+\end{DoxyReturn}
 
 
 Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl_a57900a981aeb54eb4310d6bf7cfa4c99}{com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service\+Impl}}.
@@ -153,6 +273,11 @@ Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1
 \doxysubsubsection{\texorpdfstring{retrieveAllSongs()}{retrieveAllSongs()}}
 {\footnotesize\ttfamily List$<$ Song $>$ com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service.\+retrieve\+All\+Songs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+Retrieves all songs in the system.
+
+\begin{DoxyReturn}{Returns}
+A list of all songs. 
+\end{DoxyReturn}
 
 
 Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl_a4d38e4bbdbf5e2e436017e81c06c45ca}{com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service\+Impl}}.
@@ -163,6 +288,18 @@ Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1
 \doxysubsubsection{\texorpdfstring{updatePlaylist()}{updatePlaylist()}}
 {\footnotesize\ttfamily Playlist com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service.\+update\+Playlist (\begin{DoxyParamCaption}\item[{Long}]{id,  }\item[{Playlist}]{playlist }\end{DoxyParamCaption})}
 
+Updates an existing playlist.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the playlist to update. \\
+\hline
+{\em playlist} & The updated playlist data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The updated playlist. 
+\end{DoxyReturn}
 
 
 Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl_a4c03adf41637c27546a787e91baddcc1}{com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service\+Impl}}.
@@ -173,6 +310,18 @@ Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1
 \doxysubsubsection{\texorpdfstring{updatePlaylistSongs()}{updatePlaylistSongs()}}
 {\footnotesize\ttfamily Playlist com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service.\+update\+Playlist\+Songs (\begin{DoxyParamCaption}\item[{Long}]{playlist\+Id,  }\item[{List$<$ Long $>$}]{song\+Ids }\end{DoxyParamCaption})}
 
+Updates the list of songs in a given playlist.
+
+
+\begin{DoxyParams}{Parameters}
+{\em playlist\+Id} & The ID of the playlist. \\
+\hline
+{\em song\+Ids} & The list of song IDs to associate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The updated playlist. 
+\end{DoxyReturn}
 
 
 Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl_ae6d03f51856755a403004b64f235b925}{com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service\+Impl}}.
@@ -183,6 +332,18 @@ Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1
 \doxysubsubsection{\texorpdfstring{updateSong()}{updateSong()}}
 {\footnotesize\ttfamily Song com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service.\+update\+Song (\begin{DoxyParamCaption}\item[{Long}]{id,  }\item[{Song}]{song }\end{DoxyParamCaption})}
 
+Updates an existing song.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the song to update. \\
+\hline
+{\em song} & The updated song data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The updated song. 
+\end{DoxyReturn}
 
 
 Implemented in \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl_ab7569e55501d7cca2c27344d4c8d4215}{com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service\+Impl}}.

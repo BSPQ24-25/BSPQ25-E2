@@ -14,158 +14,213 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
+/**
+ * @class DeuspotifyServiceImpl
+ * @brief Service implementation for managing songs and playlists in the Deuspotify application.
+ *
+ * This service provides functionality to retrieve, create, update, and delete songs and playlists,
+ * and handles operations related to file uploads and custom ordering of playlist contents.
+ */
 @Service
 public class DeuspotifyServiceImpl implements DeuspotifyService {
 
     private final SongRepository songRepository;
     private final PlaylistRepository playlistRepository;
-    
-<span class="fc" id="L24">    private final String uploadDir = &quot;uploads/songs&quot;;</span>
 
-<span class="fc" id="L26">    public DeuspotifyServiceImpl(SongRepository songRepository, PlaylistRepository playlistRepository) {</span>
-<span class="fc" id="L27">        this.songRepository = songRepository;</span>
-<span class="fc" id="L28">        this.playlistRepository = playlistRepository;</span>
-<span class="fc" id="L29">    }</span>
+<span class="fc" id="L30">    private final String uploadDir = &quot;uploads/songs&quot;;</span>
 
-    // Songs
+    /**
+     * Constructor for dependency injection.
+     * 
+     * @param songRepository Repository for managing Song entities.
+     * @param playlistRepository Repository for managing Playlist entities.
+     */
+<span class="fc" id="L38">    public DeuspotifyServiceImpl(SongRepository songRepository, PlaylistRepository playlistRepository) {</span>
+<span class="fc" id="L39">        this.songRepository = songRepository;</span>
+<span class="fc" id="L40">        this.playlistRepository = playlistRepository;</span>
+<span class="fc" id="L41">    }</span>
+
+    /// @name Song Operations
+    /// @{
+
+    /** {@inheritDoc} */
     public List&lt;Song&gt; retrieveAllSongs() {
-<span class="fc" id="L33">        return songRepository.findAll();</span>
+<span class="fc" id="L48">        return songRepository.findAll();</span>
     }
 
+    /** {@inheritDoc} */
     public Optional&lt;Song&gt; findSong(Long id) {
-<span class="fc" id="L37">        return songRepository.findById(id);</span>
+<span class="fc" id="L53">        return songRepository.findById(id);</span>
     }
 
+    /** {@inheritDoc} */
     public Song addSong(Song song) {
-<span class="nc" id="L41">        return songRepository.save(song);</span>
+<span class="nc" id="L58">        return songRepository.save(song);</span>
     }
 
+    /** {@inheritDoc} */
     public Song updateSong(Long id, Song song) {
-<span class="nc" id="L45">        song.setId(id);</span>
-<span class="nc" id="L46">        return songRepository.save(song);</span>
+<span class="nc" id="L63">        song.setId(id);</span>
+<span class="nc" id="L64">        return songRepository.save(song);</span>
     }
 
+    /** {@inheritDoc} */
     public void deleteSong(Long id) {
-<span class="nc" id="L50">        List&lt;Playlist&gt; playlists = playlistRepository.findAll();</span>
-<span class="nc" id="L51">        Optional&lt;Song&gt; songOpt = songRepository.findById(id);</span>
+<span class="nc" id="L69">        List&lt;Playlist&gt; playlists = playlistRepository.findAll();</span>
+<span class="nc" id="L70">        Optional&lt;Song&gt; songOpt = songRepository.findById(id);</span>
         
-<span class="nc bnc" id="L53" title="All 2 branches missed.">        if (songOpt.isPresent()) {</span>
-<span class="nc" id="L54">            Song song = songOpt.get();</span>
-<span class="nc bnc" id="L55" title="All 2 branches missed.">            for (Playlist playlist : playlists) {</span>
-<span class="nc bnc" id="L56" title="All 2 branches missed.">                if (playlist.getSongs().contains(song)) {</span>
-<span class="nc" id="L57">                    playlist.getSongs().remove(song);  // Eliminar el objeto Song, no solo por el ID</span>
-<span class="nc" id="L58">                    playlistRepository.save(playlist);</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">        if (songOpt.isPresent()) {</span>
+<span class="nc" id="L73">            Song song = songOpt.get();</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">            for (Playlist playlist : playlists) {</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">                if (playlist.getSongs().contains(song)) {</span>
+<span class="nc" id="L76">                    playlist.getSongs().remove(song);</span>
+<span class="nc" id="L77">                    playlistRepository.save(playlist);</span>
                 }
-<span class="nc" id="L60">            }</span>
-            
-<span class="nc" id="L62">            songRepository.delete(song);</span>
-<span class="nc" id="L63">        } else {</span>
-<span class="nc" id="L64">            throw new RuntimeException(&quot;Canción no encontrada&quot;);</span>
+<span class="nc" id="L79">            }</span>
+<span class="nc" id="L80">            songRepository.delete(song);</span>
+<span class="nc" id="L81">        } else {</span>
+<span class="nc" id="L82">            throw new RuntimeException(&quot;Canción no encontrada&quot;);</span>
         }
-<span class="nc" id="L66">    }</span>
+<span class="nc" id="L84">    }</span>
 
-
+    /**
+     * Adds a song with an associated audio file.
+     *
+     * @param name Song name.
+     * @param album Album name.
+     * @param artists Comma-separated artist names.
+     * @param genres Comma-separated genre names.
+     * @param duration Duration of the song in seconds.
+     * @param dateOfRelease Release date.
+     * @param file Audio file to upload.
+     * @return The created Song.
+     */
     public Song addSongWithFile(String name, String album, String artists, String genres,
                                 double duration, Date dateOfRelease, MultipartFile file) {
-<span class="pc bpc" id="L71" title="2 of 4 branches missed.">        if (file.getContentType() == null || !file.getContentType().startsWith(&quot;audio/&quot;)) {</span>
-<span class="nc" id="L72">            throw new IllegalArgumentException(&quot;Only audio files are allowed&quot;);</span>
+<span class="pc bpc" id="L100" title="2 of 4 branches missed.">        if (file.getContentType() == null || !file.getContentType().startsWith(&quot;audio/&quot;)) {</span>
+<span class="nc" id="L101">            throw new IllegalArgumentException(&quot;Only audio files are allowed&quot;);</span>
         }
-<span class="fc" id="L74">        String originalFilename = file.getOriginalFilename();</span>
-<span class="pc bpc" id="L75" title="2 of 4 branches missed.">        if (originalFilename == null || !originalFilename.toLowerCase().matches(&quot;.*\\.(mp3|wav|ogg|flac)$&quot;)) {</span>
-<span class="nc" id="L76">            throw new IllegalArgumentException(&quot;Invalid audio file extension&quot;);</span>
+<span class="fc" id="L103">        String originalFilename = file.getOriginalFilename();</span>
+<span class="pc bpc" id="L104" title="2 of 4 branches missed.">        if (originalFilename == null || !originalFilename.toLowerCase().matches(&quot;.*\\.(mp3|wav|ogg|flac)$&quot;)) {</span>
+<span class="nc" id="L105">            throw new IllegalArgumentException(&quot;Invalid audio file extension&quot;);</span>
         }
-        
+
         try {
-<span class="fc" id="L80">            Files.createDirectories(Paths.get(uploadDir));</span>
-<span class="fc" id="L81">            String cleanedFilename = System.currentTimeMillis() + &quot;_&quot; + originalFilename.replaceAll(&quot;[^a-zA-Z0-9\\.\\-]&quot;, &quot;_&quot;);</span>
-<span class="fc" id="L82">            Path filePath = Paths.get(uploadDir, cleanedFilename);</span>
-<span class="fc" id="L83">            Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);</span>
-            
-<span class="fc" id="L85">            Song song = new Song();</span>
-<span class="fc" id="L86">            song.setName(name);</span>
-<span class="fc" id="L87">            song.setAlbum(album);</span>
-<span class="fc" id="L88">            song.setArtists(Arrays.asList(artists.split(&quot;\\s*,\\s*&quot;)));</span>
-<span class="fc" id="L89">            song.setGenres(Arrays.asList(genres.split(&quot;\\s*,\\s*&quot;)));</span>
-<span class="fc" id="L90">            song.setDuration(duration);</span>
-<span class="fc" id="L91">            song.setDateOfRelease(dateOfRelease);</span>
-<span class="fc" id="L92">            song.setFilePath(cleanedFilename);</span>
-            
-<span class="fc" id="L94">            return songRepository.save(song);</span>
-<span class="nc" id="L95">        } catch (IOException e) {</span>
-<span class="nc" id="L96">            throw new RuntimeException(&quot;Error saving file&quot;, e);</span>
+<span class="fc" id="L109">            Files.createDirectories(Paths.get(uploadDir));</span>
+<span class="fc" id="L110">            String cleanedFilename = System.currentTimeMillis() + &quot;_&quot; + originalFilename.replaceAll(&quot;[^a-zA-Z0-9\\.\\-]&quot;, &quot;_&quot;);</span>
+<span class="fc" id="L111">            Path filePath = Paths.get(uploadDir, cleanedFilename);</span>
+<span class="fc" id="L112">            Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);</span>
+
+<span class="fc" id="L114">            Song song = new Song();</span>
+<span class="fc" id="L115">            song.setName(name);</span>
+<span class="fc" id="L116">            song.setAlbum(album);</span>
+<span class="fc" id="L117">            song.setArtists(Arrays.asList(artists.split(&quot;\\s*,\\s*&quot;)));</span>
+<span class="fc" id="L118">            song.setGenres(Arrays.asList(genres.split(&quot;\\s*,\\s*&quot;)));</span>
+<span class="fc" id="L119">            song.setDuration(duration);</span>
+<span class="fc" id="L120">            song.setDateOfRelease(dateOfRelease);</span>
+<span class="fc" id="L121">            song.setFilePath(cleanedFilename);</span>
+
+<span class="fc" id="L123">            return songRepository.save(song);</span>
+<span class="nc" id="L124">        } catch (IOException e) {</span>
+<span class="nc" id="L125">            throw new RuntimeException(&quot;Error saving file&quot;, e);</span>
         }
     }
 
-    @Override
+    /**
+     * Creates a shared song using a provided file path (without uploading).
+     *
+     * @param name Song name.
+     * @param album Album name.
+     * @param artists Comma-separated artist names.
+     * @param genres Comma-separated genre names.
+     * @param duration Song duration in seconds.
+     * @param dateOfRelease Release date.
+     * @param filePath Path to the existing audio file.
+     * @return The created Song.
+     */
     public Song createSharedSong(String name, String album, String artists, String genres, double duration, Date dateOfRelease, String filePath) {
-<span class="fc" id="L102">        Song sharedSong = new Song();</span>
-<span class="fc" id="L103">        sharedSong.setName(name + &quot; Shared&quot;);</span>
-<span class="fc" id="L104">        sharedSong.setAlbum(album);</span>
-<span class="fc" id="L105">        sharedSong.setArtists(new ArrayList&lt;&gt;(Arrays.asList(artists.split(&quot;\\s*,\\s*&quot;))));</span>
-<span class="fc" id="L106">        sharedSong.setGenres(new ArrayList&lt;&gt;(Arrays.asList(genres.split(&quot;\\s*,\\s*&quot;))));</span>
-<span class="fc" id="L107">        sharedSong.setDuration(duration);</span>
-<span class="fc" id="L108">        sharedSong.setDateOfRelease(dateOfRelease);</span>
-<span class="fc" id="L109">        sharedSong.setFilePath(filePath);</span>
-<span class="fc" id="L110">        return songRepository.save(sharedSong);</span>
+<span class="fc" id="L142">        Song sharedSong = new Song();</span>
+<span class="fc" id="L143">        sharedSong.setName(name + &quot; Shared&quot;);</span>
+<span class="fc" id="L144">        sharedSong.setAlbum(album);</span>
+<span class="fc" id="L145">        sharedSong.setArtists(new ArrayList&lt;&gt;(Arrays.asList(artists.split(&quot;\\s*,\\s*&quot;))));</span>
+<span class="fc" id="L146">        sharedSong.setGenres(new ArrayList&lt;&gt;(Arrays.asList(genres.split(&quot;\\s*,\\s*&quot;))));</span>
+<span class="fc" id="L147">        sharedSong.setDuration(duration);</span>
+<span class="fc" id="L148">        sharedSong.setDateOfRelease(dateOfRelease);</span>
+<span class="fc" id="L149">        sharedSong.setFilePath(filePath);</span>
+<span class="fc" id="L150">        return songRepository.save(sharedSong);</span>
     }
 
-    // Playlists
+    /// @}
+    /// @name Playlist Operations
+    /// @{
+
+    /** {@inheritDoc} */
     public List&lt;Playlist&gt; retrieveAllPlaylists() {
-<span class="fc" id="L115">        return playlistRepository.findAll();</span>
+<span class="fc" id="L159">        return playlistRepository.findAll();</span>
     }
 
+    /** {@inheritDoc} */
     public Optional&lt;Playlist&gt; findPlaylist(Long id) {
-<span class="fc" id="L119">        return playlistRepository.findById(id);</span>
+<span class="fc" id="L164">        return playlistRepository.findById(id);</span>
     }
 
+    /** {@inheritDoc} */
     public Playlist addPlaylist(Playlist playlist) {
-<span class="fc" id="L123">        return playlistRepository.save(playlist);</span>
+<span class="fc" id="L169">        return playlistRepository.save(playlist);</span>
     }
 
+    /**
+     * Updates a playlist and optionally reorders its songs.
+     *
+     * @param id Playlist ID.
+     * @param playlist Playlist data including optional reordering.
+     * @return The updated playlist.
+     */
     public Playlist updatePlaylist(Long id, Playlist playlist) {
-<span class="fc" id="L127">        playlist.setId(id);</span>
-    
-<span class="pc bpc" id="L129" title="2 of 4 branches missed.">        if (playlist.getSongs() != null &amp;&amp; playlist.getOrder() != null) {</span>
-<span class="fc" id="L130">            String orderType = playlist.getOrderType();</span>
-    
-<span class="fc bfc" id="L132" title="All 2 branches covered.">            if (&quot;duration&quot;.equalsIgnoreCase(orderType)) {</span>
-<span class="fc" id="L133">                playlist.getSongs().sort((s1, s2) -&gt; Double.compare(s2.getDuration(), s1.getDuration()));</span>
-<span class="pc bpc" id="L134" title="1 of 2 branches missed.">            } else if (&quot;release_date&quot;.equalsIgnoreCase(orderType)) {</span>
-<span class="fc" id="L135">                playlist.getSongs().sort((s1, s2) -&gt; {</span>
-<span class="pc bpc" id="L136" title="2 of 4 branches missed.">                    if (s1.getDateOfRelease() == null || s2.getDateOfRelease() == null) {</span>
-<span class="nc" id="L137">                        return 0; </span>
+<span class="fc" id="L180">        playlist.setId(id);</span>
+
+<span class="pc bpc" id="L182" title="2 of 4 branches missed.">        if (playlist.getSongs() != null &amp;&amp; playlist.getOrder() != null) {</span>
+<span class="fc" id="L183">            String orderType = playlist.getOrderType();</span>
+
+<span class="fc bfc" id="L185" title="All 2 branches covered.">            if (&quot;duration&quot;.equalsIgnoreCase(orderType)) {</span>
+<span class="fc" id="L186">                playlist.getSongs().sort((s1, s2) -&gt; Double.compare(s2.getDuration(), s1.getDuration()));</span>
+<span class="pc bpc" id="L187" title="1 of 2 branches missed.">            } else if (&quot;release_date&quot;.equalsIgnoreCase(orderType)) {</span>
+<span class="fc" id="L188">                playlist.getSongs().sort((s1, s2) -&gt; {</span>
+<span class="pc bpc" id="L189" title="2 of 4 branches missed.">                    if (s1.getDateOfRelease() == null || s2.getDateOfRelease() == null) {</span>
+<span class="nc" id="L190">                        return 0;</span>
                     }
-<span class="fc" id="L139">                    return s2.getDateOfRelease().compareTo(s1.getDateOfRelease());</span>
+<span class="fc" id="L192">                    return s2.getDateOfRelease().compareTo(s1.getDateOfRelease());</span>
                 });
             }
-            
         }
-    
-<span class="fc" id="L145">        return playlistRepository.save(playlist);</span>
-    }
-    
 
+<span class="fc" id="L197">        return playlistRepository.save(playlist);</span>
+    }
+
+    /** {@inheritDoc} */
     public void deletePlaylist(Long id) {
-<span class="nc" id="L150">        playlistRepository.deleteById(id);</span>
-<span class="nc" id="L151">    }</span>
+<span class="nc" id="L202">        playlistRepository.deleteById(id);</span>
+<span class="nc" id="L203">    }</span>
 
+    /** {@inheritDoc} */
     public List&lt;Song&gt; findSongsByIds(List&lt;Long&gt; songIds) {
-<span class="fc" id="L154">        return songRepository.findAllById(songIds);</span>
+<span class="fc" id="L207">        return songRepository.findAllById(songIds);</span>
     }
 
-    @Override
+    /** {@inheritDoc} */
     public Playlist updatePlaylistSongs(Long playlistId, List&lt;Long&gt; songIds) {
-<span class="nc" id="L159">        Optional&lt;Playlist&gt; playlistOptional = playlistRepository.findById(playlistId);</span>
-<span class="nc bnc" id="L160" title="All 2 branches missed.">        if (!playlistOptional.isPresent()) {</span>
-<span class="nc" id="L161">            throw new RuntimeException(&quot;Playlist no encontrada&quot;);</span>
+<span class="nc" id="L212">        Optional&lt;Playlist&gt; playlistOptional = playlistRepository.findById(playlistId);</span>
+<span class="nc bnc" id="L213" title="All 2 branches missed.">        if (!playlistOptional.isPresent()) {</span>
+<span class="nc" id="L214">            throw new RuntimeException(&quot;Playlist no encontrada&quot;);</span>
         }
 
-<span class="nc" id="L164">        Playlist playlist = playlistOptional.get();</span>
-<span class="nc" id="L165">        List&lt;Song&gt; songs = findSongsByIds(songIds);</span>
-<span class="nc" id="L166">        playlist.setSongs(songs);</span>
+<span class="nc" id="L217">        Playlist playlist = playlistOptional.get();</span>
+<span class="nc" id="L218">        List&lt;Song&gt; songs = findSongsByIds(songIds);</span>
+<span class="nc" id="L219">        playlist.setSongs(songs);</span>
 
-<span class="nc" id="L168">        return playlistRepository.save(playlist);</span>
+<span class="nc" id="L221">        return playlistRepository.save(playlist);</span>
     }
+
+    /// @}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

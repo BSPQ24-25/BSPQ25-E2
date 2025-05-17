@@ -1,5 +1,10 @@
 \doxysection{com.\+deusto.\+deuspotify.\+config.\+File\+Storage\+Config Class Reference}
 \hypertarget{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_file_storage_config}{}\label{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_file_storage_config}\index{com.deusto.deuspotify.config.FileStorageConfig@{com.deusto.deuspotify.config.FileStorageConfig}}
+
+
+Spring configuration class to expose a directory for serving uploaded song files.  
+
+
 Inheritance diagram for com.\+deusto.\+deuspotify.\+config.\+File\+Storage\+Config\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -10,13 +15,15 @@ Inheritance diagram for com.\+deusto.\+deuspotify.\+config.\+File\+Storage\+Conf
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_file_storage_config_a2acddb9382fb992edc15e37b30a721c1}{add\+Resource\+Handlers}} (Resource\+Handler\+Registry registry)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Configures resource handlers to serve static song files. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
+Spring configuration class to expose a directory for serving uploaded song files. 
 
+Maps requests to {\ttfamily /songs\+\_\+files/\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}} to the local filesystem path {\ttfamily uploads/songs/}. 
 
-Definition at line \mbox{\hyperlink{_file_storage_config_8java_source_l00008}{8}} of file \mbox{\hyperlink{_file_storage_config_8java_source}{File\+Storage\+Config.\+java}}.
+Definition at line \mbox{\hyperlink{_file_storage_config_8java_source_l00018}{18}} of file \mbox{\hyperlink{_file_storage_config_8java_source}{File\+Storage\+Config.\+java}}.
 
 
 
@@ -29,7 +36,16 @@ Definition at line \mbox{\hyperlink{_file_storage_config_8java_source_l00008}{8}
 
 
 
-Definition at line \mbox{\hyperlink{_file_storage_config_8java_source_l00011}{11}} of file \mbox{\hyperlink{_file_storage_config_8java_source}{File\+Storage\+Config.\+java}}.
+Configures resource handlers to serve static song files. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em registry} & The Resource\+Handler\+Registry to add the handler to. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_file_storage_config_8java_source_l00025}{25}} of file \mbox{\hyperlink{_file_storage_config_8java_source}{File\+Storage\+Config.\+java}}.
 
 
 

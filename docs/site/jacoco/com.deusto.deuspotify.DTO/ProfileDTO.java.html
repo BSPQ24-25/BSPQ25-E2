@@ -2,49 +2,107 @@
 
 import java.util.List;
 
+/**
+ * @class ProfileDTO
+ * @brief Data Transfer Object for the Profile entity.
+ *
+ * This class is used to transfer profile data between layers.
+ */
 public class ProfileDTO {
 
+    /** Unique identifier of the profile. */
     private Long id;
+
+    /** Username of the profile. */
     private String username;
+
+    /** Email associated with the profile. */
     private String email;
+
+    /** List of usernames that are friends with this profile. */
     private List&lt;String&gt; friendsList;
+
+    /** List of favorite songs for this profile. */
     private List&lt;SongDTO&gt; favouriteSongs;
+
+    /** List of playlists owned by this profile. */
     private List&lt;PlaylistDTO&gt; playlists;
+
+    /** Indicates if the profile has administrative privileges. */
     private boolean isAdmin;
 
-<span class="nc" id="L15">    public ProfileDTO() {}</span>
+    /**
+     * Default constructor.
+     */
+<span class="nc" id="L37">    public ProfileDTO() {}</span>
 
-<span class="nc" id="L17">    public ProfileDTO(Long id, String username, String email, List&lt;String&gt; friendsList, List&lt;SongDTO&gt; favouriteSongs, List&lt;PlaylistDTO&gt; playlists, boolean isAdmin) {</span>
-<span class="nc" id="L18">        this.id = id;</span>
-<span class="nc" id="L19">        this.username = username;</span>
-<span class="nc" id="L20">        this.email = email;</span>
-<span class="nc" id="L21">        this.friendsList = friendsList;</span>
-<span class="nc" id="L22">        this.favouriteSongs = favouriteSongs;</span>
-<span class="nc" id="L23">        this.playlists = playlists;</span>
-<span class="nc" id="L24">        this.isAdmin = isAdmin;</span>
-<span class="nc" id="L25">    }</span>
+    /**
+     * Constructs a ProfileDTO with all attributes.
+     *
+     * @param id Unique identifier.
+     * @param username Username of the profile.
+     * @param email Email of the user.
+     * @param friendsList List of friends' usernames.
+     * @param favouriteSongs List of favorite songs.
+     * @param playlists List of owned playlists.
+     * @param isAdmin Indicates if the user is an admin.
+     */
+    public ProfileDTO(Long id, String username, String email, List&lt;String&gt; friendsList,
+<span class="nc" id="L51">                      List&lt;SongDTO&gt; favouriteSongs, List&lt;PlaylistDTO&gt; playlists, boolean isAdmin) {</span>
+<span class="nc" id="L52">        this.id = id;</span>
+<span class="nc" id="L53">        this.username = username;</span>
+<span class="nc" id="L54">        this.email = email;</span>
+<span class="nc" id="L55">        this.friendsList = friendsList;</span>
+<span class="nc" id="L56">        this.favouriteSongs = favouriteSongs;</span>
+<span class="nc" id="L57">        this.playlists = playlists;</span>
+<span class="nc" id="L58">        this.isAdmin = isAdmin;</span>
+<span class="nc" id="L59">    }</span>
 
-    // Getters and setters
+    /// @name Getters and Setters
+    /// @{
 
-<span class="nc" id="L29">    public Long getId() { return id; }</span>
-<span class="nc" id="L30">    public void setId(Long id) { this.id = id; }</span>
+    /** @return Profile ID. */
+<span class="nc" id="L65">    public Long getId() { return id; }</span>
 
-<span class="nc" id="L32">    public String getUsername() { return username; }</span>
-<span class="nc" id="L33">    public void setUsername(String username) { this.username = username; }</span>
+    /** @param id New profile ID. */
+<span class="nc" id="L68">    public void setId(Long id) { this.id = id; }</span>
 
-<span class="nc" id="L35">    public String getEmail() { return email; }</span>
-<span class="nc" id="L36">    public void setEmail(String email) { this.email = email; }</span>
+    /** @return Username. */
+<span class="nc" id="L71">    public String getUsername() { return username; }</span>
 
-<span class="nc" id="L38">    public List&lt;String&gt; getFriendsList() { return friendsList; }</span>
-<span class="nc" id="L39">    public void setFriendsList(List&lt;String&gt; friendsList) { this.friendsList = friendsList; }</span>
+    /** @param username New username. */
+<span class="nc" id="L74">    public void setUsername(String username) { this.username = username; }</span>
 
-<span class="nc" id="L41">    public List&lt;SongDTO&gt; getFavouriteSongs() { return favouriteSongs; }</span>
-<span class="nc" id="L42">    public void setFavouriteSongs(List&lt;SongDTO&gt; favouriteSongs) { this.favouriteSongs = favouriteSongs; }</span>
+    /** @return Email. */
+<span class="nc" id="L77">    public String getEmail() { return email; }</span>
 
-<span class="nc" id="L44">    public List&lt;PlaylistDTO&gt; getPlaylists() { return playlists; }</span>
-<span class="nc" id="L45">    public void setPlaylists(List&lt;PlaylistDTO&gt; playlists) { this.playlists = playlists; }</span>
+    /** @param email New email address. */
+<span class="nc" id="L80">    public void setEmail(String email) { this.email = email; }</span>
 
-<span class="nc" id="L47">    public boolean isAdmin() { return isAdmin; }</span>
-<span class="nc" id="L48">    public void setAdmin(boolean isAdmin) { this.isAdmin = isAdmin; }</span>
+    /** @return List of friend usernames. */
+<span class="nc" id="L83">    public List&lt;String&gt; getFriendsList() { return friendsList; }</span>
+
+    /** @param friendsList Updated list of friend usernames. */
+<span class="nc" id="L86">    public void setFriendsList(List&lt;String&gt; friendsList) { this.friendsList = friendsList; }</span>
+
+    /** @return Favorite songs. */
+<span class="nc" id="L89">    public List&lt;SongDTO&gt; getFavouriteSongs() { return favouriteSongs; }</span>
+
+    /** @param favouriteSongs New list of favorite songs. */
+<span class="nc" id="L92">    public void setFavouriteSongs(List&lt;SongDTO&gt; favouriteSongs) { this.favouriteSongs = favouriteSongs; }</span>
+
+    /** @return List of playlists. */
+<span class="nc" id="L95">    public List&lt;PlaylistDTO&gt; getPlaylists() { return playlists; }</span>
+
+    /** @param playlists New list of playlists. */
+<span class="nc" id="L98">    public void setPlaylists(List&lt;PlaylistDTO&gt; playlists) { this.playlists = playlists; }</span>
+
+    /** @return Whether the profile is an admin. */
+<span class="nc" id="L101">    public boolean isAdmin() { return isAdmin; }</span>
+
+    /** @param isAdmin New admin status. */
+<span class="nc" id="L104">    public void setAdmin(boolean isAdmin) { this.isAdmin = isAdmin; }</span>
+
+    /// @}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

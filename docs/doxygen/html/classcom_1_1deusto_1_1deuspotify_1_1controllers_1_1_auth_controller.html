@@ -95,21 +95,29 @@ $(document).ready(function(){initNavTree('classcom_1_1deusto_1_1deuspotify_1_1co
   <div class="headertitle"><div class="title">com.deusto.deuspotify.controllers.AuthController Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>REST controller for managing authentication (login, registration, logout).  
+ <a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a360587e800f623d8e5812db288c1f392" id="r_a360587e800f623d8e5812db288c1f392"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller.html#a360587e800f623d8e5812db288c1f392">AuthController</a> (AuthenticationManager authenticationManager, ProfileService profileService, JwtUtil jwtUtil)</td></tr>
+<tr class="memdesc:a360587e800f623d8e5812db288c1f392"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for AuthController.  <br /></td></tr>
 <tr class="separator:a360587e800f623d8e5812db288c1f392"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9611111e39ee3e1e7e9bbfd958e8f46" id="r_aa9611111e39ee3e1e7e9bbfd958e8f46"><td class="memItemLeft" align="right" valign="top">ResponseEntity&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller.html#aa9611111e39ee3e1e7e9bbfd958e8f46">login</a> (@RequestBody Map&lt; String, String &gt; request)</td></tr>
+<tr class="memdesc:aa9611111e39ee3e1e7e9bbfd958e8f46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticates a user and returns a JWT token.  <br /></td></tr>
 <tr class="separator:aa9611111e39ee3e1e7e9bbfd958e8f46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80a60e8d1896b6da14785851114988fa" id="r_a80a60e8d1896b6da14785851114988fa"><td class="memItemLeft" align="right" valign="top">ResponseEntity&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller.html#a80a60e8d1896b6da14785851114988fa">register</a> (@RequestBody Profile profile)</td></tr>
+<tr class="memdesc:a80a60e8d1896b6da14785851114988fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers a new user profile.  <br /></td></tr>
 <tr class="separator:a80a60e8d1896b6da14785851114988fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9739f35c4e2d67faa2c7051192975f0d" id="r_a9739f35c4e2d67faa2c7051192975f0d"><td class="memItemLeft" align="right" valign="top">ResponseEntity&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller.html#a9739f35c4e2d67faa2c7051192975f0d">logout</a> ()</td></tr>
+<tr class="memdesc:a9739f35c4e2d67faa2c7051192975f0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simulates logout operation.  <br /></td></tr>
 <tr class="separator:a9739f35c4e2d67faa2c7051192975f0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_auth_controller_8java_source.html#l00020">20</a> of file <a class="el" href="_auth_controller_8java_source.html">AuthController.java</a>.</p>
+<div class="textblock"><p>REST controller for managing authentication (login, registration, logout). </p>
+
+<p class="definition">Definition at line <a class="el" href="_auth_controller_8java_source.html#l00026">26</a> of file <a class="el" href="_auth_controller_8java_source.html">AuthController.java</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a360587e800f623d8e5812db288c1f392" name="a360587e800f623d8e5812db288c1f392"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a360587e800f623d8e5812db288c1f392">&#9670;&#160;</a></span>AuthController()</h2>
@@ -143,7 +151,17 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_auth_controller_8java_source.html#l00027">27</a> of file <a class="el" href="_auth_controller_8java_source.html">AuthController.java</a>.</p>
+<p>Constructor for AuthController. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">authenticationManager</td><td>The Spring Security authentication manager. </td></tr>
+    <tr><td class="paramname">profileService</td><td>Service to manage user profiles. </td></tr>
+    <tr><td class="paramname">jwtUtil</td><td>Utility to handle JWT token generation. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_auth_controller_8java_source.html#l00040">40</a> of file <a class="el" href="_auth_controller_8java_source.html">AuthController.java</a>.</p>
 
 </div>
 </div>
@@ -164,7 +182,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_auth_controller_8java_source.html#l00034">34</a> of file <a class="el" href="_auth_controller_8java_source.html">AuthController.java</a>.</p>
+<p>Authenticates a user and returns a JWT token. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>A map containing "username" and "password". </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A response containing the JWT token. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_auth_controller_8java_source.html#l00052">52</a> of file <a class="el" href="_auth_controller_8java_source.html">AuthController.java</a>.</p>
 
 </div>
 </div>
@@ -183,7 +210,10 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_auth_controller_8java_source.html#l00049">49</a> of file <a class="el" href="_auth_controller_8java_source.html">AuthController.java</a>.</p>
+<p>Simulates logout operation. </p>
+<dl class="section return"><dt>Returns</dt><dd>A response confirming logout. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_auth_controller_8java_source.html#l00077">77</a> of file <a class="el" href="_auth_controller_8java_source.html">AuthController.java</a>.</p>
 
 </div>
 </div>
@@ -203,7 +233,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_auth_controller_8java_source.html#l00045">45</a> of file <a class="el" href="_auth_controller_8java_source.html">AuthController.java</a>.</p>
+<p>Registers a new user profile. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">profile</td><td>The profile object to register. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The registered profile. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_auth_controller_8java_source.html#l00068">68</a> of file <a class="el" href="_auth_controller_8java_source.html">AuthController.java</a>.</p>
 
 </div>
 </div>
@@ -216,7 +255,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>com</b></li><li class="navelem"><b>deusto</b></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify.html">deuspotify</a></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify_1_1controllers.html">controllers</a></li><li class="navelem"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller.html">AuthController</a></li>
-    <li class="footer">Generated on Sat May 17 2025 18:28:41 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Sat May 17 2025 18:51:33 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

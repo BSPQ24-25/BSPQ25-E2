@@ -1,4 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SongAssembler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deuspotify</a> &gt; <a href="index.source.html" class="el_package">com.deusto.deuspotify.assembler</a> &gt; <span class="el_source">SongAssembler.java</span></div><h1>SongAssembler.java</h1><pre class="source lang-java linenums">package com.deusto.deuspotify.assembler;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SongAssembler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deuspotify</a> &gt; <a href="index.source.html" class="el_package">com.deusto.deuspotify.assembler</a> &gt; <span class="el_source">SongAssembler.java</span></div><h1>SongAssembler.java</h1><pre class="source lang-java linenums">/**
+ * @file SongAssembler.java
+ * @brief Provides conversion methods between Song and SongDTO.
+ */
+
+package com.deusto.deuspotify.assembler;
 
 import com.deusto.deuspotify.model.Song;
 import com.deusto.deuspotify.DTO.SongDTO;
@@ -6,51 +11,75 @@ import com.deusto.deuspotify.DTO.SongDTO;
 import java.util.List;
 import java.util.stream.Collectors;
 
-<span class="nc" id="L9">public class SongAssembler {</span>
+/**
+ * @class SongAssembler
+ * @brief Utility class to convert between Song entities and SongDTOs.
+ */
+<span class="nc" id="L18">public class SongAssembler {</span>
 
+    /**
+     * @brief Converts a Song entity to a SongDTO.
+     * @param song The Song entity to convert.
+     * @return The resulting SongDTO, or null if input is null.
+     */
     public static SongDTO toDTO(Song song) {
-<span class="nc bnc" id="L12" title="All 2 branches missed.">        if (song == null) return null;</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">        if (song == null) return null;</span>
 
-<span class="nc" id="L14">        return new SongDTO(</span>
-<span class="nc" id="L15">                song.getId(),</span>
-<span class="nc" id="L16">                song.getName(),</span>
-<span class="nc" id="L17">                song.getArtists(),</span>
-<span class="nc" id="L18">                song.getDuration(),</span>
-<span class="nc" id="L19">                song.getGenres(),</span>
-<span class="nc" id="L20">                song.getDateOfRelease(),</span>
-<span class="nc" id="L21">                song.getAlbum()</span>
+<span class="nc" id="L28">        return new SongDTO(</span>
+<span class="nc" id="L29">                song.getId(),</span>
+<span class="nc" id="L30">                song.getName(),</span>
+<span class="nc" id="L31">                song.getArtists(),</span>
+<span class="nc" id="L32">                song.getDuration(),</span>
+<span class="nc" id="L33">                song.getGenres(),</span>
+<span class="nc" id="L34">                song.getDateOfRelease(),</span>
+<span class="nc" id="L35">                song.getAlbum()</span>
         );
     }
 
+    /**
+     * @brief Converts a SongDTO to a Song entity.
+     * @param dto The SongDTO to convert.
+     * @return The resulting Song entity, or null if input is null.
+     */
     public static Song toEntity(SongDTO dto) {
-<span class="nc bnc" id="L26" title="All 2 branches missed.">        if (dto == null) return null;</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">        if (dto == null) return null;</span>
 
-<span class="nc" id="L28">        Song song = new Song();</span>
-<span class="nc" id="L29">        song.setId(dto.getId());</span>
-<span class="nc" id="L30">        song.setName(dto.getName());</span>
-<span class="nc" id="L31">        song.setArtists(dto.getArtists());</span>
-<span class="nc" id="L32">        song.setDuration(dto.getDuration());</span>
-<span class="nc" id="L33">        song.setGenres(dto.getGenres());</span>
-<span class="nc" id="L34">        song.setDateOfRelease(dto.getDateOfRelease());</span>
-<span class="nc" id="L35">        song.setAlbum(dto.getAlbum());</span>
+<span class="nc" id="L47">        Song song = new Song();</span>
+<span class="nc" id="L48">        song.setId(dto.getId());</span>
+<span class="nc" id="L49">        song.setName(dto.getName());</span>
+<span class="nc" id="L50">        song.setArtists(dto.getArtists());</span>
+<span class="nc" id="L51">        song.setDuration(dto.getDuration());</span>
+<span class="nc" id="L52">        song.setGenres(dto.getGenres());</span>
+<span class="nc" id="L53">        song.setDateOfRelease(dto.getDateOfRelease());</span>
+<span class="nc" id="L54">        song.setAlbum(dto.getAlbum());</span>
 
-<span class="nc" id="L37">        return song;</span>
+<span class="nc" id="L56">        return song;</span>
     }
 
+    /**
+     * @brief Converts a list of Song entities to a list of SongDTOs.
+     * @param songs List of Song entities.
+     * @return List of SongDTOs, or null if input is null.
+     */
     public static List&lt;SongDTO&gt; toDTOList(List&lt;Song&gt; songs) {
-<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (songs == null) return null;</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        if (songs == null) return null;</span>
 
-<span class="nc" id="L43">        return songs.stream()</span>
-<span class="nc" id="L44">                .map(SongAssembler::toDTO)</span>
-<span class="nc" id="L45">                .collect(Collectors.toList());</span>
+<span class="nc" id="L67">        return songs.stream()</span>
+<span class="nc" id="L68">                .map(SongAssembler::toDTO)</span>
+<span class="nc" id="L69">                .collect(Collectors.toList());</span>
     }
 
+    /**
+     * @brief Converts a list of SongDTOs to a list of Song entities.
+     * @param dtos List of SongDTOs.
+     * @return List of Song entities, or null if input is null.
+     */
     public static List&lt;Song&gt; toEntityList(List&lt;SongDTO&gt; dtos) {
-<span class="nc bnc" id="L49" title="All 2 branches missed.">        if (dtos == null) return null;</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">        if (dtos == null) return null;</span>
 
-<span class="nc" id="L51">        return dtos.stream()</span>
-<span class="nc" id="L52">                .map(SongAssembler::toEntity)</span>
-<span class="nc" id="L53">                .collect(Collectors.toList());</span>
+<span class="nc" id="L80">        return dtos.stream()</span>
+<span class="nc" id="L81">                .map(SongAssembler::toEntity)</span>
+<span class="nc" id="L82">                .collect(Collectors.toList());</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

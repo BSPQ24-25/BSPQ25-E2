@@ -15,90 +15,156 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Optional;
-
+/**
+ * @class ProfileService
+ * @brief Service for managing user profiles, authentication and user details for Spring Security.
+ *
+ * This service provides methods for registering, retrieving, updating, and deleting user profiles.
+ * It also supports authentication via Spring Security and token-based user identification using JWT.
+ */
 @Service
 public class ProfileService implements UserDetailsService {
+
     private final ProfileRepository profileRepository;
     private final PasswordEncoder passwordEncoder;
+
+    @Autowired
     private JwtUtil jwtUtil;
-  
 
-<span class="fc" id="L26">    public ProfileService(ProfileRepository profileRepository, @Lazy PasswordEncoder passwordEncoder) {</span>
-<span class="fc" id="L27">        this.profileRepository = profileRepository;</span>
-<span class="fc" id="L28">        this.passwordEncoder = passwordEncoder;</span>
-<span class="fc" id="L29">    }</span>
+    /**
+     * Constructor for ProfileService.
+     * 
+     * @param profileRepository Repository to manage Profile entities.
+     * @param passwordEncoder Password encoder for secure password storage.
+     */
+<span class="fc" id="L40">    public ProfileService(ProfileRepository profileRepository, @Lazy PasswordEncoder passwordEncoder) {</span>
+<span class="fc" id="L41">        this.profileRepository = profileRepository;</span>
+<span class="fc" id="L42">        this.passwordEncoder = passwordEncoder;</span>
+<span class="fc" id="L43">    }</span>
 
+    /**
+     * Loads a user by their username. Required for Spring Security authentication.
+     *
+     * @param username Username of the user.
+     * @return UserDetails object containing user information.
+     * @throws UsernameNotFoundException if the user is not found.
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-<span class="fc" id="L33">        Profile profile = profileRepository.findByUsername(username)</span>
-<span class="fc" id="L34">                .orElseThrow(() -&gt; new UsernameNotFoundException(&quot;User not found: &quot; + username));</span>
+<span class="fc" id="L54">        Profile profile = profileRepository.findByUsername(username)</span>
+<span class="fc" id="L55">                .orElseThrow(() -&gt; new UsernameNotFoundException(&quot;User not found: &quot; + username));</span>
 
-<span class="fc" id="L36">        return org.springframework.security.core.userdetails.User</span>
-<span class="fc" id="L37">                .withUsername(profile.getUsername())</span>
-<span class="fc" id="L38">                .password(profile.getPassword())</span>
-<span class="pc bpc" id="L39" title="1 of 2 branches missed.">                .roles(profile.isAdmin() ? &quot;ADMIN&quot; : &quot;USER&quot;)</span>
-<span class="fc" id="L40">                .build();</span>
+<span class="fc" id="L57">        return org.springframework.security.core.userdetails.User</span>
+<span class="fc" id="L58">                .withUsername(profile.getUsername())</span>
+<span class="fc" id="L59">                .password(profile.getPassword())</span>
+<span class="pc bpc" id="L60" title="1 of 2 branches missed.">                .roles(profile.isAdmin() ? &quot;ADMIN&quot; : &quot;USER&quot;)</span>
+<span class="fc" id="L61">                .build();</span>
     }
 
+    /**
+     * Retrieves all user profiles.
+     * 
+     * @return List of all Profile entities.
+     */
     public List&lt;Profile&gt; getAllProfiles() {
-<span class="nc" id="L44">        return profileRepository.findAll();</span>
+<span class="nc" id="L70">        return profileRepository.findAll();</span>
     }
 
+    /**
+     * Retrieves a profile by its ID.
+     * 
+     * @param id ID of the profile.
+     * @return Optional containing the Profile if found.
+     */
     public Optional&lt;Profile&gt; getProfileById(Long id) {
-<span class="nc" id="L48">        return profileRepository.findById(id);</span>
+<span class="nc" id="L80">        return profileRepository.findById(id);</span>
     }
 
+    /**
+     * Registers a new user with encoded password.
+     * 
+     * @param profile Profile object containing registration data.
+     * @return The saved Profile object.
+     * @throws RuntimeException if the username already exists.
+     */
     @Transactional
     public Profile registerUser(Profile profile) {
-<span class="pc bpc" id="L53" title="1 of 2 branches missed.">        if (profileRepository.findByUsername(profile.getUsername()).isPresent()) {</span>
-<span class="nc" id="L54">            throw new RuntimeException(&quot;El usuario ya existe.&quot;);</span>
+<span class="pc bpc" id="L92" title="1 of 2 branches missed.">        if (profileRepository.findByUsername(profile.getUsername()).isPresent()) {</span>
+<span class="nc" id="L93">            throw new RuntimeException(&quot;El usuario ya existe.&quot;);</span>
         }
-<span class="fc" id="L56">        profile.setPassword(passwordEncoder.encode(profile.getPassword()));</span>
-<span class="fc" id="L57">        return profileRepository.save(profile);</span>
+<span class="fc" id="L95">        profile.setPassword(passwordEncoder.encode(profile.getPassword()));</span>
+<span class="fc" id="L96">        return profileRepository.save(profile);</span>
     }
 
+    /**
+     * Updates an existing user profile.
+     * 
+     * @param id ID of the profile to update.
+     * @param updatedProfile New profile data.
+     * @return Optional containing the updated Profile.
+     */
     @Transactional
     public Optional&lt;Profile&gt; updateProfile(Long id, Profile updatedProfile) {
-<span class="nc" id="L62">        return profileRepository.findById(id).map(profile -&gt; {</span>
-<span class="nc" id="L63">            profile.setUsername(updatedProfile.getUsername());</span>
-<span class="nc bnc" id="L64" title="All 2 branches missed.">            if (!updatedProfile.getPassword().isEmpty()) {</span>
-<span class="nc" id="L65">                profile.setPassword(passwordEncoder.encode(updatedProfile.getPassword()));</span>
+<span class="nc" id="L108">        return profileRepository.findById(id).map(profile -&gt; {</span>
+<span class="nc" id="L109">            profile.setUsername(updatedProfile.getUsername());</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">            if (!updatedProfile.getPassword().isEmpty()) {</span>
+<span class="nc" id="L111">                profile.setPassword(passwordEncoder.encode(updatedProfile.getPassword()));</span>
             }
-<span class="nc" id="L67">            profile.setEmail(updatedProfile.getEmail());</span>
-<span class="nc" id="L68">            profile.setFriendsList(updatedProfile.getFriendsList());</span>
-<span class="nc" id="L69">            profile.setFavouriteSongs(updatedProfile.getFavouriteSongs());</span>
-<span class="nc" id="L70">            profile.setPlaylists(updatedProfile.getPlaylists());</span>
-<span class="nc" id="L71">            profile.setAdmin(updatedProfile.isAdmin());</span>
-<span class="nc" id="L72">            return profileRepository.save(profile);</span>
+<span class="nc" id="L113">            profile.setEmail(updatedProfile.getEmail());</span>
+<span class="nc" id="L114">            profile.setFriendsList(updatedProfile.getFriendsList());</span>
+<span class="nc" id="L115">            profile.setFavouriteSongs(updatedProfile.getFavouriteSongs());</span>
+<span class="nc" id="L116">            profile.setPlaylists(updatedProfile.getPlaylists());</span>
+<span class="nc" id="L117">            profile.setAdmin(updatedProfile.isAdmin());</span>
+<span class="nc" id="L118">            return profileRepository.save(profile);</span>
         });
     }
 
+    /**
+     * Deletes a user profile.
+     * 
+     * @param id ID of the profile to delete.
+     * @return true if the profile was deleted, false otherwise.
+     */
     @Transactional
     public boolean deleteProfile(Long id) {
-<span class="nc bnc" id="L78" title="All 2 branches missed.">        if (profileRepository.existsById(id)) {</span>
-<span class="nc" id="L79">            profileRepository.deleteById(id);</span>
-<span class="nc" id="L80">            return true;</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">        if (profileRepository.existsById(id)) {</span>
+<span class="nc" id="L131">            profileRepository.deleteById(id);</span>
+<span class="nc" id="L132">            return true;</span>
         }
-<span class="nc" id="L82">        return false;</span>
+<span class="nc" id="L134">        return false;</span>
     }
 
+    /**
+     * Validates user login by comparing raw and encoded passwords.
+     * 
+     * @param username The username.
+     * @param password The raw password.
+     * @return Optional containing the Profile if login is successful.
+     */
     public Optional&lt;Profile&gt; login(String username, String password) {
-<span class="nc" id="L86">        return profileRepository.findByUsername(username)</span>
-<span class="nc" id="L87">                .filter(profile -&gt; passwordEncoder.matches(password, profile.getPassword()));</span>
+<span class="nc" id="L145">        return profileRepository.findByUsername(username)</span>
+<span class="nc" id="L146">                .filter(profile -&gt; passwordEncoder.matches(password, profile.getPassword()));</span>
     }
 
+    /**
+     * Extracts and returns the currently authenticated user based on the JWT token in the request.
+     * 
+     * @param request The HTTP request containing the Authorization header.
+     * @return The authenticated Profile.
+     * @throws RuntimeException if no token is found or the user does not exist.
+     */
     public Profile getAuthenticatedUser(HttpServletRequest request) {
-<span class="fc" id="L91">        String authHeader = request.getHeader(&quot;Authorization&quot;);</span>
-    
-<span class="pc bpc" id="L93" title="1 of 4 branches missed.">        if (authHeader == null || !authHeader.startsWith(&quot;Bearer &quot;)) {</span>
-<span class="fc" id="L94">            throw new RuntimeException(&quot;No JWT token found&quot;);</span>
+<span class="fc" id="L157">        String authHeader = request.getHeader(&quot;Authorization&quot;);</span>
+
+<span class="pc bpc" id="L159" title="1 of 4 branches missed.">        if (authHeader == null || !authHeader.startsWith(&quot;Bearer &quot;)) {</span>
+<span class="fc" id="L160">            throw new RuntimeException(&quot;No JWT token found&quot;);</span>
         }
-    
-<span class="fc" id="L97">        String token = authHeader.substring(7);</span>
-<span class="fc" id="L98">        String username = jwtUtil.extractUsername(token);</span>
-    
-<span class="fc" id="L100">        return profileRepository.findByUsername(username)</span>
-<span class="pc" id="L101">                .orElseThrow(() -&gt; new RuntimeException(&quot;User not found&quot;));</span>
+
+<span class="fc" id="L163">        String token = authHeader.substring(7);</span>
+<span class="fc" id="L164">        String username = jwtUtil.extractUsername(token);</span>
+
+<span class="fc" id="L166">        return profileRepository.findByUsername(username)</span>
+<span class="pc" id="L167">                .orElseThrow(() -&gt; new RuntimeException(&quot;User not found&quot;));</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -132,8 +132,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:adfb4a3aaaff96fd611cc4c57c6f978b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00005">5</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
+<div class="textblock"><p>Data Transfer Object (DTO) representing a Playlist. Used to transfer playlist data between the frontend and backend without exposing the internal model. </p>
+
+<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00009">9</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a0c12655a93d83090061b6e1a2f4d096d" name="a0c12655a93d83090061b6e1a2f4d096d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0c12655a93d83090061b6e1a2f4d096d">&#9670;&#160;</a></span>PlaylistDTO() <span class="overload">[1/2]</span></h2>
@@ -149,8 +150,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Default constructor. </p>
 
-<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00015">15</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00033">33</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
 
 </div>
 </div>
@@ -209,8 +211,21 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Constructs a new PlaylistDTO with the specified attributes.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Unique identifier of the playlist. </td></tr>
+    <tr><td class="paramname">name</td><td>Name of the playlist. </td></tr>
+    <tr><td class="paramname">owners</td><td>List of playlist owners. </td></tr>
+    <tr><td class="paramname">isPublic</td><td>Visibility status of the playlist. </td></tr>
+    <tr><td class="paramname">songs</td><td>Songs contained in the playlist. </td></tr>
+    <tr><td class="paramname">numberOfSongs</td><td>Total number of songs. </td></tr>
+    <tr><td class="paramname">order</td><td>Order of the songs. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00017">17</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00046">46</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
 
 </div>
 </div>
@@ -229,8 +244,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Gets the playlist ID. </p><dl class="section return"><dt>Returns</dt><dd>Playlist ID. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00030">30</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00062">62</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
 
 </div>
 </div>
@@ -248,8 +264,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Gets the playlist name. </p><dl class="section return"><dt>Returns</dt><dd>Playlist name. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00033">33</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00074">74</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
 
 </div>
 </div>
@@ -267,8 +284,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Gets the total number of songs. </p><dl class="section return"><dt>Returns</dt><dd>Number of songs. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00045">45</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00122">122</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
 
 </div>
 </div>
@@ -286,8 +304,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Gets the order of the songs. </p><dl class="section return"><dt>Returns</dt><dd>List of song order indices. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00048">48</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00134">134</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
 
 </div>
 </div>
@@ -305,8 +324,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Gets the list of playlist owners. </p><dl class="section return"><dt>Returns</dt><dd>List of usernames. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00036">36</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00086">86</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
 
 </div>
 </div>
@@ -324,8 +344,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Gets the list of songs in the playlist. </p><dl class="section return"><dt>Returns</dt><dd>List of <code><a class="el" href="">SongDTO</a></code>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00042">42</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00110">110</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
 
 </div>
 </div>
@@ -343,8 +364,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Checks if the playlist is public. </p><dl class="section return"><dt>Returns</dt><dd><code class="JavaDocCode">true</code> if public, <code class="JavaDocCode">false</code> otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00039">39</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00098">98</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
 
 </div>
 </div>
@@ -363,8 +385,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Sets the playlist ID. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Playlist ID. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00031">31</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00068">68</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
 
 </div>
 </div>
@@ -383,8 +411,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Sets the playlist name. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Playlist name. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00034">34</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00080">80</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
 
 </div>
 </div>
@@ -403,8 +437,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Sets the number of songs. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">numberOfSongs</td><td>Number of songs. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00046">46</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00128">128</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
 
 </div>
 </div>
@@ -423,8 +463,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Sets the order of the songs. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">order</td><td>List of song order indices. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00049">49</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00140">140</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
 
 </div>
 </div>
@@ -443,8 +489,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Sets the playlist owners. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">owners</td><td>List of usernames. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00037">37</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00092">92</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
 
 </div>
 </div>
@@ -463,8 +515,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Sets the playlist visibility. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">isPublic</td><td><code class="JavaDocCode">true</code> to make public, <code class="JavaDocCode">false</code> to make private. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00040">40</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00104">104</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
 
 </div>
 </div>
@@ -483,8 +541,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Sets the list of songs in the playlist. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">songs</td><td>List of <code><a class="el" href="">SongDTO</a></code>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00043">43</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_playlist_d_t_o_8java_source.html#l00116">116</a> of file <a class="el" href="_playlist_d_t_o_8java_source.html">PlaylistDTO.java</a>.</p>
 
 </div>
 </div>
@@ -497,7 +561,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>com</b></li><li class="navelem"><b>deusto</b></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify.html">deuspotify</a></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify_1_1_d_t_o.html">DTO</a></li><li class="navelem"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1_d_t_o_1_1_playlist_d_t_o.html">PlaylistDTO</a></li>
-    <li class="footer">Generated on Sat May 17 2025 18:28:41 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Sat May 17 2025 18:51:33 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

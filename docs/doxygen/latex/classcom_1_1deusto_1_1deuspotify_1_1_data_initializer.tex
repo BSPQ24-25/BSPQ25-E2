@@ -1,5 +1,10 @@
 \doxysection{com.\+deusto.\+deuspotify.\+Data\+Initializer Class Reference}
 \hypertarget{classcom_1_1deusto_1_1deuspotify_1_1_data_initializer}{}\label{classcom_1_1deusto_1_1deuspotify_1_1_data_initializer}\index{com.deusto.deuspotify.DataInitializer@{com.deusto.deuspotify.DataInitializer}}
+
+
+Component that runs at application startup and inserts initial data into the database.  
+
+
 Inheritance diagram for com.\+deusto.\+deuspotify.\+Data\+Initializer\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -16,9 +21,11 @@ void \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1_data_initializer_aa51
 
 
 \doxysubsection{Detailed Description}
+Component that runs at application startup and inserts initial data into the database. 
 
+This component inserts one song, one user profile, and one playlist if they do not already exist. 
 
-Definition at line \mbox{\hyperlink{_data_initializer_8java_source_l00020}{20}} of file \mbox{\hyperlink{_data_initializer_8java_source}{Data\+Initializer.\+java}}.
+Definition at line \mbox{\hyperlink{_data_initializer_8java_source_l00031}{31}} of file \mbox{\hyperlink{_data_initializer_8java_source}{Data\+Initializer.\+java}}.
 
 
 
@@ -29,9 +36,22 @@ Definition at line \mbox{\hyperlink{_data_initializer_8java_source_l00020}{20}} 
 \doxysubsubsection{\texorpdfstring{DataInitializer()}{DataInitializer()}}
 {\footnotesize\ttfamily com.\+deusto.\+deuspotify.\+Data\+Initializer.\+Data\+Initializer (\begin{DoxyParamCaption}\item[{Song\+Repository}]{song\+Repository,  }\item[{Profile\+Repository}]{profile\+Repository,  }\item[{Playlist\+Repository}]{playlist\+Repository,  }\item[{Password\+Encoder}]{password\+Encoder }\end{DoxyParamCaption})}
 
+Constructor for dependency injection.
 
 
-Definition at line \mbox{\hyperlink{_data_initializer_8java_source_l00027}{27}} of file \mbox{\hyperlink{_data_initializer_8java_source}{Data\+Initializer.\+java}}.
+\begin{DoxyParams}{Parameters}
+{\em song\+Repository} & Song repository. \\
+\hline
+{\em profile\+Repository} & Profile repository. \\
+\hline
+{\em playlist\+Repository} & Playlist repository. \\
+\hline
+{\em password\+Encoder} & Password encoder for encrypting user passwords. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_data_initializer_8java_source_l00046}{46}} of file \mbox{\hyperlink{_data_initializer_8java_source}{Data\+Initializer.\+java}}.
 
 
 
@@ -42,9 +62,21 @@ Definition at line \mbox{\hyperlink{_data_initializer_8java_source_l00027}{27}} 
 \doxysubsubsection{\texorpdfstring{run()}{run()}}
 {\footnotesize\ttfamily void com.\+deusto.\+deuspotify.\+Data\+Initializer.\+run (\begin{DoxyParamCaption}\item[{String...}]{args }\end{DoxyParamCaption}) throws Exception}
 
+Executes at application startup.
 
 
-Definition at line \mbox{\hyperlink{_data_initializer_8java_source_l00038}{38}} of file \mbox{\hyperlink{_data_initializer_8java_source}{Data\+Initializer.\+java}}.
+\begin{DoxyParams}{Parameters}
+{\em args} & Command-\/line arguments. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & In case of any error during initialization. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{_data_initializer_8java_source_l00063}{63}} of file \mbox{\hyperlink{_data_initializer_8java_source}{Data\+Initializer.\+java}}.
 
 
 

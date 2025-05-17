@@ -2,108 +2,99 @@
 \hypertarget{_security_config_8java_source}{}\label{_security_config_8java_source}\index{src/main/java/com/deusto/deuspotify/config/SecurityConfig.java@{src/main/java/com/deusto/deuspotify/config/SecurityConfig.java}}
 \mbox{\hyperlink{_security_config_8java}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00001}00001\ \textcolor{keyword}{package\ }com.deusto.deuspotify.config;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00002}00002\ }
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00003}00003\ \textcolor{keyword}{import}\ com.deusto.deuspotify.services.ProfileService;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00004}00004\ \textcolor{keyword}{import}\ org.springframework.context.MessageSource;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00005}00005\ \textcolor{keyword}{import}\ org.springframework.context.annotation.Bean;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00006}00006\ \textcolor{keyword}{import}\ org.springframework.context.annotation.Configuration;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00007}00007\ \textcolor{keyword}{import}\ org.springframework.context.support.ResourceBundleMessageSource;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00008}00008\ \textcolor{keyword}{import}\ org.springframework.security.authentication.AuthenticationManager;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00009}00009\ \textcolor{keyword}{import}\ org.springframework.security.authentication.ProviderManager;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00010}00010\ \textcolor{keyword}{import}\ org.springframework.security.authentication.dao.DaoAuthenticationProvider;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00011}00011\ \textcolor{keyword}{import}\ org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00012}00012\ \textcolor{keyword}{import}\ org.springframework.security.config.annotation.web.builders.HttpSecurity;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00013}00013\ \textcolor{keyword}{import}\ org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00014}00014\ \textcolor{keyword}{import}\ org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00015}00015\ \textcolor{keyword}{import}\ org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00016}00016\ \textcolor{keyword}{import}\ org.springframework.security.crypto.password.PasswordEncoder;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00017}00017\ \textcolor{keyword}{import}\ org.springframework.security.web.SecurityFilterChain;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00018}00018\ \textcolor{keyword}{import}\ org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00019}00019\ \textcolor{keyword}{import}\ org.springframework.web.servlet.LocaleResolver;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00020}00020\ \textcolor{keyword}{import}\ org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00021}00021\ \textcolor{keyword}{import}\ org.springframework.http.HttpMethod;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00022}00022\ }
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00023}00023\ \textcolor{keyword}{import}\ java.util.List;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00024}00024\ \textcolor{keyword}{import}\ java.util.Locale;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00025}00025\ }
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00026}00026\ @Configuration}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00027}00027\ @EnableWebSecurity}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00028}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config}{00028}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config}{SecurityConfig}}\ \{}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00029}00029\ }
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00030}00030\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ ProfileService\ profileService;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00031}00031\ }
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00032}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_acccfc17d27560b6c577cd85bece0fce7}{00032}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_acccfc17d27560b6c577cd85bece0fce7}{SecurityConfig}}(ProfileService\ profileService)\ \{}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ this.profileService\ =\ profileService;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00034}00034\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00006}00006\ \textcolor{keyword}{package\ }com.deusto.deuspotify.config;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00008}00008\ \textcolor{keyword}{import}\ com.deusto.deuspotify.services.ProfileService;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00009}00009\ \textcolor{keyword}{import}\ org.springframework.context.MessageSource;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00010}00010\ \textcolor{keyword}{import}\ org.springframework.context.annotation.Bean;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00011}00011\ \textcolor{keyword}{import}\ org.springframework.context.annotation.Configuration;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00012}00012\ \textcolor{keyword}{import}\ org.springframework.context.support.ResourceBundleMessageSource;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00013}00013\ \textcolor{keyword}{import}\ org.springframework.security.authentication.AuthenticationManager;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00014}00014\ \textcolor{keyword}{import}\ org.springframework.security.authentication.ProviderManager;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00015}00015\ \textcolor{keyword}{import}\ org.springframework.security.authentication.dao.DaoAuthenticationProvider;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00016}00016\ \textcolor{keyword}{import}\ org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00017}00017\ \textcolor{keyword}{import}\ org.springframework.security.config.annotation.web.builders.HttpSecurity;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00018}00018\ \textcolor{keyword}{import}\ org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00019}00019\ \textcolor{keyword}{import}\ org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00020}00020\ \textcolor{keyword}{import}\ org.springframework.security.crypto.password.PasswordEncoder;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00021}00021\ \textcolor{keyword}{import}\ org.springframework.security.web.SecurityFilterChain;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00022}00022\ \textcolor{keyword}{import}\ org.springframework.web.servlet.LocaleResolver;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00023}00023\ \textcolor{keyword}{import}\ org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00025}00025\ \textcolor{keyword}{import}\ java.util.List;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00026}00026\ \textcolor{keyword}{import}\ java.util.Locale;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00032}00032\ @Configuration}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00033}00033\ @EnableWebSecurity}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00034}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config}{00034}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config}{SecurityConfig}}\ \{}
 \DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00035}00035\ }
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00036}00036\ \ \ \ \ @Bean}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00037}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a4bbc1c0d6335e7f6601b3ba8b1720bf0}{00037}}\ \ \ \ \ \textcolor{keyword}{public}\ SecurityFilterChain\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a4bbc1c0d6335e7f6601b3ba8b1720bf0}{securityFilterChain}}(HttpSecurity\ http)\ \textcolor{keywordflow}{throws}\ Exception\ \{}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00038}00038\ \ \ \ \ \ \ \ \ http}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ .authorizeHttpRequests(auth\ -\/>\ auth}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .requestMatchers(}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}/"{}},}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}/login"{}},}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}/login.html"{}},}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}/register.html"{}},}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}/styles.css"{}},}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}/static/**"{}},}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}/api/i18n"{}},}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}/api/profiles"{}},}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}/auth/register"{}},}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}/auth/login"{}}}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ).permitAll()}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .anyRequest().authenticated()}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ )}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ .formLogin(form\ -\/>\ form}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .loginPage(\textcolor{stringliteral}{"{}/login.html"{}})}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .loginProcessingUrl(\textcolor{stringliteral}{"{}/login"{}})}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .defaultSuccessUrl(\textcolor{stringliteral}{"{}/index.html"{}},\ \textcolor{keyword}{true})}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .failureUrl(\textcolor{stringliteral}{"{}/login.html?error=true"{}})}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ )}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ .logout(logout\ -\/>\ logout}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .logoutUrl(\textcolor{stringliteral}{"{}/logout"{}})}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .logoutSuccessUrl(\textcolor{stringliteral}{"{}/login.html"{}})}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .invalidateHttpSession(\textcolor{keyword}{true})}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .deleteCookies(\textcolor{stringliteral}{"{}JSESSIONID"{}})}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ )}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ .csrf(csrf\ -\/>\ csrf}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ignoringRequestMatchers(\textcolor{stringliteral}{"{}/login"{}},\ \textcolor{stringliteral}{"{}/logout"{}},\ \textcolor{stringliteral}{"{}/api/**"{}},\ \textcolor{stringliteral}{"{}/auth/**"{}})}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ );}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00069}00069\ }
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ http.build();}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00071}00071\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00072}00072\ }
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00073}00073\ \ \ \ \ @Bean}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00074}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a6a115a32dce5b830cadd4c16c1222751}{00074}}\ \ \ \ \ \textcolor{keyword}{public}\ AuthenticationManager\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a6a115a32dce5b830cadd4c16c1222751}{authenticationManager}}(AuthenticationConfiguration\ authenticationConfiguration)\ \textcolor{keywordflow}{throws}\ Exception\ \{}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00075}00075\ \ \ \ \ \ \ \ \ DaoAuthenticationProvider\ authProvider\ =\ \textcolor{keyword}{new}\ DaoAuthenticationProvider();}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00076}00076\ \ \ \ \ \ \ \ \ authProvider.setUserDetailsService(profileService);}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00077}00077\ \ \ \ \ \ \ \ \ authProvider.setPasswordEncoder(\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a1427d9905588cf474d92bff56b768623}{passwordEncoder}}());}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00036}00036\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ ProfileService\ profileService;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00042}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_acccfc17d27560b6c577cd85bece0fce7}{00042}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_acccfc17d27560b6c577cd85bece0fce7}{SecurityConfig}}(ProfileService\ profileService)\ \{}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ this.profileService\ =\ profileService;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00044}00044\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00052}00052\ \ \ \ \ @Bean}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00053}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a4bbc1c0d6335e7f6601b3ba8b1720bf0}{00053}}\ \ \ \ \ \textcolor{keyword}{public}\ SecurityFilterChain\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a4bbc1c0d6335e7f6601b3ba8b1720bf0}{securityFilterChain}}(HttpSecurity\ http)\ \textcolor{keywordflow}{throws}\ Exception\ \{}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ http}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ .authorizeHttpRequests(auth\ -\/>\ auth}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .requestMatchers(}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}/"{}},\ \textcolor{stringliteral}{"{}/login"{}},\ \textcolor{stringliteral}{"{}/login.html"{}},\ \textcolor{stringliteral}{"{}/register.html"{}},}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}/styles.css"{}},\ \textcolor{stringliteral}{"{}/static/**"{}},\ \textcolor{stringliteral}{"{}/api/i18n"{}},}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}/api/profiles"{}},\ \textcolor{stringliteral}{"{}/auth/register"{}},\ \textcolor{stringliteral}{"{}/auth/login"{}}}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ).permitAll()}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .anyRequest().authenticated()}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ .formLogin(form\ -\/>\ form}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .loginPage(\textcolor{stringliteral}{"{}/login.html"{}})}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .loginProcessingUrl(\textcolor{stringliteral}{"{}/login"{}})}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .defaultSuccessUrl(\textcolor{stringliteral}{"{}/index.html"{}},\ \textcolor{keyword}{true})}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .failureUrl(\textcolor{stringliteral}{"{}/login.html?error=true"{}})}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ .logout(logout\ -\/>\ logout}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .logoutUrl(\textcolor{stringliteral}{"{}/logout"{}})}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .logoutSuccessUrl(\textcolor{stringliteral}{"{}/login.html"{}})}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .invalidateHttpSession(\textcolor{keyword}{true})}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .deleteCookies(\textcolor{stringliteral}{"{}JSESSIONID"{}})}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ .csrf(csrf\ -\/>\ csrf}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ignoringRequestMatchers(\textcolor{stringliteral}{"{}/login"{}},\ \textcolor{stringliteral}{"{}/logout"{}},\ \textcolor{stringliteral}{"{}/api/**"{}},\ \textcolor{stringliteral}{"{}/auth/**"{}})}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ );}
 \DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00078}00078\ }
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ ProviderManager(List.of(authProvider));}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ http.build();}
 \DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00080}00080\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00081}00081\ }
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00082}00082\ \ \ \ \ @Bean}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00083}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a1427d9905588cf474d92bff56b768623}{00083}}\ \ \ \ \ \textcolor{keyword}{public}\ PasswordEncoder\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a1427d9905588cf474d92bff56b768623}{passwordEncoder}}()\ \{}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ BCryptPasswordEncoder();}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00085}00085\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00086}00086\ }
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00087}00087\ \ \ \ \ \textcolor{comment}{//\ I18n}}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00088}00088\ }
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00089}00089\ \ \ \ \ @Bean}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00090}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a180e2fcb3870ced7787c61e136ae1be4}{00090}}\ \ \ \ \ \textcolor{keyword}{public}\ MessageSource\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a180e2fcb3870ced7787c61e136ae1be4}{messageSource}}()\ \{}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00091}00091\ \ \ \ \ \ \ \ \ ResourceBundleMessageSource\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a180e2fcb3870ced7787c61e136ae1be4}{messageSource}}\ =\ \textcolor{keyword}{new}\ ResourceBundleMessageSource();}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00092}00092\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a180e2fcb3870ced7787c61e136ae1be4}{messageSource}}.setBasename(\textcolor{stringliteral}{"{}messages"{}});\ \textcolor{comment}{//\ busca\ messages.properties}}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00093}00093\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a180e2fcb3870ced7787c61e136ae1be4}{messageSource}}.setDefaultEncoding(\textcolor{stringliteral}{"{}UTF-\/8"{}});}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00094}00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a180e2fcb3870ced7787c61e136ae1be4}{messageSource}};}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00088}00088\ \ \ \ \ @Bean}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00089}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a6a115a32dce5b830cadd4c16c1222751}{00089}}\ \ \ \ \ \textcolor{keyword}{public}\ AuthenticationManager\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a6a115a32dce5b830cadd4c16c1222751}{authenticationManager}}(AuthenticationConfiguration\ authenticationConfiguration)\ \textcolor{keywordflow}{throws}\ Exception\ \{}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00090}00090\ \ \ \ \ \ \ \ \ DaoAuthenticationProvider\ authProvider\ =\ \textcolor{keyword}{new}\ DaoAuthenticationProvider();}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00091}00091\ \ \ \ \ \ \ \ \ authProvider.setUserDetailsService(profileService);}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00092}00092\ \ \ \ \ \ \ \ \ authProvider.setPasswordEncoder(\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a1427d9905588cf474d92bff56b768623}{passwordEncoder}}());}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00094}00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ ProviderManager(List.of(authProvider));}
 \DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00095}00095\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00096}00096\ }
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00097}00097\ \ \ \ \ @Bean}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00098}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_af26250e3431df4b7dec3319533c6013e}{00098}}\ \ \ \ \ \textcolor{keyword}{public}\ LocaleResolver\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_af26250e3431df4b7dec3319533c6013e}{localeResolver}}()\ \{}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00099}00099\ \ \ \ \ \ \ \ \ AcceptHeaderLocaleResolver\ resolver\ =\ \textcolor{keyword}{new}\ AcceptHeaderLocaleResolver();}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00100}00100\ \ \ \ \ \ \ \ \ resolver.setDefaultLocale(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}}));\ \textcolor{comment}{//\ idioma\ por\ defecto:\ español}}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ resolver;}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00102}00102\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00103}00103\ \}}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00101}00101\ \ \ \ \ @Bean}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00102}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a1427d9905588cf474d92bff56b768623}{00102}}\ \ \ \ \ \textcolor{keyword}{public}\ PasswordEncoder\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a1427d9905588cf474d92bff56b768623}{passwordEncoder}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ BCryptPasswordEncoder();}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00104}00104\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00106}00106\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Internationalization\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00112}00112\ \ \ \ \ @Bean}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00113}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a180e2fcb3870ced7787c61e136ae1be4}{00113}}\ \ \ \ \ \textcolor{keyword}{public}\ MessageSource\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a180e2fcb3870ced7787c61e136ae1be4}{messageSource}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00114}00114\ \ \ \ \ \ \ \ \ ResourceBundleMessageSource\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a180e2fcb3870ced7787c61e136ae1be4}{messageSource}}\ =\ \textcolor{keyword}{new}\ ResourceBundleMessageSource();}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00115}00115\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a180e2fcb3870ced7787c61e136ae1be4}{messageSource}}.setBasename(\textcolor{stringliteral}{"{}messages"{}});}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00116}00116\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a180e2fcb3870ced7787c61e136ae1be4}{messageSource}}.setDefaultEncoding(\textcolor{stringliteral}{"{}UTF-\/8"{}});}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00117}00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a180e2fcb3870ced7787c61e136ae1be4}{messageSource}};}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00118}00118\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00124}00124\ \ \ \ \ @Bean}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00125}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_af26250e3431df4b7dec3319533c6013e}{00125}}\ \ \ \ \ \textcolor{keyword}{public}\ LocaleResolver\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_af26250e3431df4b7dec3319533c6013e}{localeResolver}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00126}00126\ \ \ \ \ \ \ \ \ AcceptHeaderLocaleResolver\ resolver\ =\ \textcolor{keyword}{new}\ AcceptHeaderLocaleResolver();}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00127}00127\ \ \ \ \ \ \ \ \ resolver.setDefaultLocale(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}}));}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00128}00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ resolver;}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00129}00129\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_security_config_8java_source_l00130}00130\ \}}
 
 \end{DoxyCode}

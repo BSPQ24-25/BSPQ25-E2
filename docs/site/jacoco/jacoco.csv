@@ -11,7 +11,7 @@ Deuspotify,com.deusto.deuspotify.DTO,ProfileDTO,76,0,0,0,24,0,16,0,16,0
 Deuspotify,com.deusto.deuspotify.config,FileStorageConfig,0,20,0,0,0,4,0,2,0,2
 Deuspotify,com.deusto.deuspotify.config,SecurityConfig,0,169,0,0,0,33,0,10,0,10
 Deuspotify,com.deusto.deuspotify.controllers,SongController,95,3,2,0,20,1,8,1,7,1
-Deuspotify,com.deusto.deuspotify.controllers,PlaylistController,54,9,0,0,12,4,7,1,7,1
+Deuspotify,com.deusto.deuspotify.controllers,PlaylistController,52,9,0,0,11,4,7,1,7,1
 Deuspotify,com.deusto.deuspotify.controllers,AuthController,0,52,0,0,0,12,0,4,0,4
 Deuspotify,com.deusto.deuspotify.controllers,ProfileController,80,6,2,0,17,3,10,1,9,1
 Deuspotify,com.deusto.deuspotify.controllers,I18nController,115,6,7,0,22,3,8,1,4,1

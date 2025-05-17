@@ -2,70 +2,71 @@
 \hypertarget{_profile_assembler_8java_source}{}\label{_profile_assembler_8java_source}\index{src/main/java/com/deusto/deuspotify/assembler/ProfileAssembler.java@{src/main/java/com/deusto/deuspotify/assembler/ProfileAssembler.java}}
 \mbox{\hyperlink{_profile_assembler_8java}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00001}00001\ \textcolor{keyword}{package\ }com.deusto.deuspotify.assembler;}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00002}00002\ }
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00003}00003\ \textcolor{keyword}{import}\ com.deusto.deuspotify.model.Profile;}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00004}00004\ \textcolor{keyword}{import}\ com.deusto.deuspotify.model.Song;}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00005}00005\ \textcolor{keyword}{import}\ com.deusto.deuspotify.model.Playlist;}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00006}00006\ \textcolor{keyword}{import}\ com.deusto.deuspotify.DTO.ProfileDTO;}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00007}00007\ \textcolor{keyword}{import}\ com.deusto.deuspotify.DTO.SongDTO;}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00008}00008\ \textcolor{keyword}{import}\ com.deusto.deuspotify.DTO.PlaylistDTO;}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00009}00009\ }
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00010}00010\ \textcolor{keyword}{import}\ java.util.List;}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00011}00011\ \textcolor{keyword}{import}\ java.util.stream.Collectors;}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00012}00012\ }
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00013}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_profile_assembler}{00013}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_profile_assembler}{ProfileAssembler}}\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00006}00006\ \textcolor{keyword}{package\ }com.deusto.deuspotify.assembler;}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00008}00008\ \textcolor{keyword}{import}\ com.deusto.deuspotify.model.Profile;}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00009}00009\ \textcolor{keyword}{import}\ com.deusto.deuspotify.model.Song;}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00010}00010\ \textcolor{keyword}{import}\ com.deusto.deuspotify.model.Playlist;}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00011}00011\ \textcolor{keyword}{import}\ com.deusto.deuspotify.DTO.ProfileDTO;}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00012}00012\ \textcolor{keyword}{import}\ com.deusto.deuspotify.DTO.SongDTO;}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00013}00013\ \textcolor{keyword}{import}\ com.deusto.deuspotify.DTO.PlaylistDTO;}
 \DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00014}00014\ }
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00015}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_profile_assembler_ae44e343c834ef6cabd4905dcfcefb82a}{00015}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ ProfileDTO\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_profile_assembler_ae44e343c834ef6cabd4905dcfcefb82a}{toDTO}}(Profile\ profile)\ \{}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (profile\ ==\ \textcolor{keyword}{null})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00015}00015\ \textcolor{keyword}{import}\ java.util.List;}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00016}00016\ \textcolor{keyword}{import}\ java.util.stream.Collectors;}
 \DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00017}00017\ }
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00018}00018\ \ \ \ \ \ \ \ \ List<SongDTO>\ songDTOs\ =\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler}{SongAssembler}}.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a79a720faf60db34ee2c33398e4b7cb61}{toDTOList}}(profile.getFavouriteSongs());}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00019}00019\ \ \ \ \ \ \ \ \ List<PlaylistDTO>\ playlistDTOs\ =\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler}{PlaylistAssembler}}.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler_abec9bb44343ceb945955e63040c52ed8}{toDTOList}}(profile.getPlaylists());}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00020}00020\ }
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ ProfileDTO(}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ profile.getId(),}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ profile.getUsername(),}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ profile.getEmail(),}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ profile.getFriendsList(),}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ songDTOs,}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playlistDTOs,}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ profile.isAdmin()}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00029}00029\ \ \ \ \ \ \ \ \ );}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00030}00030\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00022}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_profile_assembler}{00022}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_profile_assembler}{ProfileAssembler}}\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00029}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_profile_assembler_ae44e343c834ef6cabd4905dcfcefb82a}{00029}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ ProfileDTO\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_profile_assembler_ae44e343c834ef6cabd4905dcfcefb82a}{toDTO}}(Profile\ profile)\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (profile\ ==\ \textcolor{keyword}{null})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
 \DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00031}00031\ }
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00032}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_profile_assembler_a63fd4181c7ecf827aa7488f868dd07ab}{00032}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ Profile\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_profile_assembler_a63fd4181c7ecf827aa7488f868dd07ab}{toEntity}}(ProfileDTO\ dto)\ \{}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dto\ ==\ \textcolor{keyword}{null})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00032}00032\ \ \ \ \ \ \ \ \ List<SongDTO>\ songDTOs\ =\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler}{SongAssembler}}.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a79a720faf60db34ee2c33398e4b7cb61}{toDTOList}}(profile.getFavouriteSongs());}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ List<PlaylistDTO>\ playlistDTOs\ =\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler}{PlaylistAssembler}}.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler_abec9bb44343ceb945955e63040c52ed8}{toDTOList}}(profile.getPlaylists());}
 \DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00034}00034\ }
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00035}00035\ \ \ \ \ \ \ \ \ List<Song>\ songs\ =\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler}{SongAssembler}}.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_afc7bf8dcea2b2f7bd1cb25c7cea1b35d}{toEntityList}}(dto.getFavouriteSongs());}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00036}00036\ \ \ \ \ \ \ \ \ List<Playlist>\ playlists\ =\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler}{PlaylistAssembler}}.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler_a81a37499060e6889979321897c2226f5}{toEntityList}}(dto.getPlaylists());}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00037}00037\ }
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00038}00038\ \ \ \ \ \ \ \ \ Profile\ profile\ =\ \textcolor{keyword}{new}\ Profile();}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00039}00039\ \ \ \ \ \ \ \ \ profile.setId(dto.getId());}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00040}00040\ \ \ \ \ \ \ \ \ profile.setUsername(dto.getUsername());}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00041}00041\ \ \ \ \ \ \ \ \ profile.setEmail(dto.getEmail());}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00042}00042\ \ \ \ \ \ \ \ \ profile.setFriendsList(dto.getFriendsList());}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ profile.setFavouriteSongs(songs);}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00044}00044\ \ \ \ \ \ \ \ \ profile.setPlaylists(playlists);}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00045}00045\ \ \ \ \ \ \ \ \ profile.setAdmin(dto.isAdmin());}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00046}00046\ }
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ profile;}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00048}00048\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00049}00049\ }
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00050}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_profile_assembler_a0f530796adbdb9e647d46fa135b5d192}{00050}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ List<ProfileDTO>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_profile_assembler_a0f530796adbdb9e647d46fa135b5d192}{toDTOList}}(List<Profile>\ profiles)\ \{}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (profiles\ ==\ \textcolor{keyword}{null})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00052}00052\ }
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ profiles.stream()}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .map(\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_profile_assembler_ae44e343c834ef6cabd4905dcfcefb82a}{ProfileAssembler::toDTO}})}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .collect(Collectors.toList());}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00056}00056\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00057}00057\ }
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00058}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_profile_assembler_af528c2f40fa325cd23206c9c10fea139}{00058}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ List<Profile>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_profile_assembler_af528c2f40fa325cd23206c9c10fea139}{toEntityList}}(List<ProfileDTO>\ dtos)\ \{}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dtos\ ==\ \textcolor{keyword}{null})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00060}00060\ }
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ dtos.stream()}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .map(\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_profile_assembler_a63fd4181c7ecf827aa7488f868dd07ab}{ProfileAssembler::toEntity}})}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .collect(Collectors.toList());}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00064}00064\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00065}00065\ \}}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ ProfileDTO(}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ profile.getId(),}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ profile.getUsername(),}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ profile.getEmail(),}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ profile.getFriendsList(),}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ songDTOs,}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playlistDTOs,}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ profile.isAdmin()}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00044}00044\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00051}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_profile_assembler_a63fd4181c7ecf827aa7488f868dd07ab}{00051}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ Profile\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_profile_assembler_a63fd4181c7ecf827aa7488f868dd07ab}{toEntity}}(ProfileDTO\ dto)\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dto\ ==\ \textcolor{keyword}{null})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ List<Song>\ songs\ =\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler}{SongAssembler}}.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_afc7bf8dcea2b2f7bd1cb25c7cea1b35d}{toEntityList}}(dto.getFavouriteSongs());}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ List<Playlist>\ playlists\ =\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler}{PlaylistAssembler}}.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler_a81a37499060e6889979321897c2226f5}{toEntityList}}(dto.getPlaylists());}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00057}00057\ \ \ \ \ \ \ \ \ Profile\ profile\ =\ \textcolor{keyword}{new}\ Profile();}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ profile.setId(dto.getId());}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ profile.setUsername(dto.getUsername());}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00060}00060\ \ \ \ \ \ \ \ \ profile.setEmail(dto.getEmail());}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00061}00061\ \ \ \ \ \ \ \ \ profile.setFriendsList(dto.getFriendsList());}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00062}00062\ \ \ \ \ \ \ \ \ profile.setFavouriteSongs(songs);}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00063}00063\ \ \ \ \ \ \ \ \ profile.setPlaylists(playlists);}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00064}00064\ \ \ \ \ \ \ \ \ profile.setAdmin(dto.isAdmin());}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ profile;}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00067}00067\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00074}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_profile_assembler_a0f530796adbdb9e647d46fa135b5d192}{00074}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ List<ProfileDTO>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_profile_assembler_a0f530796adbdb9e647d46fa135b5d192}{toDTOList}}(List<Profile>\ profiles)\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (profiles\ ==\ \textcolor{keyword}{null})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ profiles.stream()}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .map(\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_profile_assembler_ae44e343c834ef6cabd4905dcfcefb82a}{ProfileAssembler::toDTO}})}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .collect(Collectors.toList());}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00080}00080\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00087}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_profile_assembler_af528c2f40fa325cd23206c9c10fea139}{00087}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ List<Profile>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_profile_assembler_af528c2f40fa325cd23206c9c10fea139}{toEntityList}}(List<ProfileDTO>\ dtos)\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dtos\ ==\ \textcolor{keyword}{null})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ dtos.stream()}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .map(\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_profile_assembler_a63fd4181c7ecf827aa7488f868dd07ab}{ProfileAssembler::toEntity}})}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .collect(Collectors.toList());}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00093}00093\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_assembler_8java_source_l00094}00094\ \}}
 
 \end{DoxyCode}

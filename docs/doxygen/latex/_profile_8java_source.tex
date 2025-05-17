@@ -7,83 +7,93 @@
 \DoxyCodeLine{\Hypertarget{_profile_8java_source_l00003}00003\ \textcolor{keyword}{import}\ jakarta.persistence.*;}
 \DoxyCodeLine{\Hypertarget{_profile_8java_source_l00004}00004\ \textcolor{keyword}{import}\ java.util.List;}
 \DoxyCodeLine{\Hypertarget{_profile_8java_source_l00005}00005\ }
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00006}00006\ @Entity}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00007}00007\ @Table(name\ =\ \textcolor{stringliteral}{"{}profiles"{}})}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00008}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile}{00008}}\ public\ class\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile}{Profile}}\ \{}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00009}00009\ }
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00010}00010\ \ \ \ \ @Id}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00011}00011\ \ \ \ \ @GeneratedValue(strategy\ =\ GenerationType.IDENTITY)}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00012}00012\ \ \ \ \ \textcolor{keyword}{private}\ Long\ id;}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00013}00013\ }
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00014}00014\ \ \ \ \ \textcolor{keyword}{private}\ String\ username;}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00015}00015\ \ \ \ \ \textcolor{keyword}{private}\ String\ password;}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00016}00016\ \ \ \ \ \textcolor{keyword}{private}\ String\ email;}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00017}00017\ }
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00018}00018\ \ \ \ \ @ElementCollection}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00019}00019\ \ \ \ \ @CollectionTable(name\ =\ \textcolor{stringliteral}{"{}profile\_friends"{}},\ joinColumns\ =\ @JoinColumn(name\ =\ \textcolor{stringliteral}{"{}profile\_id"{}}))}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00020}00020\ \ \ \ \ @Column(name\ =\ \textcolor{stringliteral}{"{}friend"{}})}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00021}00021\ \ \ \ \ \textcolor{keyword}{private}\ List<String>\ friendsList;}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00022}00022\ }
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00023}00023\ \ \ \ \ @ManyToMany}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00024}00024\ \ \ \ \ @JoinTable(}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00025}00025\ \ \ \ \ \ \ \ \ name\ =\ \textcolor{stringliteral}{"{}profile\_favourite\_song"{}},}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00026}00026\ \ \ \ \ \ \ \ \ joinColumns\ =\ @JoinColumn(name\ =\ \textcolor{stringliteral}{"{}profile\_id"{}}),}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00027}00027\ \ \ \ \ \ \ \ \ inverseJoinColumns\ =\ @JoinColumn(name\ =\ \textcolor{stringliteral}{"{}song\_id"{}})}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00028}00028\ \ \ \ \ )}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00029}00029\ \ \ \ \ \textcolor{keyword}{private}\ List<Song>\ favouriteSongs;}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00013}00013\ @Entity}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00014}00014\ @Table(name\ =\ \textcolor{stringliteral}{"{}profiles"{}})}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00015}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile}{00015}}\ public\ class\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile}{Profile}}\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00018}00018\ \ \ \ \ @Id}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00019}00019\ \ \ \ \ @GeneratedValue(strategy\ =\ GenerationType.IDENTITY)}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00020}00020\ \ \ \ \ \textcolor{keyword}{private}\ Long\ id;}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00023}00023\ \ \ \ \ \textcolor{keyword}{private}\ String\ username;}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00026}00026\ \ \ \ \ \textcolor{keyword}{private}\ String\ password;}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00029}00029\ \ \ \ \ \textcolor{keyword}{private}\ String\ email;}
 \DoxyCodeLine{\Hypertarget{_profile_8java_source_l00030}00030\ }
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00031}00031\ \ \ \ \ @OneToMany(cascade\ =\ CascadeType.ALL)}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00032}00032\ \ \ \ \ @JoinColumn(name\ =\ \textcolor{stringliteral}{"{}profile\_id"{}})}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00033}00033\ \ \ \ \ \textcolor{keyword}{private}\ List<Playlist>\ playlists;}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00034}00034\ }
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00035}00035\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{boolean}\ isAdmin;}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00032}00032\ \ \ \ \ @ElementCollection}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00033}00033\ \ \ \ \ @CollectionTable(name\ =\ \textcolor{stringliteral}{"{}profile\_friends"{}},\ joinColumns\ =\ @JoinColumn(name\ =\ \textcolor{stringliteral}{"{}profile\_id"{}}))}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00034}00034\ \ \ \ \ @Column(name\ =\ \textcolor{stringliteral}{"{}friend"{}})}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00035}00035\ \ \ \ \ \textcolor{keyword}{private}\ List<String>\ friendsList;}
 \DoxyCodeLine{\Hypertarget{_profile_8java_source_l00036}00036\ }
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00037}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_ad5cb2914d2a6e93cc1f2c46fd9db3e57}{00037}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_ad5cb2914d2a6e93cc1f2c46fd9db3e57}{Profile}}()\ \{\}}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00038}00038\ }
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00039}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a7d5ccb0daec75de3102c080a00ae0f82}{00039}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a7d5ccb0daec75de3102c080a00ae0f82}{Profile}}(String\ username,\ String\ password,\ String\ email,\ List<String>\ friendsList,\ List<Song>\ favouriteSongs,\ List<Playlist>\ playlists,\ \textcolor{keywordtype}{boolean}\ isAdmin)\ \{}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00040}00040\ \ \ \ \ \ \ \ \ this.username\ =\ username;}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00041}00041\ \ \ \ \ \ \ \ \ this.password\ =\ password;}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00042}00042\ \ \ \ \ \ \ \ \ this.email\ =\ email;}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ this.friendsList\ =\ friendsList;}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00044}00044\ \ \ \ \ \ \ \ \ this.favouriteSongs\ =\ favouriteSongs;}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00045}00045\ \ \ \ \ \ \ \ \ this.playlists\ =\ playlists;}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00046}00046\ \ \ \ \ \ \ \ \ this.isAdmin\ =\ isAdmin;}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00047}00047\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00048}00048\ }
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00049}00049\ \ \ \ \ \textcolor{comment}{//\ Getters\ and\ setters}}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00038}00038\ \ \ \ \ @ManyToMany}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00039}00039\ \ \ \ \ @JoinTable(}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00040}00040\ \ \ \ \ \ \ \ \ name\ =\ \textcolor{stringliteral}{"{}profile\_favourite\_song"{}},}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00041}00041\ \ \ \ \ \ \ \ \ joinColumns\ =\ @JoinColumn(name\ =\ \textcolor{stringliteral}{"{}profile\_id"{}}),}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00042}00042\ \ \ \ \ \ \ \ \ inverseJoinColumns\ =\ @JoinColumn(name\ =\ \textcolor{stringliteral}{"{}song\_id"{}})}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00043}00043\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00044}00044\ \ \ \ \ \textcolor{keyword}{private}\ List<Song>\ favouriteSongs;}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00047}00047\ \ \ \ \ @OneToMany(cascade\ =\ CascadeType.ALL)}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00048}00048\ \ \ \ \ @JoinColumn(name\ =\ \textcolor{stringliteral}{"{}profile\_id"{}})}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00049}00049\ \ \ \ \ \textcolor{keyword}{private}\ List<Playlist>\ playlists;}
 \DoxyCodeLine{\Hypertarget{_profile_8java_source_l00050}00050\ }
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00051}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_af3dbda9fd7f19ad723c4e52494c425f4}{00051}}\ \ \ \ \ \textcolor{keyword}{public}\ Long\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_af3dbda9fd7f19ad723c4e52494c425f4}{getId}}()\ \{\ \textcolor{keywordflow}{return}\ id;\ \}}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00052}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_afeac5ba3571e94b97d947e89bbef51c0}{00052}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_afeac5ba3571e94b97d947e89bbef51c0}{setId}}(Long\ \textcolor{keywordtype}{id})\ \{\ this.id\ =\ id;\ \}}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00052}00052\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{boolean}\ isAdmin;}
 \DoxyCodeLine{\Hypertarget{_profile_8java_source_l00053}00053\ }
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00054}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_ad38674c34f2ca4bda61362660529eddc}{00054}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_ad38674c34f2ca4bda61362660529eddc}{getUsername}}()\ \{\ \textcolor{keywordflow}{return}\ username;\ \}}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00055}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_ad5189a283bd418e9015bc30ef2682283}{00055}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_ad5189a283bd418e9015bc30ef2682283}{setUsername}}(String\ username)\ \{\ this.username\ =\ username;\ \}}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00056}00056\ }
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00057}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_ac3bd9274455a9aeada376d1c016f459f}{00057}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_ac3bd9274455a9aeada376d1c016f459f}{getPassword}}()\ \{\ \textcolor{keywordflow}{return}\ password;\ \}}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00058}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a34eaa92a061e68c4a00fa4902f5856fc}{00058}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a34eaa92a061e68c4a00fa4902f5856fc}{setPassword}}(String\ password)\ \{\ this.password\ =\ password;\ \}}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00059}00059\ }
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00060}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_abbdd2cc7d2666ad0f25af06768aa7b44}{00060}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_abbdd2cc7d2666ad0f25af06768aa7b44}{getEmail}}()\ \{\ \textcolor{keywordflow}{return}\ email;\ \}}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00061}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a792d28a567186b96d6bd9fea65c7dde7}{00061}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a792d28a567186b96d6bd9fea65c7dde7}{setEmail}}(String\ email)\ \{\ this.email\ =\ email;\ \}}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00062}00062\ }
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00063}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a59e00516019ac690eb5133a0bbdbeaa0}{00063}}\ \ \ \ \ \textcolor{keyword}{public}\ List<String>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a59e00516019ac690eb5133a0bbdbeaa0}{getFriendsList}}()\ \{\ \textcolor{keywordflow}{return}\ friendsList;\ \}}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00064}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_af527ccca6d96f3a5921052c0148369e6}{00064}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_af527ccca6d96f3a5921052c0148369e6}{setFriendsList}}(List<String>\ friendsList)\ \{\ this.friendsList\ =\ friendsList;\ \}}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00065}00065\ }
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00066}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a2f657d163397d9b69bedfadd837a29cb}{00066}}\ \ \ \ \ \textcolor{keyword}{public}\ List<Song>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a2f657d163397d9b69bedfadd837a29cb}{getFavouriteSongs}}()\ \{\ \textcolor{keywordflow}{return}\ favouriteSongs;\ \}}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00067}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_afc224beac64776c16cb14fe7fde83f55}{00067}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_afc224beac64776c16cb14fe7fde83f55}{setFavouriteSongs}}(List<Song>\ favouriteSongs)\ \{\ this.favouriteSongs\ =\ favouriteSongs;\ \}}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00068}00068\ }
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00069}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_ad963a83b2e45295d988d69e5bc037437}{00069}}\ \ \ \ \ \textcolor{keyword}{public}\ List<Playlist>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_ad963a83b2e45295d988d69e5bc037437}{getPlaylists}}()\ \{\ \textcolor{keywordflow}{return}\ playlists;\ \}}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00070}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a5e8ec340a422b23c1f92d307dd38146a}{00070}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a5e8ec340a422b23c1f92d307dd38146a}{setPlaylists}}(List<Playlist>\ playlists)\ \{\ this.playlists\ =\ playlists;\ \}}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00071}00071\ }
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00072}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a64de5208bc4a764815e9388e0e84b3e0}{00072}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a64de5208bc4a764815e9388e0e84b3e0}{isAdmin}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a64de5208bc4a764815e9388e0e84b3e0}{isAdmin}};\ \}}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00073}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_aa0eec07de0d658837f70b54af3a0d17d}{00073}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_aa0eec07de0d658837f70b54af3a0d17d}{setAdmin}}(\textcolor{keywordtype}{boolean}\ isAdmin)\ \{\ this.isAdmin\ =\ isAdmin;\ \}}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00074}00074\ }
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00075}00075\ \ \ \ \ @Override}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00076}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a4335efe0e19623586a94701a6ce84300}{00076}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a4335efe0e19623586a94701a6ce84300}{toString}}()\ \{}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Profile\{"{}}\ +}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}username='"{}}\ +\ username\ +\ \textcolor{charliteral}{'\(\backslash\)''}\ +}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{},\ email='"{}}\ +\ email\ +\ \textcolor{charliteral}{'\(\backslash\)''}\ +}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{},\ isAdmin="{}}\ +\ isAdmin\ +}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{charliteral}{'\}'};}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00082}00082\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00083}00083\ \}}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00057}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_ad5cb2914d2a6e93cc1f2c46fd9db3e57}{00057}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_ad5cb2914d2a6e93cc1f2c46fd9db3e57}{Profile}}()\ \{\}}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00070}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a7d5ccb0daec75de3102c080a00ae0f82}{00070}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a7d5ccb0daec75de3102c080a00ae0f82}{Profile}}(String\ username,\ String\ password,\ String\ email,\ List<String>\ friendsList,\ List<Song>\ favouriteSongs,\ List<Playlist>\ playlists,\ \textcolor{keywordtype}{boolean}\ isAdmin)\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00071}00071\ \ \ \ \ \ \ \ \ this.username\ =\ username;}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00072}00072\ \ \ \ \ \ \ \ \ this.password\ =\ password;}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00073}00073\ \ \ \ \ \ \ \ \ this.email\ =\ email;}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00074}00074\ \ \ \ \ \ \ \ \ this.friendsList\ =\ friendsList;}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00075}00075\ \ \ \ \ \ \ \ \ this.favouriteSongs\ =\ favouriteSongs;}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00076}00076\ \ \ \ \ \ \ \ \ this.playlists\ =\ playlists;}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00077}00077\ \ \ \ \ \ \ \ \ this.isAdmin\ =\ isAdmin;}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00078}00078\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00084}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_af3dbda9fd7f19ad723c4e52494c425f4}{00084}}\ \ \ \ \ \textcolor{keyword}{public}\ Long\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_af3dbda9fd7f19ad723c4e52494c425f4}{getId}}()\ \{\ \textcolor{keywordflow}{return}\ id;\ \}}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00087}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_afeac5ba3571e94b97d947e89bbef51c0}{00087}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_afeac5ba3571e94b97d947e89bbef51c0}{setId}}(Long\ \textcolor{keywordtype}{id})\ \{\ this.id\ =\ id;\ \}}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00090}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_ad38674c34f2ca4bda61362660529eddc}{00090}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_ad38674c34f2ca4bda61362660529eddc}{getUsername}}()\ \{\ \textcolor{keywordflow}{return}\ username;\ \}}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00093}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_ad5189a283bd418e9015bc30ef2682283}{00093}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_ad5189a283bd418e9015bc30ef2682283}{setUsername}}(String\ username)\ \{\ this.username\ =\ username;\ \}}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00096}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_ac3bd9274455a9aeada376d1c016f459f}{00096}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_ac3bd9274455a9aeada376d1c016f459f}{getPassword}}()\ \{\ \textcolor{keywordflow}{return}\ password;\ \}}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00099}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a34eaa92a061e68c4a00fa4902f5856fc}{00099}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a34eaa92a061e68c4a00fa4902f5856fc}{setPassword}}(String\ password)\ \{\ this.password\ =\ password;\ \}}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00102}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_abbdd2cc7d2666ad0f25af06768aa7b44}{00102}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_abbdd2cc7d2666ad0f25af06768aa7b44}{getEmail}}()\ \{\ \textcolor{keywordflow}{return}\ email;\ \}}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00105}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a792d28a567186b96d6bd9fea65c7dde7}{00105}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a792d28a567186b96d6bd9fea65c7dde7}{setEmail}}(String\ email)\ \{\ this.email\ =\ email;\ \}}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00108}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a59e00516019ac690eb5133a0bbdbeaa0}{00108}}\ \ \ \ \ \textcolor{keyword}{public}\ List<String>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a59e00516019ac690eb5133a0bbdbeaa0}{getFriendsList}}()\ \{\ \textcolor{keywordflow}{return}\ friendsList;\ \}}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00111}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_af527ccca6d96f3a5921052c0148369e6}{00111}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_af527ccca6d96f3a5921052c0148369e6}{setFriendsList}}(List<String>\ friendsList)\ \{\ this.friendsList\ =\ friendsList;\ \}}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00114}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a2f657d163397d9b69bedfadd837a29cb}{00114}}\ \ \ \ \ \textcolor{keyword}{public}\ List<Song>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a2f657d163397d9b69bedfadd837a29cb}{getFavouriteSongs}}()\ \{\ \textcolor{keywordflow}{return}\ favouriteSongs;\ \}}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00117}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_afc224beac64776c16cb14fe7fde83f55}{00117}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_afc224beac64776c16cb14fe7fde83f55}{setFavouriteSongs}}(List<Song>\ favouriteSongs)\ \{\ this.favouriteSongs\ =\ favouriteSongs;\ \}}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00120}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_ad963a83b2e45295d988d69e5bc037437}{00120}}\ \ \ \ \ \textcolor{keyword}{public}\ List<Playlist>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_ad963a83b2e45295d988d69e5bc037437}{getPlaylists}}()\ \{\ \textcolor{keywordflow}{return}\ playlists;\ \}}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00123}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a5e8ec340a422b23c1f92d307dd38146a}{00123}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a5e8ec340a422b23c1f92d307dd38146a}{setPlaylists}}(List<Playlist>\ playlists)\ \{\ this.playlists\ =\ playlists;\ \}}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00126}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a64de5208bc4a764815e9388e0e84b3e0}{00126}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a64de5208bc4a764815e9388e0e84b3e0}{isAdmin}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a64de5208bc4a764815e9388e0e84b3e0}{isAdmin}};\ \}}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00129}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_aa0eec07de0d658837f70b54af3a0d17d}{00129}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_aa0eec07de0d658837f70b54af3a0d17d}{setAdmin}}(\textcolor{keywordtype}{boolean}\ isAdmin)\ \{\ this.isAdmin\ =\ isAdmin;\ \}}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00137}00137\ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00138}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a4335efe0e19623586a94701a6ce84300}{00138}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile_a4335efe0e19623586a94701a6ce84300}{toString}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00139}00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Profile\{"{}}\ +}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}username='"{}}\ +\ username\ +\ \textcolor{charliteral}{'\(\backslash\)''}\ +}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{},\ email='"{}}\ +\ email\ +\ \textcolor{charliteral}{'\(\backslash\)''}\ +}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{},\ isAdmin="{}}\ +\ isAdmin\ +}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{charliteral}{'\}'};}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00144}00144\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_8java_source_l00145}00145\ \}}
 
 \end{DoxyCode}

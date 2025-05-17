@@ -109,61 +109,60 @@ $(document).ready(function(){initNavTree('_jwt_util_8java_source.html',''); init
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">import</span> java.security.Key;</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">import</span> java.util.Date;</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">import</span> java.util.function.Function;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>@Component</div>
-<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html">   15</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html">JwtUtil</a> {</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">private</span> <span class="keyword">final</span> Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256); <span class="comment">// Clave segura</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="foldopen" id="foldopen00019" data-start="{" data-end="}">
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#a9e50d85a65148666b857fef37d4b26aa">   19</a></span>    <span class="keyword">public</span> String <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#a9e50d85a65148666b857fef37d4b26aa">generateToken</a>(String username) {</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <span class="keywordflow">return</span> Jwts.builder()</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>                .setSubject(username)</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>                .setIssuedAt(<span class="keyword">new</span> Date())</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>                .setExpiration(<span class="keyword">new</span> Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) <span class="comment">// 10 horas</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>                .signWith(SECRET_KEY)</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>                .compact();</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    }</div>
-</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>@Component</div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="};">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html">   21</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html">JwtUtil</a> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">private</span> <span class="keyword">final</span> Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="foldopen" id="foldopen00028" data-start="{" data-end="}">
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#af5221644adf143531653f0dc9877d9cb">   28</a></span>    <span class="keyword">public</span> String <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#af5221644adf143531653f0dc9877d9cb">extractUsername</a>(String token) {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keywordflow">return</span> extractClaim(token, Claims::getSubject);</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    }</div>
+<div class="foldopen" id="foldopen00034" data-start="{" data-end="}">
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#a9e50d85a65148666b857fef37d4b26aa">   34</a></span>    <span class="keyword">public</span> String <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#a9e50d85a65148666b857fef37d4b26aa">generateToken</a>(String username) {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordflow">return</span> Jwts.builder()</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>                .setSubject(username)</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>                .setIssuedAt(<span class="keyword">new</span> Date())</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                .setExpiration(<span class="keyword">new</span> Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) <span class="comment">// 10 hours</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>                .signWith(SECRET_KEY)</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>                .compact();</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    }</div>
 </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    public &lt;T&gt; T extractClaim(String token, Function&lt;Claims, T&gt; claimsResolver) {</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        Claims claims = extractAllClaims(token);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keywordflow">return</span> claimsResolver.apply(claims);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    }</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">private</span> Claims extractAllClaims(String token) {</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        Jws&lt;Claims&gt; claimsJws = Jwts.parserBuilder()</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>                .setSigningKey(SECRET_KEY) <span class="comment">// Usar parserBuilder()</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>                .build() <span class="comment">// Construir antes de parsear</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                .parseClaimsJws(token);</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordflow">return</span> claimsJws.getBody();</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="foldopen" id="foldopen00045" data-start="{" data-end="}">
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#a1562935918d787cfa4ff3a54ba029a96">   45</a></span>    <span class="keyword">public</span> <span class="keywordtype">boolean</span> <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#a1562935918d787cfa4ff3a54ba029a96">validateToken</a>(String token, String username) {</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#af5221644adf143531653f0dc9877d9cb">extractUsername</a>(token).equals(username);</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    }</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#af5221644adf143531653f0dc9877d9cb">   49</a></span>    <span class="keyword">public</span> String <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#af5221644adf143531653f0dc9877d9cb">extractUsername</a>(String token) {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordflow">return</span> extractClaim(token, Claims::getSubject);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
 </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    public &lt;T&gt; T extractClaim(String token, Function&lt;Claims, T&gt; claimsResolver) {</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        Claims claims = extractAllClaims(token);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="keywordflow">return</span> claimsResolver.apply(claims);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    }</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">private</span> Claims extractAllClaims(String token) {</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        Jws&lt;Claims&gt; claimsJws = Jwts.parserBuilder()</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                .setSigningKey(SECRET_KEY)</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                .build()</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                .parseClaimsJws(token);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <span class="keywordflow">return</span> claimsJws.getBody();</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    }</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="foldopen" id="foldopen00087" data-start="{" data-end="}">
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#a1562935918d787cfa4ff3a54ba029a96">   87</a></span>    <span class="keyword">public</span> <span class="keywordtype">boolean</span> <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#a1562935918d787cfa4ff3a54ba029a96">validateToken</a>(String token, String username) {</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#af5221644adf143531653f0dc9877d9cb">extractUsername</a>(token).equals(username);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    }</div>
 </div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_html"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html">com.deusto.deuspotify.security.JwtUtil</a></div><div class="ttdef"><b>Definition</b> <a href="_jwt_util_8java_source.html#l00015">JwtUtil.java:15</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_html_a1562935918d787cfa4ff3a54ba029a96"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#a1562935918d787cfa4ff3a54ba029a96">com.deusto.deuspotify.security.JwtUtil.validateToken</a></div><div class="ttdeci">boolean validateToken(String token, String username)</div><div class="ttdef"><b>Definition</b> <a href="_jwt_util_8java_source.html#l00045">JwtUtil.java:45</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_html_a9e50d85a65148666b857fef37d4b26aa"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#a9e50d85a65148666b857fef37d4b26aa">com.deusto.deuspotify.security.JwtUtil.generateToken</a></div><div class="ttdeci">String generateToken(String username)</div><div class="ttdef"><b>Definition</b> <a href="_jwt_util_8java_source.html#l00019">JwtUtil.java:19</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_html_af5221644adf143531653f0dc9877d9cb"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#af5221644adf143531653f0dc9877d9cb">com.deusto.deuspotify.security.JwtUtil.extractUsername</a></div><div class="ttdeci">String extractUsername(String token)</div><div class="ttdef"><b>Definition</b> <a href="_jwt_util_8java_source.html#l00028">JwtUtil.java:28</a></div></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>}</div>
+</div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_html"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html">com.deusto.deuspotify.security.JwtUtil</a></div><div class="ttdoc">Utility class for generating and validating JSON Web Tokens (JWT).</div><div class="ttdef"><b>Definition</b> <a href="_jwt_util_8java_source.html#l00021">JwtUtil.java:21</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_html_a1562935918d787cfa4ff3a54ba029a96"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#a1562935918d787cfa4ff3a54ba029a96">com.deusto.deuspotify.security.JwtUtil.validateToken</a></div><div class="ttdeci">boolean validateToken(String token, String username)</div><div class="ttdef"><b>Definition</b> <a href="_jwt_util_8java_source.html#l00087">JwtUtil.java:87</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_html_a9e50d85a65148666b857fef37d4b26aa"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#a9e50d85a65148666b857fef37d4b26aa">com.deusto.deuspotify.security.JwtUtil.generateToken</a></div><div class="ttdeci">String generateToken(String username)</div><div class="ttdef"><b>Definition</b> <a href="_jwt_util_8java_source.html#l00034">JwtUtil.java:34</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_html_af5221644adf143531653f0dc9877d9cb"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#af5221644adf143531653f0dc9877d9cb">com.deusto.deuspotify.security.JwtUtil.extractUsername</a></div><div class="ttdeci">String extractUsername(String token)</div><div class="ttdef"><b>Definition</b> <a href="_jwt_util_8java_source.html#l00049">JwtUtil.java:49</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_5eb159725f84c66aafd839904a4acdd0.html">main</a></li><li class="navelem"><a class="el" href="dir_fd3f6763802dee1ad875f6c80eac0bda.html">java</a></li><li class="navelem"><a class="el" href="dir_d8517d8b842053dc3dd7dde525dd9163.html">com</a></li><li class="navelem"><a class="el" href="dir_c829b153888480d1cd6945dc2092d47a.html">deusto</a></li><li class="navelem"><a class="el" href="dir_2fc7bb6d021d87fedeb47034f59180a8.html">deuspotify</a></li><li class="navelem"><a class="el" href="dir_4049f83e4abefb7dd0b1b00b2d74db6a.html">security</a></li><li class="navelem"><a class="el" href="_jwt_util_8java.html">JwtUtil.java</a></li>
-    <li class="footer">Generated on Sat May 17 2025 18:28:41 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Sat May 17 2025 18:51:33 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

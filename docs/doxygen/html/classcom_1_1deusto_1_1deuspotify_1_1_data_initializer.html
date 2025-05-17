@@ -95,6 +95,9 @@ $(document).ready(function(){initNavTree('classcom_1_1deusto_1_1deuspotify_1_1_d
   <div class="headertitle"><div class="title">com.deusto.deuspotify.DataInitializer Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Component that runs at application startup and inserts initial data into the database.  
+ <a href="classcom_1_1deusto_1_1deuspotify_1_1_data_initializer.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for com.deusto.deuspotify.DataInitializer:</div>
 <div class="dyncontent">
@@ -110,8 +113,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa516307dcce418217e552fd50fac49f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_data_initializer_8java_source.html#l00020">20</a> of file <a class="el" href="_data_initializer_8java_source.html">DataInitializer.java</a>.</p>
+<div class="textblock"><p>Component that runs at application startup and inserts initial data into the database. </p>
+<p>This component inserts one song, one user profile, and one playlist if they do not already exist. </p>
+
+<p class="definition">Definition at line <a class="el" href="_data_initializer_8java_source.html#l00031">31</a> of file <a class="el" href="_data_initializer_8java_source.html">DataInitializer.java</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aea109135bbbeb99e59ca760ce3798b76" name="aea109135bbbeb99e59ca760ce3798b76"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aea109135bbbeb99e59ca760ce3798b76">&#9670;&#160;</a></span>DataInitializer()</h2>
@@ -150,8 +155,18 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Constructor for dependency injection.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">songRepository</td><td>Song repository. </td></tr>
+    <tr><td class="paramname">profileRepository</td><td>Profile repository. </td></tr>
+    <tr><td class="paramname">playlistRepository</td><td>Playlist repository. </td></tr>
+    <tr><td class="paramname">passwordEncoder</td><td>Password encoder for encrypting user passwords. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_data_initializer_8java_source.html#l00027">27</a> of file <a class="el" href="_data_initializer_8java_source.html">DataInitializer.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_data_initializer_8java_source.html#l00046">46</a> of file <a class="el" href="_data_initializer_8java_source.html">DataInitializer.java</a>.</p>
 
 </div>
 </div>
@@ -171,8 +186,21 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Executes at application startup.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">args</td><td>Command-line arguments. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exception</td><td>In case of any error during initialization. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_data_initializer_8java_source.html#l00038">38</a> of file <a class="el" href="_data_initializer_8java_source.html">DataInitializer.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_data_initializer_8java_source.html#l00063">63</a> of file <a class="el" href="_data_initializer_8java_source.html">DataInitializer.java</a>.</p>
 
 </div>
 </div>
@@ -185,7 +213,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>com</b></li><li class="navelem"><b>deusto</b></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify.html">deuspotify</a></li><li class="navelem"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1_data_initializer.html">DataInitializer</a></li>
-    <li class="footer">Generated on Sat May 17 2025 18:28:41 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Sat May 17 2025 18:51:33 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>
