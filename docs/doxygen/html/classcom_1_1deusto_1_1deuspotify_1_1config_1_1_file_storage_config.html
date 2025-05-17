@@ -95,6 +95,9 @@ $(document).ready(function(){initNavTree('classcom_1_1deusto_1_1deuspotify_1_1co
   <div class="headertitle"><div class="title">com.deusto.deuspotify.config.FileStorageConfig Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Spring configuration class to expose a directory for serving uploaded song files.  
+ <a href="classcom_1_1deusto_1_1deuspotify_1_1config_1_1_file_storage_config.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for com.deusto.deuspotify.config.FileStorageConfig:</div>
 <div class="dyncontent">
@@ -105,11 +108,14 @@ Inheritance diagram for com.deusto.deuspotify.config.FileStorageConfig:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a2acddb9382fb992edc15e37b30a721c1" id="r_a2acddb9382fb992edc15e37b30a721c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1config_1_1_file_storage_config.html#a2acddb9382fb992edc15e37b30a721c1">addResourceHandlers</a> (ResourceHandlerRegistry registry)</td></tr>
+<tr class="memdesc:a2acddb9382fb992edc15e37b30a721c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures resource handlers to serve static song files.  <br /></td></tr>
 <tr class="separator:a2acddb9382fb992edc15e37b30a721c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_file_storage_config_8java_source.html#l00008">8</a> of file <a class="el" href="_file_storage_config_8java_source.html">FileStorageConfig.java</a>.</p>
+<div class="textblock"><p>Spring configuration class to expose a directory for serving uploaded song files. </p>
+<p>Maps requests to <code>/songs_files/**</code> to the local filesystem path <code>uploads/songs/</code>. </p>
+
+<p class="definition">Definition at line <a class="el" href="_file_storage_config_8java_source.html#l00018">18</a> of file <a class="el" href="_file_storage_config_8java_source.html">FileStorageConfig.java</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a2acddb9382fb992edc15e37b30a721c1" name="a2acddb9382fb992edc15e37b30a721c1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2acddb9382fb992edc15e37b30a721c1">&#9670;&#160;</a></span>addResourceHandlers()</h2>
@@ -127,7 +133,15 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_file_storage_config_8java_source.html#l00011">11</a> of file <a class="el" href="_file_storage_config_8java_source.html">FileStorageConfig.java</a>.</p>
+<p>Configures resource handlers to serve static song files. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">registry</td><td>The ResourceHandlerRegistry to add the handler to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_file_storage_config_8java_source.html#l00025">25</a> of file <a class="el" href="_file_storage_config_8java_source.html">FileStorageConfig.java</a>.</p>
 
 </div>
 </div>
@@ -140,7 +154,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>com</b></li><li class="navelem"><b>deusto</b></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify.html">deuspotify</a></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify_1_1config.html">config</a></li><li class="navelem"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1config_1_1_file_storage_config.html">FileStorageConfig</a></li>
-    <li class="footer">Generated on Sat May 17 2025 15:40:32 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Sat May 17 2025 18:47:43 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

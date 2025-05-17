@@ -1,28 +1,33 @@
 \doxysection{com.\+deusto.\+deuspotify.\+controllers.\+Playlist\+Controller Class Reference}
 \hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller}{}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller}\index{com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}}
+
+
+Controller that handles HTTP requests related to playlists.  
+
+
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a47c3de5be06c446c93bf27d1b8d2d608}{Playlist\+Controller}} (Deuspotify\+Service deuspotify\+Service, Profile\+Service profile\+Service)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor for Playlist\+Controller. \end{DoxyCompactList}\item 
 List$<$ Playlist $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_aa51a48ee778c2bfa3e4b0d4a2a76eb12}{get\+All\+Playlists}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Retrieves all playlists. \end{DoxyCompactList}\item 
 Optional$<$ Playlist $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_adfbe041c33785976643d0382cc03f260}{get\+Playlist\+By\+Id}} (@Path\+Variable Long id)
-\item 
+\begin{DoxyCompactList}\small\item\em Retrieves a playlist by its ID. \end{DoxyCompactList}\item 
 Playlist \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a3e356e143e63a70116a91406ac7270d6}{create\+Playlist}} (@Request\+Body Playlist playlist)
-\item 
+\begin{DoxyCompactList}\small\item\em Creates a new playlist. \end{DoxyCompactList}\item 
 Playlist \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a2d5767a6881bce6e8bc2a0ddeb46f7f4}{update\+Playlist}} (@Path\+Variable Long id, @Request\+Body Playlist playlist)
-\item 
+\begin{DoxyCompactList}\small\item\em Updates an existing playlist. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_af563b84c67efbbe33d44ac6b2ba781a2}{delete\+Playlist}} (@Path\+Variable Long id)
-\item 
+\begin{DoxyCompactList}\small\item\em Deletes a playlist by ID. \end{DoxyCompactList}\item 
 Playlist \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a5d4c21632f49645f79d9c419cb82b7b4}{update\+Playlist\+Songs}} (@Path\+Variable Long id, @Request\+Body List$<$ Long $>$ song\+Ids)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Updates the list of songs in a playlist. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
+Controller that handles HTTP requests related to playlists. 
 
-
-Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00016}{16}} of file \mbox{\hyperlink{_playlist_controller_8java_source}{Playlist\+Controller.\+java}}.
+Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00025}{25}} of file \mbox{\hyperlink{_playlist_controller_8java_source}{Playlist\+Controller.\+java}}.
 
 
 
@@ -35,7 +40,18 @@ Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00016}{16
 
 
 
-Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00022}{22}} of file \mbox{\hyperlink{_playlist_controller_8java_source}{Playlist\+Controller.\+java}}.
+Constructor for Playlist\+Controller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em deuspotify\+Service} & Service for managing playlists and songs. \\
+\hline
+{\em profile\+Service} & Service for managing user profiles. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00035}{35}} of file \mbox{\hyperlink{_playlist_controller_8java_source}{Playlist\+Controller.\+java}}.
 
 
 
@@ -48,7 +64,19 @@ Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00022}{22
 
 
 
-Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00038}{38}} of file \mbox{\hyperlink{_playlist_controller_8java_source}{Playlist\+Controller.\+java}}.
+Creates a new playlist. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em playlist} & Playlist object to create. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The saved playlist. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00065}{65}} of file \mbox{\hyperlink{_playlist_controller_8java_source}{Playlist\+Controller.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_af563b84c67efbbe33d44ac6b2ba781a2}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_af563b84c67efbbe33d44ac6b2ba781a2} 
 \index{com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}!deletePlaylist@{deletePlaylist}}
@@ -58,7 +86,16 @@ Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00038}{38
 
 
 
-Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00049}{49}} of file \mbox{\hyperlink{_playlist_controller_8java_source}{Playlist\+Controller.\+java}}.
+Deletes a playlist by ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & ID of the playlist to delete. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00085}{85}} of file \mbox{\hyperlink{_playlist_controller_8java_source}{Playlist\+Controller.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_aa51a48ee778c2bfa3e4b0d4a2a76eb12}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_aa51a48ee778c2bfa3e4b0d4a2a76eb12} 
 \index{com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}!getAllPlaylists@{getAllPlaylists}}
@@ -68,7 +105,14 @@ Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00049}{49
 
 
 
-Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00028}{28}} of file \mbox{\hyperlink{_playlist_controller_8java_source}{Playlist\+Controller.\+java}}.
+Retrieves all playlists. 
+
+\begin{DoxyReturn}{Returns}
+List of all playlists. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00045}{45}} of file \mbox{\hyperlink{_playlist_controller_8java_source}{Playlist\+Controller.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_adfbe041c33785976643d0382cc03f260}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_adfbe041c33785976643d0382cc03f260} 
 \index{com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}!getPlaylistById@{getPlaylistById}}
@@ -78,7 +122,19 @@ Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00028}{28
 
 
 
-Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00033}{33}} of file \mbox{\hyperlink{_playlist_controller_8java_source}{Playlist\+Controller.\+java}}.
+Retrieves a playlist by its ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the playlist. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The playlist, if found. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00055}{55}} of file \mbox{\hyperlink{_playlist_controller_8java_source}{Playlist\+Controller.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a2d5767a6881bce6e8bc2a0ddeb46f7f4}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a2d5767a6881bce6e8bc2a0ddeb46f7f4} 
 \index{com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}!updatePlaylist@{updatePlaylist}}
@@ -88,7 +144,21 @@ Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00033}{33
 
 
 
-Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00044}{44}} of file \mbox{\hyperlink{_playlist_controller_8java_source}{Playlist\+Controller.\+java}}.
+Updates an existing playlist. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & ID of the playlist to update. \\
+\hline
+{\em playlist} & The playlist data to update with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The updated playlist. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00076}{76}} of file \mbox{\hyperlink{_playlist_controller_8java_source}{Playlist\+Controller.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a5d4c21632f49645f79d9c419cb82b7b4}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a5d4c21632f49645f79d9c419cb82b7b4} 
 \index{com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}!updatePlaylistSongs@{updatePlaylistSongs}}
@@ -98,7 +168,21 @@ Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00044}{44
 
 
 
-Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00056}{56}} of file \mbox{\hyperlink{_playlist_controller_8java_source}{Playlist\+Controller.\+java}}.
+Updates the list of songs in a playlist. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & ID of the playlist. \\
+\hline
+{\em song\+Ids} & List of song IDs to assign to the playlist. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Updated playlist with new song list. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_playlist_controller_8java_source_l00096}{96}} of file \mbox{\hyperlink{_playlist_controller_8java_source}{Playlist\+Controller.\+java}}.
 
 
 

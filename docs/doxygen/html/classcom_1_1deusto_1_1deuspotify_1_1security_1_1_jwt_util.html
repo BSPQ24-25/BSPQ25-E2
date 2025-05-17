@@ -95,6 +95,9 @@ $(document).ready(function(){initNavTree('classcom_1_1deusto_1_1deuspotify_1_1se
   <div class="headertitle"><div class="title">com.deusto.deuspotify.security.JwtUtil Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Utility class for generating and validating JSON Web Tokens (JWT).  
+ <a href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -106,8 +109,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1562935918d787cfa4ff3a54ba029a96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_jwt_util_8java_source.html#l00015">15</a> of file <a class="el" href="_jwt_util_8java_source.html">JwtUtil.java</a>.</p>
+<div class="textblock"><p>Utility class for generating and validating JSON Web Tokens (JWT). </p>
+<p>This class handles the creation of JWT tokens and provides methods for extracting claims and validating tokens. </p>
+
+<p class="definition">Definition at line <a class="el" href="_jwt_util_8java_source.html#l00021">21</a> of file <a class="el" href="_jwt_util_8java_source.html">JwtUtil.java</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="af5221644adf143531653f0dc9877d9cb" name="af5221644adf143531653f0dc9877d9cb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af5221644adf143531653f0dc9877d9cb">&#9670;&#160;</a></span>extractUsername()</h2>
@@ -124,8 +129,16 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Extracts the username from the given token.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">token</td><td>The JWT token. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The username (subject) embedded in the token. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_jwt_util_8java_source.html#l00028">28</a> of file <a class="el" href="_jwt_util_8java_source.html">JwtUtil.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_jwt_util_8java_source.html#l00049">49</a> of file <a class="el" href="_jwt_util_8java_source.html">JwtUtil.java</a>.</p>
 
 </div>
 </div>
@@ -144,8 +157,16 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Generates a JWT token for the given username.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">username</td><td>The username for which the token is generated. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A signed JWT token string. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_jwt_util_8java_source.html#l00019">19</a> of file <a class="el" href="_jwt_util_8java_source.html">JwtUtil.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_jwt_util_8java_source.html#l00034">34</a> of file <a class="el" href="_jwt_util_8java_source.html">JwtUtil.java</a>.</p>
 
 </div>
 </div>
@@ -174,8 +195,17 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Validates the token by checking if it belongs to the provided username.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">token</td><td>The JWT token. </td></tr>
+    <tr><td class="paramname">username</td><td>The username to compare with the token's subject. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the token is valid and belongs to the username; otherwise, false. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_jwt_util_8java_source.html#l00045">45</a> of file <a class="el" href="_jwt_util_8java_source.html">JwtUtil.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_jwt_util_8java_source.html#l00087">87</a> of file <a class="el" href="_jwt_util_8java_source.html">JwtUtil.java</a>.</p>
 
 </div>
 </div>
@@ -188,7 +218,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>com</b></li><li class="navelem"><b>deusto</b></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify.html">deuspotify</a></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify_1_1security.html">security</a></li><li class="navelem"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html">JwtUtil</a></li>
-    <li class="footer">Generated on Sat May 17 2025 15:40:32 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Sat May 17 2025 18:47:43 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

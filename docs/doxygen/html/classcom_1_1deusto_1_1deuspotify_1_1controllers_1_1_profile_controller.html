@@ -95,27 +95,38 @@ $(document).ready(function(){initNavTree('classcom_1_1deusto_1_1deuspotify_1_1co
   <div class="headertitle"><div class="title">com.deusto.deuspotify.controllers.ProfileController Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Controller that handles HTTP requests related to user profiles.  
+ <a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aafd928d8bffb499cfe909c06b585dcf1" id="r_aafd928d8bffb499cfe909c06b585dcf1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#aafd928d8bffb499cfe909c06b585dcf1">ProfileController</a> (ProfileService profileService)</td></tr>
+<tr class="memdesc:aafd928d8bffb499cfe909c06b585dcf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for ProfileController.  <br /></td></tr>
 <tr class="separator:aafd928d8bffb499cfe909c06b585dcf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2b47fa3227ab5e0d89a13b987218cd2" id="r_aa2b47fa3227ab5e0d89a13b987218cd2"><td class="memItemLeft" align="right" valign="top">ResponseEntity&lt; List&lt; Profile &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#aa2b47fa3227ab5e0d89a13b987218cd2">getAllProfiles</a> ()</td></tr>
+<tr class="memdesc:aa2b47fa3227ab5e0d89a13b987218cd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves all user profiles.  <br /></td></tr>
 <tr class="separator:aa2b47fa3227ab5e0d89a13b987218cd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f28d1db06d26dce4b424c7adca3fb93" id="r_a6f28d1db06d26dce4b424c7adca3fb93"><td class="memItemLeft" align="right" valign="top">ResponseEntity&lt; Profile &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#a6f28d1db06d26dce4b424c7adca3fb93">getProfileById</a> (@PathVariable Long id)</td></tr>
+<tr class="memdesc:a6f28d1db06d26dce4b424c7adca3fb93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a user profile by ID.  <br /></td></tr>
 <tr class="separator:a6f28d1db06d26dce4b424c7adca3fb93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85c323ac44c3137d04d87e52bf5e85be" id="r_a85c323ac44c3137d04d87e52bf5e85be"><td class="memItemLeft" align="right" valign="top">ResponseEntity&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#a85c323ac44c3137d04d87e52bf5e85be">createProfile</a> (@RequestBody Profile profile)</td></tr>
+<tr class="memdesc:a85c323ac44c3137d04d87e52bf5e85be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new profile.  <br /></td></tr>
 <tr class="separator:a85c323ac44c3137d04d87e52bf5e85be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca483baea8c901ccd60208ac5a2f2bb3" id="r_aca483baea8c901ccd60208ac5a2f2bb3"><td class="memItemLeft" align="right" valign="top">ResponseEntity&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#aca483baea8c901ccd60208ac5a2f2bb3">updateProfile</a> (@PathVariable Long id, @RequestBody Profile updatedProfile)</td></tr>
+<tr class="memdesc:aca483baea8c901ccd60208ac5a2f2bb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates an existing profile.  <br /></td></tr>
 <tr class="separator:aca483baea8c901ccd60208ac5a2f2bb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99435c5acd0ce62086457fe294b0c7cb" id="r_a99435c5acd0ce62086457fe294b0c7cb"><td class="memItemLeft" align="right" valign="top">ResponseEntity&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#a99435c5acd0ce62086457fe294b0c7cb">deleteProfile</a> (@PathVariable Long id)</td></tr>
+<tr class="memdesc:a99435c5acd0ce62086457fe294b0c7cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a profile by ID.  <br /></td></tr>
 <tr class="separator:a99435c5acd0ce62086457fe294b0c7cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8fafce1acbdc49400d0a2c00a656b6d" id="r_ab8fafce1acbdc49400d0a2c00a656b6d"><td class="memItemLeft" align="right" valign="top">ResponseEntity&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#ab8fafce1acbdc49400d0a2c00a656b6d">login</a> (@RequestBody Profile loginRequest)</td></tr>
+<tr class="memdesc:ab8fafce1acbdc49400d0a2c00a656b6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticates a user by username and password.  <br /></td></tr>
 <tr class="separator:ab8fafce1acbdc49400d0a2c00a656b6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_profile_controller_8java_source.html#l00014">14</a> of file <a class="el" href="_profile_controller_8java_source.html">ProfileController.java</a>.</p>
+<div class="textblock"><p>Controller that handles HTTP requests related to user profiles. </p>
+
+<p class="definition">Definition at line <a class="el" href="_profile_controller_8java_source.html#l00023">23</a> of file <a class="el" href="_profile_controller_8java_source.html">ProfileController.java</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aafd928d8bffb499cfe909c06b585dcf1" name="aafd928d8bffb499cfe909c06b585dcf1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aafd928d8bffb499cfe909c06b585dcf1">&#9670;&#160;</a></span>ProfileController()</h2>
@@ -133,7 +144,15 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_profile_controller_8java_source.html#l00019">19</a> of file <a class="el" href="_profile_controller_8java_source.html">ProfileController.java</a>.</p>
+<p>Constructor for ProfileController. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">profileService</td><td>Service that handles profile logic. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_profile_controller_8java_source.html#l00031">31</a> of file <a class="el" href="_profile_controller_8java_source.html">ProfileController.java</a>.</p>
 
 </div>
 </div>
@@ -154,7 +173,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_profile_controller_8java_source.html#l00036">36</a> of file <a class="el" href="_profile_controller_8java_source.html">ProfileController.java</a>.</p>
+<p>Creates a new profile. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">profile</td><td>The profile to create. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ResponseEntity with the created profile or error message. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_profile_controller_8java_source.html#l00062">62</a> of file <a class="el" href="_profile_controller_8java_source.html">ProfileController.java</a>.</p>
 
 </div>
 </div>
@@ -174,7 +202,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_profile_controller_8java_source.html#l00054">54</a> of file <a class="el" href="_profile_controller_8java_source.html">ProfileController.java</a>.</p>
+<p>Deletes a profile by ID. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>ID of the profile to delete. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ResponseEntity indicating success or failure. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_profile_controller_8java_source.html#l00090">90</a> of file <a class="el" href="_profile_controller_8java_source.html">ProfileController.java</a>.</p>
 
 </div>
 </div>
@@ -193,7 +230,10 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_profile_controller_8java_source.html#l00024">24</a> of file <a class="el" href="_profile_controller_8java_source.html">ProfileController.java</a>.</p>
+<p>Retrieves all user profiles. </p>
+<dl class="section return"><dt>Returns</dt><dd>ResponseEntity containing the list of profiles. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_profile_controller_8java_source.html#l00040">40</a> of file <a class="el" href="_profile_controller_8java_source.html">ProfileController.java</a>.</p>
 
 </div>
 </div>
@@ -213,7 +253,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_profile_controller_8java_source.html#l00029">29</a> of file <a class="el" href="_profile_controller_8java_source.html">ProfileController.java</a>.</p>
+<p>Retrieves a user profile by ID. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the profile. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ResponseEntity containing the profile or 404 if not found. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_profile_controller_8java_source.html#l00050">50</a> of file <a class="el" href="_profile_controller_8java_source.html">ProfileController.java</a>.</p>
 
 </div>
 </div>
@@ -233,7 +282,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_profile_controller_8java_source.html#l00063">63</a> of file <a class="el" href="_profile_controller_8java_source.html">ProfileController.java</a>.</p>
+<p>Authenticates a user by username and password. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loginRequest</td><td>The profile object containing login credentials. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ResponseEntity with the profile if login is successful, or 401 error. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_profile_controller_8java_source.html#l00104">104</a> of file <a class="el" href="_profile_controller_8java_source.html">ProfileController.java</a>.</p>
 
 </div>
 </div>
@@ -263,7 +321,17 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_profile_controller_8java_source.html#l00046">46</a> of file <a class="el" href="_profile_controller_8java_source.html">ProfileController.java</a>.</p>
+<p>Updates an existing profile. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>ID of the profile to update. </td></tr>
+    <tr><td class="paramname">updatedProfile</td><td>New data for the profile. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ResponseEntity with the updated profile or 404 if not found. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_profile_controller_8java_source.html#l00078">78</a> of file <a class="el" href="_profile_controller_8java_source.html">ProfileController.java</a>.</p>
 
 </div>
 </div>
@@ -276,7 +344,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>com</b></li><li class="navelem"><b>deusto</b></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify.html">deuspotify</a></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify_1_1controllers.html">controllers</a></li><li class="navelem"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html">ProfileController</a></li>
-    <li class="footer">Generated on Sat May 17 2025 15:40:32 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Sat May 17 2025 18:47:43 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

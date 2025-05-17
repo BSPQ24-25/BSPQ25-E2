@@ -95,6 +95,9 @@ $(document).ready(function(){initNavTree('classcom_1_1deusto_1_1deuspotify_1_1_d
   <div class="headertitle"><div class="title">com.deusto.deuspotify.DTO.ProfileDTO Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Data Transfer Object for the Profile entity.  
+ <a href="classcom_1_1deusto_1_1deuspotify_1_1_d_t_o_1_1_profile_d_t_o.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -102,6 +105,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a0089c02c93eb7c41d155c4fb7b39f45e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4fa17ab6112afeb3761e5360eee88747" id="r_a4fa17ab6112afeb3761e5360eee88747"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1_d_t_o_1_1_profile_d_t_o.html#a4fa17ab6112afeb3761e5360eee88747">ProfileDTO</a> (Long id, String username, String email, List&lt; String &gt; friendsList, List&lt; <a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1_d_t_o_1_1_song_d_t_o.html">SongDTO</a> &gt; favouriteSongs, List&lt; <a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1_d_t_o_1_1_playlist_d_t_o.html">PlaylistDTO</a> &gt; playlists, boolean isAdmin)</td></tr>
 <tr class="separator:a4fa17ab6112afeb3761e5360eee88747"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Getters and Setters</div></td></tr>
 <tr class="memitem:a36d60e13fcb4191864a04573d2d3a7f7" id="r_a36d60e13fcb4191864a04573d2d3a7f7"><td class="memItemLeft" align="right" valign="top">Long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1_d_t_o_1_1_profile_d_t_o.html#a36d60e13fcb4191864a04573d2d3a7f7">getId</a> ()</td></tr>
 <tr class="separator:a36d60e13fcb4191864a04573d2d3a7f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7178be85831bbaf94f415b0bb632940" id="r_aa7178be85831bbaf94f415b0bb632940"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1_d_t_o_1_1_profile_d_t_o.html#aa7178be85831bbaf94f415b0bb632940">setId</a> (Long id)</td></tr>
@@ -132,8 +136,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae129d843fb0802e6f0c608ab2b711ce5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00005">5</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
+<div class="textblock"><p>Data Transfer Object for the Profile entity. </p>
+<p>This class is used to transfer profile data between layers. </p>
+
+<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00011">11</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a0089c02c93eb7c41d155c4fb7b39f45e" name="a0089c02c93eb7c41d155c4fb7b39f45e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0089c02c93eb7c41d155c4fb7b39f45e">&#9670;&#160;</a></span>ProfileDTO() <span class="overload">[1/2]</span></h2>
@@ -149,8 +155,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Default constructor. </p>
 
-<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00015">15</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00037">37</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
 
 </div>
 </div>
@@ -209,8 +216,21 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Constructs a ProfileDTO with all attributes.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Unique identifier. </td></tr>
+    <tr><td class="paramname">username</td><td>Username of the profile. </td></tr>
+    <tr><td class="paramname">email</td><td>Email of the user. </td></tr>
+    <tr><td class="paramname">friendsList</td><td>List of friends' usernames. </td></tr>
+    <tr><td class="paramname">favouriteSongs</td><td>List of favorite songs. </td></tr>
+    <tr><td class="paramname">playlists</td><td>List of owned playlists. </td></tr>
+    <tr><td class="paramname">isAdmin</td><td>Indicates if the user is an admin. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00017">17</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00050">50</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
 
 </div>
 </div>
@@ -229,8 +249,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Email. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00035">35</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00077">77</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
 
 </div>
 </div>
@@ -248,8 +269,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Favorite songs. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00041">41</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00089">89</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
 
 </div>
 </div>
@@ -267,8 +289,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>List of friend usernames. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00038">38</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00083">83</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
 
 </div>
 </div>
@@ -286,8 +309,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Profile ID. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00029">29</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00065">65</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
 
 </div>
 </div>
@@ -305,8 +329,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>List of playlists. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00044">44</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00095">95</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
 
 </div>
 </div>
@@ -324,8 +349,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Username. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00032">32</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00071">71</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
 
 </div>
 </div>
@@ -343,8 +369,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Whether the profile is an admin. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00047">47</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00101">101</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
 
 </div>
 </div>
@@ -363,8 +390,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">isAdmin</td><td>New admin status. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00048">48</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00104">104</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
 
 </div>
 </div>
@@ -383,8 +416,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">email</td><td>New email address. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00036">36</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00080">80</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
 
 </div>
 </div>
@@ -403,8 +442,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">favouriteSongs</td><td>New list of favorite songs. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00042">42</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00092">92</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
 
 </div>
 </div>
@@ -423,8 +468,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">friendsList</td><td>Updated list of friend usernames. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00039">39</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00086">86</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
 
 </div>
 </div>
@@ -443,8 +494,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>New profile ID. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00030">30</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00068">68</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
 
 </div>
 </div>
@@ -463,8 +520,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">playlists</td><td>New list of playlists. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00045">45</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00098">98</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
 
 </div>
 </div>
@@ -483,8 +546,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">username</td><td>New username. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00033">33</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_d_t_o_8java_source.html#l00074">74</a> of file <a class="el" href="_profile_d_t_o_8java_source.html">ProfileDTO.java</a>.</p>
 
 </div>
 </div>
@@ -497,7 +566,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>com</b></li><li class="navelem"><b>deusto</b></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify.html">deuspotify</a></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify_1_1_d_t_o.html">DTO</a></li><li class="navelem"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1_d_t_o_1_1_profile_d_t_o.html">ProfileDTO</a></li>
-    <li class="footer">Generated on Sat May 17 2025 15:40:32 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Sat May 17 2025 18:47:43 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

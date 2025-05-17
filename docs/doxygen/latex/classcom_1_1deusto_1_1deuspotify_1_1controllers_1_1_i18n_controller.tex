@@ -1,18 +1,23 @@
 \doxysection{com.\+deusto.\+deuspotify.\+controllers.\+I18n\+Controller Class Reference}
 \hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller}{}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller}\index{com.deusto.deuspotify.controllers.I18nController@{com.deusto.deuspotify.controllers.I18nController}}
+
+
+REST controller for retrieving internationalized message strings based on locale.  
+
+
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller_a98395c12cb003c8ec087d335e262a113}{I18n\+Controller}} (Message\+Source message\+Source)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor for I18n\+Controller. \end{DoxyCompactList}\item 
 Map$<$ String, String $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller_a2508f2c3c5582a01647c84c24225ca93}{get\+Translations}} (@Request\+Param(value="{}lang"{}, required=false) String lang)  throws IOException 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Returns translated key-\/value pairs based on the provided language. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
+REST controller for retrieving internationalized message strings based on locale. 
 
-
-Definition at line \mbox{\hyperlink{_i18n_controller_8java_source_l00019}{19}} of file \mbox{\hyperlink{_i18n_controller_8java_source}{I18n\+Controller.\+java}}.
+Definition at line \mbox{\hyperlink{_i18n_controller_8java_source_l00026}{26}} of file \mbox{\hyperlink{_i18n_controller_8java_source}{I18n\+Controller.\+java}}.
 
 
 
@@ -25,7 +30,16 @@ Definition at line \mbox{\hyperlink{_i18n_controller_8java_source_l00019}{19}} o
 
 
 
-Definition at line \mbox{\hyperlink{_i18n_controller_8java_source_l00035}{35}} of file \mbox{\hyperlink{_i18n_controller_8java_source}{I18n\+Controller.\+java}}.
+Constructor for I18n\+Controller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message\+Source} & Spring\textquotesingle{}s message source for resolving messages. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_i18n_controller_8java_source_l00046}{46}} of file \mbox{\hyperlink{_i18n_controller_8java_source}{I18n\+Controller.\+java}}.
 
 
 
@@ -38,7 +52,24 @@ Definition at line \mbox{\hyperlink{_i18n_controller_8java_source_l00035}{35}} o
 
 
 
-Definition at line \mbox{\hyperlink{_i18n_controller_8java_source_l00040}{40}} of file \mbox{\hyperlink{_i18n_controller_8java_source}{I18n\+Controller.\+java}}.
+Returns translated key-\/value pairs based on the provided language. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lang} & Language code ("{}es"{}, "{}en"{}, "{}eu"{}). Defaults to "{}es"{}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A map of message keys and their localized translations. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em IOException} & If there\textquotesingle{}s an error reading the property files. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{_i18n_controller_8java_source_l00057}{57}} of file \mbox{\hyperlink{_i18n_controller_8java_source}{I18n\+Controller.\+java}}.
 
 
 

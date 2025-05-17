@@ -95,13 +95,16 @@ $(document).ready(function(){initNavTree('interfacecom_1_1deusto_1_1deuspotify_1
   <div class="headertitle"><div class="title">com.deusto.deuspotify.services.DeuspotifyService Interface Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Defines the service layer operations for managing songs and playlists.  
+ <a href="interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for com.deusto.deuspotify.services.DeuspotifyService:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service.png" usemap="#com.deusto.deuspotify.services.DeuspotifyService_map" alt=""/>
   <map id="com.deusto.deuspotify.services.DeuspotifyService_map" name="com.deusto.deuspotify.services.DeuspotifyService_map">
-<area href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html" alt="com.deusto.deuspotify.services.DeuspotifyServiceImpl" shape="rect" coords="0,56,320,80"/>
+<area href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html" title="Service implementation for managing songs and playlists in the Deuspotify application." alt="com.deusto.deuspotify.services.DeuspotifyServiceImpl" shape="rect" coords="0,56,320,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -137,8 +140,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a84f729f346c82fcb7c0416c7ca8854a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_deuspotify_service_8java_source.html#l00010">10</a> of file <a class="el" href="_deuspotify_service_8java_source.html">DeuspotifyService.java</a>.</p>
+<div class="textblock"><p>Defines the service layer operations for managing songs and playlists. </p>
+<p>This interface provides abstract methods for CRUD operations on songs and playlists, including operations for file uploads and playlist-song associations. </p>
+
+<p class="definition">Definition at line <a class="el" href="_deuspotify_service_8java_source.html#l00016">16</a> of file <a class="el" href="_deuspotify_service_8java_source.html">DeuspotifyService.java</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="aa8fe910a152b3bd97e89626e4c07382e" name="aa8fe910a152b3bd97e89626e4c07382e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa8fe910a152b3bd97e89626e4c07382e">&#9670;&#160;</a></span>addPlaylist()</h2>
@@ -155,6 +160,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Adds a new playlist.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">playlist</td><td>The playlist to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The saved playlist. </dd></dl>
 
 <p>Implemented in <a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#a11b2fb37cb5824345d471f95f92c9f33">com.deusto.deuspotify.services.DeuspotifyServiceImpl</a>.</p>
 
@@ -175,6 +188,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Adds a new song.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">song</td><td>The song to be added. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The saved song. </dd></dl>
 
 <p>Implemented in <a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#a223546a7b7cd1fb9bfe5ff874fc4cc58">com.deusto.deuspotify.services.DeuspotifyServiceImpl</a>.</p>
 
@@ -235,6 +256,20 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Adds a new song along with an audio file.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the song. </td></tr>
+    <tr><td class="paramname">album</td><td>The album name. </td></tr>
+    <tr><td class="paramname">artists</td><td>Comma-separated list of artists. </td></tr>
+    <tr><td class="paramname">genres</td><td>Comma-separated list of genres. </td></tr>
+    <tr><td class="paramname">duration</td><td>Duration of the song in seconds. </td></tr>
+    <tr><td class="paramname">dateOfRelease</td><td>The release date of the song. </td></tr>
+    <tr><td class="paramname">file</td><td>The audio file to upload. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The created song. </dd></dl>
 
 <p>Implemented in <a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#a182836b007cf9443ba7c11389d44c54b">com.deusto.deuspotify.services.DeuspotifyServiceImpl</a>.</p>
 
@@ -295,6 +330,20 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Creates a shared song entry from an existing file path.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the song. </td></tr>
+    <tr><td class="paramname">album</td><td>The album name. </td></tr>
+    <tr><td class="paramname">artists</td><td>Comma-separated list of artists. </td></tr>
+    <tr><td class="paramname">genres</td><td>Comma-separated list of genres. </td></tr>
+    <tr><td class="paramname">duration</td><td>Duration in seconds. </td></tr>
+    <tr><td class="paramname">dateOfRelease</td><td>Date of release. </td></tr>
+    <tr><td class="paramname">filePath</td><td>Path to the audio file. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The created Song entity. </dd></dl>
 
 <p>Implemented in <a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#a50ea7ea504910f76d28249b5acea94e1">com.deusto.deuspotify.services.DeuspotifyServiceImpl</a>.</p>
 
@@ -315,6 +364,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Deletes a playlist by its ID.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the playlist to delete. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implemented in <a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#aa1a2951ce1781c6b888c39cf511f7ef4">com.deusto.deuspotify.services.DeuspotifyServiceImpl</a>.</p>
 
@@ -335,6 +391,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Deletes a song by its ID.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the song to delete. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implemented in <a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#af552f4ddb7201472406c38c63e3e8473">com.deusto.deuspotify.services.DeuspotifyServiceImpl</a>.</p>
 
@@ -355,6 +418,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Finds a specific playlist by its ID.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the playlist. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An Optional containing the playlist if found, or empty otherwise. </dd></dl>
 
 <p>Implemented in <a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#a73510c67446d418af9e4109b808c0610">com.deusto.deuspotify.services.DeuspotifyServiceImpl</a>.</p>
 
@@ -375,6 +446,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Finds a specific song by its ID.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the song. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An Optional containing the song if found, or empty otherwise. </dd></dl>
 
 <p>Implemented in <a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#ab0ba768d7ce62e01269c1201b18149fe">com.deusto.deuspotify.services.DeuspotifyServiceImpl</a>.</p>
 
@@ -395,6 +474,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Finds a list of songs by their IDs.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">songIds</td><td>A list of song IDs. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A list of corresponding Song entities. </dd></dl>
 
 <p>Implemented in <a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#a070b8955874b90467a7bfad956f02f71">com.deusto.deuspotify.services.DeuspotifyServiceImpl</a>.</p>
 
@@ -414,6 +501,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Retrieves all playlists in the system.</p>
+<dl class="section return"><dt>Returns</dt><dd>A list of all playlists. </dd></dl>
 
 <p>Implemented in <a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#a57900a981aeb54eb4310d6bf7cfa4c99">com.deusto.deuspotify.services.DeuspotifyServiceImpl</a>.</p>
 
@@ -433,6 +522,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Retrieves all songs in the system.</p>
+<dl class="section return"><dt>Returns</dt><dd>A list of all songs. </dd></dl>
 
 <p>Implemented in <a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#a4d38e4bbdbf5e2e436017e81c06c45ca">com.deusto.deuspotify.services.DeuspotifyServiceImpl</a>.</p>
 
@@ -463,6 +554,15 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Updates an existing playlist.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the playlist to update. </td></tr>
+    <tr><td class="paramname">playlist</td><td>The updated playlist data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The updated playlist. </dd></dl>
 
 <p>Implemented in <a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#a4c03adf41637c27546a787e91baddcc1">com.deusto.deuspotify.services.DeuspotifyServiceImpl</a>.</p>
 
@@ -493,6 +593,15 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Updates the list of songs in a given playlist.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">playlistId</td><td>The ID of the playlist. </td></tr>
+    <tr><td class="paramname">songIds</td><td>The list of song IDs to associate. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The updated playlist. </dd></dl>
 
 <p>Implemented in <a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#ae6d03f51856755a403004b64f235b925">com.deusto.deuspotify.services.DeuspotifyServiceImpl</a>.</p>
 
@@ -523,6 +632,15 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Updates an existing song.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the song to update. </td></tr>
+    <tr><td class="paramname">song</td><td>The updated song data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The updated song. </dd></dl>
 
 <p>Implemented in <a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#ab7569e55501d7cca2c27344d4c8d4215">com.deusto.deuspotify.services.DeuspotifyServiceImpl</a>.</p>
 
@@ -537,7 +655,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>com</b></li><li class="navelem"><b>deusto</b></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify.html">deuspotify</a></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify_1_1services.html">services</a></li><li class="navelem"><a class="el" href="interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service.html">DeuspotifyService</a></li>
-    <li class="footer">Generated on Sat May 17 2025 15:40:32 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Sat May 17 2025 18:47:43 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

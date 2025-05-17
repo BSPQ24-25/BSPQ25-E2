@@ -97,111 +97,97 @@ $(document).ready(function(){initNavTree('_i18n_controller_8java_source.html',''
   <div class="headertitle"><div class="title">I18nController.java</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="_i18n_controller_8java.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">package </span>com.deusto.deuspotify.controllers;</div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">import</span> org.springframework.context.MessageSource;</div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">import</span> org.springframework.core.io.Resource;</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestParam;</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">import</span> java.io.IOException;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">import</span> java.util.*;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">import</span> java.util.stream.Collectors;</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">import</span> java.io.InputStreamReader;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">import</span> java.io.Reader;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">import</span> jakarta.servlet.http.HttpServletRequest;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>@RestController</div>
-<div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller.html">   19</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller.html">I18nController</a> {</div>
+<a href="_i18n_controller_8java.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">package </span>com.deusto.deuspotify.controllers;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">import</span> org.springframework.context.MessageSource;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">import</span> org.springframework.core.io.Resource;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestParam;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">import</span> java.io.IOException;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">import</span> java.util.*;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">import</span> java.util.stream.Collectors;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">import</span> java.io.InputStreamReader;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">import</span> java.io.Reader;</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">private</span> <span class="keyword">final</span> MessageSource messageSource;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    @Value(<span class="stringliteral">&quot;classpath:messages.properties&quot;</span>) <span class="comment">// General message file</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">private</span> Resource messagesProperties;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    @Value(<span class="stringliteral">&quot;classpath:messages_es.properties&quot;</span>) <span class="comment">// Spanish messages</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">private</span> Resource messagesEsProperties;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    @Value(<span class="stringliteral">&quot;classpath:messages_en.properties&quot;</span>) <span class="comment">// English messages</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">private</span> Resource messagesEnProperties;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    @Value(<span class="stringliteral">&quot;classpath:messages_eu.properties&quot;</span>) <span class="comment">// Basque messages</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">private</span> Resource messagesEuProperties;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="foldopen" id="foldopen00035" data-start="{" data-end="}">
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller.html#a98395c12cb003c8ec087d335e262a113">   35</a></span>    <span class="keyword">public</span> <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller.html#a98395c12cb003c8ec087d335e262a113">I18nController</a>(MessageSource messageSource) {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        this.messageSource = messageSource;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    }</div>
-</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>@RestController</div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="};">
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller.html">   26</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller.html">I18nController</a> {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keyword">private</span> <span class="keyword">final</span> MessageSource messageSource;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    @Value(<span class="stringliteral">&quot;classpath:messages.properties&quot;</span>)</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">private</span> Resource messagesProperties;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    @Value(<span class="stringliteral">&quot;classpath:messages_es.properties&quot;</span>)</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">private</span> Resource messagesEsProperties;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    @Value(<span class="stringliteral">&quot;classpath:messages_en.properties&quot;</span>)</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">private</span> Resource messagesEnProperties;</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    @GetMapping(<span class="stringliteral">&quot;/api/i18n&quot;</span>)</div>
-<div class="foldopen" id="foldopen00040" data-start="{" data-end="}">
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller.html#a2508f2c3c5582a01647c84c24225ca93">   40</a></span>    public Map&lt;String, String&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller.html#a2508f2c3c5582a01647c84c24225ca93">getTranslations</a>(@RequestParam(value = &quot;lang&quot;, required = false) String lang) throws IOException {</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="comment">// Usar &#39;es&#39; como valor por defecto si no se pasa ningún idioma</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        Locale locale = <span class="keywordflow">switch</span> (lang != <span class="keyword">null</span> ? lang : <span class="stringliteral">&quot;es&quot;</span>) {</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>            <span class="keywordflow">case</span> <span class="stringliteral">&quot;en&quot;</span> -&gt; Locale.ENGLISH;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            <span class="keywordflow">case</span> <span class="stringliteral">&quot;eu&quot;</span> -&gt; <span class="keyword">new</span> Locale(<span class="stringliteral">&quot;eu&quot;</span>);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            <span class="keywordflow">default</span> -&gt; <span class="keyword">new</span> Locale(<span class="stringliteral">&quot;es&quot;</span>);</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        };</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        Map&lt;String, String&gt; allKeys = loadAllPropertiesKeys();</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    @Value(<span class="stringliteral">&quot;classpath:messages_eu.properties&quot;</span>)</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">private</span> Resource messagesEuProperties;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="foldopen" id="foldopen00046" data-start="{" data-end="}">
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller.html#a98395c12cb003c8ec087d335e262a113">   46</a></span>    <span class="keyword">public</span> <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller.html#a98395c12cb003c8ec087d335e262a113">I18nController</a>(MessageSource messageSource) {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        this.messageSource = messageSource;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    }</div>
+</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordflow">return</span> allKeys.entrySet().stream()</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                .collect(Collectors.toMap(</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                        Map.Entry::getKey,</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                        entry -&gt; messageSource.getMessage(entry.getKey(), <span class="keyword">null</span>, locale)</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                ));</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    @GetMapping(<span class="stringliteral">&quot;/api/i18n&quot;</span>)</div>
+<div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller.html#a2508f2c3c5582a01647c84c24225ca93">   57</a></span>    public Map&lt;String, String&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller.html#a2508f2c3c5582a01647c84c24225ca93">getTranslations</a>(@RequestParam(value = &quot;lang&quot;, required = false) String lang) throws IOException {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        Locale locale = <span class="keywordflow">switch</span> (lang != <span class="keyword">null</span> ? lang : <span class="stringliteral">&quot;es&quot;</span>) {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            <span class="keywordflow">case</span> <span class="stringliteral">&quot;en&quot;</span> -&gt; Locale.ENGLISH;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            <span class="keywordflow">case</span> <span class="stringliteral">&quot;eu&quot;</span> -&gt; <span class="keyword">new</span> Locale(<span class="stringliteral">&quot;eu&quot;</span>);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            <span class="keywordflow">default</span> -&gt; <span class="keyword">new</span> Locale(<span class="stringliteral">&quot;es&quot;</span>);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        };</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        Map&lt;String, String&gt; allKeys = loadAllPropertiesKeys();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">return</span> allKeys.entrySet().stream()</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                .collect(Collectors.toMap(</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                        Map.Entry::getKey,</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                        entry -&gt; messageSource.getMessage(entry.getKey(), <span class="keyword">null</span>, locale)</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>                ));</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    }</div>
 </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">private</span> Map&lt;String, String&gt; loadAllPropertiesKeys() throws IOException {</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="comment">// Cargar todas las propiedades de los archivos de mensajes</span></div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        Map&lt;String, String&gt; keys = <span class="keyword">new</span> HashMap&lt;&gt;();</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="comment">// Cargar el archivo de mensajes general</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        keys.putAll(loadPropertiesKeys(messagesProperties));</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="comment">// Cargar el archivo de mensajes en español</span></div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        keys.putAll(loadPropertiesKeys(messagesEsProperties));</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="comment">// Cargar el archivo de mensajes en inglés</span></div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        keys.putAll(loadPropertiesKeys(messagesEnProperties));</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="comment">// Cargar el archivo de mensajes en euskera</span></div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        keys.putAll(loadPropertiesKeys(messagesEuProperties));</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keywordflow">return</span> keys;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    }</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keyword">private</span> Map&lt;String, String&gt; loadPropertiesKeys(Resource resource) <span class="keywordflow">throws</span> IOException {</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        Map&lt;String, String&gt; keys = <span class="keyword">new</span> HashMap&lt;&gt;();</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <span class="keywordflow">try</span> (Reader reader = <span class="keyword">new</span> InputStreamReader(resource.getInputStream())) {</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            Properties properties = <span class="keyword">new</span> Properties();</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            properties.load(reader);</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>            <span class="comment">// Guardar todas las claves del archivo en el mapa</span></div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            <span class="keywordflow">for</span> (String key : properties.stringPropertyNames()) {</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                keys.put(key, properties.getProperty(key));</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            }</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        }</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="keywordflow">return</span> keys;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    }</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>}</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keyword">private</span> Map&lt;String, String&gt; loadAllPropertiesKeys() throws IOException {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        Map&lt;String, String&gt; keys = <span class="keyword">new</span> HashMap&lt;&gt;();</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        keys.putAll(loadPropertiesKeys(messagesProperties));</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        keys.putAll(loadPropertiesKeys(messagesEsProperties));</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        keys.putAll(loadPropertiesKeys(messagesEnProperties));</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        keys.putAll(loadPropertiesKeys(messagesEuProperties));</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="keywordflow">return</span> keys;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    }</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keyword">private</span> Map&lt;String, String&gt; loadPropertiesKeys(Resource resource) <span class="keywordflow">throws</span> IOException {</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        Map&lt;String, String&gt; keys = <span class="keyword">new</span> HashMap&lt;&gt;();</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keywordflow">try</span> (Reader reader = <span class="keyword">new</span> InputStreamReader(resource.getInputStream())) {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>            Properties properties = <span class="keyword">new</span> Properties();</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            properties.load(reader);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>            <span class="keywordflow">for</span> (String key : properties.stringPropertyNames()) {</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>                keys.put(key, properties.getProperty(key));</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>            }</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        }</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        <span class="keywordflow">return</span> keys;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    }</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>}</div>
 </div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller_html"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller.html">com.deusto.deuspotify.controllers.I18nController</a></div><div class="ttdef"><b>Definition</b> <a href="_i18n_controller_8java_source.html#l00019">I18nController.java:19</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller_html_a2508f2c3c5582a01647c84c24225ca93"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller.html#a2508f2c3c5582a01647c84c24225ca93">com.deusto.deuspotify.controllers.I18nController.getTranslations</a></div><div class="ttdeci">Map&lt; String, String &gt; getTranslations(@RequestParam(value=&quot;lang&quot;, required=false) String lang)</div><div class="ttdef"><b>Definition</b> <a href="_i18n_controller_8java_source.html#l00040">I18nController.java:40</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller_html_a98395c12cb003c8ec087d335e262a113"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller.html#a98395c12cb003c8ec087d335e262a113">com.deusto.deuspotify.controllers.I18nController.I18nController</a></div><div class="ttdeci">I18nController(MessageSource messageSource)</div><div class="ttdef"><b>Definition</b> <a href="_i18n_controller_8java_source.html#l00035">I18nController.java:35</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller_html"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller.html">com.deusto.deuspotify.controllers.I18nController</a></div><div class="ttdoc">REST controller for retrieving internationalized message strings based on locale.</div><div class="ttdef"><b>Definition</b> <a href="_i18n_controller_8java_source.html#l00026">I18nController.java:26</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller_html_a2508f2c3c5582a01647c84c24225ca93"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller.html#a2508f2c3c5582a01647c84c24225ca93">com.deusto.deuspotify.controllers.I18nController.getTranslations</a></div><div class="ttdeci">Map&lt; String, String &gt; getTranslations(@RequestParam(value=&quot;lang&quot;, required=false) String lang)</div><div class="ttdoc">Returns translated key-value pairs based on the provided language.</div><div class="ttdef"><b>Definition</b> <a href="_i18n_controller_8java_source.html#l00057">I18nController.java:57</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller_html_a98395c12cb003c8ec087d335e262a113"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller.html#a98395c12cb003c8ec087d335e262a113">com.deusto.deuspotify.controllers.I18nController.I18nController</a></div><div class="ttdeci">I18nController(MessageSource messageSource)</div><div class="ttdoc">Constructor for I18nController.</div><div class="ttdef"><b>Definition</b> <a href="_i18n_controller_8java_source.html#l00046">I18nController.java:46</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_5eb159725f84c66aafd839904a4acdd0.html">main</a></li><li class="navelem"><a class="el" href="dir_fd3f6763802dee1ad875f6c80eac0bda.html">java</a></li><li class="navelem"><a class="el" href="dir_d8517d8b842053dc3dd7dde525dd9163.html">com</a></li><li class="navelem"><a class="el" href="dir_c829b153888480d1cd6945dc2092d47a.html">deusto</a></li><li class="navelem"><a class="el" href="dir_2fc7bb6d021d87fedeb47034f59180a8.html">deuspotify</a></li><li class="navelem"><a class="el" href="dir_63353bf22bd2073c5a5e4036c4f4ac2e.html">controllers</a></li><li class="navelem"><a class="el" href="_i18n_controller_8java.html">I18nController.java</a></li>
-    <li class="footer">Generated on Sat May 17 2025 15:40:32 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Sat May 17 2025 18:47:43 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

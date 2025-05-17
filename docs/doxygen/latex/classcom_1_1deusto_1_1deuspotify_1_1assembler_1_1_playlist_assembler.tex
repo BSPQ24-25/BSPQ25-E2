@@ -1,22 +1,27 @@
 \doxysection{com.\+deusto.\+deuspotify.\+assembler.\+Playlist\+Assembler Class Reference}
 \hypertarget{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler}{}\label{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler}\index{com.deusto.deuspotify.assembler.PlaylistAssembler@{com.deusto.deuspotify.assembler.PlaylistAssembler}}
+
+
+Utility class to convert between Playlist entities and Playlist\+DTOs.  
+
+
 \doxysubsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 static Playlist\+DTO \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler_a0747e7edb176be5ebb50ef8df7edda9f}{to\+DTO}} (Playlist playlist)
-\item 
+\begin{DoxyCompactList}\small\item\em Converts a Playlist entity to a Playlist\+DTO. \end{DoxyCompactList}\item 
 static Playlist \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler_a448675ab042e8138dc6698081520d857}{to\+Entity}} (Playlist\+DTO dto)
-\item 
+\begin{DoxyCompactList}\small\item\em Converts a Playlist\+DTO to a Playlist entity. \end{DoxyCompactList}\item 
 static List$<$ Playlist\+DTO $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler_abec9bb44343ceb945955e63040c52ed8}{to\+DTOList}} (List$<$ Playlist $>$ playlists)
-\item 
+\begin{DoxyCompactList}\small\item\em Converts a list of Playlist entities to a list of Playlist\+DTOs. \end{DoxyCompactList}\item 
 static List$<$ Playlist $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler_a81a37499060e6889979321897c2226f5}{to\+Entity\+List}} (List$<$ Playlist\+DTO $>$ dtos)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Converts a list of Playlist\+DTOs to a list of Playlist entities. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
+Utility class to convert between Playlist entities and Playlist\+DTOs. 
 
-
-Definition at line \mbox{\hyperlink{_playlist_assembler_8java_source_l00011}{11}} of file \mbox{\hyperlink{_playlist_assembler_8java_source}{Playlist\+Assembler.\+java}}.
+Definition at line \mbox{\hyperlink{_playlist_assembler_8java_source_l00020}{20}} of file \mbox{\hyperlink{_playlist_assembler_8java_source}{Playlist\+Assembler.\+java}}.
 
 
 
@@ -29,7 +34,19 @@ Definition at line \mbox{\hyperlink{_playlist_assembler_8java_source_l00011}{11}
 
 
 
-Definition at line \mbox{\hyperlink{_playlist_assembler_8java_source_l00013}{13}} of file \mbox{\hyperlink{_playlist_assembler_8java_source}{Playlist\+Assembler.\+java}}.
+Converts a Playlist entity to a Playlist\+DTO. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em playlist} & The Playlist entity to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resulting Playlist\+DTO, or null if the input is null. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_playlist_assembler_8java_source_l00027}{27}} of file \mbox{\hyperlink{_playlist_assembler_8java_source}{Playlist\+Assembler.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler_abec9bb44343ceb945955e63040c52ed8}\label{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler_abec9bb44343ceb945955e63040c52ed8} 
 \index{com.deusto.deuspotify.assembler.PlaylistAssembler@{com.deusto.deuspotify.assembler.PlaylistAssembler}!toDTOList@{toDTOList}}
@@ -39,7 +56,19 @@ Definition at line \mbox{\hyperlink{_playlist_assembler_8java_source_l00013}{13}
 
 
 
-Definition at line \mbox{\hyperlink{_playlist_assembler_8java_source_l00045}{45}} of file \mbox{\hyperlink{_playlist_assembler_8java_source}{Playlist\+Assembler.\+java}}.
+Converts a list of Playlist entities to a list of Playlist\+DTOs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em playlists} & List of Playlist entities. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+List of Playlist\+DTOs, or null if input is null. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_playlist_assembler_8java_source_l00069}{69}} of file \mbox{\hyperlink{_playlist_assembler_8java_source}{Playlist\+Assembler.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler_a448675ab042e8138dc6698081520d857}\label{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler_a448675ab042e8138dc6698081520d857} 
 \index{com.deusto.deuspotify.assembler.PlaylistAssembler@{com.deusto.deuspotify.assembler.PlaylistAssembler}!toEntity@{toEntity}}
@@ -49,7 +78,19 @@ Definition at line \mbox{\hyperlink{_playlist_assembler_8java_source_l00045}{45}
 
 
 
-Definition at line \mbox{\hyperlink{_playlist_assembler_8java_source_l00029}{29}} of file \mbox{\hyperlink{_playlist_assembler_8java_source}{Playlist\+Assembler.\+java}}.
+Converts a Playlist\+DTO to a Playlist entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dto} & The Playlist\+DTO to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resulting Playlist entity, or null if the input is null. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_playlist_assembler_8java_source_l00048}{48}} of file \mbox{\hyperlink{_playlist_assembler_8java_source}{Playlist\+Assembler.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler_a81a37499060e6889979321897c2226f5}\label{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler_a81a37499060e6889979321897c2226f5} 
 \index{com.deusto.deuspotify.assembler.PlaylistAssembler@{com.deusto.deuspotify.assembler.PlaylistAssembler}!toEntityList@{toEntityList}}
@@ -59,7 +100,19 @@ Definition at line \mbox{\hyperlink{_playlist_assembler_8java_source_l00029}{29}
 
 
 
-Definition at line \mbox{\hyperlink{_playlist_assembler_8java_source_l00053}{53}} of file \mbox{\hyperlink{_playlist_assembler_8java_source}{Playlist\+Assembler.\+java}}.
+Converts a list of Playlist\+DTOs to a list of Playlist entities. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dtos} & List of Playlist\+DTOs. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+List of Playlist entities, or null if input is null. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_playlist_assembler_8java_source_l00082}{82}} of file \mbox{\hyperlink{_playlist_assembler_8java_source}{Playlist\+Assembler.\+java}}.
 
 
 

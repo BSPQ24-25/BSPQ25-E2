@@ -1,4 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProfileAssembler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deuspotify</a> &gt; <a href="index.source.html" class="el_package">com.deusto.deuspotify.assembler</a> &gt; <span class="el_source">ProfileAssembler.java</span></div><h1>ProfileAssembler.java</h1><pre class="source lang-java linenums">package com.deusto.deuspotify.assembler;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProfileAssembler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deuspotify</a> &gt; <a href="index.source.html" class="el_package">com.deusto.deuspotify.assembler</a> &gt; <span class="el_source">ProfileAssembler.java</span></div><h1>ProfileAssembler.java</h1><pre class="source lang-java linenums">/**
+ * @file ProfileAssembler.java
+ * @brief Provides conversion methods between Profile and ProfileDTO.
+ */
+
+package com.deusto.deuspotify.assembler;
 
 import com.deusto.deuspotify.model.Profile;
 import com.deusto.deuspotify.model.Song;
@@ -10,57 +15,81 @@ import com.deusto.deuspotify.DTO.PlaylistDTO;
 import java.util.List;
 import java.util.stream.Collectors;
 
-<span class="nc" id="L13">public class ProfileAssembler {</span>
+/**
+ * @class ProfileAssembler
+ * @brief Utility class to convert between Profile entities and ProfileDTOs.
+ */
+<span class="nc" id="L22">public class ProfileAssembler {</span>
 
+    /**
+     * @brief Converts a Profile entity to a ProfileDTO.
+     * @param profile The Profile entity to convert.
+     * @return The resulting ProfileDTO, or null if the input is null.
+     */
     public static ProfileDTO toDTO(Profile profile) {
-<span class="nc bnc" id="L16" title="All 2 branches missed.">        if (profile == null) return null;</span>
+<span class="nc bnc" id="L30" title="All 2 branches missed.">        if (profile == null) return null;</span>
 
-<span class="nc" id="L18">        List&lt;SongDTO&gt; songDTOs = SongAssembler.toDTOList(profile.getFavouriteSongs());</span>
-<span class="nc" id="L19">        List&lt;PlaylistDTO&gt; playlistDTOs = PlaylistAssembler.toDTOList(profile.getPlaylists());</span>
+<span class="nc" id="L32">        List&lt;SongDTO&gt; songDTOs = SongAssembler.toDTOList(profile.getFavouriteSongs());</span>
+<span class="nc" id="L33">        List&lt;PlaylistDTO&gt; playlistDTOs = PlaylistAssembler.toDTOList(profile.getPlaylists());</span>
 
-<span class="nc" id="L21">        return new ProfileDTO(</span>
-<span class="nc" id="L22">                profile.getId(),</span>
-<span class="nc" id="L23">                profile.getUsername(),</span>
-<span class="nc" id="L24">                profile.getEmail(),</span>
-<span class="nc" id="L25">                profile.getFriendsList(),</span>
+<span class="nc" id="L35">        return new ProfileDTO(</span>
+<span class="nc" id="L36">                profile.getId(),</span>
+<span class="nc" id="L37">                profile.getUsername(),</span>
+<span class="nc" id="L38">                profile.getEmail(),</span>
+<span class="nc" id="L39">                profile.getFriendsList(),</span>
                 songDTOs,
                 playlistDTOs,
-<span class="nc" id="L28">                profile.isAdmin()</span>
+<span class="nc" id="L42">                profile.isAdmin()</span>
         );
     }
 
+    /**
+     * @brief Converts a ProfileDTO to a Profile entity.
+     * @param dto The ProfileDTO to convert.
+     * @return The resulting Profile entity, or null if the input is null.
+     */
     public static Profile toEntity(ProfileDTO dto) {
-<span class="nc bnc" id="L33" title="All 2 branches missed.">        if (dto == null) return null;</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        if (dto == null) return null;</span>
 
-<span class="nc" id="L35">        List&lt;Song&gt; songs = SongAssembler.toEntityList(dto.getFavouriteSongs());</span>
-<span class="nc" id="L36">        List&lt;Playlist&gt; playlists = PlaylistAssembler.toEntityList(dto.getPlaylists());</span>
+<span class="nc" id="L54">        List&lt;Song&gt; songs = SongAssembler.toEntityList(dto.getFavouriteSongs());</span>
+<span class="nc" id="L55">        List&lt;Playlist&gt; playlists = PlaylistAssembler.toEntityList(dto.getPlaylists());</span>
 
-<span class="nc" id="L38">        Profile profile = new Profile();</span>
-<span class="nc" id="L39">        profile.setId(dto.getId());</span>
-<span class="nc" id="L40">        profile.setUsername(dto.getUsername());</span>
-<span class="nc" id="L41">        profile.setEmail(dto.getEmail());</span>
-<span class="nc" id="L42">        profile.setFriendsList(dto.getFriendsList());</span>
-<span class="nc" id="L43">        profile.setFavouriteSongs(songs);</span>
-<span class="nc" id="L44">        profile.setPlaylists(playlists);</span>
-<span class="nc" id="L45">        profile.setAdmin(dto.isAdmin());</span>
+<span class="nc" id="L57">        Profile profile = new Profile();</span>
+<span class="nc" id="L58">        profile.setId(dto.getId());</span>
+<span class="nc" id="L59">        profile.setUsername(dto.getUsername());</span>
+<span class="nc" id="L60">        profile.setEmail(dto.getEmail());</span>
+<span class="nc" id="L61">        profile.setFriendsList(dto.getFriendsList());</span>
+<span class="nc" id="L62">        profile.setFavouriteSongs(songs);</span>
+<span class="nc" id="L63">        profile.setPlaylists(playlists);</span>
+<span class="nc" id="L64">        profile.setAdmin(dto.isAdmin());</span>
 
-<span class="nc" id="L47">        return profile;</span>
+<span class="nc" id="L66">        return profile;</span>
     }
 
+    /**
+     * @brief Converts a list of Profile entities to a list of ProfileDTOs.
+     * @param profiles List of Profile entities.
+     * @return List of ProfileDTOs, or null if input is null.
+     */
     public static List&lt;ProfileDTO&gt; toDTOList(List&lt;Profile&gt; profiles) {
-<span class="nc bnc" id="L51" title="All 2 branches missed.">        if (profiles == null) return null;</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">        if (profiles == null) return null;</span>
 
-<span class="nc" id="L53">        return profiles.stream()</span>
-<span class="nc" id="L54">                .map(ProfileAssembler::toDTO)</span>
-<span class="nc" id="L55">                .collect(Collectors.toList());</span>
+<span class="nc" id="L77">        return profiles.stream()</span>
+<span class="nc" id="L78">                .map(ProfileAssembler::toDTO)</span>
+<span class="nc" id="L79">                .collect(Collectors.toList());</span>
     }
 
+    /**
+     * @brief Converts a list of ProfileDTOs to a list of Profile entities.
+     * @param dtos List of ProfileDTOs.
+     * @return List of Profile entities, or null if input is null.
+     */
     public static List&lt;Profile&gt; toEntityList(List&lt;ProfileDTO&gt; dtos) {
-<span class="nc bnc" id="L59" title="All 2 branches missed.">        if (dtos == null) return null;</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">        if (dtos == null) return null;</span>
 
-<span class="nc" id="L61">        return dtos.stream()</span>
-<span class="nc" id="L62">                .map(ProfileAssembler::toEntity)</span>
-<span class="nc" id="L63">                .collect(Collectors.toList());</span>
+<span class="nc" id="L90">        return dtos.stream()</span>
+<span class="nc" id="L91">                .map(ProfileAssembler::toEntity)</span>
+<span class="nc" id="L92">                .collect(Collectors.toList());</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

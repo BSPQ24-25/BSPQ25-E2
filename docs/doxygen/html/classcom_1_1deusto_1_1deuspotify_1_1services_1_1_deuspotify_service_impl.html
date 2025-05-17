@@ -95,13 +95,16 @@ $(document).ready(function(){initNavTree('classcom_1_1deusto_1_1deuspotify_1_1se
   <div class="headertitle"><div class="title">com.deusto.deuspotify.services.DeuspotifyServiceImpl Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Service implementation for managing songs and playlists in the Deuspotify application.  
+ <a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for com.deusto.deuspotify.services.DeuspotifyServiceImpl:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.png" usemap="#com.deusto.deuspotify.services.DeuspotifyServiceImpl_map" alt=""/>
   <map id="com.deusto.deuspotify.services.DeuspotifyServiceImpl_map" name="com.deusto.deuspotify.services.DeuspotifyServiceImpl_map">
-<area href="interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service.html" alt="com.deusto.deuspotify.services.DeuspotifyService" shape="rect" coords="0,0,320,24"/>
+<area href="interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service.html" title="Defines the service layer operations for managing songs and playlists." alt="com.deusto.deuspotify.services.DeuspotifyService" shape="rect" coords="0,0,320,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -109,6 +112,7 @@ Inheritance diagram for com.deusto.deuspotify.services.DeuspotifyServiceImpl:</d
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a72996b47b6a0f1a47f18ea79ad2eea69" id="r_a72996b47b6a0f1a47f18ea79ad2eea69"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#a72996b47b6a0f1a47f18ea79ad2eea69">DeuspotifyServiceImpl</a> (SongRepository songRepository, PlaylistRepository playlistRepository)</td></tr>
 <tr class="separator:a72996b47b6a0f1a47f18ea79ad2eea69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Song Operations</div></td></tr>
 <tr class="memitem:a4d38e4bbdbf5e2e436017e81c06c45ca" id="r_a4d38e4bbdbf5e2e436017e81c06c45ca"><td class="memItemLeft" align="right" valign="top">List&lt; Song &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#a4d38e4bbdbf5e2e436017e81c06c45ca">retrieveAllSongs</a> ()</td></tr>
 <tr class="separator:a4d38e4bbdbf5e2e436017e81c06c45ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0ba768d7ce62e01269c1201b18149fe" id="r_ab0ba768d7ce62e01269c1201b18149fe"><td class="memItemLeft" align="right" valign="top">Optional&lt; Song &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#ab0ba768d7ce62e01269c1201b18149fe">findSong</a> (Long id)</td></tr>
@@ -123,6 +127,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a182836b007cf9443ba7c11389d44c54b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50ea7ea504910f76d28249b5acea94e1" id="r_a50ea7ea504910f76d28249b5acea94e1"><td class="memItemLeft" align="right" valign="top">Song&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#a50ea7ea504910f76d28249b5acea94e1">createSharedSong</a> (String name, String album, String artists, String genres, double duration, Date dateOfRelease, String filePath)</td></tr>
 <tr class="separator:a50ea7ea504910f76d28249b5acea94e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Playlist Operations</div></td></tr>
 <tr class="memitem:a57900a981aeb54eb4310d6bf7cfa4c99" id="r_a57900a981aeb54eb4310d6bf7cfa4c99"><td class="memItemLeft" align="right" valign="top">List&lt; Playlist &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#a57900a981aeb54eb4310d6bf7cfa4c99">retrieveAllPlaylists</a> ()</td></tr>
 <tr class="separator:a57900a981aeb54eb4310d6bf7cfa4c99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73510c67446d418af9e4109b808c0610" id="r_a73510c67446d418af9e4109b808c0610"><td class="memItemLeft" align="right" valign="top">Optional&lt; Playlist &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#a73510c67446d418af9e4109b808c0610">findPlaylist</a> (Long id)</td></tr>
@@ -139,8 +144,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae6d03f51856755a403004b64f235b925"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00019">19</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
+<div class="textblock"><p>Service implementation for managing songs and playlists in the Deuspotify application. </p>
+<p>This service provides functionality to retrieve, create, update, and delete songs and playlists, and handles operations related to file uploads and custom ordering of playlist contents. </p>
+
+<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00025">25</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a72996b47b6a0f1a47f18ea79ad2eea69" name="a72996b47b6a0f1a47f18ea79ad2eea69"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a72996b47b6a0f1a47f18ea79ad2eea69">&#9670;&#160;</a></span>DeuspotifyServiceImpl()</h2>
@@ -167,8 +174,16 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Constructor for dependency injection.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">songRepository</td><td>Repository for managing Song entities. </td></tr>
+    <tr><td class="paramname">playlistRepository</td><td>Repository for managing Playlist entities. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00026">26</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00038">38</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
 
 </div>
 </div>
@@ -188,10 +203,18 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Adds a new playlist.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">playlist</td><td>The playlist to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The saved playlist.</dd></dl>
+ </p>
 
 <p>Implements <a class="el" href="interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service.html#aa8fe910a152b3bd97e89626e4c07382e">com.deusto.deuspotify.services.DeuspotifyService</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00122">122</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00168">168</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
 
 </div>
 </div>
@@ -210,10 +233,18 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Adds a new song.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">song</td><td>The song to be added. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The saved song.</dd></dl>
+ </p>
 
 <p>Implements <a class="el" href="interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service.html#acc152071a89e437316d0fbfda7bb83ae">com.deusto.deuspotify.services.DeuspotifyService</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00040">40</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00057">57</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
 
 </div>
 </div>
@@ -272,10 +303,24 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Adds a song with an associated audio file.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Song name. </td></tr>
+    <tr><td class="paramname">album</td><td>Album name. </td></tr>
+    <tr><td class="paramname">artists</td><td>Comma-separated artist names. </td></tr>
+    <tr><td class="paramname">genres</td><td>Comma-separated genre names. </td></tr>
+    <tr><td class="paramname">duration</td><td>Duration of the song in seconds. </td></tr>
+    <tr><td class="paramname">dateOfRelease</td><td>Release date. </td></tr>
+    <tr><td class="paramname">file</td><td>Audio file to upload. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The created Song. </dd></dl>
 
 <p>Implements <a class="el" href="interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service.html#a680acca3c2a4037f3580904fea58239b">com.deusto.deuspotify.services.DeuspotifyService</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00069">69</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00098">98</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
 
 </div>
 </div>
@@ -334,10 +379,24 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Creates a shared song using a provided file path (without uploading).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Song name. </td></tr>
+    <tr><td class="paramname">album</td><td>Album name. </td></tr>
+    <tr><td class="paramname">artists</td><td>Comma-separated artist names. </td></tr>
+    <tr><td class="paramname">genres</td><td>Comma-separated genre names. </td></tr>
+    <tr><td class="paramname">duration</td><td>Song duration in seconds. </td></tr>
+    <tr><td class="paramname">dateOfRelease</td><td>Release date. </td></tr>
+    <tr><td class="paramname">filePath</td><td>Path to the existing audio file. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The created Song. </dd></dl>
 
 <p>Implements <a class="el" href="interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service.html#ab018d0694d5a5a40667ba9e86bc0891b">com.deusto.deuspotify.services.DeuspotifyService</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00101">101</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00141">141</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
 
 </div>
 </div>
@@ -356,10 +415,17 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Deletes a playlist by its ID.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the playlist to delete.</td></tr>
+  </table>
+  </dd>
+</dl>
+ </p>
 
 <p>Implements <a class="el" href="interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service.html#af2262f240471a981dad00f1b7395caed">com.deusto.deuspotify.services.DeuspotifyService</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00149">149</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00201">201</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
 
 </div>
 </div>
@@ -378,10 +444,17 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Deletes a song by its ID.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the song to delete.</td></tr>
+  </table>
+  </dd>
+</dl>
+ </p>
 
 <p>Implements <a class="el" href="interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service.html#af206180ca25b464b968ac5d847d1b89d">com.deusto.deuspotify.services.DeuspotifyService</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00049">49</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00068">68</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
 
 </div>
 </div>
@@ -400,10 +473,18 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Finds a specific playlist by its ID.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the playlist. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An Optional containing the playlist if found, or empty otherwise.</dd></dl>
+ </p>
 
 <p>Implements <a class="el" href="interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service.html#a1654dcedef67db71ad00b8fb9b98ae56">com.deusto.deuspotify.services.DeuspotifyService</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00118">118</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00163">163</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
 
 </div>
 </div>
@@ -422,10 +503,18 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Finds a specific song by its ID.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the song. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An Optional containing the song if found, or empty otherwise.</dd></dl>
+ </p>
 
 <p>Implements <a class="el" href="interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service.html#a68dc4017bff9d31d6ff10ec0897a76fd">com.deusto.deuspotify.services.DeuspotifyService</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00036">36</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00052">52</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
 
 </div>
 </div>
@@ -444,10 +533,18 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Finds a list of songs by their IDs.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">songIds</td><td>A list of song IDs. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A list of corresponding Song entities.</dd></dl>
+ </p>
 
 <p>Implements <a class="el" href="interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service.html#a30255d0495bf004f3ecd0b977e1c01ea">com.deusto.deuspotify.services.DeuspotifyService</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00153">153</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00206">206</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
 
 </div>
 </div>
@@ -465,10 +562,12 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Retrieves all playlists in the system.<dl class="section return"><dt>Returns</dt><dd>A list of all playlists.</dd></dl>
+ </p>
 
 <p>Implements <a class="el" href="interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service.html#a471a37b4ccc64f072c9d816bbc47c3b8">com.deusto.deuspotify.services.DeuspotifyService</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00114">114</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00158">158</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
 
 </div>
 </div>
@@ -486,10 +585,12 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Retrieves all songs in the system.<dl class="section return"><dt>Returns</dt><dd>A list of all songs.</dd></dl>
+ </p>
 
 <p>Implements <a class="el" href="interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service.html#af609bc67de04d7ef9d2490ff2ce08d08">com.deusto.deuspotify.services.DeuspotifyService</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00032">32</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00047">47</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
 
 </div>
 </div>
@@ -518,10 +619,19 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Updates a playlist and optionally reorders its songs.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Playlist ID. </td></tr>
+    <tr><td class="paramname">playlist</td><td>Playlist data including optional reordering. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The updated playlist. </dd></dl>
 
 <p>Implements <a class="el" href="interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service.html#ae73b4bbf1b880cea8429776ae0e6e651">com.deusto.deuspotify.services.DeuspotifyService</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00126">126</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00179">179</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
 
 </div>
 </div>
@@ -550,10 +660,19 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Updates the list of songs in a given playlist.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">playlistId</td><td>The ID of the playlist. </td></tr>
+    <tr><td class="paramname">songIds</td><td>The list of song IDs to associate. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The updated playlist.</dd></dl>
+ </p>
 
 <p>Implements <a class="el" href="interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service.html#a84f729f346c82fcb7c0416c7ca8854a6">com.deusto.deuspotify.services.DeuspotifyService</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00158">158</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00211">211</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
 
 </div>
 </div>
@@ -582,10 +701,19 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Updates an existing song.<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the song to update. </td></tr>
+    <tr><td class="paramname">song</td><td>The updated song data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The updated song.</dd></dl>
+ </p>
 
 <p>Implements <a class="el" href="interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service.html#af2fbb74eb4233aef9426d18f7862d47a">com.deusto.deuspotify.services.DeuspotifyService</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00044">44</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_deuspotify_service_impl_8java_source.html#l00062">62</a> of file <a class="el" href="_deuspotify_service_impl_8java_source.html">DeuspotifyServiceImpl.java</a>.</p>
 
 </div>
 </div>
@@ -598,7 +726,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>com</b></li><li class="navelem"><b>deusto</b></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify.html">deuspotify</a></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify_1_1services.html">services</a></li><li class="navelem"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html">DeuspotifyServiceImpl</a></li>
-    <li class="footer">Generated on Sat May 17 2025 15:40:32 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Sat May 17 2025 18:47:43 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

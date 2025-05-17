@@ -2,58 +2,58 @@
 \hypertarget{_auth_controller_8java_source}{}\label{_auth_controller_8java_source}\index{src/main/java/com/deusto/deuspotify/controllers/AuthController.java@{src/main/java/com/deusto/deuspotify/controllers/AuthController.java}}
 \mbox{\hyperlink{_auth_controller_8java}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00001}\mbox{\hyperlink{namespacecom_1_1deusto_1_1deuspotify_1_1controllers}{00001}}\ \textcolor{keyword}{package\ }com.deusto.deuspotify.controllers;}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00002}00002\ }
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00003}00003\ \textcolor{keyword}{import}\ com.deusto.deuspotify.model.Profile;}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00004}00004\ \textcolor{keyword}{import}\ com.deusto.deuspotify.repositories.ProfileRepository;}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00005}00005\ \textcolor{keyword}{import}\ com.deusto.deuspotify.security.JwtUtil;}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00006}00006\ \textcolor{keyword}{import}\ com.deusto.deuspotify.services.ProfileService;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00006}\mbox{\hyperlink{namespacecom_1_1deusto_1_1deuspotify_1_1controllers}{00006}}\ \textcolor{keyword}{package\ }com.deusto.deuspotify.controllers;}
 \DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00007}00007\ }
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00008}00008\ \textcolor{keyword}{import}\ org.springframework.beans.factory.annotation.Autowired;}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00009}00009\ \textcolor{keyword}{import}\ org.springframework.http.ResponseEntity;}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00010}00010\ \textcolor{keyword}{import}\ org.springframework.security.authentication.AuthenticationManager;}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00011}00011\ \textcolor{keyword}{import}\ org.springframework.security.authentication.UsernamePasswordAuthenticationToken;}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00012}00012\ \textcolor{keyword}{import}\ org.springframework.security.crypto.password.PasswordEncoder;}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00013}00013\ \textcolor{keyword}{import}\ org.springframework.web.bind.annotation.*;}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00014}00014\ }
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00015}00015\ \textcolor{keyword}{import}\ java.util.Map;}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00016}00016\ \textcolor{keyword}{import}\ java.util.Optional;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00008}00008\ \textcolor{keyword}{import}\ com.deusto.deuspotify.model.Profile;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00009}00009\ \textcolor{keyword}{import}\ com.deusto.deuspotify.security.JwtUtil;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00010}00010\ \textcolor{keyword}{import}\ com.deusto.deuspotify.services.ProfileService;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00012}00012\ \textcolor{keyword}{import}\ org.springframework.beans.factory.annotation.Autowired;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00013}00013\ \textcolor{keyword}{import}\ org.springframework.http.ResponseEntity;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00014}00014\ \textcolor{keyword}{import}\ org.springframework.security.authentication.AuthenticationManager;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00015}00015\ \textcolor{keyword}{import}\ org.springframework.security.authentication.UsernamePasswordAuthenticationToken;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00016}00016\ \textcolor{keyword}{import}\ org.springframework.web.bind.annotation.*;}
 \DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00017}00017\ }
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00018}00018\ @RestController}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00019}00019\ @RequestMapping(\textcolor{stringliteral}{"{}/auth"{}})}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00020}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller}{00020}}\ public\ class\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller}{AuthController}}\ \{}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00021}00021\ }
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00022}00022\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ AuthenticationManager\ authenticationManager;}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00023}00023\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ ProfileService\ profileService;}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00024}00024\ \ \ \ \ @Autowired}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00025}00025\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ JwtUtil\ jwtUtil;}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00026}00026\ }
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00027}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller_a360587e800f623d8e5812db288c1f392}{00027}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller_a360587e800f623d8e5812db288c1f392}{AuthController}}(AuthenticationManager\ authenticationManager,\ ProfileService\ profileService,\ JwtUtil\ jwtUtil)\ \{}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00028}00028\ \ \ \ \ \ \ \ \ this.authenticationManager\ =\ authenticationManager;}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00029}00029\ \ \ \ \ \ \ \ \ this.profileService\ =\ profileService;}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00030}00030\ \ \ \ \ \ \ \ \ this.jwtUtil\ =\ jwtUtil;}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00031}00031\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00032}00032\ }
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00033}00033\ \ \ \ \ @PostMapping(\textcolor{stringliteral}{"{}/login"{}})}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00034}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller_aa9611111e39ee3e1e7e9bbfd958e8f46}{00034}}\ \ \ \ \ public\ ResponseEntity<?>\ login(@RequestBody\ Map<String,\ String>\ request)\ \{}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00035}00035\ \ \ \ \ \ \ \ \ String\ username\ =\ request.get(\textcolor{stringliteral}{"{}username"{}});}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00036}00036\ \ \ \ \ \ \ \ \ String\ password\ =\ request.get(\textcolor{stringliteral}{"{}password"{}});}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00037}00037\ }
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00038}00038\ \ \ \ \ \ \ \ \ authenticationManager.authenticate(\textcolor{keyword}{new}\ UsernamePasswordAuthenticationToken(username,\ password));}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00039}00039\ }
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00040}00040\ \ \ \ \ \ \ \ \ String\ token\ =\ jwtUtil.generateToken(username);}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ResponseEntity.ok(Map.of(\textcolor{stringliteral}{"{}token"{}},\ token));}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00042}00042\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00043}00043\ }
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00044}00044\ \ \ \ \ @PostMapping(\textcolor{stringliteral}{"{}/register"{}})}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00045}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller_a80a60e8d1896b6da14785851114988fa}{00045}}\ \ \ \ \ public\ ResponseEntity<?>\ register(@RequestBody\ Profile\ profile)\ \{}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ResponseEntity.ok(profileService.registerUser(profile));}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00047}00047\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00048}00048\ \ \ \ \ @PostMapping(\textcolor{stringliteral}{"{}/logout"{}})}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00049}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller_a9739f35c4e2d67faa2c7051192975f0d}{00049}}\ \ \ \ \ public\ ResponseEntity<?>\ logout()\ \{}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Aquí\ podrías\ implementar\ invalidación\ del\ token\ si\ usas\ un\ blacklist}}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ResponseEntity.ok(Map.of(\textcolor{stringliteral}{"{}message"{}},\ \textcolor{stringliteral}{"{}Logged\ out\ successfully"{}}));}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00052}00052\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00053}00053\ \}}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00018}00018\ \textcolor{keyword}{import}\ java.util.Map;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00024}00024\ @RestController}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00025}00025\ @RequestMapping(\textcolor{stringliteral}{"{}/auth"{}})}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00026}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller}{00026}}\ public\ class\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller}{AuthController}}\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00028}00028\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ AuthenticationManager\ authenticationManager;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00029}00029\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ ProfileService\ profileService;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00031}00031\ \ \ \ \ @Autowired}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00032}00032\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ JwtUtil\ jwtUtil;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00040}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller_a360587e800f623d8e5812db288c1f392}{00040}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller_a360587e800f623d8e5812db288c1f392}{AuthController}}(AuthenticationManager\ authenticationManager,\ ProfileService\ profileService,\ JwtUtil\ jwtUtil)\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00041}00041\ \ \ \ \ \ \ \ \ this.authenticationManager\ =\ authenticationManager;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00042}00042\ \ \ \ \ \ \ \ \ this.profileService\ =\ profileService;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ this.jwtUtil\ =\ jwtUtil;}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00044}00044\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00051}00051\ \ \ \ \ @PostMapping(\textcolor{stringliteral}{"{}/login"{}})}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00052}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller_aa9611111e39ee3e1e7e9bbfd958e8f46}{00052}}\ \ \ \ \ public\ ResponseEntity<?>\ login(@RequestBody\ Map<String,\ String>\ request)\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00053}00053\ \ \ \ \ \ \ \ \ String\ username\ =\ request.get(\textcolor{stringliteral}{"{}username"{}});}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ String\ password\ =\ request.get(\textcolor{stringliteral}{"{}password"{}});}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00056}00056\ \ \ \ \ \ \ \ \ authenticationManager.authenticate(\textcolor{keyword}{new}\ UsernamePasswordAuthenticationToken(username,\ password));}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ String\ token\ =\ jwtUtil.generateToken(username);}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ResponseEntity.ok(Map.of(\textcolor{stringliteral}{"{}token"{}},\ token));}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00060}00060\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00067}00067\ \ \ \ \ @PostMapping(\textcolor{stringliteral}{"{}/register"{}})}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00068}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller_a80a60e8d1896b6da14785851114988fa}{00068}}\ \ \ \ \ public\ ResponseEntity<?>\ register(@RequestBody\ Profile\ profile)\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ResponseEntity.ok(profileService.registerUser(profile));}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00070}00070\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00076}00076\ \ \ \ \ @PostMapping(\textcolor{stringliteral}{"{}/logout"{}})}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00077}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller_a9739f35c4e2d67faa2c7051192975f0d}{00077}}\ \ \ \ \ public\ ResponseEntity<?>\ logout()\ \{}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Token\ invalidation\ (e.g.\ blacklist)\ can\ be\ implemented\ here}}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ResponseEntity.ok(Map.of(\textcolor{stringliteral}{"{}message"{}},\ \textcolor{stringliteral}{"{}Logged\ out\ successfully"{}}));}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00080}00080\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_auth_controller_8java_source_l00081}00081\ \}}
 
 \end{DoxyCode}

@@ -1,4 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProfileController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deuspotify</a> &gt; <a href="index.source.html" class="el_package">com.deusto.deuspotify.controllers</a> &gt; <span class="el_source">ProfileController.java</span></div><h1>ProfileController.java</h1><pre class="source lang-java linenums">package com.deusto.deuspotify.controllers;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProfileController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deuspotify</a> &gt; <a href="index.source.html" class="el_package">com.deusto.deuspotify.controllers</a> &gt; <span class="el_source">ProfileController.java</span></div><h1>ProfileController.java</h1><pre class="source lang-java linenums">/**
+ * @file ProfileController.java
+ * @brief REST controller for managing user profiles.
+ */
+
+package com.deusto.deuspotify.controllers;
 
 import com.deusto.deuspotify.model.Profile;
 import com.deusto.deuspotify.services.ProfileService;
@@ -8,6 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @class ProfileController
+ * @brief Controller that handles HTTP requests related to user profiles.
+ */
 @RestController
 @RequestMapping(&quot;/api/profiles&quot;)
 @CrossOrigin
@@ -15,55 +24,87 @@ public class ProfileController {
 
     private final ProfileService profileService;
 
+    /**
+     * @brief Constructor for ProfileController.
+     * @param profileService Service that handles profile logic.
+     */
+<span class="fc" id="L31">    public ProfileController(ProfileService profileService) {</span>
+<span class="fc" id="L32">        this.profileService = profileService;</span>
+<span class="fc" id="L33">    }</span>
 
-<span class="fc" id="L19">    public ProfileController(ProfileService profileService) {</span>
-<span class="fc" id="L20">        this.profileService = profileService;</span>
-<span class="fc" id="L21">    }</span>
-
+    /**
+     * @brief Retrieves all user profiles.
+     * @return ResponseEntity containing the list of profiles.
+     */
     @GetMapping
     public ResponseEntity&lt;List&lt;Profile&gt;&gt; getAllProfiles() {
-<span class="nc" id="L25">        return ResponseEntity.ok(profileService.getAllProfiles());</span>
+<span class="nc" id="L41">        return ResponseEntity.ok(profileService.getAllProfiles());</span>
     }
 
+    /**
+     * @brief Retrieves a user profile by ID.
+     * @param id The ID of the profile.
+     * @return ResponseEntity containing the profile or 404 if not found.
+     */
     @GetMapping(&quot;/{id}&quot;)
     public ResponseEntity&lt;Profile&gt; getProfileById(@PathVariable Long id) {
-<span class="nc" id="L30">        Optional&lt;Profile&gt; profile = profileService.getProfileById(id);</span>
-<span class="nc" id="L31">        return profile.map(ResponseEntity::ok)</span>
-<span class="nc" id="L32">                      .orElseGet(() -&gt; ResponseEntity.notFound().build());</span>
+<span class="nc" id="L51">        Optional&lt;Profile&gt; profile = profileService.getProfileById(id);</span>
+<span class="nc" id="L52">        return profile.map(ResponseEntity::ok)</span>
+<span class="nc" id="L53">                      .orElseGet(() -&gt; ResponseEntity.notFound().build());</span>
     }
 
+    /**
+     * @brief Creates a new profile.
+     * @param profile The profile to create.
+     * @return ResponseEntity with the created profile or error message.
+     */
     @PostMapping
     public ResponseEntity&lt;?&gt; createProfile(@RequestBody Profile profile) {
         try {
-<span class="nc" id="L38">            Profile savedProfile = profileService.registerUser(profile);</span>
-<span class="nc" id="L39">            return ResponseEntity.ok(savedProfile);</span>
-<span class="nc" id="L40">        } catch (Exception e) {</span>
-<span class="nc" id="L41">            return ResponseEntity.badRequest().body(&quot;Error: &quot; + e.getMessage());</span>
+<span class="nc" id="L64">            Profile savedProfile = profileService.registerUser(profile);</span>
+<span class="nc" id="L65">            return ResponseEntity.ok(savedProfile);</span>
+<span class="nc" id="L66">        } catch (Exception e) {</span>
+<span class="nc" id="L67">            return ResponseEntity.badRequest().body(&quot;Error: &quot; + e.getMessage());</span>
         }
     }
 
+    /**
+     * @brief Updates an existing profile.
+     * @param id ID of the profile to update.
+     * @param updatedProfile New data for the profile.
+     * @return ResponseEntity with the updated profile or 404 if not found.
+     */
     @PutMapping(&quot;/{id}&quot;)
     public ResponseEntity&lt;?&gt; updateProfile(@PathVariable Long id, @RequestBody Profile updatedProfile) {
-<span class="nc" id="L47">        return profileService.updateProfile(id, updatedProfile)</span>
-<span class="nc" id="L48">                .map(ResponseEntity::ok)</span>
-<span class="nc" id="L49">                .orElseGet(() -&gt; ResponseEntity.notFound().build());</span>
+<span class="nc" id="L79">        return profileService.updateProfile(id, updatedProfile)</span>
+<span class="nc" id="L80">                .map(ResponseEntity::ok)</span>
+<span class="nc" id="L81">                .orElseGet(() -&gt; ResponseEntity.notFound().build());</span>
     }
-    
 
+    /**
+     * @brief Deletes a profile by ID.
+     * @param id ID of the profile to delete.
+     * @return ResponseEntity indicating success or failure.
+     */
     @DeleteMapping(&quot;/{id}&quot;)
     public ResponseEntity&lt;?&gt; deleteProfile(@PathVariable Long id) {
-<span class="nc bnc" id="L55" title="All 2 branches missed.">        if (profileService.deleteProfile(id)) {</span>
-<span class="nc" id="L56">            return ResponseEntity.ok(&quot;Perfil eliminado correctamente.&quot;);</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">        if (profileService.deleteProfile(id)) {</span>
+<span class="nc" id="L92">            return ResponseEntity.ok(&quot;Perfil eliminado correctamente.&quot;);</span>
         } else {
-<span class="nc" id="L58">            return ResponseEntity.notFound().build();</span>
+<span class="nc" id="L94">            return ResponseEntity.notFound().build();</span>
         }
     }
 
+    /**
+     * @brief Authenticates a user by username and password.
+     * @param loginRequest The profile object containing login credentials.
+     * @return ResponseEntity with the profile if login is successful, or 401 error.
+     */
     @PostMapping(&quot;/login&quot;)
     public ResponseEntity&lt;?&gt; login(@RequestBody Profile loginRequest) {
-<span class="nc" id="L64">        Optional&lt;Profile&gt; profile = profileService.login(loginRequest.getUsername(), loginRequest.getPassword());</span>
-<span class="nc" id="L65">        return profile.map(ResponseEntity::ok)</span>
-<span class="nc" id="L66">                    .orElseGet(() -&gt; ResponseEntity.status(401).body(null)); // Devolvemos `null` en lugar de un String</span>
+<span class="nc" id="L105">        Optional&lt;Profile&gt; profile = profileService.login(loginRequest.getUsername(), loginRequest.getPassword());</span>
+<span class="nc" id="L106">        return profile.map(ResponseEntity::ok)</span>
+<span class="nc" id="L107">                    .orElseGet(() -&gt; ResponseEntity.status(401).body(null));</span>
     }
 
 }

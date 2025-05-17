@@ -3,23 +3,38 @@
 import jakarta.persistence.*;
 import java.util.List;
 
+/**
+ * @class Profile
+ * @brief Represents a user profile in the Deuspotify application.
+ *
+ * A profile includes personal information, friend list, favorite songs,
+ * associated playlists, and admin privileges.
+ */
 @Entity
 @Table(name = &quot;profiles&quot;)
 public class Profile {
 
+    /** Unique identifier for the profile. */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /** Username used for login. */
     private String username;
+
+    /** Encrypted password. */
     private String password;
+
+    /** Email address associated with the profile. */
     private String email;
 
+    /** List of friends' usernames. */
     @ElementCollection
     @CollectionTable(name = &quot;profile_friends&quot;, joinColumns = @JoinColumn(name = &quot;profile_id&quot;))
     @Column(name = &quot;friend&quot;)
     private List&lt;String&gt; friendsList;
 
+    /** List of songs marked as favorites by the user. */
     @ManyToMany
     @JoinTable(
         name = &quot;profile_favourite_song&quot;,
@@ -28,53 +43,100 @@ public class Profile {
     )
     private List&lt;Song&gt; favouriteSongs;
 
+    /** List of playlists owned by the user. */
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = &quot;profile_id&quot;)
     private List&lt;Playlist&gt; playlists;
 
+    /** Indicates if the user has administrative privileges. */
     private boolean isAdmin;
 
-<span class="fc" id="L37">    public Profile() {}</span>
+    /**
+     * Default constructor.
+     */
+<span class="fc" id="L57">    public Profile() {}</span>
 
-<span class="fc" id="L39">    public Profile(String username, String password, String email, List&lt;String&gt; friendsList, List&lt;Song&gt; favouriteSongs, List&lt;Playlist&gt; playlists, boolean isAdmin) {</span>
-<span class="fc" id="L40">        this.username = username;</span>
-<span class="fc" id="L41">        this.password = password;</span>
-<span class="fc" id="L42">        this.email = email;</span>
-<span class="fc" id="L43">        this.friendsList = friendsList;</span>
-<span class="fc" id="L44">        this.favouriteSongs = favouriteSongs;</span>
-<span class="fc" id="L45">        this.playlists = playlists;</span>
-<span class="fc" id="L46">        this.isAdmin = isAdmin;</span>
-<span class="fc" id="L47">    }</span>
+    /**
+     * Full constructor.
+     *
+     * @param username Username for the profile.
+     * @param password Encrypted password.
+     * @param email Email address.
+     * @param friendsList List of friends.
+     * @param favouriteSongs Favorite songs.
+     * @param playlists User's playlists.
+     * @param isAdmin Whether the user is an admin.
+     */
+<span class="fc" id="L70">    public Profile(String username, String password, String email, List&lt;String&gt; friendsList, List&lt;Song&gt; favouriteSongs, List&lt;Playlist&gt; playlists, boolean isAdmin) {</span>
+<span class="fc" id="L71">        this.username = username;</span>
+<span class="fc" id="L72">        this.password = password;</span>
+<span class="fc" id="L73">        this.email = email;</span>
+<span class="fc" id="L74">        this.friendsList = friendsList;</span>
+<span class="fc" id="L75">        this.favouriteSongs = favouriteSongs;</span>
+<span class="fc" id="L76">        this.playlists = playlists;</span>
+<span class="fc" id="L77">        this.isAdmin = isAdmin;</span>
+<span class="fc" id="L78">    }</span>
 
-    // Getters and setters
+    /// @name Getters and Setters
+    /// @{
 
-<span class="fc" id="L51">    public Long getId() { return id; }</span>
-<span class="fc" id="L52">    public void setId(Long id) { this.id = id; }</span>
+    /** @return Profile ID. */
+<span class="fc" id="L84">    public Long getId() { return id; }</span>
 
-<span class="fc" id="L54">    public String getUsername() { return username; }</span>
-<span class="fc" id="L55">    public void setUsername(String username) { this.username = username; }</span>
+    /** @param id Profile ID. */
+<span class="fc" id="L87">    public void setId(Long id) { this.id = id; }</span>
 
-<span class="fc" id="L57">    public String getPassword() { return password; }</span>
-<span class="fc" id="L58">    public void setPassword(String password) { this.password = password; }</span>
+    /** @return Username. */
+<span class="fc" id="L90">    public String getUsername() { return username; }</span>
 
-<span class="fc" id="L60">    public String getEmail() { return email; }</span>
-<span class="fc" id="L61">    public void setEmail(String email) { this.email = email; }</span>
+    /** @param username Username. */
+<span class="fc" id="L93">    public void setUsername(String username) { this.username = username; }</span>
 
-<span class="nc" id="L63">    public List&lt;String&gt; getFriendsList() { return friendsList; }</span>
-<span class="nc" id="L64">    public void setFriendsList(List&lt;String&gt; friendsList) { this.friendsList = friendsList; }</span>
+    /** @return Password. */
+<span class="fc" id="L96">    public String getPassword() { return password; }</span>
 
-<span class="nc" id="L66">    public List&lt;Song&gt; getFavouriteSongs() { return favouriteSongs; }</span>
-<span class="nc" id="L67">    public void setFavouriteSongs(List&lt;Song&gt; favouriteSongs) { this.favouriteSongs = favouriteSongs; }</span>
+    /** @param password Encrypted password. */
+<span class="fc" id="L99">    public void setPassword(String password) { this.password = password; }</span>
 
-<span class="nc" id="L69">    public List&lt;Playlist&gt; getPlaylists() { return playlists; }</span>
-<span class="nc" id="L70">    public void setPlaylists(List&lt;Playlist&gt; playlists) { this.playlists = playlists; }</span>
+    /** @return Email. */
+<span class="fc" id="L102">    public String getEmail() { return email; }</span>
 
-<span class="fc" id="L72">    public boolean isAdmin() { return isAdmin; }</span>
-<span class="fc" id="L73">    public void setAdmin(boolean isAdmin) { this.isAdmin = isAdmin; }</span>
+    /** @param email Email address. */
+<span class="fc" id="L105">    public void setEmail(String email) { this.email = email; }</span>
 
+    /** @return List of friends. */
+<span class="nc" id="L108">    public List&lt;String&gt; getFriendsList() { return friendsList; }</span>
+
+    /** @param friendsList List of friends. */
+<span class="nc" id="L111">    public void setFriendsList(List&lt;String&gt; friendsList) { this.friendsList = friendsList; }</span>
+
+    /** @return Favorite songs. */
+<span class="nc" id="L114">    public List&lt;Song&gt; getFavouriteSongs() { return favouriteSongs; }</span>
+
+    /** @param favouriteSongs List of favorite songs. */
+<span class="nc" id="L117">    public void setFavouriteSongs(List&lt;Song&gt; favouriteSongs) { this.favouriteSongs = favouriteSongs; }</span>
+
+    /** @return Playlists. */
+<span class="nc" id="L120">    public List&lt;Playlist&gt; getPlaylists() { return playlists; }</span>
+
+    /** @param playlists List of playlists. */
+<span class="nc" id="L123">    public void setPlaylists(List&lt;Playlist&gt; playlists) { this.playlists = playlists; }</span>
+
+    /** @return True if the profile is admin. */
+<span class="fc" id="L126">    public boolean isAdmin() { return isAdmin; }</span>
+
+    /** @param isAdmin Set admin status. */
+<span class="fc" id="L129">    public void setAdmin(boolean isAdmin) { this.isAdmin = isAdmin; }</span>
+
+    /// @}
+
+    /**
+     * @brief String representation of the profile.
+     * @return A summary of the profile including username and email.
+     */
     @Override
     public String toString() {
-<span class="nc" id="L77">        return &quot;Profile{&quot; +</span>
+<span class="nc" id="L139">        return &quot;Profile{&quot; +</span>
                 &quot;username='&quot; + username + '\'' +
                 &quot;, email='&quot; + email + '\'' +
                 &quot;, isAdmin=&quot; + isAdmin +

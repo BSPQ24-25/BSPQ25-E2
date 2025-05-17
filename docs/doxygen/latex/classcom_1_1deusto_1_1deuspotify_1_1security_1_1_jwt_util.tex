@@ -1,5 +1,10 @@
 \doxysection{com.\+deusto.\+deuspotify.\+security.\+Jwt\+Util Class Reference}
 \hypertarget{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util}{}\label{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util}\index{com.deusto.deuspotify.security.JwtUtil@{com.deusto.deuspotify.security.JwtUtil}}
+
+
+Utility class for generating and validating JSON Web Tokens (JWT).  
+
+
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -12,9 +17,11 @@ boolean \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_ut
 
 
 \doxysubsection{Detailed Description}
+Utility class for generating and validating JSON Web Tokens (JWT). 
 
+This class handles the creation of JWT tokens and provides methods for extracting claims and validating tokens. 
 
-Definition at line \mbox{\hyperlink{_jwt_util_8java_source_l00015}{15}} of file \mbox{\hyperlink{_jwt_util_8java_source}{Jwt\+Util.\+java}}.
+Definition at line \mbox{\hyperlink{_jwt_util_8java_source_l00021}{21}} of file \mbox{\hyperlink{_jwt_util_8java_source}{Jwt\+Util.\+java}}.
 
 
 
@@ -25,9 +32,19 @@ Definition at line \mbox{\hyperlink{_jwt_util_8java_source_l00015}{15}} of file 
 \doxysubsubsection{\texorpdfstring{extractUsername()}{extractUsername()}}
 {\footnotesize\ttfamily String com.\+deusto.\+deuspotify.\+security.\+Jwt\+Util.\+extract\+Username (\begin{DoxyParamCaption}\item[{String}]{token }\end{DoxyParamCaption})}
 
+Extracts the username from the given token.
 
 
-Definition at line \mbox{\hyperlink{_jwt_util_8java_source_l00028}{28}} of file \mbox{\hyperlink{_jwt_util_8java_source}{Jwt\+Util.\+java}}.
+\begin{DoxyParams}{Parameters}
+{\em token} & The JWT token. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The username (subject) embedded in the token. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_jwt_util_8java_source_l00049}{49}} of file \mbox{\hyperlink{_jwt_util_8java_source}{Jwt\+Util.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_a9e50d85a65148666b857fef37d4b26aa}\label{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_a9e50d85a65148666b857fef37d4b26aa} 
 \index{com.deusto.deuspotify.security.JwtUtil@{com.deusto.deuspotify.security.JwtUtil}!generateToken@{generateToken}}
@@ -35,9 +52,19 @@ Definition at line \mbox{\hyperlink{_jwt_util_8java_source_l00028}{28}} of file 
 \doxysubsubsection{\texorpdfstring{generateToken()}{generateToken()}}
 {\footnotesize\ttfamily String com.\+deusto.\+deuspotify.\+security.\+Jwt\+Util.\+generate\+Token (\begin{DoxyParamCaption}\item[{String}]{username }\end{DoxyParamCaption})}
 
+Generates a JWT token for the given username.
 
 
-Definition at line \mbox{\hyperlink{_jwt_util_8java_source_l00019}{19}} of file \mbox{\hyperlink{_jwt_util_8java_source}{Jwt\+Util.\+java}}.
+\begin{DoxyParams}{Parameters}
+{\em username} & The username for which the token is generated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A signed JWT token string. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_jwt_util_8java_source_l00034}{34}} of file \mbox{\hyperlink{_jwt_util_8java_source}{Jwt\+Util.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_a1562935918d787cfa4ff3a54ba029a96}\label{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_a1562935918d787cfa4ff3a54ba029a96} 
 \index{com.deusto.deuspotify.security.JwtUtil@{com.deusto.deuspotify.security.JwtUtil}!validateToken@{validateToken}}
@@ -45,9 +72,21 @@ Definition at line \mbox{\hyperlink{_jwt_util_8java_source_l00019}{19}} of file 
 \doxysubsubsection{\texorpdfstring{validateToken()}{validateToken()}}
 {\footnotesize\ttfamily boolean com.\+deusto.\+deuspotify.\+security.\+Jwt\+Util.\+validate\+Token (\begin{DoxyParamCaption}\item[{String}]{token,  }\item[{String}]{username }\end{DoxyParamCaption})}
 
+Validates the token by checking if it belongs to the provided username.
 
 
-Definition at line \mbox{\hyperlink{_jwt_util_8java_source_l00045}{45}} of file \mbox{\hyperlink{_jwt_util_8java_source}{Jwt\+Util.\+java}}.
+\begin{DoxyParams}{Parameters}
+{\em token} & The JWT token. \\
+\hline
+{\em username} & The username to compare with the token\textquotesingle{}s subject. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the token is valid and belongs to the username; otherwise, false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_jwt_util_8java_source_l00087}{87}} of file \mbox{\hyperlink{_jwt_util_8java_source}{Jwt\+Util.\+java}}.
 
 
 

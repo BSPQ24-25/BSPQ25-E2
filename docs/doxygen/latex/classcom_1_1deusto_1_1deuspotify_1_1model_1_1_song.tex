@@ -1,5 +1,10 @@
 \doxysection{com.\+deusto.\+deuspotify.\+model.\+Song Class Reference}
 \hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song}{}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song}\index{com.deusto.deuspotify.model.Song@{com.deusto.deuspotify.model.Song}}
+
+
+Represents a musical song in the Deuspotify application.  
+
+
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -10,6 +15,11 @@
 \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a52c3978846c3cfd69512ae69a4542782}{Song}} (String name, List$<$ String $>$ artists, double duration, List$<$ String $>$ genres, Date date\+Of\+Release, String album)
 \item 
 \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_adac1cfbd1442542cf06f056fb24b649c}{Song}} (String name, List$<$ String $>$ artists, double duration, List$<$ String $>$ genres, Date date\+Of\+Release, String album, String file\+Path)
+\item 
+String \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a0e535d56e6b18eaa07cf4e1c4ce8e305}{to\+String}} ()
+\begin{DoxyCompactList}\small\item\em Returns a string representation of the song. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Getters and Setters}\par
+\begin{DoxyCompactItemize}
 \item 
 Long \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a422d9f8b98b5c889d9111acb209b49b1}{get\+Id}} ()
 \item 
@@ -42,15 +52,16 @@ void \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_ae9c57a
 String \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_aab29c55fc5e49b2a106f644a52b036c9}{get\+File\+Path}} ()
 \item 
 void \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_af7aa4d6c94d737599e12350300e45534}{set\+File\+Path}} (String file\+Path)
-\item 
-String \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a0e535d56e6b18eaa07cf4e1c4ce8e305}{to\+String}} ()
 \end{DoxyCompactItemize}
+\end{Indent}
 
 
 \doxysubsection{Detailed Description}
+Represents a musical song in the Deuspotify application. 
 
+Contains metadata such as name, artists, duration, genres, release date, album, and file path. 
 
-Definition at line \mbox{\hyperlink{_song_8java_source_l00009}{9}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
+Definition at line \mbox{\hyperlink{_song_8java_source_l00015}{15}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
 
 
 
@@ -61,9 +72,9 @@ Definition at line \mbox{\hyperlink{_song_8java_source_l00009}{9}} of file \mbox
 \doxysubsubsection{\texorpdfstring{Song()}{Song()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
 {\footnotesize\ttfamily com.\+deusto.\+deuspotify.\+model.\+Song.\+Song (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+Default constructor. 
 
-
-Definition at line \mbox{\hyperlink{_song_8java_source_l00036}{36}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
+Definition at line \mbox{\hyperlink{_song_8java_source_l00053}{53}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_ae4eec5746f73c57cde297e7952232ce5}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_ae4eec5746f73c57cde297e7952232ce5} 
 \index{com.deusto.deuspotify.model.Song@{com.deusto.deuspotify.model.Song}!Song@{Song}}
@@ -71,9 +82,14 @@ Definition at line \mbox{\hyperlink{_song_8java_source_l00036}{36}} of file \mbo
 \doxysubsubsection{\texorpdfstring{Song()}{Song()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
 {\footnotesize\ttfamily com.\+deusto.\+deuspotify.\+model.\+Song.\+Song (\begin{DoxyParamCaption}\item[{Long}]{id }\end{DoxyParamCaption})}
 
+Constructor with ID. 
+\begin{DoxyParams}{Parameters}
+{\em id} & Song ID. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{_song_8java_source_l00038}{38}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
+Definition at line \mbox{\hyperlink{_song_8java_source_l00059}{59}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a52c3978846c3cfd69512ae69a4542782}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a52c3978846c3cfd69512ae69a4542782} 
 \index{com.deusto.deuspotify.model.Song@{com.deusto.deuspotify.model.Song}!Song@{Song}}
@@ -81,9 +97,24 @@ Definition at line \mbox{\hyperlink{_song_8java_source_l00038}{38}} of file \mbo
 \doxysubsubsection{\texorpdfstring{Song()}{Song()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
 {\footnotesize\ttfamily com.\+deusto.\+deuspotify.\+model.\+Song.\+Song (\begin{DoxyParamCaption}\item[{String}]{name,  }\item[{List$<$ String $>$}]{artists,  }\item[{double}]{duration,  }\item[{List$<$ String $>$}]{genres,  }\item[{Date}]{date\+Of\+Release,  }\item[{String}]{album }\end{DoxyParamCaption})}
 
+Constructor without file path. 
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the song. \\
+\hline
+{\em artists} & List of artists. \\
+\hline
+{\em duration} & Duration in seconds. \\
+\hline
+{\em genres} & List of genres. \\
+\hline
+{\em date\+Of\+Release} & Date of release. \\
+\hline
+{\em album} & Album name. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{_song_8java_source_l00042}{42}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
+Definition at line \mbox{\hyperlink{_song_8java_source_l00072}{72}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_adac1cfbd1442542cf06f056fb24b649c}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_adac1cfbd1442542cf06f056fb24b649c} 
 \index{com.deusto.deuspotify.model.Song@{com.deusto.deuspotify.model.Song}!Song@{Song}}
@@ -91,9 +122,26 @@ Definition at line \mbox{\hyperlink{_song_8java_source_l00042}{42}} of file \mbo
 \doxysubsubsection{\texorpdfstring{Song()}{Song()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
 {\footnotesize\ttfamily com.\+deusto.\+deuspotify.\+model.\+Song.\+Song (\begin{DoxyParamCaption}\item[{String}]{name,  }\item[{List$<$ String $>$}]{artists,  }\item[{double}]{duration,  }\item[{List$<$ String $>$}]{genres,  }\item[{Date}]{date\+Of\+Release,  }\item[{String}]{album,  }\item[{String}]{file\+Path }\end{DoxyParamCaption})}
 
+Constructor with file path. 
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the song. \\
+\hline
+{\em artists} & List of artists. \\
+\hline
+{\em duration} & Duration in seconds. \\
+\hline
+{\em genres} & List of genres. \\
+\hline
+{\em date\+Of\+Release} & Date of release. \\
+\hline
+{\em album} & Album name. \\
+\hline
+{\em file\+Path} & Path to the audio file. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{_song_8java_source_l00051}{51}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
+Definition at line \mbox{\hyperlink{_song_8java_source_l00091}{91}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
 
 
 
@@ -104,9 +152,12 @@ Definition at line \mbox{\hyperlink{_song_8java_source_l00051}{51}} of file \mbo
 \doxysubsubsection{\texorpdfstring{getAlbum()}{getAlbum()}}
 {\footnotesize\ttfamily String com.\+deusto.\+deuspotify.\+model.\+Song.\+get\+Album (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+\begin{DoxyReturn}{Returns}
+Album name. 
+\end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_song_8java_source_l00079}{79}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
+Definition at line \mbox{\hyperlink{_song_8java_source_l00141}{141}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a30265143fc0017269239c03a9a4052e1}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a30265143fc0017269239c03a9a4052e1} 
 \index{com.deusto.deuspotify.model.Song@{com.deusto.deuspotify.model.Song}!getArtists@{getArtists}}
@@ -114,9 +165,12 @@ Definition at line \mbox{\hyperlink{_song_8java_source_l00079}{79}} of file \mbo
 \doxysubsubsection{\texorpdfstring{getArtists()}{getArtists()}}
 {\footnotesize\ttfamily List$<$ String $>$ com.\+deusto.\+deuspotify.\+model.\+Song.\+get\+Artists (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+\begin{DoxyReturn}{Returns}
+List of artists. 
+\end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_song_8java_source_l00067}{67}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
+Definition at line \mbox{\hyperlink{_song_8java_source_l00117}{117}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a10085372e6bdc18c6987526b9c0d8e79}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a10085372e6bdc18c6987526b9c0d8e79} 
 \index{com.deusto.deuspotify.model.Song@{com.deusto.deuspotify.model.Song}!getDateOfRelease@{getDateOfRelease}}
@@ -124,9 +178,12 @@ Definition at line \mbox{\hyperlink{_song_8java_source_l00067}{67}} of file \mbo
 \doxysubsubsection{\texorpdfstring{getDateOfRelease()}{getDateOfRelease()}}
 {\footnotesize\ttfamily Date com.\+deusto.\+deuspotify.\+model.\+Song.\+get\+Date\+Of\+Release (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+\begin{DoxyReturn}{Returns}
+Date of release. 
+\end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_song_8java_source_l00076}{76}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
+Definition at line \mbox{\hyperlink{_song_8java_source_l00135}{135}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a02bad076be8b46e5de7c35bbfc99f68e}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a02bad076be8b46e5de7c35bbfc99f68e} 
 \index{com.deusto.deuspotify.model.Song@{com.deusto.deuspotify.model.Song}!getDuration@{getDuration}}
@@ -134,9 +191,12 @@ Definition at line \mbox{\hyperlink{_song_8java_source_l00076}{76}} of file \mbo
 \doxysubsubsection{\texorpdfstring{getDuration()}{getDuration()}}
 {\footnotesize\ttfamily double com.\+deusto.\+deuspotify.\+model.\+Song.\+get\+Duration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+\begin{DoxyReturn}{Returns}
+Duration in seconds. 
+\end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_song_8java_source_l00070}{70}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
+Definition at line \mbox{\hyperlink{_song_8java_source_l00123}{123}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_aab29c55fc5e49b2a106f644a52b036c9}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_aab29c55fc5e49b2a106f644a52b036c9} 
 \index{com.deusto.deuspotify.model.Song@{com.deusto.deuspotify.model.Song}!getFilePath@{getFilePath}}
@@ -144,9 +204,12 @@ Definition at line \mbox{\hyperlink{_song_8java_source_l00070}{70}} of file \mbo
 \doxysubsubsection{\texorpdfstring{getFilePath()}{getFilePath()}}
 {\footnotesize\ttfamily String com.\+deusto.\+deuspotify.\+model.\+Song.\+get\+File\+Path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+\begin{DoxyReturn}{Returns}
+File path to the audio file. 
+\end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_song_8java_source_l00082}{82}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
+Definition at line \mbox{\hyperlink{_song_8java_source_l00147}{147}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a135503b7cfab671f237cee02b08b0fa1}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a135503b7cfab671f237cee02b08b0fa1} 
 \index{com.deusto.deuspotify.model.Song@{com.deusto.deuspotify.model.Song}!getGenres@{getGenres}}
@@ -154,9 +217,12 @@ Definition at line \mbox{\hyperlink{_song_8java_source_l00082}{82}} of file \mbo
 \doxysubsubsection{\texorpdfstring{getGenres()}{getGenres()}}
 {\footnotesize\ttfamily List$<$ String $>$ com.\+deusto.\+deuspotify.\+model.\+Song.\+get\+Genres (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+\begin{DoxyReturn}{Returns}
+List of genres. 
+\end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_song_8java_source_l00073}{73}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
+Definition at line \mbox{\hyperlink{_song_8java_source_l00129}{129}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a422d9f8b98b5c889d9111acb209b49b1}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a422d9f8b98b5c889d9111acb209b49b1} 
 \index{com.deusto.deuspotify.model.Song@{com.deusto.deuspotify.model.Song}!getId@{getId}}
@@ -164,9 +230,12 @@ Definition at line \mbox{\hyperlink{_song_8java_source_l00073}{73}} of file \mbo
 \doxysubsubsection{\texorpdfstring{getId()}{getId()}}
 {\footnotesize\ttfamily Long com.\+deusto.\+deuspotify.\+model.\+Song.\+get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+\begin{DoxyReturn}{Returns}
+Song ID. 
+\end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_song_8java_source_l00061}{61}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
+Definition at line \mbox{\hyperlink{_song_8java_source_l00105}{105}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a68db995422853df16bd8b1a2e49bf2f1}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a68db995422853df16bd8b1a2e49bf2f1} 
 \index{com.deusto.deuspotify.model.Song@{com.deusto.deuspotify.model.Song}!getName@{getName}}
@@ -174,9 +243,12 @@ Definition at line \mbox{\hyperlink{_song_8java_source_l00061}{61}} of file \mbo
 \doxysubsubsection{\texorpdfstring{getName()}{getName()}}
 {\footnotesize\ttfamily String com.\+deusto.\+deuspotify.\+model.\+Song.\+get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+\begin{DoxyReturn}{Returns}
+Song name. 
+\end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_song_8java_source_l00064}{64}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
+Definition at line \mbox{\hyperlink{_song_8java_source_l00111}{111}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_ae9c57afcc432ed684a8c2c7ee1c15198}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_ae9c57afcc432ed684a8c2c7ee1c15198} 
 \index{com.deusto.deuspotify.model.Song@{com.deusto.deuspotify.model.Song}!setAlbum@{setAlbum}}
@@ -185,8 +257,13 @@ Definition at line \mbox{\hyperlink{_song_8java_source_l00064}{64}} of file \mbo
 {\footnotesize\ttfamily void com.\+deusto.\+deuspotify.\+model.\+Song.\+set\+Album (\begin{DoxyParamCaption}\item[{String}]{album }\end{DoxyParamCaption})}
 
 
+\begin{DoxyParams}{Parameters}
+{\em album} & Album name. \\
+\hline
+\end{DoxyParams}
 
-Definition at line \mbox{\hyperlink{_song_8java_source_l00080}{80}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
+
+Definition at line \mbox{\hyperlink{_song_8java_source_l00144}{144}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a9b8923111a5a3c854f3686990e86a876}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a9b8923111a5a3c854f3686990e86a876} 
 \index{com.deusto.deuspotify.model.Song@{com.deusto.deuspotify.model.Song}!setArtists@{setArtists}}
@@ -195,8 +272,13 @@ Definition at line \mbox{\hyperlink{_song_8java_source_l00080}{80}} of file \mbo
 {\footnotesize\ttfamily void com.\+deusto.\+deuspotify.\+model.\+Song.\+set\+Artists (\begin{DoxyParamCaption}\item[{List$<$ String $>$}]{artists }\end{DoxyParamCaption})}
 
 
+\begin{DoxyParams}{Parameters}
+{\em artists} & List of artists. \\
+\hline
+\end{DoxyParams}
 
-Definition at line \mbox{\hyperlink{_song_8java_source_l00068}{68}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
+
+Definition at line \mbox{\hyperlink{_song_8java_source_l00120}{120}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_aca6b84a66eef5054ad6566e32a00fb59}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_aca6b84a66eef5054ad6566e32a00fb59} 
 \index{com.deusto.deuspotify.model.Song@{com.deusto.deuspotify.model.Song}!setDateOfRelease@{setDateOfRelease}}
@@ -205,8 +287,13 @@ Definition at line \mbox{\hyperlink{_song_8java_source_l00068}{68}} of file \mbo
 {\footnotesize\ttfamily void com.\+deusto.\+deuspotify.\+model.\+Song.\+set\+Date\+Of\+Release (\begin{DoxyParamCaption}\item[{Date}]{date\+Of\+Release }\end{DoxyParamCaption})}
 
 
+\begin{DoxyParams}{Parameters}
+{\em date\+Of\+Release} & Release date. \\
+\hline
+\end{DoxyParams}
 
-Definition at line \mbox{\hyperlink{_song_8java_source_l00077}{77}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
+
+Definition at line \mbox{\hyperlink{_song_8java_source_l00138}{138}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a4aca2d40298abdecef626b6c771da7f2}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a4aca2d40298abdecef626b6c771da7f2} 
 \index{com.deusto.deuspotify.model.Song@{com.deusto.deuspotify.model.Song}!setDuration@{setDuration}}
@@ -215,8 +302,13 @@ Definition at line \mbox{\hyperlink{_song_8java_source_l00077}{77}} of file \mbo
 {\footnotesize\ttfamily void com.\+deusto.\+deuspotify.\+model.\+Song.\+set\+Duration (\begin{DoxyParamCaption}\item[{double}]{duration }\end{DoxyParamCaption})}
 
 
+\begin{DoxyParams}{Parameters}
+{\em duration} & Duration in seconds. \\
+\hline
+\end{DoxyParams}
 
-Definition at line \mbox{\hyperlink{_song_8java_source_l00071}{71}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
+
+Definition at line \mbox{\hyperlink{_song_8java_source_l00126}{126}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_af7aa4d6c94d737599e12350300e45534}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_af7aa4d6c94d737599e12350300e45534} 
 \index{com.deusto.deuspotify.model.Song@{com.deusto.deuspotify.model.Song}!setFilePath@{setFilePath}}
@@ -225,8 +317,13 @@ Definition at line \mbox{\hyperlink{_song_8java_source_l00071}{71}} of file \mbo
 {\footnotesize\ttfamily void com.\+deusto.\+deuspotify.\+model.\+Song.\+set\+File\+Path (\begin{DoxyParamCaption}\item[{String}]{file\+Path }\end{DoxyParamCaption})}
 
 
+\begin{DoxyParams}{Parameters}
+{\em file\+Path} & File path to the audio file. \\
+\hline
+\end{DoxyParams}
 
-Definition at line \mbox{\hyperlink{_song_8java_source_l00083}{83}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
+
+Definition at line \mbox{\hyperlink{_song_8java_source_l00150}{150}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a221b844bd6a83f9a6a655536beada406}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a221b844bd6a83f9a6a655536beada406} 
 \index{com.deusto.deuspotify.model.Song@{com.deusto.deuspotify.model.Song}!setGenres@{setGenres}}
@@ -235,8 +332,13 @@ Definition at line \mbox{\hyperlink{_song_8java_source_l00083}{83}} of file \mbo
 {\footnotesize\ttfamily void com.\+deusto.\+deuspotify.\+model.\+Song.\+set\+Genres (\begin{DoxyParamCaption}\item[{List$<$ String $>$}]{genres }\end{DoxyParamCaption})}
 
 
+\begin{DoxyParams}{Parameters}
+{\em genres} & List of genres. \\
+\hline
+\end{DoxyParams}
 
-Definition at line \mbox{\hyperlink{_song_8java_source_l00074}{74}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
+
+Definition at line \mbox{\hyperlink{_song_8java_source_l00132}{132}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a21788927db16f8d70cabf31d3e4adff4}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a21788927db16f8d70cabf31d3e4adff4} 
 \index{com.deusto.deuspotify.model.Song@{com.deusto.deuspotify.model.Song}!setId@{setId}}
@@ -245,8 +347,13 @@ Definition at line \mbox{\hyperlink{_song_8java_source_l00074}{74}} of file \mbo
 {\footnotesize\ttfamily void com.\+deusto.\+deuspotify.\+model.\+Song.\+set\+Id (\begin{DoxyParamCaption}\item[{Long}]{id }\end{DoxyParamCaption})}
 
 
+\begin{DoxyParams}{Parameters}
+{\em id} & Song ID. \\
+\hline
+\end{DoxyParams}
 
-Definition at line \mbox{\hyperlink{_song_8java_source_l00062}{62}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
+
+Definition at line \mbox{\hyperlink{_song_8java_source_l00108}{108}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_ab3fb63dd8e01b81ce1459bd91a7a8ae9}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_ab3fb63dd8e01b81ce1459bd91a7a8ae9} 
 \index{com.deusto.deuspotify.model.Song@{com.deusto.deuspotify.model.Song}!setName@{setName}}
@@ -255,8 +362,13 @@ Definition at line \mbox{\hyperlink{_song_8java_source_l00062}{62}} of file \mbo
 {\footnotesize\ttfamily void com.\+deusto.\+deuspotify.\+model.\+Song.\+set\+Name (\begin{DoxyParamCaption}\item[{String}]{name }\end{DoxyParamCaption})}
 
 
+\begin{DoxyParams}{Parameters}
+{\em name} & Song name. \\
+\hline
+\end{DoxyParams}
 
-Definition at line \mbox{\hyperlink{_song_8java_source_l00065}{65}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
+
+Definition at line \mbox{\hyperlink{_song_8java_source_l00114}{114}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a0e535d56e6b18eaa07cf4e1c4ce8e305}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song_a0e535d56e6b18eaa07cf4e1c4ce8e305} 
 \index{com.deusto.deuspotify.model.Song@{com.deusto.deuspotify.model.Song}!toString@{toString}}
@@ -266,7 +378,14 @@ Definition at line \mbox{\hyperlink{_song_8java_source_l00065}{65}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{_song_8java_source_l00086}{86}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
+Returns a string representation of the song. 
+
+\begin{DoxyReturn}{Returns}
+A string containing song details. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_song_8java_source_l00159}{159}} of file \mbox{\hyperlink{_song_8java_source}{Song.\+java}}.
 
 
 

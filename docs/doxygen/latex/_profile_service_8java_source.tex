@@ -19,91 +19,92 @@
 \DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00015}00015\ }
 \DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00016}00016\ \textcolor{keyword}{import}\ java.util.List;}
 \DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00017}00017\ \textcolor{keyword}{import}\ java.util.Optional;}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00018}00018\ }
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00019}00019\ @Service}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00020}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service}{00020}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service}{ProfileService}}\ \textcolor{keyword}{implements}\ UserDetailsService\ \{}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00021}00021\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ ProfileRepository\ profileRepository;}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00022}00022\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ PasswordEncoder\ passwordEncoder;}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00023}00023\ \ \ \ \ \textcolor{keyword}{private}\ JwtUtil\ jwtUtil;}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00024}00024\ \ \ }
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00025}00025\ }
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00026}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a2cc1b9df95256d933a2972a870dc8b97}{00026}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a2cc1b9df95256d933a2972a870dc8b97}{ProfileService}}(ProfileRepository\ profileRepository,\ @Lazy\ PasswordEncoder\ passwordEncoder)\ \{}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00027}00027\ \ \ \ \ \ \ \ \ this.profileRepository\ =\ profileRepository;}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00028}00028\ \ \ \ \ \ \ \ \ this.passwordEncoder\ =\ passwordEncoder;}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00029}00029\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00025}00025\ @Service}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00026}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service}{00026}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service}{ProfileService}}\ \textcolor{keyword}{implements}\ UserDetailsService\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00028}00028\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ ProfileRepository\ profileRepository;}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00029}00029\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ PasswordEncoder\ passwordEncoder;}
 \DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00030}00030\ }
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00031}00031\ \ \ \ \ @Override}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00032}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_aea8053cdaa7f5db8765a86eca75b8551}{00032}}\ \ \ \ \ \textcolor{keyword}{public}\ UserDetails\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_aea8053cdaa7f5db8765a86eca75b8551}{loadUserByUsername}}(String\ username)\ \textcolor{keywordflow}{throws}\ UsernameNotFoundException\ \{}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ Profile\ profile\ =\ profileRepository.findByUsername(username)}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .orElseThrow(()\ -\/>\ \textcolor{keyword}{new}\ UsernameNotFoundException(\textcolor{stringliteral}{"{}User\ not\ found:\ "{}}\ +\ username));}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00035}00035\ }
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ org.springframework.security.core.userdetails.User}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .withUsername(profile.getUsername())}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .password(profile.getPassword())}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .roles(profile.isAdmin()\ ?\ \textcolor{stringliteral}{"{}ADMIN"{}}\ :\ \textcolor{stringliteral}{"{}USER"{}})}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .build();}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00041}00041\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00042}00042\ }
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00043}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a049c4eaabaed732595e1eedaf4421358}{00043}}\ \ \ \ \ \textcolor{keyword}{public}\ List<Profile>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a049c4eaabaed732595e1eedaf4421358}{getAllProfiles}}()\ \{}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ profileRepository.findAll();}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00045}00045\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00046}00046\ }
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00047}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a96b5dbf26aa198907ec4255b5ea45555}{00047}}\ \ \ \ \ \textcolor{keyword}{public}\ Optional<Profile>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a96b5dbf26aa198907ec4255b5ea45555}{getProfileById}}(Long\ \textcolor{keywordtype}{id})\ \{}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ profileRepository.findById(\textcolor{keywordtype}{id});}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00049}00049\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00050}00050\ }
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00051}00051\ \ \ \ \ @Transactional}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00052}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a4eaa2f2555991012dc731965e3964e51}{00052}}\ \ \ \ \ \textcolor{keyword}{public}\ Profile\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a4eaa2f2555991012dc731965e3964e51}{registerUser}}(Profile\ profile)\ \{}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (profileRepository.findByUsername(profile.getUsername()).isPresent())\ \{}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ RuntimeException(\textcolor{stringliteral}{"{}El\ usuario\ ya\ existe."{}});}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00056}00056\ \ \ \ \ \ \ \ \ profile.setPassword(passwordEncoder.encode(profile.getPassword()));}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ profileRepository.save(profile);}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00058}00058\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00059}00059\ }
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00060}00060\ \ \ \ \ @Transactional}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00061}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a6c56deeaf508796ac7ca0f7c40dd1551}{00061}}\ \ \ \ \ \textcolor{keyword}{public}\ Optional<Profile>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a6c56deeaf508796ac7ca0f7c40dd1551}{updateProfile}}(Long\ \textcolor{keywordtype}{id},\ Profile\ updatedProfile)\ \{}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ profileRepository.findById(\textcolor{keywordtype}{id}).map(profile\ -\/>\ \{}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ profile.setUsername(updatedProfile.getUsername());}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!updatedProfile.getPassword().isEmpty())\ \{}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ profile.setPassword(passwordEncoder.encode(updatedProfile.getPassword()));}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ profile.setEmail(updatedProfile.getEmail());}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ profile.setFriendsList(updatedProfile.getFriendsList());}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ profile.setFavouriteSongs(updatedProfile.getFavouriteSongs());}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ profile.setPlaylists(updatedProfile.getPlaylists());}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ profile.setAdmin(updatedProfile.isAdmin());}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ profileRepository.save(profile);}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00073}00073\ \ \ \ \ \ \ \ \ \});}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00074}00074\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00075}00075\ }
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00076}00076\ \ \ \ \ @Transactional}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00077}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a90f8de45ed4df27ae8e93a30df7bf41e}{00077}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a90f8de45ed4df27ae8e93a30df7bf41e}{deleteProfile}}(Long\ \textcolor{keywordtype}{id})\ \{}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (profileRepository.existsById(\textcolor{keywordtype}{id}))\ \{}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ profileRepository.deleteById(\textcolor{keywordtype}{id});}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00081}00081\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00083}00083\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00084}00084\ }
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00085}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_ad3fe9f333fac3baa64a3d271eff6c700}{00085}}\ \ \ \ \ \textcolor{keyword}{public}\ Optional<Profile>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_ad3fe9f333fac3baa64a3d271eff6c700}{login}}(String\ username,\ String\ password)\ \{}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ profileRepository.findByUsername(username)}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .filter(profile\ -\/>\ passwordEncoder.matches(password,\ profile.getPassword()));}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00088}00088\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00089}00089\ }
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00090}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a4862c021d83bb2f56ad9141681334a7c}{00090}}\ \ \ \ \ \textcolor{keyword}{public}\ Profile\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a4862c021d83bb2f56ad9141681334a7c}{getAuthenticatedUser}}(HttpServletRequest\ request)\ \{}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00091}00091\ \ \ \ \ \ \ \ \ String\ authHeader\ =\ request.getHeader(\textcolor{stringliteral}{"{}Authorization"{}});}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00092}00092\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00093}00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (authHeader\ ==\ \textcolor{keyword}{null}\ ||\ !authHeader.startsWith(\textcolor{stringliteral}{"{}Bearer\ "{}}))\ \{}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ RuntimeException(\textcolor{stringliteral}{"{}No\ JWT\ token\ found"{}});}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00095}00095\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00096}00096\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00097}00097\ \ \ \ \ \ \ \ \ String\ token\ =\ authHeader.substring(7);}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00098}00098\ \ \ \ \ \ \ \ \ String\ username\ =\ jwtUtil.extractUsername(token);}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00099}00099\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00100}00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ profileRepository.findByUsername(username)}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .orElseThrow(()\ -\/>\ \textcolor{keyword}{new}\ RuntimeException(\textcolor{stringliteral}{"{}User\ not\ found"{}}));}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00102}00102\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00103}00103\ \}}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00031}00031\ \ \ \ \ @Autowired}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00032}00032\ \ \ \ \ \textcolor{keyword}{private}\ JwtUtil\ jwtUtil;}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00040}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a2cc1b9df95256d933a2972a870dc8b97}{00040}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a2cc1b9df95256d933a2972a870dc8b97}{ProfileService}}(ProfileRepository\ profileRepository,\ @Lazy\ PasswordEncoder\ passwordEncoder)\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00041}00041\ \ \ \ \ \ \ \ \ this.profileRepository\ =\ profileRepository;}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00042}00042\ \ \ \ \ \ \ \ \ this.passwordEncoder\ =\ passwordEncoder;}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00043}00043\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00052}00052\ \ \ \ \ @Override}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00053}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_aea8053cdaa7f5db8765a86eca75b8551}{00053}}\ \ \ \ \ \textcolor{keyword}{public}\ UserDetails\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_aea8053cdaa7f5db8765a86eca75b8551}{loadUserByUsername}}(String\ username)\ \textcolor{keywordflow}{throws}\ UsernameNotFoundException\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ Profile\ profile\ =\ profileRepository.findByUsername(username)}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .orElseThrow(()\ -\/>\ \textcolor{keyword}{new}\ UsernameNotFoundException(\textcolor{stringliteral}{"{}User\ not\ found:\ "{}}\ +\ username));}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ org.springframework.security.core.userdetails.User}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .withUsername(profile.getUsername())}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .password(profile.getPassword())}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .roles(profile.isAdmin()\ ?\ \textcolor{stringliteral}{"{}ADMIN"{}}\ :\ \textcolor{stringliteral}{"{}USER"{}})}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .build();}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00062}00062\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00069}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a049c4eaabaed732595e1eedaf4421358}{00069}}\ \ \ \ \ \textcolor{keyword}{public}\ List<Profile>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a049c4eaabaed732595e1eedaf4421358}{getAllProfiles}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ profileRepository.findAll();}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00071}00071\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00079}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a96b5dbf26aa198907ec4255b5ea45555}{00079}}\ \ \ \ \ \textcolor{keyword}{public}\ Optional<Profile>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a96b5dbf26aa198907ec4255b5ea45555}{getProfileById}}(Long\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ profileRepository.findById(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00081}00081\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00090}00090\ \ \ \ \ @Transactional}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00091}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a4eaa2f2555991012dc731965e3964e51}{00091}}\ \ \ \ \ \textcolor{keyword}{public}\ Profile\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a4eaa2f2555991012dc731965e3964e51}{registerUser}}(Profile\ profile)\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00092}00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (profileRepository.findByUsername(profile.getUsername()).isPresent())\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ RuntimeException(\textcolor{stringliteral}{"{}El\ usuario\ ya\ existe."{}});}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00094}00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00095}00095\ \ \ \ \ \ \ \ \ profile.setPassword(passwordEncoder.encode(profile.getPassword()));}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ profileRepository.save(profile);}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00097}00097\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00106}00106\ \ \ \ \ @Transactional}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00107}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a6c56deeaf508796ac7ca0f7c40dd1551}{00107}}\ \ \ \ \ \textcolor{keyword}{public}\ Optional<Profile>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a6c56deeaf508796ac7ca0f7c40dd1551}{updateProfile}}(Long\ \textcolor{keywordtype}{id},\ Profile\ updatedProfile)\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ profileRepository.findById(\textcolor{keywordtype}{id}).map(profile\ -\/>\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ profile.setUsername(updatedProfile.getUsername());}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!updatedProfile.getPassword().isEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ profile.setPassword(passwordEncoder.encode(updatedProfile.getPassword()));}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ profile.setEmail(updatedProfile.getEmail());}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ profile.setFriendsList(updatedProfile.getFriendsList());}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ profile.setFavouriteSongs(updatedProfile.getFavouriteSongs());}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ profile.setPlaylists(updatedProfile.getPlaylists());}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ profile.setAdmin(updatedProfile.isAdmin());}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ profileRepository.save(profile);}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00119}00119\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00120}00120\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00128}00128\ \ \ \ \ @Transactional}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00129}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a90f8de45ed4df27ae8e93a30df7bf41e}{00129}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a90f8de45ed4df27ae8e93a30df7bf41e}{deleteProfile}}(Long\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00130}00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (profileRepository.existsById(\textcolor{keywordtype}{id}))\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ profileRepository.deleteById(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00133}00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00134}00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00135}00135\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00144}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_ad3fe9f333fac3baa64a3d271eff6c700}{00144}}\ \ \ \ \ \textcolor{keyword}{public}\ Optional<Profile>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_ad3fe9f333fac3baa64a3d271eff6c700}{login}}(String\ username,\ String\ password)\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00145}00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ profileRepository.findByUsername(username)}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .filter(profile\ -\/>\ passwordEncoder.matches(password,\ profile.getPassword()));}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00147}00147\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00156}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a4862c021d83bb2f56ad9141681334a7c}{00156}}\ \ \ \ \ \textcolor{keyword}{public}\ Profile\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a4862c021d83bb2f56ad9141681334a7c}{getAuthenticatedUser}}(HttpServletRequest\ request)\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00157}00157\ \ \ \ \ \ \ \ \ String\ authHeader\ =\ request.getHeader(\textcolor{stringliteral}{"{}Authorization"{}});}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00159}00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (authHeader\ ==\ \textcolor{keyword}{null}\ ||\ !authHeader.startsWith(\textcolor{stringliteral}{"{}Bearer\ "{}}))\ \{}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ RuntimeException(\textcolor{stringliteral}{"{}No\ JWT\ token\ found"{}});}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00161}00161\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00163}00163\ \ \ \ \ \ \ \ \ String\ token\ =\ authHeader.substring(7);}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00164}00164\ \ \ \ \ \ \ \ \ String\ username\ =\ jwtUtil.extractUsername(token);}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ profileRepository.findByUsername(username)}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .orElseThrow(()\ -\/>\ \textcolor{keyword}{new}\ RuntimeException(\textcolor{stringliteral}{"{}User\ not\ found"{}}));}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00168}00168\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_profile_service_8java_source_l00169}00169\ \}}
 
 \end{DoxyCode}

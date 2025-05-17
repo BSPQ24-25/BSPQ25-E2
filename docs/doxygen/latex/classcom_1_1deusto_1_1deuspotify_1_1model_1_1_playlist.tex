@@ -1,11 +1,21 @@
 \doxysection{com.\+deusto.\+deuspotify.\+model.\+Playlist Class Reference}
 \hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}\index{com.deusto.deuspotify.model.Playlist@{com.deusto.deuspotify.model.Playlist}}
+
+
+Represents a music playlist in the system.  
+
+
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_adb80f1b338e664a7e4536cb69ba17135}{Playlist}} ()
 \item 
 \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a43414a5506f093b36226ee030ad6b173}{Playlist}} (String name, List$<$ String $>$ owners, boolean is\+Public, List$<$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song}{Song}} $>$ songs, List$<$ Integer $>$ order)
+\item 
+String \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a2e20bfb527fead39df19889257d78bdd}{to\+String}} ()
+\begin{DoxyCompactList}\small\item\em String representation of the playlist object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Getters and Setters}\par
+\begin{DoxyCompactItemize}
 \item 
 Long \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_ad4c00ec19de66dd60e5d14fbaa3beb30}{get\+Id}} ()
 \item 
@@ -36,15 +46,16 @@ void \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_ad9
 String \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a66032954125f999ebb94087a98ddb515}{get\+Order\+Type}} ()
 \item 
 void \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_ae7873f9e86f3ff242284c190f7355da1}{set\+Order\+Type}} (String order\+Type)
-\item 
-String \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a2e20bfb527fead39df19889257d78bdd}{to\+String}} ()
 \end{DoxyCompactItemize}
+\end{Indent}
 
 
 \doxysubsection{Detailed Description}
+Represents a music playlist in the system. 
 
+A playlist contains a name, list of owners, visibility flag, songs, and order information. 
 
-Definition at line \mbox{\hyperlink{_playlist_8java_source_l00008}{8}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
+Definition at line \mbox{\hyperlink{_playlist_8java_source_l00014}{14}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
 
 
 
@@ -55,9 +66,9 @@ Definition at line \mbox{\hyperlink{_playlist_8java_source_l00008}{8}} of file \
 \doxysubsubsection{\texorpdfstring{Playlist()}{Playlist()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily com.\+deusto.\+deuspotify.\+model.\+Playlist.\+Playlist (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+Default constructor. 
 
-
-Definition at line \mbox{\hyperlink{_playlist_8java_source_l00037}{37}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
+Definition at line \mbox{\hyperlink{_playlist_8java_source_l00060}{60}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a43414a5506f093b36226ee030ad6b173}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a43414a5506f093b36226ee030ad6b173} 
 \index{com.deusto.deuspotify.model.Playlist@{com.deusto.deuspotify.model.Playlist}!Playlist@{Playlist}}
@@ -65,9 +76,24 @@ Definition at line \mbox{\hyperlink{_playlist_8java_source_l00037}{37}} of file 
 \doxysubsubsection{\texorpdfstring{Playlist()}{Playlist()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily com.\+deusto.\+deuspotify.\+model.\+Playlist.\+Playlist (\begin{DoxyParamCaption}\item[{String}]{name,  }\item[{List$<$ String $>$}]{owners,  }\item[{boolean}]{is\+Public,  }\item[{List$<$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song}{Song}} $>$}]{songs,  }\item[{List$<$ Integer $>$}]{order }\end{DoxyParamCaption})}
 
+Full constructor.
 
 
-Definition at line \mbox{\hyperlink{_playlist_8java_source_l00039}{39}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the playlist. \\
+\hline
+{\em owners} & List of playlist owners. \\
+\hline
+{\em is\+Public} & Visibility flag. \\
+\hline
+{\em songs} & List of songs. \\
+\hline
+{\em order} & Custom order of songs. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_playlist_8java_source_l00071}{71}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
 
 
 
@@ -78,9 +104,12 @@ Definition at line \mbox{\hyperlink{_playlist_8java_source_l00039}{39}} of file 
 \doxysubsubsection{\texorpdfstring{getId()}{getId()}}
 {\footnotesize\ttfamily Long com.\+deusto.\+deuspotify.\+model.\+Playlist.\+get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+\begin{DoxyReturn}{Returns}
+Playlist ID. 
+\end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_playlist_8java_source_l00050}{50}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
+Definition at line \mbox{\hyperlink{_playlist_8java_source_l00084}{84}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a168e32ed6a17d95b8e04aeb31e7ed645}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a168e32ed6a17d95b8e04aeb31e7ed645} 
 \index{com.deusto.deuspotify.model.Playlist@{com.deusto.deuspotify.model.Playlist}!getName@{getName}}
@@ -88,9 +117,12 @@ Definition at line \mbox{\hyperlink{_playlist_8java_source_l00050}{50}} of file 
 \doxysubsubsection{\texorpdfstring{getName()}{getName()}}
 {\footnotesize\ttfamily String com.\+deusto.\+deuspotify.\+model.\+Playlist.\+get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+\begin{DoxyReturn}{Returns}
+Playlist name. 
+\end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_playlist_8java_source_l00053}{53}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
+Definition at line \mbox{\hyperlink{_playlist_8java_source_l00090}{90}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a7adfaaf6a76b2f42e8013752d82934df}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a7adfaaf6a76b2f42e8013752d82934df} 
 \index{com.deusto.deuspotify.model.Playlist@{com.deusto.deuspotify.model.Playlist}!getNumberOfSongs@{getNumberOfSongs}}
@@ -98,9 +130,12 @@ Definition at line \mbox{\hyperlink{_playlist_8java_source_l00053}{53}} of file 
 \doxysubsubsection{\texorpdfstring{getNumberOfSongs()}{getNumberOfSongs()}}
 {\footnotesize\ttfamily int com.\+deusto.\+deuspotify.\+model.\+Playlist.\+get\+Number\+Of\+Songs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+\begin{DoxyReturn}{Returns}
+Number of songs. 
+\end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_playlist_8java_source_l00068}{68}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
+Definition at line \mbox{\hyperlink{_playlist_8java_source_l00120}{120}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a86ae5f81c0820faaadcb4b7ab7b8e701}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a86ae5f81c0820faaadcb4b7ab7b8e701} 
 \index{com.deusto.deuspotify.model.Playlist@{com.deusto.deuspotify.model.Playlist}!getOrder@{getOrder}}
@@ -108,9 +143,12 @@ Definition at line \mbox{\hyperlink{_playlist_8java_source_l00068}{68}} of file 
 \doxysubsubsection{\texorpdfstring{getOrder()}{getOrder()}}
 {\footnotesize\ttfamily List$<$ Integer $>$ com.\+deusto.\+deuspotify.\+model.\+Playlist.\+get\+Order (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+\begin{DoxyReturn}{Returns}
+Custom song order. 
+\end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_playlist_8java_source_l00070}{70}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
+Definition at line \mbox{\hyperlink{_playlist_8java_source_l00123}{123}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a66032954125f999ebb94087a98ddb515}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a66032954125f999ebb94087a98ddb515} 
 \index{com.deusto.deuspotify.model.Playlist@{com.deusto.deuspotify.model.Playlist}!getOrderType@{getOrderType}}
@@ -118,9 +156,12 @@ Definition at line \mbox{\hyperlink{_playlist_8java_source_l00070}{70}} of file 
 \doxysubsubsection{\texorpdfstring{getOrderType()}{getOrderType()}}
 {\footnotesize\ttfamily String com.\+deusto.\+deuspotify.\+model.\+Playlist.\+get\+Order\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+\begin{DoxyReturn}{Returns}
+Type of order applied to the playlist. 
+\end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_playlist_8java_source_l00073}{73}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
+Definition at line \mbox{\hyperlink{_playlist_8java_source_l00129}{129}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_ac120abcefd2925b18b2603c381b3cd9b}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_ac120abcefd2925b18b2603c381b3cd9b} 
 \index{com.deusto.deuspotify.model.Playlist@{com.deusto.deuspotify.model.Playlist}!getOwners@{getOwners}}
@@ -128,9 +169,12 @@ Definition at line \mbox{\hyperlink{_playlist_8java_source_l00073}{73}} of file 
 \doxysubsubsection{\texorpdfstring{getOwners()}{getOwners()}}
 {\footnotesize\ttfamily List$<$ String $>$ com.\+deusto.\+deuspotify.\+model.\+Playlist.\+get\+Owners (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+\begin{DoxyReturn}{Returns}
+List of owners. 
+\end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_playlist_8java_source_l00056}{56}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
+Definition at line \mbox{\hyperlink{_playlist_8java_source_l00096}{96}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a40719e6c50d7791c214ed6130339c3ce}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a40719e6c50d7791c214ed6130339c3ce} 
 \index{com.deusto.deuspotify.model.Playlist@{com.deusto.deuspotify.model.Playlist}!getSongs@{getSongs}}
@@ -138,9 +182,12 @@ Definition at line \mbox{\hyperlink{_playlist_8java_source_l00056}{56}} of file 
 \doxysubsubsection{\texorpdfstring{getSongs()}{getSongs()}}
 {\footnotesize\ttfamily List$<$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song}{Song}} $>$ com.\+deusto.\+deuspotify.\+model.\+Playlist.\+get\+Songs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+\begin{DoxyReturn}{Returns}
+List of songs in the playlist. 
+\end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_playlist_8java_source_l00062}{62}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
+Definition at line \mbox{\hyperlink{_playlist_8java_source_l00108}{108}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_afc9a13235acbe12194e1c71d094ddf40}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_afc9a13235acbe12194e1c71d094ddf40} 
 \index{com.deusto.deuspotify.model.Playlist@{com.deusto.deuspotify.model.Playlist}!isPublic@{isPublic}}
@@ -148,9 +195,12 @@ Definition at line \mbox{\hyperlink{_playlist_8java_source_l00062}{62}} of file 
 \doxysubsubsection{\texorpdfstring{isPublic()}{isPublic()}}
 {\footnotesize\ttfamily boolean com.\+deusto.\+deuspotify.\+model.\+Playlist.\+is\+Public (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+\begin{DoxyReturn}{Returns}
+True if the playlist is public. 
+\end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_playlist_8java_source_l00059}{59}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
+Definition at line \mbox{\hyperlink{_playlist_8java_source_l00102}{102}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a1b5d50353efdd55486875ca756bb65fe}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a1b5d50353efdd55486875ca756bb65fe} 
 \index{com.deusto.deuspotify.model.Playlist@{com.deusto.deuspotify.model.Playlist}!setId@{setId}}
@@ -159,8 +209,13 @@ Definition at line \mbox{\hyperlink{_playlist_8java_source_l00059}{59}} of file 
 {\footnotesize\ttfamily void com.\+deusto.\+deuspotify.\+model.\+Playlist.\+set\+Id (\begin{DoxyParamCaption}\item[{Long}]{id }\end{DoxyParamCaption})}
 
 
+\begin{DoxyParams}{Parameters}
+{\em id} & Playlist ID. \\
+\hline
+\end{DoxyParams}
 
-Definition at line \mbox{\hyperlink{_playlist_8java_source_l00051}{51}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
+
+Definition at line \mbox{\hyperlink{_playlist_8java_source_l00087}{87}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a962e49d054176316410d07d45d80ef4b}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a962e49d054176316410d07d45d80ef4b} 
 \index{com.deusto.deuspotify.model.Playlist@{com.deusto.deuspotify.model.Playlist}!setName@{setName}}
@@ -169,8 +224,13 @@ Definition at line \mbox{\hyperlink{_playlist_8java_source_l00051}{51}} of file 
 {\footnotesize\ttfamily void com.\+deusto.\+deuspotify.\+model.\+Playlist.\+set\+Name (\begin{DoxyParamCaption}\item[{String}]{name }\end{DoxyParamCaption})}
 
 
+\begin{DoxyParams}{Parameters}
+{\em name} & New name. \\
+\hline
+\end{DoxyParams}
 
-Definition at line \mbox{\hyperlink{_playlist_8java_source_l00054}{54}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
+
+Definition at line \mbox{\hyperlink{_playlist_8java_source_l00093}{93}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_ad90c303b764cc92b8082e172b3876bd0}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_ad90c303b764cc92b8082e172b3876bd0} 
 \index{com.deusto.deuspotify.model.Playlist@{com.deusto.deuspotify.model.Playlist}!setOrder@{setOrder}}
@@ -179,8 +239,13 @@ Definition at line \mbox{\hyperlink{_playlist_8java_source_l00054}{54}} of file 
 {\footnotesize\ttfamily void com.\+deusto.\+deuspotify.\+model.\+Playlist.\+set\+Order (\begin{DoxyParamCaption}\item[{List$<$ Integer $>$}]{order }\end{DoxyParamCaption})}
 
 
+\begin{DoxyParams}{Parameters}
+{\em order} & New order. \\
+\hline
+\end{DoxyParams}
 
-Definition at line \mbox{\hyperlink{_playlist_8java_source_l00071}{71}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
+
+Definition at line \mbox{\hyperlink{_playlist_8java_source_l00126}{126}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_ae7873f9e86f3ff242284c190f7355da1}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_ae7873f9e86f3ff242284c190f7355da1} 
 \index{com.deusto.deuspotify.model.Playlist@{com.deusto.deuspotify.model.Playlist}!setOrderType@{setOrderType}}
@@ -189,8 +254,13 @@ Definition at line \mbox{\hyperlink{_playlist_8java_source_l00071}{71}} of file 
 {\footnotesize\ttfamily void com.\+deusto.\+deuspotify.\+model.\+Playlist.\+set\+Order\+Type (\begin{DoxyParamCaption}\item[{String}]{order\+Type }\end{DoxyParamCaption})}
 
 
+\begin{DoxyParams}{Parameters}
+{\em order\+Type} & Set the type of order. \\
+\hline
+\end{DoxyParams}
 
-Definition at line \mbox{\hyperlink{_playlist_8java_source_l00074}{74}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
+
+Definition at line \mbox{\hyperlink{_playlist_8java_source_l00132}{132}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a839490a7218c52464c90c69a8563b9aa}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a839490a7218c52464c90c69a8563b9aa} 
 \index{com.deusto.deuspotify.model.Playlist@{com.deusto.deuspotify.model.Playlist}!setOwners@{setOwners}}
@@ -199,8 +269,13 @@ Definition at line \mbox{\hyperlink{_playlist_8java_source_l00074}{74}} of file 
 {\footnotesize\ttfamily void com.\+deusto.\+deuspotify.\+model.\+Playlist.\+set\+Owners (\begin{DoxyParamCaption}\item[{List$<$ String $>$}]{owners }\end{DoxyParamCaption})}
 
 
+\begin{DoxyParams}{Parameters}
+{\em owners} & New list of owners. \\
+\hline
+\end{DoxyParams}
 
-Definition at line \mbox{\hyperlink{_playlist_8java_source_l00057}{57}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
+
+Definition at line \mbox{\hyperlink{_playlist_8java_source_l00099}{99}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_abbc76280f389509b495a53a0cd7440c8}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_abbc76280f389509b495a53a0cd7440c8} 
 \index{com.deusto.deuspotify.model.Playlist@{com.deusto.deuspotify.model.Playlist}!setPublic@{setPublic}}
@@ -209,8 +284,13 @@ Definition at line \mbox{\hyperlink{_playlist_8java_source_l00057}{57}} of file 
 {\footnotesize\ttfamily void com.\+deusto.\+deuspotify.\+model.\+Playlist.\+set\+Public (\begin{DoxyParamCaption}\item[{boolean}]{is\+Public }\end{DoxyParamCaption})}
 
 
+\begin{DoxyParams}{Parameters}
+{\em is\+Public} & Set playlist visibility. \\
+\hline
+\end{DoxyParams}
 
-Definition at line \mbox{\hyperlink{_playlist_8java_source_l00060}{60}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
+
+Definition at line \mbox{\hyperlink{_playlist_8java_source_l00105}{105}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_af922ddea356269da7af372a5dffefe72}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_af922ddea356269da7af372a5dffefe72} 
 \index{com.deusto.deuspotify.model.Playlist@{com.deusto.deuspotify.model.Playlist}!setSongs@{setSongs}}
@@ -218,9 +298,14 @@ Definition at line \mbox{\hyperlink{_playlist_8java_source_l00060}{60}} of file 
 \doxysubsubsection{\texorpdfstring{setSongs()}{setSongs()}}
 {\footnotesize\ttfamily void com.\+deusto.\+deuspotify.\+model.\+Playlist.\+set\+Songs (\begin{DoxyParamCaption}\item[{List$<$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song}{Song}} $>$}]{songs }\end{DoxyParamCaption})}
 
+Set the list of songs and update the number of songs. 
+\begin{DoxyParams}{Parameters}
+{\em songs} & New list of songs. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{_playlist_8java_source_l00063}{63}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
+Definition at line \mbox{\hyperlink{_playlist_8java_source_l00114}{114}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a2e20bfb527fead39df19889257d78bdd}\label{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a2e20bfb527fead39df19889257d78bdd} 
 \index{com.deusto.deuspotify.model.Playlist@{com.deusto.deuspotify.model.Playlist}!toString@{toString}}
@@ -230,7 +315,14 @@ Definition at line \mbox{\hyperlink{_playlist_8java_source_l00063}{63}} of file 
 
 
 
-Definition at line \mbox{\hyperlink{_playlist_8java_source_l00077}{77}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
+String representation of the playlist object. 
+
+\begin{DoxyReturn}{Returns}
+Formatted string. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_playlist_8java_source_l00141}{141}} of file \mbox{\hyperlink{_playlist_8java_source}{Playlist.\+java}}.
 
 
 

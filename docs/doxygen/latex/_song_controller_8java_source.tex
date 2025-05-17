@@ -2,116 +2,106 @@
 \hypertarget{_song_controller_8java_source}{}\label{_song_controller_8java_source}\index{src/main/java/com/deusto/deuspotify/controllers/SongController.java@{src/main/java/com/deusto/deuspotify/controllers/SongController.java}}
 \mbox{\hyperlink{_song_controller_8java}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00001}00001\ \textcolor{keyword}{package\ }com.deusto.deuspotify.controllers;}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00002}00002\ }
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00003}00003\ \textcolor{keyword}{import}\ com.deusto.deuspotify.model.Song;}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00004}00004\ \textcolor{keyword}{import}\ com.deusto.deuspotify.services.DeuspotifyServiceImpl;}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00005}00005\ \textcolor{keyword}{import}\ org.springframework.beans.factory.annotation.Autowired;}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00006}00006\ \textcolor{keyword}{import}\ org.springframework.format.annotation.DateTimeFormat;}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00007}00007\ \textcolor{keyword}{import}\ org.springframework.web.bind.annotation.*;}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00008}00008\ }
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00009}00009\ \textcolor{keyword}{import}\ java.util.Collections;}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00010}00010\ \textcolor{keyword}{import}\ java.util.List;}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00011}00011\ \textcolor{keyword}{import}\ java.util.Optional;}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00012}00012\ \textcolor{keyword}{import}\ java.time.Instant;}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00013}00013\ \textcolor{keyword}{import}\ java.util.Arrays;}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00014}00014\ \textcolor{keyword}{import}\ java.util.Date;}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00015}00015\ \textcolor{keyword}{import}\ java.time.LocalDate;}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00016}00016\ \textcolor{keyword}{import}\ java.time.ZoneId;}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00006}00006\ \textcolor{keyword}{package\ }com.deusto.deuspotify.controllers;}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00008}00008\ \textcolor{keyword}{import}\ com.deusto.deuspotify.model.Song;}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00009}00009\ \textcolor{keyword}{import}\ com.deusto.deuspotify.services.DeuspotifyServiceImpl;}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00010}00010\ \textcolor{keyword}{import}\ org.springframework.beans.factory.annotation.Autowired;}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00011}00011\ \textcolor{keyword}{import}\ org.springframework.format.annotation.DateTimeFormat;}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00012}00012\ \textcolor{keyword}{import}\ org.springframework.web.bind.annotation.*;}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00014}00014\ \textcolor{keyword}{import}\ java.util.*;}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00015}00015\ \textcolor{keyword}{import}\ java.time.*;}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00016}00016\ \textcolor{keyword}{import}\ org.springframework.http.ResponseEntity;}
 \DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00017}00017\ }
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00018}00018\ \textcolor{keyword}{import}\ org.springframework.http.ResponseEntity;}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00019}00019\ \textcolor{keyword}{import}\ org.springframework.http.HttpHeaders;}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00020}00020\ \textcolor{keyword}{import}\ org.springframework.http.HttpStatus;}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00021}00021\ }
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00022}00022\ }
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00023}00023\ @RestController}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00024}00024\ @RequestMapping(\textcolor{stringliteral}{"{}/api/songs"{}})}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00025}00025\ @CrossOrigin}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00026}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller}{00026}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller}{SongController}}\ \{}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00027}00027\ }
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00028}00028\ \ \ \ \ @Autowired}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00029}00029\ \ \ \ \ \textcolor{keyword}{private}\ DeuspotifyServiceImpl\ deuspotifyServiceImpl;}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00030}00030\ }
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00031}00031\ \ \ \ \ @GetMapping}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00032}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a49839a11b943fded422a64110178f380}{00032}}\ \ \ \ \ \textcolor{keyword}{public}\ List<Song>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a49839a11b943fded422a64110178f380}{getAllSongs}}()\ \{}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ deuspotifyServiceImpl.retrieveAllSongs();}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00034}00034\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00035}00035\ }
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00036}00036\ \ \ \ \ @GetMapping(\textcolor{stringliteral}{"{}/\{id:\(\backslash\)\(\backslash\)d+\}"{}})}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00037}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a5a0942dab7084044f04969e56749f45e}{00037}}\ \ \ \ \ public\ Optional<Song>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a5a0942dab7084044f04969e56749f45e}{getSongById}}(@PathVariable\ Long\ \textcolor{keywordtype}{id})\ \{}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ deuspotifyServiceImpl.findSong(\textcolor{keywordtype}{id});}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00039}00039\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00040}00040\ }
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00041}00041\ \ \ \ \ @PostMapping}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00042}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a7582865a2113822f5da04fbc440d078e}{00042}}\ \ \ \ \ \textcolor{keyword}{public}\ Song\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a7582865a2113822f5da04fbc440d078e}{addSong}}(@RequestBody\ Song\ song)\ \{}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ deuspotifyServiceImpl.addSong(song);}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00044}00044\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00045}00045\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00046}00046\ \ \ \ \ @PostMapping(value\ =\ \textcolor{stringliteral}{"{}/upload"{}},\ consumes\ =\ \textcolor{stringliteral}{"{}multipart/form-\/data"{}})}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00047}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a37512e9e2be49f40a819c2a7bb0044e5}{00047}}\ \ \ \ \ public\ Song\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a37512e9e2be49f40a819c2a7bb0044e5}{addSongWithFile}}(}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}name"{})\ String\ name,}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}album"{})\ String\ album,}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}artists"{})\ String\ artists,\ \textcolor{comment}{//\ comma\ separated}}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}genres"{})\ String\ genres,\ \ \ \textcolor{comment}{//\ comma\ separated}}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}duration"{})\ \textcolor{keywordtype}{double}\ duration,}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}date\_of\_release"{})\ @DateTimeFormat(pattern="{}yyyy-\/MM-\/dd"{})\ Date\ dateOfRelease,}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}file"{})\ org.springframework.web.multipart.MultipartFile\ file)\ \{}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ deuspotifyServiceImpl.addSongWithFile(name,\ album,\ artists,\ genres,\ duration,\ dateOfRelease,\ file);}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00056}00056\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00057}00057\ }
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00058}00058\ \ \ \ \ @GetMapping(\textcolor{stringliteral}{"{}/createFromFilePath"{}})}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00059}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a17999e85947ce5bddd6cae3f2d0527fc}{00059}}\ \ \ \ \ public\ ResponseEntity<String>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a17999e85947ce5bddd6cae3f2d0527fc}{createSharedSong}}(}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}name"{})\ String\ name,}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}album"{})\ String\ album,}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}artists"{})\ String\ artists,}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}genres"{})\ String\ genres,}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}duration"{})\ \textcolor{keywordtype}{double}\ duration,}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}dateOfRelease"{})\ String\ dateOfRelease,}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}filePath"{})\ String\ filePath)\ \{}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00067}00067\ }
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00068}00068\ \ \ \ \ \ \ \ \ Date\ date\ =\ Date.from(LocalDate.parse(dateOfRelease).atStartOfDay(ZoneId.systemDefault()).toInstant());}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00069}00069\ }
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00070}00070\ \ \ \ \ \ \ \ \ deuspotifyServiceImpl.createSharedSong(name,\ album,\ artists,\ genres,\ duration,\ date,\ filePath);}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00071}00071\ }
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00072}00072\ \ \ \ \ \ \ \ \ String\ htmlResponse\ =\ \textcolor{stringliteral}{"{}"{}}\textcolor{stringliteral}{"{}}}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00073}00073\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <html>}}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00074}00074\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <head>}}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00075}00075\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <script\ type="{}}text/javascript\textcolor{stringliteral}{"{}>}}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00076}00076\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ alert('Song\ correctly\ imported');}}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00077}00077\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ window.location.href\ =\ '/songs.html';}}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00078}00078\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ </script>}}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00079}00079\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ </head>}}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00080}00080\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <body></body>}}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00081}00081\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ </html>}}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00082}00082\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ "{}}\textcolor{stringliteral}{"{}"{}};}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00083}00083\ }
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ResponseEntity.ok()}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .header(\textcolor{stringliteral}{"{}Content-\/Type"{}},\ \textcolor{stringliteral}{"{}text/html"{}})}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .body(htmlResponse);}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00087}00087\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00088}00088\ }
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00089}00089\ \ \ \ \ @PutMapping(value\ =\ \textcolor{stringliteral}{"{}/\{id\}"{}},\ consumes\ =\ \textcolor{stringliteral}{"{}multipart/form-\/data"{}})}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00090}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a4e8968316ee8153e8a6f3f372633b7b7}{00090}}\ \ \ \ \ public\ ResponseEntity<?>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a4e8968316ee8153e8a6f3f372633b7b7}{updateSongDate}}(}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ @PathVariable\ Long\ \textcolor{keywordtype}{id},}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}date\_of\_release"{})\ \textcolor{keywordtype}{long}\ dateOfReleaseMillis)\ \{}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00093}00093\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00094}00094\ \ \ \ \ \ \ \ \ Date\ releaseDate\ =\ \textcolor{keyword}{new}\ Date(dateOfReleaseMillis);}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00095}00095\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00096}00096\ \ \ \ \ \ \ \ \ Optional<Song>\ existingSongOpt\ =\ deuspotifyServiceImpl.findSong(\textcolor{keywordtype}{id});}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00097}00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (existingSongOpt.isPresent())\ \{}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ Song\ existingSong\ =\ existingSongOpt.get();}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ existingSong.setDateOfRelease(releaseDate);}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ deuspotifyServiceImpl.updateSong(\textcolor{keywordtype}{id},\ existingSong);}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ResponseEntity.ok().build();}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00102}00102\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ResponseEntity.notFound().build();}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00104}00104\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00105}00105\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00106}00106\ }
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00107}00107\ \ \ \ \ @DeleteMapping(\textcolor{stringliteral}{"{}/\{id\}"{}})}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00108}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a85dfa1284cb139f2c1471bb72965c7ae}{00108}}\ \ \ \ \ public\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a85dfa1284cb139f2c1471bb72965c7ae}{deleteSong}}(@PathVariable\ Long\ \textcolor{keywordtype}{id})\ \{}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00109}00109\ \ \ \ \ \ \ \ \ deuspotifyServiceImpl.deleteSong(\textcolor{keywordtype}{id});}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00110}00110\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00111}00111\ \}}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00022}00022\ @RestController}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00023}00023\ @RequestMapping(\textcolor{stringliteral}{"{}/api/songs"{}})}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00024}00024\ @CrossOrigin}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00025}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller}{00025}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller}{SongController}}\ \{}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00027}00027\ \ \ \ \ @Autowired}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00028}00028\ \ \ \ \ \textcolor{keyword}{private}\ DeuspotifyServiceImpl\ deuspotifyServiceImpl;}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00034}00034\ \ \ \ \ @GetMapping}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00035}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a49839a11b943fded422a64110178f380}{00035}}\ \ \ \ \ \textcolor{keyword}{public}\ List<Song>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a49839a11b943fded422a64110178f380}{getAllSongs}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ deuspotifyServiceImpl.retrieveAllSongs();}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00037}00037\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00044}00044\ \ \ \ \ @GetMapping(\textcolor{stringliteral}{"{}/\{id:\(\backslash\)\(\backslash\)d+\}"{}})}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00045}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a5a0942dab7084044f04969e56749f45e}{00045}}\ \ \ \ \ public\ Optional<Song>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a5a0942dab7084044f04969e56749f45e}{getSongById}}(@PathVariable\ Long\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ deuspotifyServiceImpl.findSong(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00047}00047\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00054}00054\ \ \ \ \ @PostMapping}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00055}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a7582865a2113822f5da04fbc440d078e}{00055}}\ \ \ \ \ \textcolor{keyword}{public}\ Song\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a7582865a2113822f5da04fbc440d078e}{addSong}}(@RequestBody\ Song\ song)\ \{}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ deuspotifyServiceImpl.addSong(song);}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00057}00057\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00070}00070\ \ \ \ \ @PostMapping(value\ =\ \textcolor{stringliteral}{"{}/upload"{}},\ consumes\ =\ \textcolor{stringliteral}{"{}multipart/form-\/data"{}})}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00071}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a37512e9e2be49f40a819c2a7bb0044e5}{00071}}\ \ \ \ \ public\ Song\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a37512e9e2be49f40a819c2a7bb0044e5}{addSongWithFile}}(}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}name"{})\ String\ name,}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}album"{})\ String\ album,}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}artists"{})\ String\ artists,}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}genres"{})\ String\ genres,}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}duration"{})\ \textcolor{keywordtype}{double}\ duration,}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}date\_of\_release"{})\ @DateTimeFormat(pattern="{}yyyy-\/MM-\/dd"{})\ Date\ dateOfRelease,}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}file"{})\ org.springframework.web.multipart.MultipartFile\ file)\ \{}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ deuspotifyServiceImpl.addSongWithFile(name,\ album,\ artists,\ genres,\ duration,\ dateOfRelease,\ file);}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00080}00080\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00093}00093\ \ \ \ \ @GetMapping(\textcolor{stringliteral}{"{}/createFromFilePath"{}})}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00094}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a17999e85947ce5bddd6cae3f2d0527fc}{00094}}\ \ \ \ \ public\ ResponseEntity<String>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a17999e85947ce5bddd6cae3f2d0527fc}{createSharedSong}}(}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}name"{})\ String\ name,}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}album"{})\ String\ album,}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}artists"{})\ String\ artists,}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}genres"{})\ String\ genres,}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}duration"{})\ \textcolor{keywordtype}{double}\ duration,}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}dateOfRelease"{})\ String\ dateOfRelease,}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}filePath"{})\ String\ filePath)\ \{}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00103}00103\ \ \ \ \ \ \ \ \ Date\ date\ =\ Date.from(LocalDate.parse(dateOfRelease).atStartOfDay(ZoneId.systemDefault()).toInstant());}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00104}00104\ \ \ \ \ \ \ \ \ deuspotifyServiceImpl.createSharedSong(name,\ album,\ artists,\ genres,\ duration,\ date,\ filePath);}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00106}00106\ \ \ \ \ \ \ \ \ String\ htmlResponse\ =\ \textcolor{stringliteral}{"{}"{}}\textcolor{stringliteral}{"{}}}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00107}00107\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <html>}}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00108}00108\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <head>}}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00109}00109\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <script\ type="{}}text/javascript\textcolor{stringliteral}{"{}>}}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00110}00110\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ alert('Song\ correctly\ imported');}}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00111}00111\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ window.location.href\ =\ '/songs.html';}}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00112}00112\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ </script>}}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00113}00113\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ </head>}}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00114}00114\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <body></body>}}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00115}00115\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ </html>}}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00116}00116\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ "{}}\textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ResponseEntity.ok()}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .header(\textcolor{stringliteral}{"{}Content-\/Type"{}},\ \textcolor{stringliteral}{"{}text/html"{}})}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .body(htmlResponse);}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00121}00121\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00129}00129\ \ \ \ \ @PutMapping(value\ =\ \textcolor{stringliteral}{"{}/\{id\}"{}},\ consumes\ =\ \textcolor{stringliteral}{"{}multipart/form-\/data"{}})}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00130}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a4e8968316ee8153e8a6f3f372633b7b7}{00130}}\ \ \ \ \ public\ ResponseEntity<?>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a4e8968316ee8153e8a6f3f372633b7b7}{updateSongDate}}(}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ @PathVariable\ Long\ \textcolor{keywordtype}{id},}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ @RequestParam("{}date\_of\_release"{})\ \textcolor{keywordtype}{long}\ dateOfReleaseMillis)\ \{}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00133}00133\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00134}00134\ \ \ \ \ \ \ \ \ Date\ releaseDate\ =\ \textcolor{keyword}{new}\ Date(dateOfReleaseMillis);}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00135}00135\ \ \ \ \ \ \ \ \ Optional<Song>\ existingSongOpt\ =\ deuspotifyServiceImpl.findSong(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00137}00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (existingSongOpt.isPresent())\ \{}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ Song\ existingSong\ =\ existingSongOpt.get();}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ existingSong.setDateOfRelease(releaseDate);}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ deuspotifyServiceImpl.updateSong(\textcolor{keywordtype}{id},\ existingSong);}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ResponseEntity.ok().build();}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00142}00142\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ResponseEntity.notFound().build();}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00144}00144\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00145}00145\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00151}00151\ \ \ \ \ @DeleteMapping(\textcolor{stringliteral}{"{}/\{id\}"{}})}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00152}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a85dfa1284cb139f2c1471bb72965c7ae}{00152}}\ \ \ \ \ public\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a85dfa1284cb139f2c1471bb72965c7ae}{deleteSong}}(@PathVariable\ Long\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00153}00153\ \ \ \ \ \ \ \ \ deuspotifyServiceImpl.deleteSong(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00154}00154\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_song_controller_8java_source_l00155}00155\ \}}
 
 \end{DoxyCode}

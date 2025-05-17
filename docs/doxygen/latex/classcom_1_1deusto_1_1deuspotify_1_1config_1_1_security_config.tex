@@ -1,26 +1,31 @@
 \doxysection{com.\+deusto.\+deuspotify.\+config.\+Security\+Config Class Reference}
 \hypertarget{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config}{}\label{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config}\index{com.deusto.deuspotify.config.SecurityConfig@{com.deusto.deuspotify.config.SecurityConfig}}
+
+
+Configures Spring Security filters, authentication, password encoding, and internationalization.  
+
+
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_acccfc17d27560b6c577cd85bece0fce7}{Security\+Config}} (Profile\+Service profile\+Service)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor that injects the Profile\+Service for authentication. \end{DoxyCompactList}\item 
 Security\+Filter\+Chain \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a4bbc1c0d6335e7f6601b3ba8b1720bf0}{security\+Filter\+Chain}} (Http\+Security http)  throws Exception 
-\item 
+\begin{DoxyCompactList}\small\item\em Configures the security filter chain for HTTP requests. \end{DoxyCompactList}\item 
 Authentication\+Manager \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a6a115a32dce5b830cadd4c16c1222751}{authentication\+Manager}} (Authentication\+Configuration authentication\+Configuration)  throws Exception 
-\item 
+\begin{DoxyCompactList}\small\item\em Provides a custom Authentication\+Manager with a DAO authentication provider. \end{DoxyCompactList}\item 
 Password\+Encoder \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a1427d9905588cf474d92bff56b768623}{password\+Encoder}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Bean for password encoding using BCrypt. \end{DoxyCompactList}\item 
 Message\+Source \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a180e2fcb3870ced7787c61e136ae1be4}{message\+Source}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Configures the message source for i18n. \end{DoxyCompactList}\item 
 Locale\+Resolver \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_af26250e3431df4b7dec3319533c6013e}{locale\+Resolver}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Configures the default locale resolver. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
+Configures Spring Security filters, authentication, password encoding, and internationalization. 
 
-
-Definition at line \mbox{\hyperlink{_security_config_8java_source_l00028}{28}} of file \mbox{\hyperlink{_security_config_8java_source}{Security\+Config.\+java}}.
+Definition at line \mbox{\hyperlink{_security_config_8java_source_l00034}{34}} of file \mbox{\hyperlink{_security_config_8java_source}{Security\+Config.\+java}}.
 
 
 
@@ -33,7 +38,16 @@ Definition at line \mbox{\hyperlink{_security_config_8java_source_l00028}{28}} o
 
 
 
-Definition at line \mbox{\hyperlink{_security_config_8java_source_l00032}{32}} of file \mbox{\hyperlink{_security_config_8java_source}{Security\+Config.\+java}}.
+Constructor that injects the Profile\+Service for authentication. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em profile\+Service} & Service used to retrieve user details. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_security_config_8java_source_l00042}{42}} of file \mbox{\hyperlink{_security_config_8java_source}{Security\+Config.\+java}}.
 
 
 
@@ -46,7 +60,24 @@ Definition at line \mbox{\hyperlink{_security_config_8java_source_l00032}{32}} o
 
 
 
-Definition at line \mbox{\hyperlink{_security_config_8java_source_l00074}{74}} of file \mbox{\hyperlink{_security_config_8java_source}{Security\+Config.\+java}}.
+Provides a custom Authentication\+Manager with a DAO authentication provider. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em authentication\+Configuration} & The authentication configuration. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A configured Authentication\+Manager. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & if setup fails. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{_security_config_8java_source_l00089}{89}} of file \mbox{\hyperlink{_security_config_8java_source}{Security\+Config.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_af26250e3431df4b7dec3319533c6013e}\label{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_af26250e3431df4b7dec3319533c6013e} 
 \index{com.deusto.deuspotify.config.SecurityConfig@{com.deusto.deuspotify.config.SecurityConfig}!localeResolver@{localeResolver}}
@@ -56,7 +87,14 @@ Definition at line \mbox{\hyperlink{_security_config_8java_source_l00074}{74}} o
 
 
 
-Definition at line \mbox{\hyperlink{_security_config_8java_source_l00098}{98}} of file \mbox{\hyperlink{_security_config_8java_source}{Security\+Config.\+java}}.
+Configures the default locale resolver. 
+
+\begin{DoxyReturn}{Returns}
+A Locale\+Resolver with default locale set to Spanish. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_security_config_8java_source_l00125}{125}} of file \mbox{\hyperlink{_security_config_8java_source}{Security\+Config.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a180e2fcb3870ced7787c61e136ae1be4}\label{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a180e2fcb3870ced7787c61e136ae1be4} 
 \index{com.deusto.deuspotify.config.SecurityConfig@{com.deusto.deuspotify.config.SecurityConfig}!messageSource@{messageSource}}
@@ -66,7 +104,14 @@ Definition at line \mbox{\hyperlink{_security_config_8java_source_l00098}{98}} o
 
 
 
-Definition at line \mbox{\hyperlink{_security_config_8java_source_l00090}{90}} of file \mbox{\hyperlink{_security_config_8java_source}{Security\+Config.\+java}}.
+Configures the message source for i18n. 
+
+\begin{DoxyReturn}{Returns}
+A Resource\+Bundle\+Message\+Source configured with UTF-\/8. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_security_config_8java_source_l00113}{113}} of file \mbox{\hyperlink{_security_config_8java_source}{Security\+Config.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a1427d9905588cf474d92bff56b768623}\label{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a1427d9905588cf474d92bff56b768623} 
 \index{com.deusto.deuspotify.config.SecurityConfig@{com.deusto.deuspotify.config.SecurityConfig}!passwordEncoder@{passwordEncoder}}
@@ -76,7 +121,14 @@ Definition at line \mbox{\hyperlink{_security_config_8java_source_l00090}{90}} o
 
 
 
-Definition at line \mbox{\hyperlink{_security_config_8java_source_l00083}{83}} of file \mbox{\hyperlink{_security_config_8java_source}{Security\+Config.\+java}}.
+Bean for password encoding using BCrypt. 
+
+\begin{DoxyReturn}{Returns}
+A BCrypt\+Password\+Encoder instance. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_security_config_8java_source_l00102}{102}} of file \mbox{\hyperlink{_security_config_8java_source}{Security\+Config.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a4bbc1c0d6335e7f6601b3ba8b1720bf0}\label{classcom_1_1deusto_1_1deuspotify_1_1config_1_1_security_config_a4bbc1c0d6335e7f6601b3ba8b1720bf0} 
 \index{com.deusto.deuspotify.config.SecurityConfig@{com.deusto.deuspotify.config.SecurityConfig}!securityFilterChain@{securityFilterChain}}
@@ -86,7 +138,24 @@ Definition at line \mbox{\hyperlink{_security_config_8java_source_l00083}{83}} o
 
 
 
-Definition at line \mbox{\hyperlink{_security_config_8java_source_l00037}{37}} of file \mbox{\hyperlink{_security_config_8java_source}{Security\+Config.\+java}}.
+Configures the security filter chain for HTTP requests. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em http} & The Http\+Security object to configure. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The configured Security\+Filter\+Chain. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & if configuration fails. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \mbox{\hyperlink{_security_config_8java_source_l00053}{53}} of file \mbox{\hyperlink{_security_config_8java_source}{Security\+Config.\+java}}.
 
 
 

@@ -1,4 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>I18nController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deuspotify</a> &gt; <a href="index.source.html" class="el_package">com.deusto.deuspotify.controllers</a> &gt; <span class="el_source">I18nController.java</span></div><h1>I18nController.java</h1><pre class="source lang-java linenums">package com.deusto.deuspotify.controllers;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>I18nController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Deuspotify</a> &gt; <a href="index.source.html" class="el_package">com.deusto.deuspotify.controllers</a> &gt; <span class="el_source">I18nController.java</span></div><h1>I18nController.java</h1><pre class="source lang-java linenums">/**
+ * @file I18nController.java
+ * @brief Controller that provides translations for different locales using message resource files.
+ */
+
+package com.deusto.deuspotify.controllers;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
@@ -7,84 +12,94 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import jakarta.servlet.http.HttpServletRequest;
 
+/**
+ * @class I18nController
+ * @brief REST controller for retrieving internationalized message strings based on locale.
+ */
 @RestController
 public class I18nController {
 
     private final MessageSource messageSource;
 
-    @Value(&quot;classpath:messages.properties&quot;) // General message file
+    @Value(&quot;classpath:messages.properties&quot;)
     private Resource messagesProperties;
 
-    @Value(&quot;classpath:messages_es.properties&quot;) // Spanish messages
+    @Value(&quot;classpath:messages_es.properties&quot;)
     private Resource messagesEsProperties;
 
-    @Value(&quot;classpath:messages_en.properties&quot;) // English messages
+    @Value(&quot;classpath:messages_en.properties&quot;)
     private Resource messagesEnProperties;
 
-    @Value(&quot;classpath:messages_eu.properties&quot;) // Basque messages
+    @Value(&quot;classpath:messages_eu.properties&quot;)
     private Resource messagesEuProperties;
 
-<span class="fc" id="L35">    public I18nController(MessageSource messageSource) {</span>
-<span class="fc" id="L36">        this.messageSource = messageSource;</span>
-<span class="fc" id="L37">    }</span>
+    /**
+     * @brief Constructor for I18nController.
+     * @param messageSource Spring's message source for resolving messages.
+     */
+<span class="fc" id="L46">    public I18nController(MessageSource messageSource) {</span>
+<span class="fc" id="L47">        this.messageSource = messageSource;</span>
+<span class="fc" id="L48">    }</span>
 
+    /**
+     * @brief Returns translated key-value pairs based on the provided language.
+     * @param lang Language code (&quot;es&quot;, &quot;en&quot;, &quot;eu&quot;). Defaults to &quot;es&quot;.
+     * @return A map of message keys and their localized translations.
+     * @throws IOException If there's an error reading the property files.
+     */
     @GetMapping(&quot;/api/i18n&quot;)
     public Map&lt;String, String&gt; getTranslations(@RequestParam(value = &quot;lang&quot;, required = false) String lang) throws IOException {
-        // Usar 'es' como valor por defecto si no se pasa ningún idioma
-<span class="nc bnc" id="L42" title="All 5 branches missed.">        Locale locale = switch (lang != null ? lang : &quot;es&quot;) {</span>
-<span class="nc" id="L43">            case &quot;en&quot; -&gt; Locale.ENGLISH;</span>
-<span class="nc" id="L44">            case &quot;eu&quot; -&gt; new Locale(&quot;eu&quot;);</span>
-<span class="nc" id="L45">            default -&gt; new Locale(&quot;es&quot;);</span>
+<span class="nc bnc" id="L58" title="All 5 branches missed.">        Locale locale = switch (lang != null ? lang : &quot;es&quot;) {</span>
+<span class="nc" id="L59">            case &quot;en&quot; -&gt; Locale.ENGLISH;</span>
+<span class="nc" id="L60">            case &quot;eu&quot; -&gt; new Locale(&quot;eu&quot;);</span>
+<span class="nc" id="L61">            default -&gt; new Locale(&quot;es&quot;);</span>
         };
 
-<span class="nc" id="L48">        Map&lt;String, String&gt; allKeys = loadAllPropertiesKeys();</span>
+<span class="nc" id="L64">        Map&lt;String, String&gt; allKeys = loadAllPropertiesKeys();</span>
 
-<span class="nc" id="L50">        return allKeys.entrySet().stream()</span>
-<span class="nc" id="L51">                .collect(Collectors.toMap(</span>
+<span class="nc" id="L66">        return allKeys.entrySet().stream()</span>
+<span class="nc" id="L67">                .collect(Collectors.toMap(</span>
                         Map.Entry::getKey,
-<span class="nc" id="L53">                        entry -&gt; messageSource.getMessage(entry.getKey(), null, locale)</span>
+<span class="nc" id="L69">                        entry -&gt; messageSource.getMessage(entry.getKey(), null, locale)</span>
                 ));
     }
 
+    /**
+     * @brief Loads all keys from all localized message property files.
+     * @return A map containing keys from all message files.
+     * @throws IOException If any file fails to load.
+     */
     private Map&lt;String, String&gt; loadAllPropertiesKeys() throws IOException {
-        // Cargar todas las propiedades de los archivos de mensajes
-<span class="nc" id="L59">        Map&lt;String, String&gt; keys = new HashMap&lt;&gt;();</span>
-        
-        // Cargar el archivo de mensajes general
-<span class="nc" id="L62">        keys.putAll(loadPropertiesKeys(messagesProperties));</span>
-        
-        // Cargar el archivo de mensajes en español
-<span class="nc" id="L65">        keys.putAll(loadPropertiesKeys(messagesEsProperties));</span>
-        
-        // Cargar el archivo de mensajes en inglés
-<span class="nc" id="L68">        keys.putAll(loadPropertiesKeys(messagesEnProperties));</span>
-
-        // Cargar el archivo de mensajes en euskera
-<span class="nc" id="L71">        keys.putAll(loadPropertiesKeys(messagesEuProperties));</span>
-        
-<span class="nc" id="L73">        return keys;</span>
+<span class="nc" id="L79">        Map&lt;String, String&gt; keys = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L80">        keys.putAll(loadPropertiesKeys(messagesProperties));</span>
+<span class="nc" id="L81">        keys.putAll(loadPropertiesKeys(messagesEsProperties));</span>
+<span class="nc" id="L82">        keys.putAll(loadPropertiesKeys(messagesEnProperties));</span>
+<span class="nc" id="L83">        keys.putAll(loadPropertiesKeys(messagesEuProperties));</span>
+<span class="nc" id="L84">        return keys;</span>
     }
 
+    /**
+     * @brief Loads keys and values from a single message property file.
+     * @param resource The resource pointing to a properties file.
+     * @return A map of the keys and values in the file.
+     * @throws IOException If the file cannot be read.
+     */
     private Map&lt;String, String&gt; loadPropertiesKeys(Resource resource) throws IOException {
-<span class="nc" id="L77">        Map&lt;String, String&gt; keys = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L78">        try (Reader reader = new InputStreamReader(resource.getInputStream())) {</span>
-<span class="nc" id="L79">            Properties properties = new Properties();</span>
-<span class="nc" id="L80">            properties.load(reader);</span>
-
-            // Guardar todas las claves del archivo en el mapa
-<span class="nc bnc" id="L83" title="All 2 branches missed.">            for (String key : properties.stringPropertyNames()) {</span>
-<span class="nc" id="L84">                keys.put(key, properties.getProperty(key));</span>
-<span class="nc" id="L85">            }</span>
+<span class="nc" id="L94">        Map&lt;String, String&gt; keys = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L95">        try (Reader reader = new InputStreamReader(resource.getInputStream())) {</span>
+<span class="nc" id="L96">            Properties properties = new Properties();</span>
+<span class="nc" id="L97">            properties.load(reader);</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">            for (String key : properties.stringPropertyNames()) {</span>
+<span class="nc" id="L99">                keys.put(key, properties.getProperty(key));</span>
+<span class="nc" id="L100">            }</span>
         }
-<span class="nc" id="L87">        return keys;</span>
+<span class="nc" id="L102">        return keys;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

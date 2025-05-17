@@ -97,103 +97,99 @@ $(document).ready(function(){initNavTree('_playlist_controller_8java_source.html
   <div class="headertitle"><div class="title">PlaylistController.java</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="_playlist_controller_8java.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">package </span>com.deusto.deuspotify.controllers;</div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">import</span> com.deusto.deuspotify.model.Playlist;</div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">import</span> com.deusto.deuspotify.model.Song;</div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">import</span> com.deusto.deuspotify.services.DeuspotifyService;</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">import</span> com.deusto.deuspotify.services.ProfileService;</div>
+<a href="_playlist_controller_8java.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">package </span>com.deusto.deuspotify.controllers;</div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">import</span> java.util.List;</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">import</span> java.util.Optional;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">import</span> com.deusto.deuspotify.model.Playlist;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">import</span> com.deusto.deuspotify.model.Song;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">import</span> com.deusto.deuspotify.services.DeuspotifyService;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">import</span> com.deusto.deuspotify.services.ProfileService;</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>@RestController</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>@RequestMapping(<span class="stringliteral">&quot;/api/playlists&quot;</span>)</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>@CrossOrigin</div>
-<div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html">   16</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html">PlaylistController</a> {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">import</span> java.util.List;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">import</span> java.util.Optional;</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">private</span> <span class="keyword">final</span> DeuspotifyService deuspotifyService;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">private</span> <span class="keyword">final</span> ProfileService profileService;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="foldopen" id="foldopen00022" data-start="{" data-end="}">
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a47c3de5be06c446c93bf27d1b8d2d608">   22</a></span>    <span class="keyword">public</span> <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a47c3de5be06c446c93bf27d1b8d2d608">PlaylistController</a>(DeuspotifyService deuspotifyService, ProfileService profileService) {</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        this.deuspotifyService = deuspotifyService;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        this.profileService = profileService;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    }</div>
-</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>@RestController</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>@RequestMapping(<span class="stringliteral">&quot;/api/playlists&quot;</span>)</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>@CrossOrigin</div>
+<div class="foldopen" id="foldopen00025" data-start="{" data-end="};">
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html">   25</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html">PlaylistController</a> {</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    @GetMapping</div>
-<div class="foldopen" id="foldopen00028" data-start="{" data-end="}">
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#aa51a48ee778c2bfa3e4b0d4a2a76eb12">   28</a></span>    <span class="keyword">public</span> List&lt;Playlist&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#aa51a48ee778c2bfa3e4b0d4a2a76eb12">getAllPlaylists</a>() {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keywordflow">return</span> deuspotifyService.retrieveAllPlaylists();</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    }</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">private</span> <span class="keyword">final</span> DeuspotifyService deuspotifyService;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keyword">private</span> <span class="keyword">final</span> ProfileService profileService;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="}">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a47c3de5be06c446c93bf27d1b8d2d608">   35</a></span>    <span class="keyword">public</span> <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a47c3de5be06c446c93bf27d1b8d2d608">PlaylistController</a>(DeuspotifyService deuspotifyService, ProfileService profileService) {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        this.deuspotifyService = deuspotifyService;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        this.profileService = profileService;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    }</div>
 </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    @GetMapping(<span class="stringliteral">&quot;/{id}&quot;</span>)</div>
-<div class="foldopen" id="foldopen00033" data-start="{" data-end="}">
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#adfbe041c33785976643d0382cc03f260">   33</a></span>    public Optional&lt;Playlist&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#adfbe041c33785976643d0382cc03f260">getPlaylistById</a>(@PathVariable Long <span class="keywordtype">id</span>) {</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keywordflow">return</span> deuspotifyService.findPlaylist(<span class="keywordtype">id</span>);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    @GetMapping</div>
+<div class="foldopen" id="foldopen00045" data-start="{" data-end="}">
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#aa51a48ee778c2bfa3e4b0d4a2a76eb12">   45</a></span>    <span class="keyword">public</span> List&lt;Playlist&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#aa51a48ee778c2bfa3e4b0d4a2a76eb12">getAllPlaylists</a>() {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keywordflow">return</span> deuspotifyService.retrieveAllPlaylists();</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    }</div>
 </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    @PostMapping</div>
-<div class="foldopen" id="foldopen00038" data-start="{" data-end="}">
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a3e356e143e63a70116a91406ac7270d6">   38</a></span>    <span class="keyword">public</span> Playlist <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a3e356e143e63a70116a91406ac7270d6">createPlaylist</a>(@RequestBody Playlist playlist) {</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        Playlist savedPlaylist = deuspotifyService.addPlaylist(playlist);</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordflow">return</span> savedPlaylist;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    }</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    @GetMapping(<span class="stringliteral">&quot;/{id}&quot;</span>)</div>
+<div class="foldopen" id="foldopen00055" data-start="{" data-end="}">
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#adfbe041c33785976643d0382cc03f260">   55</a></span>    public Optional&lt;Playlist&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#adfbe041c33785976643d0382cc03f260">getPlaylistById</a>(@PathVariable Long <span class="keywordtype">id</span>) {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordflow">return</span> deuspotifyService.findPlaylist(<span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    }</div>
 </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    @PutMapping(<span class="stringliteral">&quot;/{id}&quot;</span>)</div>
-<div class="foldopen" id="foldopen00044" data-start="{" data-end="}">
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a2d5767a6881bce6e8bc2a0ddeb46f7f4">   44</a></span>    public Playlist <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a2d5767a6881bce6e8bc2a0ddeb46f7f4">updatePlaylist</a>(@PathVariable Long <span class="keywordtype">id</span>, @RequestBody Playlist playlist) {</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keywordflow">return</span> deuspotifyService.updatePlaylist(<span class="keywordtype">id</span>, playlist);</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    }</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    @PostMapping</div>
+<div class="foldopen" id="foldopen00065" data-start="{" data-end="}">
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a3e356e143e63a70116a91406ac7270d6">   65</a></span>    <span class="keyword">public</span> Playlist <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a3e356e143e63a70116a91406ac7270d6">createPlaylist</a>(@RequestBody Playlist playlist) {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">return</span> deuspotifyService.addPlaylist(playlist);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    }</div>
 </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    @DeleteMapping(<span class="stringliteral">&quot;/{id}&quot;</span>)</div>
-<div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#af563b84c67efbbe33d44ac6b2ba781a2">   49</a></span>    public <span class="keywordtype">void</span> <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#af563b84c67efbbe33d44ac6b2ba781a2">deletePlaylist</a>(@PathVariable Long <span class="keywordtype">id</span>) {</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        deuspotifyService.deletePlaylist(<span class="keywordtype">id</span>);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    @PutMapping(<span class="stringliteral">&quot;/{id}&quot;</span>)</div>
+<div class="foldopen" id="foldopen00076" data-start="{" data-end="}">
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a2d5767a6881bce6e8bc2a0ddeb46f7f4">   76</a></span>    public Playlist <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a2d5767a6881bce6e8bc2a0ddeb46f7f4">updatePlaylist</a>(@PathVariable Long <span class="keywordtype">id</span>, @RequestBody Playlist playlist) {</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <span class="keywordflow">return</span> deuspotifyService.updatePlaylist(<span class="keywordtype">id</span>, playlist);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    }</div>
 </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    @PutMapping(<span class="stringliteral">&quot;/{id}/songs&quot;</span>)</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    </div>
-<div class="foldopen" id="foldopen00056" data-start="{" data-end="}">
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a5d4c21632f49645f79d9c419cb82b7b4">   56</a></span>    public Playlist <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a5d4c21632f49645f79d9c419cb82b7b4">updatePlaylistSongs</a>(@PathVariable Long <span class="keywordtype">id</span>, @RequestBody List&lt;Long&gt; songIds) {</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        Playlist playlist = deuspotifyService.findPlaylist(<span class="keywordtype">id</span>)</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            .orElseThrow(() -&gt; <span class="keyword">new</span> RuntimeException(<span class="stringliteral">&quot;Playlist no encontrada&quot;</span>));</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        List&lt;Song&gt; songs = deuspotifyService.findSongsByIds(songIds);</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        playlist.setSongs(songs);</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordflow">return</span> deuspotifyService.updatePlaylist(<span class="keywordtype">id</span>, playlist);</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    }</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    @DeleteMapping(<span class="stringliteral">&quot;/{id}&quot;</span>)</div>
+<div class="foldopen" id="foldopen00085" data-start="{" data-end="}">
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#af563b84c67efbbe33d44ac6b2ba781a2">   85</a></span>    public <span class="keywordtype">void</span> <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#af563b84c67efbbe33d44ac6b2ba781a2">deletePlaylist</a>(@PathVariable Long <span class="keywordtype">id</span>) {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        deuspotifyService.deletePlaylist(<span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    }</div>
 </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>}</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    @PutMapping(<span class="stringliteral">&quot;/{id}/songs&quot;</span>)</div>
+<div class="foldopen" id="foldopen00096" data-start="{" data-end="}">
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a5d4c21632f49645f79d9c419cb82b7b4">   96</a></span>    public Playlist <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a5d4c21632f49645f79d9c419cb82b7b4">updatePlaylistSongs</a>(@PathVariable Long <span class="keywordtype">id</span>, @RequestBody List&lt;Long&gt; songIds) {</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        Playlist playlist = deuspotifyService.findPlaylist(<span class="keywordtype">id</span>)</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>            .orElseThrow(() -&gt; <span class="keyword">new</span> RuntimeException(<span class="stringliteral">&quot;Playlist no encontrada&quot;</span>));</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        List&lt;Song&gt; songs = deuspotifyService.findSongsByIds(songIds);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        playlist.setSongs(songs);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="keywordflow">return</span> deuspotifyService.updatePlaylist(<span class="keywordtype">id</span>, playlist);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    }</div>
 </div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_html"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html">com.deusto.deuspotify.controllers.PlaylistController</a></div><div class="ttdef"><b>Definition</b> <a href="_playlist_controller_8java_source.html#l00016">PlaylistController.java:16</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_html_a2d5767a6881bce6e8bc2a0ddeb46f7f4"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a2d5767a6881bce6e8bc2a0ddeb46f7f4">com.deusto.deuspotify.controllers.PlaylistController.updatePlaylist</a></div><div class="ttdeci">Playlist updatePlaylist(@PathVariable Long id, @RequestBody Playlist playlist)</div><div class="ttdef"><b>Definition</b> <a href="_playlist_controller_8java_source.html#l00044">PlaylistController.java:44</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_html_a3e356e143e63a70116a91406ac7270d6"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a3e356e143e63a70116a91406ac7270d6">com.deusto.deuspotify.controllers.PlaylistController.createPlaylist</a></div><div class="ttdeci">Playlist createPlaylist(@RequestBody Playlist playlist)</div><div class="ttdef"><b>Definition</b> <a href="_playlist_controller_8java_source.html#l00038">PlaylistController.java:38</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_html_a47c3de5be06c446c93bf27d1b8d2d608"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a47c3de5be06c446c93bf27d1b8d2d608">com.deusto.deuspotify.controllers.PlaylistController.PlaylistController</a></div><div class="ttdeci">PlaylistController(DeuspotifyService deuspotifyService, ProfileService profileService)</div><div class="ttdef"><b>Definition</b> <a href="_playlist_controller_8java_source.html#l00022">PlaylistController.java:22</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_html_a5d4c21632f49645f79d9c419cb82b7b4"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a5d4c21632f49645f79d9c419cb82b7b4">com.deusto.deuspotify.controllers.PlaylistController.updatePlaylistSongs</a></div><div class="ttdeci">Playlist updatePlaylistSongs(@PathVariable Long id, @RequestBody List&lt; Long &gt; songIds)</div><div class="ttdef"><b>Definition</b> <a href="_playlist_controller_8java_source.html#l00056">PlaylistController.java:56</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_html_aa51a48ee778c2bfa3e4b0d4a2a76eb12"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#aa51a48ee778c2bfa3e4b0d4a2a76eb12">com.deusto.deuspotify.controllers.PlaylistController.getAllPlaylists</a></div><div class="ttdeci">List&lt; Playlist &gt; getAllPlaylists()</div><div class="ttdef"><b>Definition</b> <a href="_playlist_controller_8java_source.html#l00028">PlaylistController.java:28</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_html_adfbe041c33785976643d0382cc03f260"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#adfbe041c33785976643d0382cc03f260">com.deusto.deuspotify.controllers.PlaylistController.getPlaylistById</a></div><div class="ttdeci">Optional&lt; Playlist &gt; getPlaylistById(@PathVariable Long id)</div><div class="ttdef"><b>Definition</b> <a href="_playlist_controller_8java_source.html#l00033">PlaylistController.java:33</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_html_af563b84c67efbbe33d44ac6b2ba781a2"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#af563b84c67efbbe33d44ac6b2ba781a2">com.deusto.deuspotify.controllers.PlaylistController.deletePlaylist</a></div><div class="ttdeci">void deletePlaylist(@PathVariable Long id)</div><div class="ttdef"><b>Definition</b> <a href="_playlist_controller_8java_source.html#l00049">PlaylistController.java:49</a></div></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>}</div>
+</div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_html"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html">com.deusto.deuspotify.controllers.PlaylistController</a></div><div class="ttdoc">Controller that handles HTTP requests related to playlists.</div><div class="ttdef"><b>Definition</b> <a href="_playlist_controller_8java_source.html#l00025">PlaylistController.java:25</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_html_a2d5767a6881bce6e8bc2a0ddeb46f7f4"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a2d5767a6881bce6e8bc2a0ddeb46f7f4">com.deusto.deuspotify.controllers.PlaylistController.updatePlaylist</a></div><div class="ttdeci">Playlist updatePlaylist(@PathVariable Long id, @RequestBody Playlist playlist)</div><div class="ttdoc">Updates an existing playlist.</div><div class="ttdef"><b>Definition</b> <a href="_playlist_controller_8java_source.html#l00076">PlaylistController.java:76</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_html_a3e356e143e63a70116a91406ac7270d6"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a3e356e143e63a70116a91406ac7270d6">com.deusto.deuspotify.controllers.PlaylistController.createPlaylist</a></div><div class="ttdeci">Playlist createPlaylist(@RequestBody Playlist playlist)</div><div class="ttdoc">Creates a new playlist.</div><div class="ttdef"><b>Definition</b> <a href="_playlist_controller_8java_source.html#l00065">PlaylistController.java:65</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_html_a47c3de5be06c446c93bf27d1b8d2d608"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a47c3de5be06c446c93bf27d1b8d2d608">com.deusto.deuspotify.controllers.PlaylistController.PlaylistController</a></div><div class="ttdeci">PlaylistController(DeuspotifyService deuspotifyService, ProfileService profileService)</div><div class="ttdoc">Constructor for PlaylistController.</div><div class="ttdef"><b>Definition</b> <a href="_playlist_controller_8java_source.html#l00035">PlaylistController.java:35</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_html_a5d4c21632f49645f79d9c419cb82b7b4"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a5d4c21632f49645f79d9c419cb82b7b4">com.deusto.deuspotify.controllers.PlaylistController.updatePlaylistSongs</a></div><div class="ttdeci">Playlist updatePlaylistSongs(@PathVariable Long id, @RequestBody List&lt; Long &gt; songIds)</div><div class="ttdoc">Updates the list of songs in a playlist.</div><div class="ttdef"><b>Definition</b> <a href="_playlist_controller_8java_source.html#l00096">PlaylistController.java:96</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_html_aa51a48ee778c2bfa3e4b0d4a2a76eb12"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#aa51a48ee778c2bfa3e4b0d4a2a76eb12">com.deusto.deuspotify.controllers.PlaylistController.getAllPlaylists</a></div><div class="ttdeci">List&lt; Playlist &gt; getAllPlaylists()</div><div class="ttdoc">Retrieves all playlists.</div><div class="ttdef"><b>Definition</b> <a href="_playlist_controller_8java_source.html#l00045">PlaylistController.java:45</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_html_adfbe041c33785976643d0382cc03f260"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#adfbe041c33785976643d0382cc03f260">com.deusto.deuspotify.controllers.PlaylistController.getPlaylistById</a></div><div class="ttdeci">Optional&lt; Playlist &gt; getPlaylistById(@PathVariable Long id)</div><div class="ttdoc">Retrieves a playlist by its ID.</div><div class="ttdef"><b>Definition</b> <a href="_playlist_controller_8java_source.html#l00055">PlaylistController.java:55</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_html_af563b84c67efbbe33d44ac6b2ba781a2"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#af563b84c67efbbe33d44ac6b2ba781a2">com.deusto.deuspotify.controllers.PlaylistController.deletePlaylist</a></div><div class="ttdeci">void deletePlaylist(@PathVariable Long id)</div><div class="ttdoc">Deletes a playlist by ID.</div><div class="ttdef"><b>Definition</b> <a href="_playlist_controller_8java_source.html#l00085">PlaylistController.java:85</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_5eb159725f84c66aafd839904a4acdd0.html">main</a></li><li class="navelem"><a class="el" href="dir_fd3f6763802dee1ad875f6c80eac0bda.html">java</a></li><li class="navelem"><a class="el" href="dir_d8517d8b842053dc3dd7dde525dd9163.html">com</a></li><li class="navelem"><a class="el" href="dir_c829b153888480d1cd6945dc2092d47a.html">deusto</a></li><li class="navelem"><a class="el" href="dir_2fc7bb6d021d87fedeb47034f59180a8.html">deuspotify</a></li><li class="navelem"><a class="el" href="dir_63353bf22bd2073c5a5e4036c4f4ac2e.html">controllers</a></li><li class="navelem"><a class="el" href="_playlist_controller_8java.html">PlaylistController.java</a></li>
-    <li class="footer">Generated on Sat May 17 2025 15:40:32 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Sat May 17 2025 18:47:43 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

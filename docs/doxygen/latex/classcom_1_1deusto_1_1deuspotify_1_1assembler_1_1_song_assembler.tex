@@ -1,22 +1,27 @@
 \doxysection{com.\+deusto.\+deuspotify.\+assembler.\+Song\+Assembler Class Reference}
 \hypertarget{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler}{}\label{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler}\index{com.deusto.deuspotify.assembler.SongAssembler@{com.deusto.deuspotify.assembler.SongAssembler}}
+
+
+Utility class to convert between Song entities and Song\+DTOs.  
+
+
 \doxysubsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 static Song\+DTO \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a36fb72e20b0373156932cd9466971940}{to\+DTO}} (Song song)
-\item 
+\begin{DoxyCompactList}\small\item\em Converts a Song entity to a Song\+DTO. \end{DoxyCompactList}\item 
 static Song \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a7947ec00c3f8098991a31c395808882d}{to\+Entity}} (Song\+DTO dto)
-\item 
+\begin{DoxyCompactList}\small\item\em Converts a Song\+DTO to a Song entity. \end{DoxyCompactList}\item 
 static List$<$ Song\+DTO $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a79a720faf60db34ee2c33398e4b7cb61}{to\+DTOList}} (List$<$ Song $>$ songs)
-\item 
+\begin{DoxyCompactList}\small\item\em Converts a list of Song entities to a list of Song\+DTOs. \end{DoxyCompactList}\item 
 static List$<$ Song $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_afc7bf8dcea2b2f7bd1cb25c7cea1b35d}{to\+Entity\+List}} (List$<$ Song\+DTO $>$ dtos)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Converts a list of Song\+DTOs to a list of Song entities. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
+Utility class to convert between Song entities and Song\+DTOs. 
 
-
-Definition at line \mbox{\hyperlink{_song_assembler_8java_source_l00009}{9}} of file \mbox{\hyperlink{_song_assembler_8java_source}{Song\+Assembler.\+java}}.
+Definition at line \mbox{\hyperlink{_song_assembler_8java_source_l00018}{18}} of file \mbox{\hyperlink{_song_assembler_8java_source}{Song\+Assembler.\+java}}.
 
 
 
@@ -29,7 +34,19 @@ Definition at line \mbox{\hyperlink{_song_assembler_8java_source_l00009}{9}} of 
 
 
 
-Definition at line \mbox{\hyperlink{_song_assembler_8java_source_l00011}{11}} of file \mbox{\hyperlink{_song_assembler_8java_source}{Song\+Assembler.\+java}}.
+Converts a Song entity to a Song\+DTO. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em song} & The Song entity to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resulting Song\+DTO, or null if input is null. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_song_assembler_8java_source_l00025}{25}} of file \mbox{\hyperlink{_song_assembler_8java_source}{Song\+Assembler.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a79a720faf60db34ee2c33398e4b7cb61}\label{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a79a720faf60db34ee2c33398e4b7cb61} 
 \index{com.deusto.deuspotify.assembler.SongAssembler@{com.deusto.deuspotify.assembler.SongAssembler}!toDTOList@{toDTOList}}
@@ -39,7 +56,19 @@ Definition at line \mbox{\hyperlink{_song_assembler_8java_source_l00011}{11}} of
 
 
 
-Definition at line \mbox{\hyperlink{_song_assembler_8java_source_l00040}{40}} of file \mbox{\hyperlink{_song_assembler_8java_source}{Song\+Assembler.\+java}}.
+Converts a list of Song entities to a list of Song\+DTOs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em songs} & List of Song entities. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+List of Song\+DTOs, or null if input is null. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_song_assembler_8java_source_l00064}{64}} of file \mbox{\hyperlink{_song_assembler_8java_source}{Song\+Assembler.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a7947ec00c3f8098991a31c395808882d}\label{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a7947ec00c3f8098991a31c395808882d} 
 \index{com.deusto.deuspotify.assembler.SongAssembler@{com.deusto.deuspotify.assembler.SongAssembler}!toEntity@{toEntity}}
@@ -49,7 +78,19 @@ Definition at line \mbox{\hyperlink{_song_assembler_8java_source_l00040}{40}} of
 
 
 
-Definition at line \mbox{\hyperlink{_song_assembler_8java_source_l00025}{25}} of file \mbox{\hyperlink{_song_assembler_8java_source}{Song\+Assembler.\+java}}.
+Converts a Song\+DTO to a Song entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dto} & The Song\+DTO to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resulting Song entity, or null if input is null. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_song_assembler_8java_source_l00044}{44}} of file \mbox{\hyperlink{_song_assembler_8java_source}{Song\+Assembler.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_afc7bf8dcea2b2f7bd1cb25c7cea1b35d}\label{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_afc7bf8dcea2b2f7bd1cb25c7cea1b35d} 
 \index{com.deusto.deuspotify.assembler.SongAssembler@{com.deusto.deuspotify.assembler.SongAssembler}!toEntityList@{toEntityList}}
@@ -59,7 +100,19 @@ Definition at line \mbox{\hyperlink{_song_assembler_8java_source_l00025}{25}} of
 
 
 
-Definition at line \mbox{\hyperlink{_song_assembler_8java_source_l00048}{48}} of file \mbox{\hyperlink{_song_assembler_8java_source}{Song\+Assembler.\+java}}.
+Converts a list of Song\+DTOs to a list of Song entities. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dtos} & List of Song\+DTOs. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+List of Song entities, or null if input is null. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_song_assembler_8java_source_l00077}{77}} of file \mbox{\hyperlink{_song_assembler_8java_source}{Song\+Assembler.\+java}}.
 
 
 

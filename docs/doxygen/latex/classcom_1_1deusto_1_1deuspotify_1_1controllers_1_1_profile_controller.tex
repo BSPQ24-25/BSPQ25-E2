@@ -1,28 +1,33 @@
 \doxysection{com.\+deusto.\+deuspotify.\+controllers.\+Profile\+Controller Class Reference}
 \hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller}{}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller}\index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}}
+
+
+Controller that handles HTTP requests related to user profiles.  
+
+
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aafd928d8bffb499cfe909c06b585dcf1}{Profile\+Controller}} (Profile\+Service profile\+Service)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor for Profile\+Controller. \end{DoxyCompactList}\item 
 Response\+Entity$<$ List$<$ Profile $>$ $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aa2b47fa3227ab5e0d89a13b987218cd2}{get\+All\+Profiles}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Retrieves all user profiles. \end{DoxyCompactList}\item 
 Response\+Entity$<$ Profile $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a6f28d1db06d26dce4b424c7adca3fb93}{get\+Profile\+By\+Id}} (@Path\+Variable Long id)
-\item 
+\begin{DoxyCompactList}\small\item\em Retrieves a user profile by ID. \end{DoxyCompactList}\item 
 Response\+Entity$<$?$>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a85c323ac44c3137d04d87e52bf5e85be}{create\+Profile}} (@Request\+Body Profile profile)
-\item 
+\begin{DoxyCompactList}\small\item\em Creates a new profile. \end{DoxyCompactList}\item 
 Response\+Entity$<$?$>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aca483baea8c901ccd60208ac5a2f2bb3}{update\+Profile}} (@Path\+Variable Long id, @Request\+Body Profile updated\+Profile)
-\item 
+\begin{DoxyCompactList}\small\item\em Updates an existing profile. \end{DoxyCompactList}\item 
 Response\+Entity$<$?$>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a99435c5acd0ce62086457fe294b0c7cb}{delete\+Profile}} (@Path\+Variable Long id)
-\item 
+\begin{DoxyCompactList}\small\item\em Deletes a profile by ID. \end{DoxyCompactList}\item 
 Response\+Entity$<$?$>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_ab8fafce1acbdc49400d0a2c00a656b6d}{login}} (@Request\+Body Profile login\+Request)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Authenticates a user by username and password. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
+Controller that handles HTTP requests related to user profiles. 
 
-
-Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00014}{14}} of file \mbox{\hyperlink{_profile_controller_8java_source}{Profile\+Controller.\+java}}.
+Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00023}{23}} of file \mbox{\hyperlink{_profile_controller_8java_source}{Profile\+Controller.\+java}}.
 
 
 
@@ -35,7 +40,16 @@ Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00014}{14}
 
 
 
-Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00019}{19}} of file \mbox{\hyperlink{_profile_controller_8java_source}{Profile\+Controller.\+java}}.
+Constructor for Profile\+Controller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em profile\+Service} & Service that handles profile logic. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00031}{31}} of file \mbox{\hyperlink{_profile_controller_8java_source}{Profile\+Controller.\+java}}.
 
 
 
@@ -48,7 +62,19 @@ Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00019}{19}
 
 
 
-Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00036}{36}} of file \mbox{\hyperlink{_profile_controller_8java_source}{Profile\+Controller.\+java}}.
+Creates a new profile. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em profile} & The profile to create. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response\+Entity with the created profile or error message. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00062}{62}} of file \mbox{\hyperlink{_profile_controller_8java_source}{Profile\+Controller.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a99435c5acd0ce62086457fe294b0c7cb}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a99435c5acd0ce62086457fe294b0c7cb} 
 \index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!deleteProfile@{deleteProfile}}
@@ -58,7 +84,19 @@ Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00036}{36}
 
 
 
-Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00054}{54}} of file \mbox{\hyperlink{_profile_controller_8java_source}{Profile\+Controller.\+java}}.
+Deletes a profile by ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & ID of the profile to delete. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response\+Entity indicating success or failure. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00090}{90}} of file \mbox{\hyperlink{_profile_controller_8java_source}{Profile\+Controller.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aa2b47fa3227ab5e0d89a13b987218cd2}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aa2b47fa3227ab5e0d89a13b987218cd2} 
 \index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!getAllProfiles@{getAllProfiles}}
@@ -68,7 +106,14 @@ Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00054}{54}
 
 
 
-Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00024}{24}} of file \mbox{\hyperlink{_profile_controller_8java_source}{Profile\+Controller.\+java}}.
+Retrieves all user profiles. 
+
+\begin{DoxyReturn}{Returns}
+Response\+Entity containing the list of profiles. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00040}{40}} of file \mbox{\hyperlink{_profile_controller_8java_source}{Profile\+Controller.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a6f28d1db06d26dce4b424c7adca3fb93}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a6f28d1db06d26dce4b424c7adca3fb93} 
 \index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!getProfileById@{getProfileById}}
@@ -78,7 +123,19 @@ Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00024}{24}
 
 
 
-Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00029}{29}} of file \mbox{\hyperlink{_profile_controller_8java_source}{Profile\+Controller.\+java}}.
+Retrieves a user profile by ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the profile. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response\+Entity containing the profile or 404 if not found. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00050}{50}} of file \mbox{\hyperlink{_profile_controller_8java_source}{Profile\+Controller.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_ab8fafce1acbdc49400d0a2c00a656b6d}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_ab8fafce1acbdc49400d0a2c00a656b6d} 
 \index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!login@{login}}
@@ -88,7 +145,19 @@ Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00029}{29}
 
 
 
-Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00063}{63}} of file \mbox{\hyperlink{_profile_controller_8java_source}{Profile\+Controller.\+java}}.
+Authenticates a user by username and password. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em login\+Request} & The profile object containing login credentials. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response\+Entity with the profile if login is successful, or 401 error. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00104}{104}} of file \mbox{\hyperlink{_profile_controller_8java_source}{Profile\+Controller.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aca483baea8c901ccd60208ac5a2f2bb3}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aca483baea8c901ccd60208ac5a2f2bb3} 
 \index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!updateProfile@{updateProfile}}
@@ -98,7 +167,21 @@ Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00063}{63}
 
 
 
-Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00046}{46}} of file \mbox{\hyperlink{_profile_controller_8java_source}{Profile\+Controller.\+java}}.
+Updates an existing profile. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & ID of the profile to update. \\
+\hline
+{\em updated\+Profile} & New data for the profile. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response\+Entity with the updated profile or 404 if not found. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00078}{78}} of file \mbox{\hyperlink{_profile_controller_8java_source}{Profile\+Controller.\+java}}.
 
 
 

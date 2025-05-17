@@ -97,106 +97,105 @@ $(document).ready(function(){initNavTree('_profile_controller_8java_source.html'
   <div class="headertitle"><div class="title">ProfileController.java</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="_profile_controller_8java.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">package </span>com.deusto.deuspotify.controllers;</div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">import</span> com.deusto.deuspotify.model.Profile;</div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">import</span> com.deusto.deuspotify.services.ProfileService;</div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">import</span> org.springframework.http.ResponseEntity;</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</div>
+<a href="_profile_controller_8java.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">package </span>com.deusto.deuspotify.controllers;</div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">import</span> java.util.List;</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">import</span> java.util.Optional;</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>@RestController</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>@RequestMapping(<span class="stringliteral">&quot;/api/profiles&quot;</span>)</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>@CrossOrigin</div>
-<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html">   14</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html">ProfileController</a> {</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">import</span> com.deusto.deuspotify.model.Profile;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">import</span> com.deusto.deuspotify.services.ProfileService;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">import</span> org.springframework.http.ResponseEntity;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">import</span> java.util.List;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">import</span> java.util.Optional;</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keyword">private</span> <span class="keyword">final</span> ProfileService profileService;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="foldopen" id="foldopen00019" data-start="{" data-end="}">
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#aafd928d8bffb499cfe909c06b585dcf1">   19</a></span>    <span class="keyword">public</span> <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#aafd928d8bffb499cfe909c06b585dcf1">ProfileController</a>(ProfileService profileService) {</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        this.profileService = profileService;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    }</div>
-</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    @GetMapping</div>
-<div class="foldopen" id="foldopen00024" data-start="{" data-end="}">
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#aa2b47fa3227ab5e0d89a13b987218cd2">   24</a></span>    <span class="keyword">public</span> ResponseEntity&lt;List&lt;Profile&gt;&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#aa2b47fa3227ab5e0d89a13b987218cd2">getAllProfiles</a>() {</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <span class="keywordflow">return</span> ResponseEntity.ok(profileService.getAllProfiles());</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    }</div>
-</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    @GetMapping(<span class="stringliteral">&quot;/{id}&quot;</span>)</div>
-<div class="foldopen" id="foldopen00029" data-start="{" data-end="}">
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#a6f28d1db06d26dce4b424c7adca3fb93">   29</a></span>    public ResponseEntity&lt;Profile&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#a6f28d1db06d26dce4b424c7adca3fb93">getProfileById</a>(@PathVariable Long <span class="keywordtype">id</span>) {</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        Optional&lt;Profile&gt; profile = profileService.getProfileById(<span class="keywordtype">id</span>);</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordflow">return</span> profile.map(ResponseEntity::ok)</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>                      .orElseGet(() -&gt; ResponseEntity.notFound().build());</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>@RestController</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>@RequestMapping(<span class="stringliteral">&quot;/api/profiles&quot;</span>)</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>@CrossOrigin</div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="};">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html">   23</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html">ProfileController</a> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">private</span> <span class="keyword">final</span> ProfileService profileService;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="}">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#aafd928d8bffb499cfe909c06b585dcf1">   31</a></span>    <span class="keyword">public</span> <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#aafd928d8bffb499cfe909c06b585dcf1">ProfileController</a>(ProfileService profileService) {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        this.profileService = profileService;</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    }</div>
 </div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    @PostMapping</div>
-<div class="foldopen" id="foldopen00036" data-start="{" data-end="}">
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#a85c323ac44c3137d04d87e52bf5e85be">   36</a></span>    <span class="keyword">public</span> ResponseEntity&lt;?&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#a85c323ac44c3137d04d87e52bf5e85be">createProfile</a>(@RequestBody Profile profile) {</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordflow">try</span> {</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            Profile savedProfile = profileService.registerUser(profile);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            <span class="keywordflow">return</span> ResponseEntity.ok(savedProfile);</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        } <span class="keywordflow">catch</span> (Exception e) {</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            <span class="keywordflow">return</span> ResponseEntity.badRequest().body(<span class="stringliteral">&quot;Error: &quot;</span> + e.getMessage());</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        }</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    @GetMapping</div>
+<div class="foldopen" id="foldopen00040" data-start="{" data-end="}">
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#aa2b47fa3227ab5e0d89a13b987218cd2">   40</a></span>    <span class="keyword">public</span> ResponseEntity&lt;List&lt;Profile&gt;&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#aa2b47fa3227ab5e0d89a13b987218cd2">getAllProfiles</a>() {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordflow">return</span> ResponseEntity.ok(profileService.getAllProfiles());</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    }</div>
 </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    @PutMapping(<span class="stringliteral">&quot;/{id}&quot;</span>)</div>
-<div class="foldopen" id="foldopen00046" data-start="{" data-end="}">
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#aca483baea8c901ccd60208ac5a2f2bb3">   46</a></span>    public ResponseEntity&lt;?&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#aca483baea8c901ccd60208ac5a2f2bb3">updateProfile</a>(@PathVariable Long <span class="keywordtype">id</span>, @RequestBody Profile updatedProfile) {</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordflow">return</span> profileService.updateProfile(<span class="keywordtype">id</span>, updatedProfile)</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                .map(ResponseEntity::ok)</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                .orElseGet(() -&gt; ResponseEntity.notFound().build());</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    @GetMapping(<span class="stringliteral">&quot;/{id}&quot;</span>)</div>
+<div class="foldopen" id="foldopen00050" data-start="{" data-end="}">
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#a6f28d1db06d26dce4b424c7adca3fb93">   50</a></span>    public ResponseEntity&lt;Profile&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#a6f28d1db06d26dce4b424c7adca3fb93">getProfileById</a>(@PathVariable Long <span class="keywordtype">id</span>) {</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        Optional&lt;Profile&gt; profile = profileService.getProfileById(<span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keywordflow">return</span> profile.map(ResponseEntity::ok)</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                      .orElseGet(() -&gt; ResponseEntity.notFound().build());</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    }</div>
 </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    @DeleteMapping(<span class="stringliteral">&quot;/{id}&quot;</span>)</div>
-<div class="foldopen" id="foldopen00054" data-start="{" data-end="}">
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#a99435c5acd0ce62086457fe294b0c7cb">   54</a></span>    public ResponseEntity&lt;?&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#a99435c5acd0ce62086457fe294b0c7cb">deleteProfile</a>(@PathVariable Long <span class="keywordtype">id</span>) {</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="keywordflow">if</span> (profileService.deleteProfile(<span class="keywordtype">id</span>)) {</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            <span class="keywordflow">return</span> ResponseEntity.ok(<span class="stringliteral">&quot;Perfil eliminado correctamente.&quot;</span>);</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            <span class="keywordflow">return</span> ResponseEntity.notFound().build();</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        }</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    }</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    @PostMapping</div>
+<div class="foldopen" id="foldopen00062" data-start="{" data-end="}">
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#a85c323ac44c3137d04d87e52bf5e85be">   62</a></span>    <span class="keyword">public</span> ResponseEntity&lt;?&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#a85c323ac44c3137d04d87e52bf5e85be">createProfile</a>(@RequestBody Profile profile) {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="keywordflow">try</span> {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            Profile savedProfile = profileService.registerUser(profile);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            <span class="keywordflow">return</span> ResponseEntity.ok(savedProfile);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        } <span class="keywordflow">catch</span> (Exception e) {</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            <span class="keywordflow">return</span> ResponseEntity.badRequest().body(<span class="stringliteral">&quot;Error: &quot;</span> + e.getMessage());</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        }</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    }</div>
 </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    @PostMapping(<span class="stringliteral">&quot;/login&quot;</span>)</div>
-<div class="foldopen" id="foldopen00063" data-start="{" data-end="}">
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#ab8fafce1acbdc49400d0a2c00a656b6d">   63</a></span>    public ResponseEntity&lt;?&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#ab8fafce1acbdc49400d0a2c00a656b6d">login</a>(@RequestBody Profile loginRequest) {</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        Optional&lt;Profile&gt; profile = profileService.login(loginRequest.getUsername(), loginRequest.getPassword());</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keywordflow">return</span> profile.map(ResponseEntity::ok)</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                    .orElseGet(() -&gt; ResponseEntity.status(401).body(<span class="keyword">null</span>)); <span class="comment">// Devolvemos `null` en lugar de un String</span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    }</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    @PutMapping(<span class="stringliteral">&quot;/{id}&quot;</span>)</div>
+<div class="foldopen" id="foldopen00078" data-start="{" data-end="}">
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#aca483baea8c901ccd60208ac5a2f2bb3">   78</a></span>    public ResponseEntity&lt;?&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#aca483baea8c901ccd60208ac5a2f2bb3">updateProfile</a>(@PathVariable Long <span class="keywordtype">id</span>, @RequestBody Profile updatedProfile) {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <span class="keywordflow">return</span> profileService.updateProfile(<span class="keywordtype">id</span>, updatedProfile)</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                .map(ResponseEntity::ok)</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                .orElseGet(() -&gt; ResponseEntity.notFound().build());</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    }</div>
 </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>}</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    @DeleteMapping(<span class="stringliteral">&quot;/{id}&quot;</span>)</div>
+<div class="foldopen" id="foldopen00090" data-start="{" data-end="}">
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#a99435c5acd0ce62086457fe294b0c7cb">   90</a></span>    public ResponseEntity&lt;?&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#a99435c5acd0ce62086457fe294b0c7cb">deleteProfile</a>(@PathVariable Long <span class="keywordtype">id</span>) {</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <span class="keywordflow">if</span> (profileService.deleteProfile(<span class="keywordtype">id</span>)) {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>            <span class="keywordflow">return</span> ResponseEntity.ok(<span class="stringliteral">&quot;Perfil eliminado correctamente.&quot;</span>);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>            <span class="keywordflow">return</span> ResponseEntity.notFound().build();</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        }</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    }</div>
 </div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_html"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html">com.deusto.deuspotify.controllers.ProfileController</a></div><div class="ttdef"><b>Definition</b> <a href="_profile_controller_8java_source.html#l00014">ProfileController.java:14</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_html_a6f28d1db06d26dce4b424c7adca3fb93"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#a6f28d1db06d26dce4b424c7adca3fb93">com.deusto.deuspotify.controllers.ProfileController.getProfileById</a></div><div class="ttdeci">ResponseEntity&lt; Profile &gt; getProfileById(@PathVariable Long id)</div><div class="ttdef"><b>Definition</b> <a href="_profile_controller_8java_source.html#l00029">ProfileController.java:29</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_html_a85c323ac44c3137d04d87e52bf5e85be"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#a85c323ac44c3137d04d87e52bf5e85be">com.deusto.deuspotify.controllers.ProfileController.createProfile</a></div><div class="ttdeci">ResponseEntity&lt;?&gt; createProfile(@RequestBody Profile profile)</div><div class="ttdef"><b>Definition</b> <a href="_profile_controller_8java_source.html#l00036">ProfileController.java:36</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_html_a99435c5acd0ce62086457fe294b0c7cb"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#a99435c5acd0ce62086457fe294b0c7cb">com.deusto.deuspotify.controllers.ProfileController.deleteProfile</a></div><div class="ttdeci">ResponseEntity&lt;?&gt; deleteProfile(@PathVariable Long id)</div><div class="ttdef"><b>Definition</b> <a href="_profile_controller_8java_source.html#l00054">ProfileController.java:54</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_html_aa2b47fa3227ab5e0d89a13b987218cd2"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#aa2b47fa3227ab5e0d89a13b987218cd2">com.deusto.deuspotify.controllers.ProfileController.getAllProfiles</a></div><div class="ttdeci">ResponseEntity&lt; List&lt; Profile &gt; &gt; getAllProfiles()</div><div class="ttdef"><b>Definition</b> <a href="_profile_controller_8java_source.html#l00024">ProfileController.java:24</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_html_aafd928d8bffb499cfe909c06b585dcf1"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#aafd928d8bffb499cfe909c06b585dcf1">com.deusto.deuspotify.controllers.ProfileController.ProfileController</a></div><div class="ttdeci">ProfileController(ProfileService profileService)</div><div class="ttdef"><b>Definition</b> <a href="_profile_controller_8java_source.html#l00019">ProfileController.java:19</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_html_ab8fafce1acbdc49400d0a2c00a656b6d"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#ab8fafce1acbdc49400d0a2c00a656b6d">com.deusto.deuspotify.controllers.ProfileController.login</a></div><div class="ttdeci">ResponseEntity&lt;?&gt; login(@RequestBody Profile loginRequest)</div><div class="ttdef"><b>Definition</b> <a href="_profile_controller_8java_source.html#l00063">ProfileController.java:63</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_html_aca483baea8c901ccd60208ac5a2f2bb3"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#aca483baea8c901ccd60208ac5a2f2bb3">com.deusto.deuspotify.controllers.ProfileController.updateProfile</a></div><div class="ttdeci">ResponseEntity&lt;?&gt; updateProfile(@PathVariable Long id, @RequestBody Profile updatedProfile)</div><div class="ttdef"><b>Definition</b> <a href="_profile_controller_8java_source.html#l00046">ProfileController.java:46</a></div></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    @PostMapping(<span class="stringliteral">&quot;/login&quot;</span>)</div>
+<div class="foldopen" id="foldopen00104" data-start="{" data-end="}">
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#ab8fafce1acbdc49400d0a2c00a656b6d">  104</a></span>    public ResponseEntity&lt;?&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#ab8fafce1acbdc49400d0a2c00a656b6d">login</a>(@RequestBody Profile loginRequest) {</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        Optional&lt;Profile&gt; profile = profileService.login(loginRequest.getUsername(), loginRequest.getPassword());</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="keywordflow">return</span> profile.map(ResponseEntity::ok)</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                    .orElseGet(() -&gt; ResponseEntity.status(401).body(<span class="keyword">null</span>));</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    }</div>
+</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>}</div>
+</div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_html"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html">com.deusto.deuspotify.controllers.ProfileController</a></div><div class="ttdoc">Controller that handles HTTP requests related to user profiles.</div><div class="ttdef"><b>Definition</b> <a href="_profile_controller_8java_source.html#l00023">ProfileController.java:23</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_html_a6f28d1db06d26dce4b424c7adca3fb93"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#a6f28d1db06d26dce4b424c7adca3fb93">com.deusto.deuspotify.controllers.ProfileController.getProfileById</a></div><div class="ttdeci">ResponseEntity&lt; Profile &gt; getProfileById(@PathVariable Long id)</div><div class="ttdoc">Retrieves a user profile by ID.</div><div class="ttdef"><b>Definition</b> <a href="_profile_controller_8java_source.html#l00050">ProfileController.java:50</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_html_a85c323ac44c3137d04d87e52bf5e85be"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#a85c323ac44c3137d04d87e52bf5e85be">com.deusto.deuspotify.controllers.ProfileController.createProfile</a></div><div class="ttdeci">ResponseEntity&lt;?&gt; createProfile(@RequestBody Profile profile)</div><div class="ttdoc">Creates a new profile.</div><div class="ttdef"><b>Definition</b> <a href="_profile_controller_8java_source.html#l00062">ProfileController.java:62</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_html_a99435c5acd0ce62086457fe294b0c7cb"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#a99435c5acd0ce62086457fe294b0c7cb">com.deusto.deuspotify.controllers.ProfileController.deleteProfile</a></div><div class="ttdeci">ResponseEntity&lt;?&gt; deleteProfile(@PathVariable Long id)</div><div class="ttdoc">Deletes a profile by ID.</div><div class="ttdef"><b>Definition</b> <a href="_profile_controller_8java_source.html#l00090">ProfileController.java:90</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_html_aa2b47fa3227ab5e0d89a13b987218cd2"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#aa2b47fa3227ab5e0d89a13b987218cd2">com.deusto.deuspotify.controllers.ProfileController.getAllProfiles</a></div><div class="ttdeci">ResponseEntity&lt; List&lt; Profile &gt; &gt; getAllProfiles()</div><div class="ttdoc">Retrieves all user profiles.</div><div class="ttdef"><b>Definition</b> <a href="_profile_controller_8java_source.html#l00040">ProfileController.java:40</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_html_aafd928d8bffb499cfe909c06b585dcf1"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#aafd928d8bffb499cfe909c06b585dcf1">com.deusto.deuspotify.controllers.ProfileController.ProfileController</a></div><div class="ttdeci">ProfileController(ProfileService profileService)</div><div class="ttdoc">Constructor for ProfileController.</div><div class="ttdef"><b>Definition</b> <a href="_profile_controller_8java_source.html#l00031">ProfileController.java:31</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_html_ab8fafce1acbdc49400d0a2c00a656b6d"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#ab8fafce1acbdc49400d0a2c00a656b6d">com.deusto.deuspotify.controllers.ProfileController.login</a></div><div class="ttdeci">ResponseEntity&lt;?&gt; login(@RequestBody Profile loginRequest)</div><div class="ttdoc">Authenticates a user by username and password.</div><div class="ttdef"><b>Definition</b> <a href="_profile_controller_8java_source.html#l00104">ProfileController.java:104</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_html_aca483baea8c901ccd60208ac5a2f2bb3"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#aca483baea8c901ccd60208ac5a2f2bb3">com.deusto.deuspotify.controllers.ProfileController.updateProfile</a></div><div class="ttdeci">ResponseEntity&lt;?&gt; updateProfile(@PathVariable Long id, @RequestBody Profile updatedProfile)</div><div class="ttdoc">Updates an existing profile.</div><div class="ttdef"><b>Definition</b> <a href="_profile_controller_8java_source.html#l00078">ProfileController.java:78</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_5eb159725f84c66aafd839904a4acdd0.html">main</a></li><li class="navelem"><a class="el" href="dir_fd3f6763802dee1ad875f6c80eac0bda.html">java</a></li><li class="navelem"><a class="el" href="dir_d8517d8b842053dc3dd7dde525dd9163.html">com</a></li><li class="navelem"><a class="el" href="dir_c829b153888480d1cd6945dc2092d47a.html">deusto</a></li><li class="navelem"><a class="el" href="dir_2fc7bb6d021d87fedeb47034f59180a8.html">deuspotify</a></li><li class="navelem"><a class="el" href="dir_63353bf22bd2073c5a5e4036c4f4ac2e.html">controllers</a></li><li class="navelem"><a class="el" href="_profile_controller_8java.html">ProfileController.java</a></li>
-    <li class="footer">Generated on Sat May 17 2025 15:40:32 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Sat May 17 2025 18:47:43 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

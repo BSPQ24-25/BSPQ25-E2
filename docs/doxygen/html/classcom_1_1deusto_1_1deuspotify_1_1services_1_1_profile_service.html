@@ -95,6 +95,9 @@ $(document).ready(function(){initNavTree('classcom_1_1deusto_1_1deuspotify_1_1se
   <div class="headertitle"><div class="title">com.deusto.deuspotify.services.ProfileService Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Service for managing user profiles, authentication and user details for Spring Security.  
+ <a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for com.deusto.deuspotify.services.ProfileService:</div>
 <div class="dyncontent">
@@ -124,8 +127,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4862c021d83bb2f56ad9141681334a7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_profile_service_8java_source.html#l00020">20</a> of file <a class="el" href="_profile_service_8java_source.html">ProfileService.java</a>.</p>
+<div class="textblock"><p>Service for managing user profiles, authentication and user details for Spring Security. </p>
+<p>This service provides methods for registering, retrieving, updating, and deleting user profiles. It also supports authentication via Spring Security and token-based user identification using JWT. </p>
+
+<p class="definition">Definition at line <a class="el" href="_profile_service_8java_source.html#l00026">26</a> of file <a class="el" href="_profile_service_8java_source.html">ProfileService.java</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2cc1b9df95256d933a2972a870dc8b97" name="a2cc1b9df95256d933a2972a870dc8b97"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2cc1b9df95256d933a2972a870dc8b97">&#9670;&#160;</a></span>ProfileService()</h2>
@@ -152,8 +157,16 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Constructor for ProfileService.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">profileRepository</td><td>Repository to manage Profile entities. </td></tr>
+    <tr><td class="paramname">passwordEncoder</td><td>Password encoder for secure password storage. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_profile_service_8java_source.html#l00026">26</a> of file <a class="el" href="_profile_service_8java_source.html">ProfileService.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_service_8java_source.html#l00040">40</a> of file <a class="el" href="_profile_service_8java_source.html">ProfileService.java</a>.</p>
 
 </div>
 </div>
@@ -173,8 +186,16 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Deletes a user profile.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>ID of the profile to delete. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the profile was deleted, false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_profile_service_8java_source.html#l00077">77</a> of file <a class="el" href="_profile_service_8java_source.html">ProfileService.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_service_8java_source.html#l00129">129</a> of file <a class="el" href="_profile_service_8java_source.html">ProfileService.java</a>.</p>
 
 </div>
 </div>
@@ -192,8 +213,10 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Retrieves all user profiles.</p>
+<dl class="section return"><dt>Returns</dt><dd>List of all Profile entities. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_profile_service_8java_source.html#l00043">43</a> of file <a class="el" href="_profile_service_8java_source.html">ProfileService.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_service_8java_source.html#l00069">69</a> of file <a class="el" href="_profile_service_8java_source.html">ProfileService.java</a>.</p>
 
 </div>
 </div>
@@ -212,8 +235,22 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Extracts and returns the currently authenticated user based on the JWT token in the request.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>The HTTP request containing the Authorization header. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The authenticated Profile. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">RuntimeException</td><td>if no token is found or the user does not exist. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_profile_service_8java_source.html#l00090">90</a> of file <a class="el" href="_profile_service_8java_source.html">ProfileService.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_service_8java_source.html#l00156">156</a> of file <a class="el" href="_profile_service_8java_source.html">ProfileService.java</a>.</p>
 
 </div>
 </div>
@@ -232,8 +269,16 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Retrieves a profile by its ID.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>ID of the profile. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Optional containing the Profile if found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_profile_service_8java_source.html#l00047">47</a> of file <a class="el" href="_profile_service_8java_source.html">ProfileService.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_service_8java_source.html#l00079">79</a> of file <a class="el" href="_profile_service_8java_source.html">ProfileService.java</a>.</p>
 
 </div>
 </div>
@@ -252,8 +297,22 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Loads a user by their username. Required for Spring Security authentication.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">username</td><td>Username of the user. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>UserDetails object containing user information. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">UsernameNotFoundException</td><td>if the user is not found. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_profile_service_8java_source.html#l00032">32</a> of file <a class="el" href="_profile_service_8java_source.html">ProfileService.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_service_8java_source.html#l00053">53</a> of file <a class="el" href="_profile_service_8java_source.html">ProfileService.java</a>.</p>
 
 </div>
 </div>
@@ -282,8 +341,17 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Validates user login by comparing raw and encoded passwords.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">username</td><td>The username. </td></tr>
+    <tr><td class="paramname">password</td><td>The raw password. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Optional containing the Profile if login is successful. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_profile_service_8java_source.html#l00085">85</a> of file <a class="el" href="_profile_service_8java_source.html">ProfileService.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_service_8java_source.html#l00144">144</a> of file <a class="el" href="_profile_service_8java_source.html">ProfileService.java</a>.</p>
 
 </div>
 </div>
@@ -302,8 +370,22 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Registers a new user with encoded password.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">profile</td><td>Profile object containing registration data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The saved Profile object. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">RuntimeException</td><td>if the username already exists. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_profile_service_8java_source.html#l00052">52</a> of file <a class="el" href="_profile_service_8java_source.html">ProfileService.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_service_8java_source.html#l00091">91</a> of file <a class="el" href="_profile_service_8java_source.html">ProfileService.java</a>.</p>
 
 </div>
 </div>
@@ -332,8 +414,17 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Updates an existing user profile.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>ID of the profile to update. </td></tr>
+    <tr><td class="paramname">updatedProfile</td><td>New profile data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Optional containing the updated Profile. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_profile_service_8java_source.html#l00061">61</a> of file <a class="el" href="_profile_service_8java_source.html">ProfileService.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_profile_service_8java_source.html#l00107">107</a> of file <a class="el" href="_profile_service_8java_source.html">ProfileService.java</a>.</p>
 
 </div>
 </div>
@@ -346,7 +437,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>com</b></li><li class="navelem"><b>deusto</b></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify.html">deuspotify</a></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify_1_1services.html">services</a></li><li class="navelem"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html">ProfileService</a></li>
-    <li class="footer">Generated on Sat May 17 2025 15:40:32 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Sat May 17 2025 18:47:43 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>
