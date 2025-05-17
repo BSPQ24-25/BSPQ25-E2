@@ -2,35 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Profile</title>
+    <title data-i18n="editProfile.title">Edit Profile</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="i18n.js" defer></script>
 </head>
 <body>
-    <h1>Edit Profile</h1>
+    <div style="position: absolute; top: 10px; right: 20px;">
+        <button onclick="loadTranslations('es')" title="Español">Es</button>
+        <button onclick="loadTranslations('en')" title="English">En</button>
+        <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
+    </div>
+
+    <h1 data-i18n="editProfile.heading">Edit Profile</h1>
 
     <div id="profile-container">
-        <p><strong>Username:</strong> <span id="username">Loading...</span></p>
-        <p><strong>Email:</strong> <span id="email">Loading...</span></p>
+        <p><strong data-i18n="editProfile.usernameLabel">Username:</strong> <span id="username">Loading...</span></p>
+        <p><strong data-i18n="editProfile.emailLabel">Email:</strong> <span id="email">Loading...</span></p>
     </div>
 
     <div id="edit-profile-form" style="margin-top: 20px;">
-        <h3>Update Profile</h3>
+        <h3 data-i18n="editProfile.updateHeading">Update Profile</h3>
         <form id="profileForm">
-            <label for="newUsername">New Username:</label>
+            <label for="newUsername" data-i18n="editProfile.newUsernameLabel">New Username:</label>
             <input type="text" id="newUsername" name="newUsername" required>
             <br><br>
 
-            <label for="newEmail">New Email:</label>
+            <label for="newEmail" data-i18n="editProfile.newEmailLabel">New Email:</label>
             <input type="email" id="newEmail" name="newEmail" required>
             <br><br>
 
-            <label for="newPassword">New Password (optional):</label>
-            <input type="password" id="newPassword" name="newPassword" placeholder="Leave blank to keep current">
+            <label for="newPassword" data-i18n="editProfile.newPasswordLabel">New Password (optional):</label>
+            <input type="password" id="newPassword" name="newPassword" placeholder="Leave blank to keep current" data-i18n-placeholder="editProfile.newPasswordPlaceholder">
             <br><br>
 
-            <button type="submit">Update</button>
+            <button type="submit" data-i18n="editProfile.updateButton">Update</button>
         </form>
-        <div id="updateMsg" style="color: green; display: none;">Profile updated!</div>
+        <div id="updateMsg" style="color: green; display: none;" data-i18n="editProfile.updateMsg">Profile updated!</div>
     </div>
 </body>
 </html>
