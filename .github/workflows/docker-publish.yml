@@ -25,15 +25,25 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USER }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+    # Default build (all platforms supported by host / default)
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
         context: .
-        file: ./Dockerfile
-        platforms: linux/amd64,linux/arm64
         push: true
         tags: |
           endikablanco/deuspotify:latest
           endikablanco/deuspotify:${{ github.sha }}
-        cache-from: type=registry,ref=endikablanco/deuspotify:cache
-        cache-to: type=registry,ref=endikablanco/deuspotify:cache,mode=max
+
+    # ARM64-specific build
+    - name: Build and push Docker image for ARM64
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        platforms: linux/arm64/v8
+        tags: |
+          endikablanco/deuspotify:latest-arm64
+          endikablanco/deuspotify:${{ github.sha }}-arm64
+        cache-from: type=registry,ref=endikablanco/deuspotify:cache-arm64
+        cache-to: type=registry,ref=endikablanco/deuspotify:cache-arm64,mode=max
