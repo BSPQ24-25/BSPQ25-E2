@@ -11,43 +11,51 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
-import org.springframework.http.HttpMethod;
 
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Main security configuration for the application.
+ * <p>
+ * Configures login, logout, password encoding, authorization rules, and i18n support.
+ * </p>
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
     private final ProfileService profileService;
 
+    /**
+     * Constructor for injecting the profile service.
+     *
+     * @param profileService the user profile service implementing UserDetailsService
+     */
     public SecurityConfig(ProfileService profileService) {
         this.profileService = profileService;
     }
 
+    /**
+     * Defines the main HTTP security configuration.
+     *
+     * @param http the HTTP security object
+     * @return the configured SecurityFilterChain
+     * @throws Exception if configuration fails
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
-                    "/",
-                    "/login",
-                    "/login.html",
-                    "/register.html",
-                    "/styles.css",
-                    "/static/**",
-                    "/api/i18n",
-                    "/api/profiles",
-                    "/auth/register",
-                    "/auth/login"
+                    "/", "/login", "/login.html", "/register.html",
+                    "/styles.css", "/static/**", "/api/i18n",
+                    "/api/profiles", "/auth/register", "/auth/login"
                 ).permitAll()
                 .anyRequest().authenticated()
             )
@@ -70,6 +78,13 @@ public class SecurityConfig {
         return http.build();
     }
 
+    /**
+     * Configures the AuthenticationManager with custom authentication provider.
+     *
+     * @param authenticationConfiguration the base authentication config
+     * @return a configured AuthenticationManager
+     * @throws Exception if setup fails
+     */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -79,25 +94,40 @@ public class SecurityConfig {
         return new ProviderManager(List.of(authProvider));
     }
 
+    /**
+     * Provides a BCrypt password encoder.
+     *
+     * @return BCryptPasswordEncoder instance
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    // I18n
+    // === Internationalization ===
 
+    /**
+     * Configures the message source for i18n (messages.properties).
+     *
+     * @return the message source
+     */
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasename("messages"); // busca messages.properties
+        messageSource.setBasename("messages");
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
     }
 
+    /**
+     * Configures the default locale as Spanish and resolves locale from the "Accept-Language" header.
+     *
+     * @return the locale resolver
+     */
     @Bean
     public LocaleResolver localeResolver() {
         AcceptHeaderLocaleResolver resolver = new AcceptHeaderLocaleResolver();
-        resolver.setDefaultLocale(new Locale("es")); // idioma por defecto: español
+        resolver.setDefaultLocale(new Locale("es"));
         return resolver;
     }
 }

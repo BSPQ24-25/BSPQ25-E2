@@ -1,0 +1,181 @@
+\doxysection{com.\+deusto.\+deuspotify.\+controllers.\+Song\+Controller Class Reference}
+\hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller}{}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller}\index{com.deusto.deuspotify.controllers.SongController@{com.deusto.deuspotify.controllers.SongController}}
+
+
+REST controller for managing songs.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song}{Song}} $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a49839a11b943fded422a64110178f380}{get\+All\+Songs}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves all songs from the database. \end{DoxyCompactList}\item 
+Optional$<$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song}{Song}} $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a5a0942dab7084044f04969e56749f45e}{get\+Song\+By\+Id}} (@Path\+Variable Long id)
+\begin{DoxyCompactList}\small\item\em Retrieves a song by its ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song}{Song}} \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a7582865a2113822f5da04fbc440d078e}{add\+Song}} (@Request\+Body \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song}{Song}} song)
+\begin{DoxyCompactList}\small\item\em Adds a new song. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song}{Song}} \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a37512e9e2be49f40a819c2a7bb0044e5}{add\+Song\+With\+File}} ( @Request\+Param("{}name"{}) String name, @Request\+Param("{}album"{}) String album, @Request\+Param("{}artists"{}) String artists, @Request\+Param("{}genres"{}) String genres, @Request\+Param("{}duration"{}) double duration, @Request\+Param("{}date\+\_\+of\+\_\+release"{}) @Date\+Time\+Format(pattern="{}yyyy-\/MM-\/dd"{}) Date date\+Of\+Release, @Request\+Param("{}file"{}) org.\+springframework.\+web.\+multipart.\+Multipart\+File file)
+\begin{DoxyCompactList}\small\item\em Uploads a song along with its audio file. \end{DoxyCompactList}\item 
+Response\+Entity$<$ String $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a17999e85947ce5bddd6cae3f2d0527fc}{create\+Shared\+Song}} ( @Request\+Param("{}name"{}) String name, @Request\+Param("{}album"{}) String album, @Request\+Param("{}artists"{}) String artists, @Request\+Param("{}genres"{}) String genres, @Request\+Param("{}duration"{}) double duration, @Request\+Param("{}date\+Of\+Release"{}) String date\+Of\+Release, @Request\+Param("{}file\+Path"{}) String file\+Path)
+\begin{DoxyCompactList}\small\item\em Creates a shared song from an existing file path. \end{DoxyCompactList}\item 
+Response\+Entity$<$?$>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a4e8968316ee8153e8a6f3f372633b7b7}{update\+Song\+Date}} ( @Path\+Variable Long id, @Request\+Param("{}date\+\_\+of\+\_\+release"{}) long date\+Of\+Release\+Millis)
+\begin{DoxyCompactList}\small\item\em Updates a song\textquotesingle{}s release date. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a85dfa1284cb139f2c1471bb72965c7ae}{delete\+Song}} (@Path\+Variable Long id)
+\begin{DoxyCompactList}\small\item\em Deletes a song by ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+REST controller for managing songs. 
+
+Provides endpoints to create, retrieve, update, and delete songs. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a7582865a2113822f5da04fbc440d078e}\index{com.deusto.deuspotify.controllers.SongController@{com.deusto.deuspotify.controllers.SongController}!addSong@{addSong}}
+\index{addSong@{addSong}!com.deusto.deuspotify.controllers.SongController@{com.deusto.deuspotify.controllers.SongController}}
+\doxysubsubsection{\texorpdfstring{addSong()}{addSong()}}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a7582865a2113822f5da04fbc440d078e} 
+\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song}{Song}} com.\+deusto.\+deuspotify.\+controllers.\+Song\+Controller.\+add\+Song (\begin{DoxyParamCaption}\item[{@Request\+Body \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song}{Song}}}]{song}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds a new song. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em song} & the song to add \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the added song 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a37512e9e2be49f40a819c2a7bb0044e5}\index{com.deusto.deuspotify.controllers.SongController@{com.deusto.deuspotify.controllers.SongController}!addSongWithFile@{addSongWithFile}}
+\index{addSongWithFile@{addSongWithFile}!com.deusto.deuspotify.controllers.SongController@{com.deusto.deuspotify.controllers.SongController}}
+\doxysubsubsection{\texorpdfstring{addSongWithFile()}{addSongWithFile()}}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a37512e9e2be49f40a819c2a7bb0044e5} 
+\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song}{Song}} com.\+deusto.\+deuspotify.\+controllers.\+Song\+Controller.\+add\+Song\+With\+File (\begin{DoxyParamCaption}\item[{@Request\+Param("{}name"{}) String}]{name}{, }\item[{@Request\+Param("{}album"{}) String}]{album}{, }\item[{@Request\+Param("{}artists"{}) String}]{artists}{, }\item[{@Request\+Param("{}genres"{}) String}]{genres}{, }\item[{@Request\+Param("{}duration"{}) double}]{duration}{, }\item[{@Request\+Param("{}date\+\_\+of\+\_\+release"{}) @Date\+Time\+Format(pattern="{}yyyy-\/MM-\/dd"{}) Date}]{date\+Of\+Release}{, }\item[{@Request\+Param("{}file"{}) org.\+springframework.\+web.\+multipart.\+Multipart\+File}]{file}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Uploads a song along with its audio file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & name of the song \\
+\hline
+{\em album} & album name \\
+\hline
+{\em artists} & comma-\/separated artist names \\
+\hline
+{\em genres} & comma-\/separated genres \\
+\hline
+{\em duration} & duration in seconds \\
+\hline
+{\em date\+Of\+Release} & release date \\
+\hline
+{\em file} & audio file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the added song 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a17999e85947ce5bddd6cae3f2d0527fc}\index{com.deusto.deuspotify.controllers.SongController@{com.deusto.deuspotify.controllers.SongController}!createSharedSong@{createSharedSong}}
+\index{createSharedSong@{createSharedSong}!com.deusto.deuspotify.controllers.SongController@{com.deusto.deuspotify.controllers.SongController}}
+\doxysubsubsection{\texorpdfstring{createSharedSong()}{createSharedSong()}}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a17999e85947ce5bddd6cae3f2d0527fc} 
+Response\+Entity$<$ String $>$ com.\+deusto.\+deuspotify.\+controllers.\+Song\+Controller.\+create\+Shared\+Song (\begin{DoxyParamCaption}\item[{@Request\+Param("{}name"{}) String}]{name}{, }\item[{@Request\+Param("{}album"{}) String}]{album}{, }\item[{@Request\+Param("{}artists"{}) String}]{artists}{, }\item[{@Request\+Param("{}genres"{}) String}]{genres}{, }\item[{@Request\+Param("{}duration"{}) double}]{duration}{, }\item[{@Request\+Param("{}date\+Of\+Release"{}) String}]{date\+Of\+Release}{, }\item[{@Request\+Param("{}file\+Path"{}) String}]{file\+Path}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Creates a shared song from an existing file path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & name of the song \\
+\hline
+{\em album} & album name \\
+\hline
+{\em artists} & artists list \\
+\hline
+{\em genres} & genres list \\
+\hline
+{\em duration} & duration in seconds \\
+\hline
+{\em date\+Of\+Release} & release date in yyyy-\/\+MM-\/dd \\
+\hline
+{\em file\+Path} & path to the file on disk \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+HTML response notifying the user of success 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a85dfa1284cb139f2c1471bb72965c7ae}\index{com.deusto.deuspotify.controllers.SongController@{com.deusto.deuspotify.controllers.SongController}!deleteSong@{deleteSong}}
+\index{deleteSong@{deleteSong}!com.deusto.deuspotify.controllers.SongController@{com.deusto.deuspotify.controllers.SongController}}
+\doxysubsubsection{\texorpdfstring{deleteSong()}{deleteSong()}}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a85dfa1284cb139f2c1471bb72965c7ae} 
+void com.\+deusto.\+deuspotify.\+controllers.\+Song\+Controller.\+delete\+Song (\begin{DoxyParamCaption}\item[{@Path\+Variable Long}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Deletes a song by ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & the song\textquotesingle{}s ID \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a49839a11b943fded422a64110178f380}\index{com.deusto.deuspotify.controllers.SongController@{com.deusto.deuspotify.controllers.SongController}!getAllSongs@{getAllSongs}}
+\index{getAllSongs@{getAllSongs}!com.deusto.deuspotify.controllers.SongController@{com.deusto.deuspotify.controllers.SongController}}
+\doxysubsubsection{\texorpdfstring{getAllSongs()}{getAllSongs()}}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a49839a11b943fded422a64110178f380} 
+List$<$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song}{Song}} $>$ com.\+deusto.\+deuspotify.\+controllers.\+Song\+Controller.\+get\+All\+Songs (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves all songs from the database. 
+
+\begin{DoxyReturn}{Returns}
+list of songs 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a5a0942dab7084044f04969e56749f45e}\index{com.deusto.deuspotify.controllers.SongController@{com.deusto.deuspotify.controllers.SongController}!getSongById@{getSongById}}
+\index{getSongById@{getSongById}!com.deusto.deuspotify.controllers.SongController@{com.deusto.deuspotify.controllers.SongController}}
+\doxysubsubsection{\texorpdfstring{getSongById()}{getSongById()}}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a5a0942dab7084044f04969e56749f45e} 
+Optional$<$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song}{Song}} $>$ com.\+deusto.\+deuspotify.\+controllers.\+Song\+Controller.\+get\+Song\+By\+Id (\begin{DoxyParamCaption}\item[{@Path\+Variable Long}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves a song by its ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & the ID of the song \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Optional containing the song, if found 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a4e8968316ee8153e8a6f3f372633b7b7}\index{com.deusto.deuspotify.controllers.SongController@{com.deusto.deuspotify.controllers.SongController}!updateSongDate@{updateSongDate}}
+\index{updateSongDate@{updateSongDate}!com.deusto.deuspotify.controllers.SongController@{com.deusto.deuspotify.controllers.SongController}}
+\doxysubsubsection{\texorpdfstring{updateSongDate()}{updateSongDate()}}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_song_controller_a4e8968316ee8153e8a6f3f372633b7b7} 
+Response\+Entity$<$?$>$ com.\+deusto.\+deuspotify.\+controllers.\+Song\+Controller.\+update\+Song\+Date (\begin{DoxyParamCaption}\item[{@Path\+Variable Long}]{id}{, }\item[{@Request\+Param("{}date\+\_\+of\+\_\+release"{}) long}]{date\+Of\+Release\+Millis}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Updates a song\textquotesingle{}s release date. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & song ID \\
+\hline
+{\em date\+Of\+Release\+Millis} & release date in milliseconds \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response\+Entity indicating success or failure 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/com/deusto/deuspotify/controllers/\mbox{\hyperlink{_song_controller_8java}{Song\+Controller.\+java}}\end{DoxyCompactItemize}

@@ -1,0 +1,166 @@
+\doxysection{com.\+deusto.\+deuspotify.\+controllers.\+Playlist\+Controller Class Reference}
+\hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller}{}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller}\index{com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}}
+
+
+REST controller for managing playlists.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a47c3de5be06c446c93bf27d1b8d2d608}{Playlist\+Controller}} (\mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service}{Deuspotify\+Service}} deuspotify\+Service, \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service}{Profile\+Service}} profile\+Service)
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxylink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller}{Playlist\+Controller} with the required services. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}} $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_aa51a48ee778c2bfa3e4b0d4a2a76eb12}{get\+All\+Playlists}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves all playlists. \end{DoxyCompactList}\item 
+Optional$<$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}} $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_adfbe041c33785976643d0382cc03f260}{get\+Playlist\+By\+Id}} (@Path\+Variable Long id)
+\begin{DoxyCompactList}\small\item\em Retrieves a playlist by its ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}} \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a3e356e143e63a70116a91406ac7270d6}{create\+Playlist}} (@Request\+Body \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}} playlist)
+\begin{DoxyCompactList}\small\item\em Creates a new playlist. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}} \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a2d5767a6881bce6e8bc2a0ddeb46f7f4}{update\+Playlist}} (@Path\+Variable Long id, @Request\+Body \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}} playlist)
+\begin{DoxyCompactList}\small\item\em Updates an existing playlist. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_af563b84c67efbbe33d44ac6b2ba781a2}{delete\+Playlist}} (@Path\+Variable Long id)
+\begin{DoxyCompactList}\small\item\em Deletes a playlist by its ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}} \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a5d4c21632f49645f79d9c419cb82b7b4}{update\+Playlist\+Songs}} (@Path\+Variable Long id, @Request\+Body List$<$ Long $>$ song\+Ids)
+\begin{DoxyCompactList}\small\item\em Updates the list of songs in a given playlist. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+REST controller for managing playlists. 
+
+Provides endpoints to create, read, update, and delete playlists, as well as to update their associated songs. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a47c3de5be06c446c93bf27d1b8d2d608}\index{com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}!PlaylistController@{PlaylistController}}
+\index{PlaylistController@{PlaylistController}!com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}}
+\doxysubsubsection{\texorpdfstring{PlaylistController()}{PlaylistController()}}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a47c3de5be06c446c93bf27d1b8d2d608} 
+com.\+deusto.\+deuspotify.\+controllers.\+Playlist\+Controller.\+Playlist\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service}{Deuspotify\+Service}}}]{deuspotify\+Service}{, }\item[{\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service}{Profile\+Service}}}]{profile\+Service}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a new \doxylink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller}{Playlist\+Controller} with the required services. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em deuspotify\+Service} & Service handling playlist operations \\
+\hline
+{\em profile\+Service} & Service handling profile operations (not used in this controller) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a3e356e143e63a70116a91406ac7270d6}\index{com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}!createPlaylist@{createPlaylist}}
+\index{createPlaylist@{createPlaylist}!com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}}
+\doxysubsubsection{\texorpdfstring{createPlaylist()}{createPlaylist()}}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a3e356e143e63a70116a91406ac7270d6} 
+\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}} com.\+deusto.\+deuspotify.\+controllers.\+Playlist\+Controller.\+create\+Playlist (\begin{DoxyParamCaption}\item[{@Request\+Body \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}}}]{playlist}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Creates a new playlist. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em playlist} & the playlist to create \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the created playlist 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_af563b84c67efbbe33d44ac6b2ba781a2}\index{com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}!deletePlaylist@{deletePlaylist}}
+\index{deletePlaylist@{deletePlaylist}!com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}}
+\doxysubsubsection{\texorpdfstring{deletePlaylist()}{deletePlaylist()}}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_af563b84c67efbbe33d44ac6b2ba781a2} 
+void com.\+deusto.\+deuspotify.\+controllers.\+Playlist\+Controller.\+delete\+Playlist (\begin{DoxyParamCaption}\item[{@Path\+Variable Long}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Deletes a playlist by its ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & the ID of the playlist to delete \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_aa51a48ee778c2bfa3e4b0d4a2a76eb12}\index{com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}!getAllPlaylists@{getAllPlaylists}}
+\index{getAllPlaylists@{getAllPlaylists}!com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}}
+\doxysubsubsection{\texorpdfstring{getAllPlaylists()}{getAllPlaylists()}}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_aa51a48ee778c2bfa3e4b0d4a2a76eb12} 
+List$<$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}} $>$ com.\+deusto.\+deuspotify.\+controllers.\+Playlist\+Controller.\+get\+All\+Playlists (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves all playlists. 
+
+\begin{DoxyReturn}{Returns}
+a list of all playlists 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_adfbe041c33785976643d0382cc03f260}\index{com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}!getPlaylistById@{getPlaylistById}}
+\index{getPlaylistById@{getPlaylistById}!com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}}
+\doxysubsubsection{\texorpdfstring{getPlaylistById()}{getPlaylistById()}}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_adfbe041c33785976643d0382cc03f260} 
+Optional$<$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}} $>$ com.\+deusto.\+deuspotify.\+controllers.\+Playlist\+Controller.\+get\+Playlist\+By\+Id (\begin{DoxyParamCaption}\item[{@Path\+Variable Long}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves a playlist by its ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & the ID of the playlist \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the playlist if found, otherwise an empty Optional 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a2d5767a6881bce6e8bc2a0ddeb46f7f4}\index{com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}!updatePlaylist@{updatePlaylist}}
+\index{updatePlaylist@{updatePlaylist}!com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}}
+\doxysubsubsection{\texorpdfstring{updatePlaylist()}{updatePlaylist()}}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a2d5767a6881bce6e8bc2a0ddeb46f7f4} 
+\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}} com.\+deusto.\+deuspotify.\+controllers.\+Playlist\+Controller.\+update\+Playlist (\begin{DoxyParamCaption}\item[{@Path\+Variable Long}]{id}{, }\item[{@Request\+Body \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}}}]{playlist}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Updates an existing playlist. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & the ID of the playlist to update \\
+\hline
+{\em playlist} & the updated playlist data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the updated playlist 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a5d4c21632f49645f79d9c419cb82b7b4}\index{com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}!updatePlaylistSongs@{updatePlaylistSongs}}
+\index{updatePlaylistSongs@{updatePlaylistSongs}!com.deusto.deuspotify.controllers.PlaylistController@{com.deusto.deuspotify.controllers.PlaylistController}}
+\doxysubsubsection{\texorpdfstring{updatePlaylistSongs()}{updatePlaylistSongs()}}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a5d4c21632f49645f79d9c419cb82b7b4} 
+\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}} com.\+deusto.\+deuspotify.\+controllers.\+Playlist\+Controller.\+update\+Playlist\+Songs (\begin{DoxyParamCaption}\item[{@Path\+Variable Long}]{id}{, }\item[{@Request\+Body List$<$ Long $>$}]{song\+Ids}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Updates the list of songs in a given playlist. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & the ID of the playlist to update \\
+\hline
+{\em song\+Ids} & list of song IDs to set in the playlist \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the updated playlist 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Runtime\+Exception} & if the playlist is not found \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/com/deusto/deuspotify/controllers/\mbox{\hyperlink{_playlist_controller_8java}{Playlist\+Controller.\+java}}\end{DoxyCompactItemize}

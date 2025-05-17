@@ -1,0 +1,100 @@
+\doxysection{com.\+deusto.\+deuspotify.\+controllers.\+Auth\+Controller Class Reference}
+\hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller}{}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller}\index{com.deusto.deuspotify.controllers.AuthController@{com.deusto.deuspotify.controllers.AuthController}}
+
+
+REST controller responsible for user authentication.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller_a360587e800f623d8e5812db288c1f392}{Auth\+Controller}} (Authentication\+Manager authentication\+Manager, \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service}{Profile\+Service}} profile\+Service, \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util}{Jwt\+Util}} jwt\+Util)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller}{Auth\+Controller}. \end{DoxyCompactList}\item 
+Response\+Entity$<$?$>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller_aa9611111e39ee3e1e7e9bbfd958e8f46}{login}} (@Request\+Body Map$<$ String, String $>$ request)
+\begin{DoxyCompactList}\small\item\em Authenticates the user and generates a JWT token. \end{DoxyCompactList}\item 
+Response\+Entity$<$?$>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller_a80a60e8d1896b6da14785851114988fa}{register}} (@Request\+Body \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile}{Profile}} profile)
+\begin{DoxyCompactList}\small\item\em Registers a new user. \end{DoxyCompactList}\item 
+Response\+Entity$<$?$>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller_a9739f35c4e2d67faa2c7051192975f0d}{logout}} ()
+\begin{DoxyCompactList}\small\item\em Logs the user out. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+REST controller responsible for user authentication. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller_a360587e800f623d8e5812db288c1f392}\index{com.deusto.deuspotify.controllers.AuthController@{com.deusto.deuspotify.controllers.AuthController}!AuthController@{AuthController}}
+\index{AuthController@{AuthController}!com.deusto.deuspotify.controllers.AuthController@{com.deusto.deuspotify.controllers.AuthController}}
+\doxysubsubsection{\texorpdfstring{AuthController()}{AuthController()}}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller_a360587e800f623d8e5812db288c1f392} 
+com.\+deusto.\+deuspotify.\+controllers.\+Auth\+Controller.\+Auth\+Controller (\begin{DoxyParamCaption}\item[{Authentication\+Manager}]{authentication\+Manager}{, }\item[{\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service}{Profile\+Service}}}]{profile\+Service}{, }\item[{\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util}{Jwt\+Util}}}]{jwt\+Util}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for \doxylink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller}{Auth\+Controller}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em authentication\+Manager} & Handles authentication logic. \\
+\hline
+{\em profile\+Service} & Provides profile-\/related services. \\
+\hline
+{\em jwt\+Util} & Utility to generate JWT tokens. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller_aa9611111e39ee3e1e7e9bbfd958e8f46}\index{com.deusto.deuspotify.controllers.AuthController@{com.deusto.deuspotify.controllers.AuthController}!login@{login}}
+\index{login@{login}!com.deusto.deuspotify.controllers.AuthController@{com.deusto.deuspotify.controllers.AuthController}}
+\doxysubsubsection{\texorpdfstring{login()}{login()}}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller_aa9611111e39ee3e1e7e9bbfd958e8f46} 
+Response\+Entity$<$?$>$ com.\+deusto.\+deuspotify.\+controllers.\+Auth\+Controller.\+login (\begin{DoxyParamCaption}\item[{@Request\+Body Map$<$ String, String $>$}]{request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Authenticates the user and generates a JWT token. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & A map containing "{}username"{} and "{}password"{}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A JWT token if authentication is successful. 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller_a9739f35c4e2d67faa2c7051192975f0d}\index{com.deusto.deuspotify.controllers.AuthController@{com.deusto.deuspotify.controllers.AuthController}!logout@{logout}}
+\index{logout@{logout}!com.deusto.deuspotify.controllers.AuthController@{com.deusto.deuspotify.controllers.AuthController}}
+\doxysubsubsection{\texorpdfstring{logout()}{logout()}}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller_a9739f35c4e2d67faa2c7051192975f0d} 
+Response\+Entity$<$?$>$ com.\+deusto.\+deuspotify.\+controllers.\+Auth\+Controller.\+logout (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Logs the user out. 
+
+(Token invalidation can be implemented here.) \begin{DoxyReturn}{Returns}
+A confirmation message. 
+\end{DoxyReturn}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller_a80a60e8d1896b6da14785851114988fa}\index{com.deusto.deuspotify.controllers.AuthController@{com.deusto.deuspotify.controllers.AuthController}!register@{register}}
+\index{register@{register}!com.deusto.deuspotify.controllers.AuthController@{com.deusto.deuspotify.controllers.AuthController}}
+\doxysubsubsection{\texorpdfstring{register()}{register()}}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_auth_controller_a80a60e8d1896b6da14785851114988fa} 
+Response\+Entity$<$?$>$ com.\+deusto.\+deuspotify.\+controllers.\+Auth\+Controller.\+register (\begin{DoxyParamCaption}\item[{@Request\+Body \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile}{Profile}}}]{profile}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Registers a new user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em profile} & The profile data to register. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The registered profile or a message. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/com/deusto/deuspotify/controllers/\mbox{\hyperlink{_auth_controller_8java}{Auth\+Controller.\+java}}\end{DoxyCompactItemize}
