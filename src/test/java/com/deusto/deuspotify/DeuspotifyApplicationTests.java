@@ -1,3 +1,18 @@
+/**
+ * @class DeuspotifyApplicationTests
+ * @brief Test suite for core functionality of the Deuspotify application.
+ *
+ * This class covers:
+ * - Authentication workflows using {@link AuthController}
+ * - User registration, login, and profile operations via {@link ProfileService}
+ * - Playlist and song operations through {@link DeuspotifyServiceImpl}
+ * - Persistence layer tests for repositories
+ * - Model-level validation for {@link Song}, {@link Profile}, and {@link Playlist}
+ * - File upload processing and validation logic
+ * 
+ * Uses Mockito for mocking dependencies and Spring Boot test annotations.
+ */
+
 package com.deusto.deuspotify;
 
 import com.deusto.deuspotify.model.Profile;
@@ -87,6 +102,10 @@ class DeuspotifyApplicationTests {
 
     // Auth Controller tests
 
+    /**
+     * @test Verifies the login flow using the AuthController.
+     * Ensures the token is returned for valid credentials.
+     */
     @Test
     void loginTest() {
         String username = "testUser";
@@ -107,6 +126,10 @@ class DeuspotifyApplicationTests {
         assertEquals(token, responseBody.get("token"));
     }
 
+    /**
+     * @test Tests user registration through AuthController.
+     * Validates user is correctly persisted.
+     */
     @Test
     void registerTest() {
         Profile newProfile = new Profile();
@@ -120,7 +143,9 @@ class DeuspotifyApplicationTests {
         assertEquals(200, response.getStatusCode().value());
         assertEquals(newProfile, response.getBody());
     }
-
+    /**
+     * @test Ensures the logout endpoint returns a success response.
+     */
     @Test
     void logoutTest() {
         ResponseEntity<?> response = authController.logout();
@@ -131,6 +156,9 @@ class DeuspotifyApplicationTests {
         assertEquals("Logged out successfully", responseBody.get("message"));
     }
 
+    /**
+    * @test Retrieves all profiles using ProfileRepository mock.
+    */
     // Profile Repository tests
     @Test
     void getAllProfilesTest() {
@@ -146,6 +174,9 @@ class DeuspotifyApplicationTests {
         assertTrue(profiles.contains(profile2));
     }
 
+    /**
+    * @test Creates a new Profile and verifies repository interaction.
+    */
     @Test
     void createProfileTest() {
         Profile newProfile = new Profile();
@@ -161,6 +192,9 @@ class DeuspotifyApplicationTests {
         assertEquals("new@example.com", savedProfile.getEmail());
     }
 
+    /**
+    * @test Retrieves a Profile by its ID.
+    */
     @Test
     void getProfileByIdTest() {
         Profile profile = new Profile();
@@ -174,6 +208,9 @@ class DeuspotifyApplicationTests {
         assertEquals(1L, foundProfile.get().getId());
     }
 
+    /**
+     * @test Updates a Profile's username.
+     */
     @Test
     void updateProfileTest() {
         Profile existingProfile = new Profile();
@@ -192,6 +229,9 @@ class DeuspotifyApplicationTests {
         assertEquals("newUser", existingProfile.getUsername());
     }
 
+    /**
+     * @test Simulates a login check by comparing plain text credentials.
+     */
     @Test
     void profileLoginTest() {
         Profile profile = new Profile();
@@ -209,6 +249,9 @@ class DeuspotifyApplicationTests {
         assertEquals("testUser", loggedInProfile.getUsername());
     }
 
+    /**
+     * @test Deletes a profile using mocked repository.
+     */
     @Test
     void deleteProfileTest() {
         Profile profile = new Profile();
@@ -223,7 +266,9 @@ class DeuspotifyApplicationTests {
         // Verify that the profile was deleted
         verify(profileRepository, times(1)).delete(profile);
     }
-
+    /**
+     * @test Validates that a profile can be retrieved by ID and its username is correct.
+     */
     @Test
     void getMyProfileTest() {
         Profile profile = new Profile();
@@ -238,6 +283,10 @@ class DeuspotifyApplicationTests {
         assertEquals("testUser", foundProfile.get().getUsername());
     }
 
+    /**
+     * @test Tests the loading of a user by username from the profile repository.
+     * Ensures admin roles are correctly assigned.
+     */
     //User tests
     @Test
     void loadUserByUsernameTest() {
@@ -260,6 +309,9 @@ class DeuspotifyApplicationTests {
         assertTrue(userDetails.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN")));
     }
 
+    /**
+     * @test Ensures an exception is thrown when trying to load a non-existent user.
+     */
     @Test
     void loadUserByUsernameNotFoundTest() {
         when(profileRepository.findByUsername("unknownUser")).thenReturn(Optional.empty());
@@ -269,6 +321,9 @@ class DeuspotifyApplicationTests {
         });
     }
 
+    /**
+     * @test Tests extraction of the authenticated user from a valid JWT token.
+     */
     @Test
     void getAuthenticatedUserTest() {
         String token = "valid.jwt.token";
@@ -290,6 +345,9 @@ class DeuspotifyApplicationTests {
         assertEquals(username, authenticated.getUsername());
     }
 
+    /**
+     * @test Ensures an exception is thrown when no JWT token is present in the request.
+     */
     @Test
     void getAuthenticatedUserMissingTokenTest() {
         HttpServletRequest request = mock(HttpServletRequest.class);
@@ -300,6 +358,9 @@ class DeuspotifyApplicationTests {
         });
     }
 
+    /**
+     * @test Verifies that a playlist can be created and saved with correct ownership and public flag.
+     */
     // Playlist Repository tests
     @Test
     void createPlaylistTest() {
@@ -316,6 +377,9 @@ class DeuspotifyApplicationTests {
         assertEquals(2, savedPlaylist.getOwners().size());
     }
 
+    /**
+     * @test Simulates adding a song to a playlist and verifies it is included in the playlist's songs list.
+     */
     @Test
     void addSongToPlaylistTest() {
         Playlist playlist = new Playlist();
@@ -331,6 +395,10 @@ class DeuspotifyApplicationTests {
         assertTrue(playlist.getSongs().contains(song));
     }
 
+
+    /**
+     * @test Retrieves all playlists and verifies the number and presence of expected elements.
+     */
     @Test
     void getAllPlaylistsTest() {
         Playlist playlist1 = new Playlist();
@@ -345,6 +413,9 @@ class DeuspotifyApplicationTests {
         assertTrue(playlists.contains(playlist2));
     }
 
+    /**
+     * @test Retrieves a playlist by ID and verifies the result matches the expected playlist.
+     */
     @Test
     void getPlaylistByIdTest() {
         Playlist playlist = new Playlist();
@@ -358,6 +429,9 @@ class DeuspotifyApplicationTests {
         assertEquals(1L, foundPlaylist.get().getId());
     }
 
+    /**
+     * @test Updates an existing playlist's visibility and ownership and validates the changes.
+     */
     @Test
     void updatePlaylistTest() {
         Playlist existingPlaylist = new Playlist();
@@ -381,6 +455,9 @@ class DeuspotifyApplicationTests {
         assertTrue(existingPlaylist.getOwners().contains("owner3"));
     }
 
+    /**
+     * @test Deletes a playlist and verifies the repository interaction.
+     */
     @Test
     void deletePlaylistTest() {
         Playlist playlist = new Playlist();
@@ -400,6 +477,9 @@ class DeuspotifyApplicationTests {
         verify(playlistRepository, times(1)).findById(1L);
     }
 
+    /**
+     * @test Adds a song to a playlist identified by its ID and checks if the song is present.
+     */
     @Test
     void addSongToPlaylistByIdTest() {
         Playlist playlist = new Playlist();
@@ -420,6 +500,9 @@ class DeuspotifyApplicationTests {
         assertTrue(playlist.getSongs().contains(song));
     }
 
+    /**
+     * @test Removes a song from a playlist by ID and verifies the playlist no longer contains it.
+     */
     @Test
     void removeSongFromPlaylistTest() {
         Playlist playlist = new Playlist();
@@ -440,6 +523,10 @@ class DeuspotifyApplicationTests {
         assertTrue(playlist.getSongs().isEmpty());
     }
 
+
+    /**
+     * @test Updates a playlist's song list by adding multiple songs and confirms the update.
+     */
     @Test
     void updatePlaylistSongsTest() {
         Playlist playlist = new Playlist();
@@ -469,7 +556,9 @@ class DeuspotifyApplicationTests {
         assertTrue(playlist.getSongs().stream().anyMatch(song -> song.getName().equals("Song 2")));
     }
 
-    //
+    /**
+     * @test Retrieves all playlists and verifies that the expected number is returned.
+     */
     @Test
     void retrieveAllPlaylistsTest() {
         Playlist playlist1 = new Playlist();
@@ -482,6 +571,9 @@ class DeuspotifyApplicationTests {
         verify(playlistRepository, times(1)).findAll();
     }
 
+    /**
+     * @test Finds a specific playlist by its ID and checks that it is returned correctly.
+     */
     @Test
     void findPlaylistTest() {
         Playlist playlist = new Playlist();
@@ -494,6 +586,9 @@ class DeuspotifyApplicationTests {
         assertEquals(1L, result.get().getId());
     }
 
+    /**
+     * @test Adds a new playlist and verifies it is saved successfully.
+     */
     @Test
     void addPlaylistTest() {
         Playlist playlist = new Playlist();
@@ -505,6 +600,9 @@ class DeuspotifyApplicationTests {
         verify(playlistRepository).save(playlist);
     }
 
+    /**
+     * @test Updates a playlist by sorting its songs by duration in descending order.
+     */
     @Test
     void updatePlaylistWithSortingByDurationTest() {
         Playlist playlist = new Playlist();
@@ -526,6 +624,9 @@ class DeuspotifyApplicationTests {
         verify(playlistRepository).save(playlist);
     }
 
+    /**
+     * @test Updates a playlist by sorting its songs by release date in descending order.
+     */
     @Test
     void updatePlaylistWithSortingByReleaseDateTest() {
         Playlist playlist = new Playlist();
@@ -546,7 +647,10 @@ class DeuspotifyApplicationTests {
         assertEquals(song2, updated.getSongs().get(0));
     }
 
-    // Song Repository tests
+/**
+ * @test Retrieves all songs and checks the number and presence of specific songs.
+ */
+
     void getAllSongsTest() {
         Song song1 = new Song();
         Song song2 = new Song();
@@ -560,6 +664,9 @@ class DeuspotifyApplicationTests {
         assertTrue(songs.contains(song2));
     }
 
+    /**
+     * @test Finds a song by its ID and checks that it matches the expected ID.
+     */
     @Test
     void getSongByIdTest() {
         Song song = new Song();
@@ -573,6 +680,9 @@ class DeuspotifyApplicationTests {
         assertEquals(1L, foundSong.get().getId());
     }
 
+    /**
+     * @test Adds a new song and verifies its name is stored correctly.
+     */
     @Test
     void addSongTest() {
         Song newSong = new Song();
@@ -586,6 +696,11 @@ class DeuspotifyApplicationTests {
         assertEquals("New Song", savedSong.getName());
     }
     
+
+    /**
+     * @test Uploads a song file and validates that the saved file path is sanitized and the song is stored.
+     * Also checks that the file is physically created and then deletes it.
+     */
     @Test
     void addSongWithFileTest() throws Exception {
         String originalFilename = "Tom Petty - Love Is A Long Road (Official Audio)[xAgUYyosqVM].mp3";
@@ -617,6 +732,9 @@ class DeuspotifyApplicationTests {
         Files.deleteIfExists(filePath);
     }
 
+    /**
+     * @test Creates a shared song with provided metadata and verifies that it is correctly processed and saved.
+     */
     @Test
     void createSharedSongTest() {
         // Arrange test inputs
@@ -652,6 +770,9 @@ class DeuspotifyApplicationTests {
         verify(songRepository, times(1)).save(any(Song.class));
     }
 
+    /**
+     * @test Updates an existing song and verifies that all properties are updated correctly.
+     */
     @Test
     void updateSongTest() {
         Song existingSong = new Song();
@@ -692,6 +813,9 @@ class DeuspotifyApplicationTests {
         assertEquals(updatedSong.getDateOfRelease(), existingSong.getDateOfRelease());
     }
 
+    /**
+     * @test Deletes a song and ensures the delete method is invoked once.
+     */
     @Test
     void deleteSongTest() {
         Song song = new Song();
@@ -707,6 +831,9 @@ class DeuspotifyApplicationTests {
         verify(songRepository, times(1)).delete(song);
     }
 
+    /**
+     * @test Retrieves all songs via the service and checks the count.
+     */
     @Test
     void retrieveAllSongsTest() {
         Song song1 = new Song();
@@ -719,6 +846,9 @@ class DeuspotifyApplicationTests {
         verify(songRepository, times(1)).findAll();
     }
 
+    /**
+     * @test Finds a song by ID and checks the retrieved song's ID matches.
+     */
     @Test
     void findSongTest() {
         Song song = new Song();
@@ -731,6 +861,9 @@ class DeuspotifyApplicationTests {
         assertEquals(1L, result.get().getId());
     }
 
+    /**
+     * @test Finds multiple songs by their IDs and checks the result list.
+     */
     @Test
     void findSongsByIdsTest() {
         Song song1 = new Song(); song1.setId(1L);
@@ -743,7 +876,9 @@ class DeuspotifyApplicationTests {
         verify(songRepository).findAllById(List.of(1L, 2L));
     }
 
-    // Test for models
+    /**
+     * @test Sets and retrieves all fields in a Song object to ensure they work correctly.
+     */
     @Test
     void testSong() {
         Song song = new Song();
@@ -762,6 +897,10 @@ class DeuspotifyApplicationTests {
         assertEquals(List.of("Rock", "Pop"), song.getGenres());
         assertEquals(3.5, song.getDuration());
     }
+
+    /**
+     * @test Creates and validates a Playlist object's basic properties.
+     */
     @Test
     void testPlaylist() {
         Playlist playlist = new Playlist();
@@ -778,18 +917,28 @@ class DeuspotifyApplicationTests {
         assertEquals(0, playlist.getNumberOfSongs());
     }
 
+
+    /**
+     * @test Tests that the default constructor for Song creates a non-null object.
+     */
     @Test
     void testEmptyConstructor() {
         Song song = new Song();
         assertNotNull(song);  // Just verifying it creates an object
     }
 
+    /**
+     * @test Tests the Song constructor that accepts only an ID.
+     */
     @Test
     void testIdConstructor() {
         Song song = new Song(42L);
         assertEquals(42L, song.getId());
     }
 
+    /**
+     * @test Tests the Song constructor without a file path and validates all field assignments.
+     */
     @Test
     void testConstructorWithoutFilePath() {
         List<String> artists = Arrays.asList("Artist1", "Artist2");
@@ -807,6 +956,9 @@ class DeuspotifyApplicationTests {
         assertNull(song.getFilePath());
     }
 
+    /**
+     * @test Tests the Song constructor with a file path and validates all field assignments.
+     */
     @Test
     void testConstructorWithFilePath() {
         List<String> artists = Arrays.asList("Artist1", "Artist2");
@@ -824,6 +976,11 @@ class DeuspotifyApplicationTests {
         assertEquals("music/file.mp3", song.getFilePath());
     }
 
+
+
+    /**
+     * @test Tests the Playlist constructor with full parameters and verifies assigned fields.
+     */
     @Test
     void testPlaylistFullConstructor() {
         // Arrange input values
