@@ -1,3 +1,8 @@
+/**
+ * @file ProfileAssembler.java
+ * @brief Provides conversion methods between Profile and ProfileDTO.
+ */
+
 package com.deusto.deuspotify.assembler;
 
 import com.deusto.deuspotify.model.Profile;
@@ -10,8 +15,17 @@ import com.deusto.deuspotify.DTO.PlaylistDTO;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @class ProfileAssembler
+ * @brief Utility class to convert between Profile entities and ProfileDTOs.
+ */
 public class ProfileAssembler {
 
+    /**
+     * @brief Converts a Profile entity to a ProfileDTO.
+     * @param profile The Profile entity to convert.
+     * @return The resulting ProfileDTO, or null if the input is null.
+     */
     public static ProfileDTO toDTO(Profile profile) {
         if (profile == null) return null;
 
@@ -29,6 +43,11 @@ public class ProfileAssembler {
         );
     }
 
+    /**
+     * @brief Converts a ProfileDTO to a Profile entity.
+     * @param dto The ProfileDTO to convert.
+     * @return The resulting Profile entity, or null if the input is null.
+     */
     public static Profile toEntity(ProfileDTO dto) {
         if (dto == null) return null;
 
@@ -47,6 +66,11 @@ public class ProfileAssembler {
         return profile;
     }
 
+    /**
+     * @brief Converts a list of Profile entities to a list of ProfileDTOs.
+     * @param profiles List of Profile entities.
+     * @return List of ProfileDTOs, or null if input is null.
+     */
     public static List<ProfileDTO> toDTOList(List<Profile> profiles) {
         if (profiles == null) return null;
 
@@ -55,6 +79,11 @@ public class ProfileAssembler {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * @brief Converts a list of ProfileDTOs to a list of Profile entities.
+     * @param dtos List of ProfileDTOs.
+     * @return List of Profile entities, or null if input is null.
+     */
     public static List<Profile> toEntityList(List<ProfileDTO> dtos) {
         if (dtos == null) return null;
 
