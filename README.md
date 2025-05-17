@@ -24,4 +24,4 @@ For a full technical documentation and reports, use the following links
 - [Doxygen in depth documentation](https://bspq24-25.github.io/BSPQ25-E2/doxygen/html/)
 - [Maven site report](https://bspq24-25.github.io/BSPQ25-E2/site/)
 - [Jacoco report for test coverage](https://bspq24-25.github.io/BSPQ25-E2/site/jacoco)
-- [Performance reports](https://bspq24-25.github.io/BSPQ25-E2/perf-report.html)
+- [Performance reports](https://bspq24-25.github.io/BSPQ25-E2/perf/perf-report.html)
