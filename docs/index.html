@@ -4,16 +4,89 @@
 <p>Ane Arrate, Endika Blanco, Javier Gutierrez, Adrían Román, Asier
 Loinaz &amp; María Vivar</p>
 <h2 id="features">🔥 Features</h2>
+<p>Deuspotify is an open source music player based on modern Java
+technologies.</p>
 <ul>
+<li>Create your own user</li>
 <li>Upload your own songs</li>
-<li>Make custom playlists</li>
+<li>Make custom public or private playlists</li>
 <li>Listen in real time to your music</li>
+<li>Suscribe to other user’s playlists</li>
 </ul>
-<h2 id="installation-and-use-guide">📖 Installation and use guide</h2>
-<p>Working on it</p>
+<h2 id="requirements">📦 Requirements</h2>
+<ul>
+<li>Java 17 🍵</li>
+<li>MySQL 🐬</li>
+<li>Maven 🪶</li>
+<li>Mockito 🍸</li>
+<li>JaCoCo 📊</li>
+<li>Git 🐈</li>
+<li>Doxygen 📖</li>
+<li>Docker 🐋</li>
+</ul>
+<h2 id="installation-guide">⚙️ Installation guide</h2>
+<ol type="1">
+<li><p>Clone this repository</p>
+<p>```bash git clone https://github.com/BSPQ24-25/BSPQ25-E2.git cd
+BSPQ25-E2</p></li>
+<li><p>Run the DB initialization script</p>
+<p>```bash mysql -h 127.0.0.1 -u root -p &lt;
+src/main/resources/deuspotify-db-setup.sql</p></li>
+<li><p>Run the application using Maven:</p>
+<ul>
+<li>For a first and clean install of dependencies, run:</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>   <span class="ex">mvn</span> clean install</span></code></pre></div>
+<ul>
+<li>For running the application skipping the tests:</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>   <span class="ex">mvn</span> <span class="at">-DskipTests</span> spring-boot:run</span></code></pre></div>
+<ul>
+<li>For a full application run with tests:</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="ex">mvn</span> spring-boot:run</span></code></pre></div></li>
+<li><p>Access the application: <a href="http://localhost:8080"
+class="uri">http://localhost:8080</a> You can also find the application
+at <a
+href="http://1e1f2b77-67eb-464f-accf-8d6c93442d98.duckdns.org:8080"
+class="uri">http://1e1f2b77-67eb-464f-accf-8d6c93442d98.duckdns.org:8080</a></p></li>
+</ol>
+<h2 id="launch-the-app-with-docker">🐋 Launch the app with Docker</h2>
+<p>You can also run the app with one command using Docker.</p>
+<ul>
+<li><p>To start the container without changes:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="ex">docker-compose</span> up</span></code></pre></div></li>
+<li><p>If you have modified the Dockerfile, dependencies or other
+configurations:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>    <span class="ex">docker-compose</span> up <span class="at">--build</span> </span></code></pre></div></li>
+<li><p>You can also pull the docker image from DockerHub:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>    <span class="ex">docker</span> pull endikablanco/deuspotify</span></code></pre></div></li>
+</ul>
 <h2 id="documentation-and-reports">📚 Documentation and Reports</h2>
-<p>For a full technical documentation and reports, use the following
-links</p>
+<p>You can generate documentation and reports by running the following
+commands:</p>
+<ol type="1">
+<li>Generate doxygen reports with <code>mvn doxygen:report</code> or
+<code>mvn site</code></li>
+<li>Run unit tests and generate coverage report with
+<code>mvn test jacoco:report</code></li>
+<li>Run integration tests with
+<code>mvn -Pintegration integration-test</code></li>
+<li>Run performance tests with
+<code>mvn -Pperformance integration-test</code></li>
+<li>Move performance tests report with
+<code>mvn -Pperformance resources:copy-resources@copy-perf-report</code></li>
+</ol>
+<p>All reports should be visible on the target folder.</p>
+<h3
+id="for-a-full-technical-documentation-and-reports-use-the-following-links">For
+a full technical documentation and reports, use the following links</h3>
 <ul>
 <li><a
 href="https://bspq24-25.github.io/BSPQ25-E2/doxygen/html/">Doxygen in
