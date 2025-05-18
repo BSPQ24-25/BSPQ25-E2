@@ -48,57 +48,57 @@ public class ProfileDTO {
      * @param isAdmin Indicates if the user is an admin.
      */
     public ProfileDTO(Long id, String username, String email, List&lt;String&gt; friendsList,
-<span class="nc" id="L51">                      List&lt;SongDTO&gt; favouriteSongs, List&lt;PlaylistDTO&gt; playlists, boolean isAdmin) {</span>
-<span class="nc" id="L52">        this.id = id;</span>
-<span class="nc" id="L53">        this.username = username;</span>
-<span class="nc" id="L54">        this.email = email;</span>
-<span class="nc" id="L55">        this.friendsList = friendsList;</span>
-<span class="nc" id="L56">        this.favouriteSongs = favouriteSongs;</span>
-<span class="nc" id="L57">        this.playlists = playlists;</span>
-<span class="nc" id="L58">        this.isAdmin = isAdmin;</span>
-<span class="nc" id="L59">    }</span>
+<span class="fc" id="L51">                      List&lt;SongDTO&gt; favouriteSongs, List&lt;PlaylistDTO&gt; playlists, boolean isAdmin) {</span>
+<span class="fc" id="L52">        this.id = id;</span>
+<span class="fc" id="L53">        this.username = username;</span>
+<span class="fc" id="L54">        this.email = email;</span>
+<span class="fc" id="L55">        this.friendsList = friendsList;</span>
+<span class="fc" id="L56">        this.favouriteSongs = favouriteSongs;</span>
+<span class="fc" id="L57">        this.playlists = playlists;</span>
+<span class="fc" id="L58">        this.isAdmin = isAdmin;</span>
+<span class="fc" id="L59">    }</span>
 
     /// @name Getters and Setters
     /// @{
 
     /** @return Profile ID. */
-<span class="nc" id="L65">    public Long getId() { return id; }</span>
+<span class="fc" id="L65">    public Long getId() { return id; }</span>
 
     /** @param id New profile ID. */
 <span class="nc" id="L68">    public void setId(Long id) { this.id = id; }</span>
 
     /** @return Username. */
-<span class="nc" id="L71">    public String getUsername() { return username; }</span>
+<span class="fc" id="L71">    public String getUsername() { return username; }</span>
 
     /** @param username New username. */
 <span class="nc" id="L74">    public void setUsername(String username) { this.username = username; }</span>
 
     /** @return Email. */
-<span class="nc" id="L77">    public String getEmail() { return email; }</span>
+<span class="fc" id="L77">    public String getEmail() { return email; }</span>
 
     /** @param email New email address. */
 <span class="nc" id="L80">    public void setEmail(String email) { this.email = email; }</span>
 
     /** @return List of friend usernames. */
-<span class="nc" id="L83">    public List&lt;String&gt; getFriendsList() { return friendsList; }</span>
+<span class="fc" id="L83">    public List&lt;String&gt; getFriendsList() { return friendsList; }</span>
 
     /** @param friendsList Updated list of friend usernames. */
 <span class="nc" id="L86">    public void setFriendsList(List&lt;String&gt; friendsList) { this.friendsList = friendsList; }</span>
 
     /** @return Favorite songs. */
-<span class="nc" id="L89">    public List&lt;SongDTO&gt; getFavouriteSongs() { return favouriteSongs; }</span>
+<span class="fc" id="L89">    public List&lt;SongDTO&gt; getFavouriteSongs() { return favouriteSongs; }</span>
 
     /** @param favouriteSongs New list of favorite songs. */
 <span class="nc" id="L92">    public void setFavouriteSongs(List&lt;SongDTO&gt; favouriteSongs) { this.favouriteSongs = favouriteSongs; }</span>
 
     /** @return List of playlists. */
-<span class="nc" id="L95">    public List&lt;PlaylistDTO&gt; getPlaylists() { return playlists; }</span>
+<span class="fc" id="L95">    public List&lt;PlaylistDTO&gt; getPlaylists() { return playlists; }</span>
 
     /** @param playlists New list of playlists. */
 <span class="nc" id="L98">    public void setPlaylists(List&lt;PlaylistDTO&gt; playlists) { this.playlists = playlists; }</span>
 
     /** @return Whether the profile is an admin. */
-<span class="nc" id="L101">    public boolean isAdmin() { return isAdmin; }</span>
+<span class="fc" id="L101">    public boolean isAdmin() { return isAdmin; }</span>
 
     /** @param isAdmin New admin status. */
 <span class="nc" id="L104">    public void setAdmin(boolean isAdmin) { this.isAdmin = isAdmin; }</span>

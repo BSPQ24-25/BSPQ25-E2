@@ -23,16 +23,16 @@ import java.util.stream.Collectors;
      * @return The resulting SongDTO, or null if input is null.
      */
     public static SongDTO toDTO(Song song) {
-<span class="nc bnc" id="L26" title="All 2 branches missed.">        if (song == null) return null;</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        if (song == null) return null;</span>
 
-<span class="nc" id="L28">        return new SongDTO(</span>
-<span class="nc" id="L29">                song.getId(),</span>
-<span class="nc" id="L30">                song.getName(),</span>
-<span class="nc" id="L31">                song.getArtists(),</span>
-<span class="nc" id="L32">                song.getDuration(),</span>
-<span class="nc" id="L33">                song.getGenres(),</span>
-<span class="nc" id="L34">                song.getDateOfRelease(),</span>
-<span class="nc" id="L35">                song.getAlbum()</span>
+<span class="fc" id="L28">        return new SongDTO(</span>
+<span class="fc" id="L29">                song.getId(),</span>
+<span class="fc" id="L30">                song.getName(),</span>
+<span class="fc" id="L31">                song.getArtists(),</span>
+<span class="fc" id="L32">                song.getDuration(),</span>
+<span class="fc" id="L33">                song.getGenres(),</span>
+<span class="fc" id="L34">                song.getDateOfRelease(),</span>
+<span class="fc" id="L35">                song.getAlbum()</span>
         );
     }
 
@@ -42,18 +42,18 @@ import java.util.stream.Collectors;
      * @return The resulting Song entity, or null if input is null.
      */
     public static Song toEntity(SongDTO dto) {
-<span class="nc bnc" id="L45" title="All 2 branches missed.">        if (dto == null) return null;</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        if (dto == null) return null;</span>
 
-<span class="nc" id="L47">        Song song = new Song();</span>
-<span class="nc" id="L48">        song.setId(dto.getId());</span>
-<span class="nc" id="L49">        song.setName(dto.getName());</span>
-<span class="nc" id="L50">        song.setArtists(dto.getArtists());</span>
-<span class="nc" id="L51">        song.setDuration(dto.getDuration());</span>
-<span class="nc" id="L52">        song.setGenres(dto.getGenres());</span>
-<span class="nc" id="L53">        song.setDateOfRelease(dto.getDateOfRelease());</span>
-<span class="nc" id="L54">        song.setAlbum(dto.getAlbum());</span>
+<span class="fc" id="L47">        Song song = new Song();</span>
+<span class="fc" id="L48">        song.setId(dto.getId());</span>
+<span class="fc" id="L49">        song.setName(dto.getName());</span>
+<span class="fc" id="L50">        song.setArtists(dto.getArtists());</span>
+<span class="fc" id="L51">        song.setDuration(dto.getDuration());</span>
+<span class="fc" id="L52">        song.setGenres(dto.getGenres());</span>
+<span class="fc" id="L53">        song.setDateOfRelease(dto.getDateOfRelease());</span>
+<span class="fc" id="L54">        song.setAlbum(dto.getAlbum());</span>
 
-<span class="nc" id="L56">        return song;</span>
+<span class="fc" id="L56">        return song;</span>
     }
 
     /**
@@ -62,11 +62,11 @@ import java.util.stream.Collectors;
      * @return List of SongDTOs, or null if input is null.
      */
     public static List&lt;SongDTO&gt; toDTOList(List&lt;Song&gt; songs) {
-<span class="nc bnc" id="L65" title="All 2 branches missed.">        if (songs == null) return null;</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        if (songs == null) return null;</span>
 
-<span class="nc" id="L67">        return songs.stream()</span>
-<span class="nc" id="L68">                .map(SongAssembler::toDTO)</span>
-<span class="nc" id="L69">                .collect(Collectors.toList());</span>
+<span class="fc" id="L67">        return songs.stream()</span>
+<span class="fc" id="L68">                .map(SongAssembler::toDTO)</span>
+<span class="fc" id="L69">                .collect(Collectors.toList());</span>
     }
 
     /**
@@ -75,11 +75,11 @@ import java.util.stream.Collectors;
      * @return List of Song entities, or null if input is null.
      */
     public static List&lt;Song&gt; toEntityList(List&lt;SongDTO&gt; dtos) {
-<span class="nc bnc" id="L78" title="All 2 branches missed.">        if (dtos == null) return null;</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">        if (dtos == null) return null;</span>
 
-<span class="nc" id="L80">        return dtos.stream()</span>
-<span class="nc" id="L81">                .map(SongAssembler::toEntity)</span>
-<span class="nc" id="L82">                .collect(Collectors.toList());</span>
+<span class="fc" id="L80">        return dtos.stream()</span>
+<span class="fc" id="L81">                .map(SongAssembler::toEntity)</span>
+<span class="fc" id="L82">                .collect(Collectors.toList());</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

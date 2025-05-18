@@ -4,10 +4,10 @@ Deuspotify,com.deusto.deuspotify.services,ProfileService,186,95,7,5,34,21,20,6,1
 Deuspotify,com.deusto.deuspotify.services,DeuspotifyServiceImpl,122,228,17,11,30,46,18,13,5,12
 Deuspotify,com.deusto.deuspotify.model,Playlist,18,93,2,2,1,27,3,17,1,17
 Deuspotify,com.deusto.deuspotify.model,Song,19,110,0,0,1,37,1,20,1,20
-Deuspotify,com.deusto.deuspotify.model,Profile,29,62,0,0,7,20,7,12,7,12
-Deuspotify,com.deusto.deuspotify.DTO,PlaylistDTO,76,0,0,0,24,0,16,0,16,0
-Deuspotify,com.deusto.deuspotify.DTO,SongDTO,110,0,0,0,36,0,19,0,19,0
-Deuspotify,com.deusto.deuspotify.DTO,ProfileDTO,76,0,0,0,24,0,16,0,16,0
+Deuspotify,com.deusto.deuspotify.model,Profile,8,83,0,0,1,26,1,18,1,18
+Deuspotify,com.deusto.deuspotify.DTO,PlaylistDTO,31,45,0,0,8,16,8,8,8,8
+Deuspotify,com.deusto.deuspotify.DTO,SongDTO,65,45,0,0,20,16,11,8,11,8
+Deuspotify,com.deusto.deuspotify.DTO,ProfileDTO,31,45,0,0,8,16,8,8,8,8
 Deuspotify,com.deusto.deuspotify.config,FileStorageConfig,0,20,0,0,0,4,0,2,0,2
 Deuspotify,com.deusto.deuspotify.config,SecurityConfig,0,169,0,0,0,33,0,10,0,10
 Deuspotify,com.deusto.deuspotify.controllers,SongController,95,3,2,0,20,1,8,1,7,1
@@ -17,6 +17,6 @@ Deuspotify,com.deusto.deuspotify.controllers,ProfileController,140,6,2,0,33,3,14
 Deuspotify,com.deusto.deuspotify.controllers,I18nController,115,6,7,0,22,3,8,1,4,1
 Deuspotify,com.deusto.deuspotify,DeuspotifyApplication,5,3,0,0,2,1,1,1,1,1
 Deuspotify,com.deusto.deuspotify,DataInitializer,75,136,5,5,13,36,5,5,0,5
-Deuspotify,com.deusto.deuspotify.assembler,SongAssembler,87,0,8,0,28,0,9,0,5,0
-Deuspotify,com.deusto.deuspotify.assembler,PlaylistAssembler,89,0,8,0,28,0,9,0,5,0
-Deuspotify,com.deusto.deuspotify.assembler,ProfileAssembler,99,0,8,0,30,0,9,0,5,0
+Deuspotify,com.deusto.deuspotify.assembler,SongAssembler,3,84,0,8,1,27,1,8,1,4
+Deuspotify,com.deusto.deuspotify.assembler,PlaylistAssembler,3,86,0,8,1,27,1,8,1,4
+Deuspotify,com.deusto.deuspotify.assembler,ProfileAssembler,3,96,0,8,1,29,1,8,1,4

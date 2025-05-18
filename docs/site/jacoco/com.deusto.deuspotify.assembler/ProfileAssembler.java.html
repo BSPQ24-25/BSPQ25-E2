@@ -27,19 +27,19 @@ import java.util.stream.Collectors;
      * @return The resulting ProfileDTO, or null if the input is null.
      */
     public static ProfileDTO toDTO(Profile profile) {
-<span class="nc bnc" id="L30" title="All 2 branches missed.">        if (profile == null) return null;</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        if (profile == null) return null;</span>
 
-<span class="nc" id="L32">        List&lt;SongDTO&gt; songDTOs = SongAssembler.toDTOList(profile.getFavouriteSongs());</span>
-<span class="nc" id="L33">        List&lt;PlaylistDTO&gt; playlistDTOs = PlaylistAssembler.toDTOList(profile.getPlaylists());</span>
+<span class="fc" id="L32">        List&lt;SongDTO&gt; songDTOs = SongAssembler.toDTOList(profile.getFavouriteSongs());</span>
+<span class="fc" id="L33">        List&lt;PlaylistDTO&gt; playlistDTOs = PlaylistAssembler.toDTOList(profile.getPlaylists());</span>
 
-<span class="nc" id="L35">        return new ProfileDTO(</span>
-<span class="nc" id="L36">                profile.getId(),</span>
-<span class="nc" id="L37">                profile.getUsername(),</span>
-<span class="nc" id="L38">                profile.getEmail(),</span>
-<span class="nc" id="L39">                profile.getFriendsList(),</span>
+<span class="fc" id="L35">        return new ProfileDTO(</span>
+<span class="fc" id="L36">                profile.getId(),</span>
+<span class="fc" id="L37">                profile.getUsername(),</span>
+<span class="fc" id="L38">                profile.getEmail(),</span>
+<span class="fc" id="L39">                profile.getFriendsList(),</span>
                 songDTOs,
                 playlistDTOs,
-<span class="nc" id="L42">                profile.isAdmin()</span>
+<span class="fc" id="L42">                profile.isAdmin()</span>
         );
     }
 
@@ -49,21 +49,21 @@ import java.util.stream.Collectors;
      * @return The resulting Profile entity, or null if the input is null.
      */
     public static Profile toEntity(ProfileDTO dto) {
-<span class="nc bnc" id="L52" title="All 2 branches missed.">        if (dto == null) return null;</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        if (dto == null) return null;</span>
 
-<span class="nc" id="L54">        List&lt;Song&gt; songs = SongAssembler.toEntityList(dto.getFavouriteSongs());</span>
-<span class="nc" id="L55">        List&lt;Playlist&gt; playlists = PlaylistAssembler.toEntityList(dto.getPlaylists());</span>
+<span class="fc" id="L54">        List&lt;Song&gt; songs = SongAssembler.toEntityList(dto.getFavouriteSongs());</span>
+<span class="fc" id="L55">        List&lt;Playlist&gt; playlists = PlaylistAssembler.toEntityList(dto.getPlaylists());</span>
 
-<span class="nc" id="L57">        Profile profile = new Profile();</span>
-<span class="nc" id="L58">        profile.setId(dto.getId());</span>
-<span class="nc" id="L59">        profile.setUsername(dto.getUsername());</span>
-<span class="nc" id="L60">        profile.setEmail(dto.getEmail());</span>
-<span class="nc" id="L61">        profile.setFriendsList(dto.getFriendsList());</span>
-<span class="nc" id="L62">        profile.setFavouriteSongs(songs);</span>
-<span class="nc" id="L63">        profile.setPlaylists(playlists);</span>
-<span class="nc" id="L64">        profile.setAdmin(dto.isAdmin());</span>
+<span class="fc" id="L57">        Profile profile = new Profile();</span>
+<span class="fc" id="L58">        profile.setId(dto.getId());</span>
+<span class="fc" id="L59">        profile.setUsername(dto.getUsername());</span>
+<span class="fc" id="L60">        profile.setEmail(dto.getEmail());</span>
+<span class="fc" id="L61">        profile.setFriendsList(dto.getFriendsList());</span>
+<span class="fc" id="L62">        profile.setFavouriteSongs(songs);</span>
+<span class="fc" id="L63">        profile.setPlaylists(playlists);</span>
+<span class="fc" id="L64">        profile.setAdmin(dto.isAdmin());</span>
 
-<span class="nc" id="L66">        return profile;</span>
+<span class="fc" id="L66">        return profile;</span>
     }
 
     /**
@@ -72,11 +72,11 @@ import java.util.stream.Collectors;
      * @return List of ProfileDTOs, or null if input is null.
      */
     public static List&lt;ProfileDTO&gt; toDTOList(List&lt;Profile&gt; profiles) {
-<span class="nc bnc" id="L75" title="All 2 branches missed.">        if (profiles == null) return null;</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        if (profiles == null) return null;</span>
 
-<span class="nc" id="L77">        return profiles.stream()</span>
-<span class="nc" id="L78">                .map(ProfileAssembler::toDTO)</span>
-<span class="nc" id="L79">                .collect(Collectors.toList());</span>
+<span class="fc" id="L77">        return profiles.stream()</span>
+<span class="fc" id="L78">                .map(ProfileAssembler::toDTO)</span>
+<span class="fc" id="L79">                .collect(Collectors.toList());</span>
     }
 
     /**
@@ -85,11 +85,11 @@ import java.util.stream.Collectors;
      * @return List of Profile entities, or null if input is null.
      */
     public static List&lt;Profile&gt; toEntityList(List&lt;ProfileDTO&gt; dtos) {
-<span class="nc bnc" id="L88" title="All 2 branches missed.">        if (dtos == null) return null;</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        if (dtos == null) return null;</span>
 
-<span class="nc" id="L90">        return dtos.stream()</span>
-<span class="nc" id="L91">                .map(ProfileAssembler::toEntity)</span>
-<span class="nc" id="L92">                .collect(Collectors.toList());</span>
+<span class="fc" id="L90">        return dtos.stream()</span>
+<span class="fc" id="L91">                .map(ProfileAssembler::toEntity)</span>
+<span class="fc" id="L92">                .collect(Collectors.toList());</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
