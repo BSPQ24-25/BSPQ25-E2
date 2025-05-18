@@ -1,3 +1,8 @@
+/**
+ * @file ProfileController.java
+ * @brief REST controller for managing user profiles.
+ */
+
 package com.deusto.deuspotify.controllers;
 
 import com.deusto.deuspotify.model.Profile;
@@ -10,6 +15,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @class ProfileController
+ * @brief Controller that handles HTTP requests related to user profiles.
+ */
 @RestController
 @RequestMapping("/api/profiles")
 @CrossOrigin
@@ -17,6 +26,10 @@ public class ProfileController {
 
     private final ProfileService profileService;
 
+    /**
+     * @brief Constructor for ProfileController.
+     * @param profileService Service that handles profile logic.
+     */
     public ProfileController(ProfileService profileService) {
         this.profileService = profileService;
     }

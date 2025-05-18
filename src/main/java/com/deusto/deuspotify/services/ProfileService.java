@@ -18,6 +18,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @class ProfileService
+ * @brief Service for managing user profiles, authentication and user details for Spring Security.
+ *
+ * This service provides methods for registering, retrieving, updating, and deleting user profiles.
+ * It also supports authentication via Spring Security and token-based user identification using JWT.
+ */
+
 @Service
 public class ProfileService implements UserDetailsService {
 
@@ -27,6 +35,12 @@ public class ProfileService implements UserDetailsService {
     @Autowired
     private JwtUtil jwtUtil;
 
+    /**
+     * Constructor for ProfileService.
+     * 
+     * @param profileRepository Repository to manage Profile entities.
+     * @param passwordEncoder Password encoder for secure password storage.
+     */
     @Autowired
     private SongRepository songRepository;
 
