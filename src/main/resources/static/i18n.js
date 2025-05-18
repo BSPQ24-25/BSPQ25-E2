@@ -8,14 +8,25 @@ if (!localStorage.getItem("token") && localStorage.getItem("jwtToken")) {
     localStorage.setItem("token", oldToken);
     localStorage.removeItem("jwtToken");
 
+    // Decodificar payload del JWT
     const base64Url = oldToken.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(atob(base64).split('').map(c =>
-        '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-    ).join(''));
-
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split('')
+        .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+        .join('')
+    );
     const payload = JSON.parse(jsonPayload);
+    console.warn("Payload decodificado:", payload);
+
     localStorage.setItem("username", payload.sub);
+    
+    if (payload.id !== undefined) {
+      localStorage.setItem("userId", payload.id.toString());
+    } else {
+      console.warn("El token no contiene el claim 'id'");
+    }
 }
 
 async function loadTranslations(lang = null) {

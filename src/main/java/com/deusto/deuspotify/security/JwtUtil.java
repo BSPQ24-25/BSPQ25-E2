@@ -26,16 +26,18 @@ public class JwtUtil {
     private final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
     /**
-     * Generates a JWT token for the given username.
-     * 
-     * @param username The username for which the token is generated.
-     * @return A signed JWT token string.
+     * Genera un JWT incluyendo el ID y el username.
+     *
+     * @param userId   ID numérico del usuario.
+     * @param username Nombre de usuario.
+     * @return Token JWT.
      */
-    public String generateToken(String username) {
+    public String generateToken(Long userId, String username) {
         return Jwts.builder()
                 .setSubject(username)
+                .claim("id", userId) // Include userId in the token
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // 10 hours
+                .setExpiration(new Date(System.currentTimeMillis() + 1000L * 60 * 60 * 10))
                 .signWith(SECRET_KEY)
                 .compact();
     }
