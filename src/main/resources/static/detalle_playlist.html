@@ -74,7 +74,7 @@
           document.getElementById("playAllBtn").onclick = () => {
             playlist = originalSongs.filter(song => song.filePath);
             if (playlist.length === 0) {
-              document.getElementById("currentSongName").innerText = "No hay canciones reproducibles.";
+              document.getElementById("currentSongName").innerText = t('playlistDetail.noSongs');
               return;
             }
             currentIndex = 0;
@@ -86,10 +86,10 @@
           };
 
           document.getElementById("deleteBtn").onclick = () => {
-            if (confirm("¿Seguro que quieres eliminar esta playlist?")) {
+            if (confirm(t('playlistDetail.confirmDelete'))) {
               fetch(`${appUrl || "http://localhost"}:8080/api/playlists/${pl.id}`, { method: "DELETE" })
                 .then(() => {
-                  alert("Playlist eliminada correctamente.");
+                  alert(t('playlistDetail.deleted'));
                   window.location.href = "playlists.html";
                 });
             }
@@ -100,7 +100,7 @@
           };
         })
         .catch(error => {
-          document.getElementById("playlistDetails").innerText = "Error al cargar los detalles.";
+          document.getElementById("playlistDetails").innerText = t('playlistDetail.error');
           console.error(error);
         });
     }
@@ -150,7 +150,7 @@
 
       const song = playlist[currentIndex];
       audio.src = `/songs_files/${song.filePath}`;
-      currentSongName.innerText = `🎵 Reproduciendo: ${song.name}`;
+      currentSongName.innerText = `🎵 ${t('song.playing')}: ${song.name}`;
       audio.play();
     }
 

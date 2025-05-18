@@ -77,9 +77,8 @@
         body: JSON.stringify(selectedIds)
       })
       .then(response => {
-        // Use i18n if available, else fallback
-        const msgUpdated = (window.i18n && i18n.t('edit_playlist_songs.updated')) || 'Canciones actualizadas.';
-        const msgError = (window.i18n && i18n.t('edit_playlist_songs.error')) || 'Error al actualizar canciones.';
+        const msgUpdated = t('edit_playlist_songs.updated');
+        const msgError   = t('edit_playlist_songs.error');
         if (response.ok) {
           alert(msgUpdated);
           window.location.href = `detalle_playlist.html?id=${playlistId}`;
@@ -87,7 +86,7 @@
           alert(msgError);
         }
       })
-      .catch(err => console.error('Error updating songs:', err));
+      .catch(err => console.error(t('song.updated.failed'), err));
     });
   </script>
 </body>

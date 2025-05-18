@@ -21,11 +21,11 @@
             });
 
             if (response.ok) {
-                alert("User registered successfully! Redirecting to login...");
+                alert(t('register.succesful'));
                 window.location.href = "login.html";
             } else {
                 const errorMessage = await response.text();
-                alert("Registration failed: " + errorMessage);
+                alert(t('register.failed') + errorMessage);
             }
         }
 
