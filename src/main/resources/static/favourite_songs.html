@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title data-i18n="songs.title">Songs</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="side-layout">
+    <div style="position: absolute; top: 10px; right: 20px;">
+        <button onclick="loadTranslations('es')" title="Español">Es</button>
+        <button onclick="loadTranslations('en')" title="English">En</button>
+        <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
+    </div>
+    <div class="sidebar">
+        <div class="button-group">
+            <button onclick="window.location.href='add_song.html'" data-i18n="songs.add">Add Song</button>
+            <button onclick="window.location.href='edit_song.html'" data-i18n="songs.edit">Edit Song</button>
+            <button onclick="window.location.href='delete_song.html'" data-i18n="songs.delete">Delete Song</button>
+            <button onclick="window.location.href='index.html'" data-i18n="songs.back">Back to Home</button>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <h2 data-i18n="songs.favourite.yours">Your Favourite Songs</h2>
+
+        <input type="text" id="searchInput" data-i18n-placeholder="songs.search" placeholder="Search by song name" style="margin-bottom: 10px; width: 100%; padding: 8px; font-size: 16px;">
+
+        <ul id="songsList"></ul>
+    </div>
+
+    <script src="/i18n.js"></script>
+    <script>
+        const username = localStorage.getItem("username");
+
+        const full = window.location.origin;
+        const match = full.match(/^(https?:\/\/[^\/:]+)/);
+        const appUrl = match ? match[0] : '';
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadTranslations();
+
+        let favouriteSongs = [];
+
+        fetch(`${appUrl || "http://localhost"}:8080/api/profiles/${username}/favourite-songs`)
+            .then(response => {
+                if (!response.ok) throw new Error("Failed to load favourite songs");
+                return response.json();
+            })
+            .then(songs => {
+                favouriteSongs = songs;
+                renderSongs(songs);
+            })
+            .catch(error => {
+                document.getElementById("songsList").innerHTML = "<li style='color:red;'>Could not load favourite songs.</li>";
+            });
+
+        function renderSongs(songs) {
+            const list = document.getElementById("songsList");
+            list.innerHTML = "";
+
+            if (!songs.length) {
+                list.innerHTML = "<li data-i18n='songs.favourite.none'>No favourite songs found.</li>";
+                return;
+            }
+
+            songs.forEach(song => {
+                if (!song.id) return;
+
+                const item = document.createElement("li");
+                item.id = `song-${song.id}`;
+
+                const link = document.createElement("a");
+                link.href = `detalle_song.html?id=${song.id}`;
+                link.textContent = song.name;
+                link.style.display = "block";
+                link.style.textDecoration = "none";
+                link.style.color = "inherit";
+
+                item.appendChild(link);
+                list.appendChild(item);
+            });
+        }
+
+        document.getElementById("searchInput").addEventListener("input", function () {
+            const searchTerm = this.value.toLowerCase();
+            const filteredSongs = favouriteSongs.filter(song =>
+                (song.name ?? "").toLowerCase().includes(searchTerm)
+            );
+            renderSongs(filteredSongs);
+        });
+    });
+    </script>
+</body>
+</html>

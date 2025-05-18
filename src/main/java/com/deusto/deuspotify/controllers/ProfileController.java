@@ -6,8 +6,10 @@
 package com.deusto.deuspotify.controllers;
 
 import com.deusto.deuspotify.model.Profile;
+import com.deusto.deuspotify.model.Song;
 import com.deusto.deuspotify.services.ProfileService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,7 +35,7 @@ public class ProfileController {
     }
 
     /**
-     * @brief Retrieves all user profiles.
+     * @brief Retrieve all user profiles.
      * @return ResponseEntity containing the list of profiles.
      */
     @GetMapping
@@ -42,7 +44,7 @@ public class ProfileController {
     }
 
     /**
-     * @brief Retrieves a user profile by ID.
+     * @brief Retrieve a user profile by its ID.
      * @param id The ID of the profile.
      * @return ResponseEntity containing the profile or 404 if not found.
      */
@@ -54,7 +56,7 @@ public class ProfileController {
     }
 
     /**
-     * @brief Creates a new profile.
+     * @brief Create a new user profile.
      * @param profile The profile to create.
      * @return ResponseEntity with the created profile or error message.
      */
@@ -69,7 +71,7 @@ public class ProfileController {
     }
 
     /**
-     * @brief Updates an existing profile.
+     * @brief Update an existing user profile.
      * @param id ID of the profile to update.
      * @param updatedProfile New data for the profile.
      * @return ResponseEntity with the updated profile or 404 if not found.
@@ -82,21 +84,21 @@ public class ProfileController {
     }
 
     /**
-     * @brief Deletes a profile by ID.
+     * @brief Delete a user profile by its ID.
      * @param id ID of the profile to delete.
-     * @return ResponseEntity indicating success or failure.
+     * @return ResponseEntity indicating success or 404 if not found.
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteProfile(@PathVariable Long id) {
         if (profileService.deleteProfile(id)) {
-            return ResponseEntity.ok("Perfil eliminado correctamente.");
+            return ResponseEntity.ok("Profile deleted successfully.");
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
     /**
-     * @brief Authenticates a user by username and password.
+     * @brief Authenticate a user by username and password.
      * @param loginRequest The profile object containing login credentials.
      * @return ResponseEntity with the profile if login is successful, or 401 error.
      */
@@ -104,7 +106,62 @@ public class ProfileController {
     public ResponseEntity<?> login(@RequestBody Profile loginRequest) {
         Optional<Profile> profile = profileService.login(loginRequest.getUsername(), loginRequest.getPassword());
         return profile.map(ResponseEntity::ok)
-                    .orElseGet(() -> ResponseEntity.status(401).body(null));
+                      .orElseGet(() -> ResponseEntity.status(401).body(null));
+    }
+
+    /**
+     * @brief Retrieve the list of favourite songs for the given user.
+     * @param username The username whose favourite songs are to be fetched.
+     * @return List of Song entities marked as favourites by the user.
+     * @throws UsernameNotFoundException if no profile with the given username exists.
+     */
+    @GetMapping("/{username}/favourite-songs")
+    public List<Song> getFavouriteSongs(@PathVariable String username) {
+        Profile profile = profileService.getProfileByUsername(username)
+                                        .orElseThrow(() ->
+                                            new UsernameNotFoundException(
+                                                "No profile found for username: " + username));
+        return profile.getFavouriteSongs();
+    }
+
+    /**
+     * @brief Mark a song as favourite for the user.
+     * @param username The username who favourites the song.
+     * @param songId   The ID of the song to mark as favourite.
+     * @return ResponseEntity indicating success or error.
+     */
+    @PostMapping("/{username}/favourite-songs/{songId}")
+    public ResponseEntity<?> addFavouriteSong(
+            @PathVariable String username,
+            @PathVariable Long songId) {
+        try {
+            profileService.addFavouriteSong(username, songId);
+            return ResponseEntity.ok().build();
+        } catch (UsernameNotFoundException e) {
+            return ResponseEntity.status(404).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    /**
+     * @brief Remove a song from the user's favourites.
+     * @param username The username who unfavourites the song.
+     * @param songId   The ID of the song to remove from favourites.
+     * @return ResponseEntity indicating success or error.
+     */
+    @DeleteMapping("/{username}/favourite-songs/{songId}")
+    public ResponseEntity<?> removeFavouriteSong(
+            @PathVariable String username,
+            @PathVariable Long songId) {
+        try {
+            profileService.removeFavouriteSong(username, songId);
+            return ResponseEntity.ok().build();
+        } catch (UsernameNotFoundException e) {
+            return ResponseEntity.status(404).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
 }
