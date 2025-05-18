@@ -28,6 +28,12 @@ import com.deusto.deuspotify.services.ProfileService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+import com.deusto.deuspotify.DTO.PlaylistDTO;
+import com.deusto.deuspotify.DTO.ProfileDTO;
+import com.deusto.deuspotify.DTO.SongDTO;
+import com.deusto.deuspotify.assembler.PlaylistAssembler;
+import com.deusto.deuspotify.assembler.ProfileAssembler;
+import com.deusto.deuspotify.assembler.SongAssembler;
 import com.deusto.deuspotify.controllers.AuthController;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -55,11 +61,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Date;
-import java.util.Arrays;
 import java.util.Collections;
-import org.springframework.security.core.GrantedAuthority;
+import java.util.Arrays;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -67,6 +71,8 @@ import static org.mockito.Mockito.*;
 
 @SpringBootTest
 class DeuspotifyApplicationTests {
+
+    private final String USERNAME = "testuser";
 
     @Mock
     private AuthenticationManager authenticationManager;
@@ -1004,6 +1010,313 @@ class DeuspotifyApplicationTests {
         assertEquals(songs, playlist.getSongs());
         assertEquals(2, playlist.getNumberOfSongs());
         assertEquals(order, playlist.getOrder());
+    }
+    /**
+     * @test Tests the Playlist constructor with only name and owners.
+     */
+    @Test
+    void testValidateToken_InvalidUsername_ShouldReturnFalse() {
+        String token = jwtUtil.generateToken(USERNAME);
+        assertFalse(jwtUtil.validateToken(token, "otroUsuario"), "Token not valid for other user");
+    }
+
+    // SongAssembler tests
+
+    /**
+     * @test Converts a null Song to DTO and expects null.
+     */
+    @Test
+    void toDTO_NullSong_ReturnsNull() {
+        assertNull(SongAssembler.toDTO(null));
+    }
+
+    /**
+     * @test Converts a fully populated Song entity to SongDTO and verifies all fields.
+     */
+    @Test
+    void toDTO_FullSong_MappedCorrectly() {
+        Song song = new Song();
+        song.setId(1L);
+        song.setName("Name");
+        song.setArtists(Arrays.asList("A1", "A2"));
+        song.setDuration(4.2);
+        song.setGenres(Arrays.asList("G1"));
+        Date date = new Date();
+        song.setDateOfRelease(date);
+        song.setAlbum("Album");
+
+        SongDTO dto = SongAssembler.toDTO(song);
+        assertNotNull(dto);
+        assertEquals(1L, dto.getId());
+        assertEquals("Name", dto.getName());
+        assertEquals(Arrays.asList("A1", "A2"), dto.getArtists());
+        assertEquals(4.2, dto.getDuration());
+        assertEquals(Arrays.asList("G1"), dto.getGenres());
+        assertEquals(date, dto.getDateOfRelease());
+        assertEquals("Album", dto.getAlbum());
+    }
+
+    /**
+     * @test Converts a null SongDTO to entity and expects null.
+     */
+    @Test
+    void toEntity_NullDTO_ReturnsNull() {
+        assertNull(SongAssembler.toEntity(null));
+    }
+
+    /**
+     * @test Converts a fully populated SongDTO to Song entity and verifies all fields.
+     */
+    @Test
+    void toEntity_FullDTO_MappedCorrectly() {
+        SongDTO dto = new SongDTO(2L, "N2", Arrays.asList("X"), 3.3,
+                Arrays.asList("Y"), new Date(0), "Alb2");
+
+        Song song = SongAssembler.toEntity(dto);
+        assertNotNull(song);
+        assertEquals(2L, song.getId());
+        assertEquals("N2", song.getName());
+        assertEquals(Arrays.asList("X"), song.getArtists());
+        assertEquals(3.3, song.getDuration());
+        assertEquals(Arrays.asList("Y"), song.getGenres());
+        assertEquals(new Date(0), song.getDateOfRelease());
+        assertEquals("Alb2", song.getAlbum());
+    }
+
+    /**
+     * @test Converts a null list of Songs to DTO list and expects null.
+     */
+    @Test
+    void toDTOList_NullList_ReturnsNull() {
+        assertNull(SongAssembler.toDTOList(null));
+    }
+
+    /**
+     * @test Converts an empty Song list to empty DTO list.
+     */
+    @Test
+    void toDTOList_EmptyList_ReturnsEmptyList() {
+        List<SongDTO> dtos = SongAssembler.toDTOList(Collections.emptyList());
+        assertNotNull(dtos);
+        assertTrue(dtos.isEmpty());
+    }
+
+    /**
+     * @test Converts a null list of SongDTOs to entity list and expects null.
+     */
+    @Test
+    void toEntityList_NullList_ReturnsNull() {
+        assertNull(SongAssembler.toEntityList(null));
+    }
+
+    /**
+     * @test Converts an empty SongDTO list to empty Song list.
+     */
+    @Test
+    void toEntityList_EmptyList_ReturnsEmptyList() {
+        List<Song> songs = SongAssembler.toEntityList(Collections.emptyList());
+        assertNotNull(songs);
+        assertTrue(songs.isEmpty());
+    }
+
+    // PlaylistAssembler tests
+
+    /**
+     * @test Converts a null Playlist to PlaylistDTO and expects null.
+     */
+    @Test
+    void playlist_toDTO_Null_ReturnsNull() {
+        assertNull(PlaylistAssembler.toDTO(null));
+    }
+
+    /**
+     * @test Converts a populated Playlist to PlaylistDTO and verifies all fields including nested SongDTO.
+     */
+    @Test
+    void playlist_toDTO_FullEntity_MappedCorrectly() {
+        Playlist p = new Playlist();
+        p.setId(5L);
+        p.setName("PL");
+        p.setOwners(Arrays.asList("U1"));
+        p.setPublic(false);
+        Song s = new Song(); s.setId(9L); s.setName("Z");
+        p.setSongs(Arrays.asList(s));
+        p.setOrder(Arrays.asList(0));
+
+        PlaylistDTO dto = PlaylistAssembler.toDTO(p);
+        assertNotNull(dto);
+        assertEquals(5L, dto.getId());
+        assertEquals("PL", dto.getName());
+        assertEquals(Arrays.asList("U1"), dto.getOwners());
+        assertFalse(dto.isPublic());
+        assertEquals(1, dto.getSongs().size());
+        assertEquals(1, dto.getNumberOfSongs());
+        assertEquals(Arrays.asList(0), dto.getOrder());
+    }
+
+    /**
+     * @test Converts a null PlaylistDTO to Playlist and expects null.
+     */
+    @Test
+    void playlist_toEntity_Null_ReturnsNull() {
+        assertNull(PlaylistAssembler.toEntity(null));
+    }
+
+    /**
+     * @test Converts a populated PlaylistDTO to Playlist and verifies all fields including nested Song.
+     */
+    @Test
+    void playlist_toEntity_FullDTO_MappedCorrectly() {
+        SongDTO sd = new SongDTO(3L, "NM", Collections.emptyList(), 1.1, Collections.emptyList(), new Date(1), "Alb");
+        PlaylistDTO dto = new PlaylistDTO(6L, "N6", Arrays.asList("O"), true,
+                Arrays.asList(sd), 1, Arrays.asList(2));
+
+        Playlist p = PlaylistAssembler.toEntity(dto);
+        assertNotNull(p);
+        assertEquals(6L, p.getId());
+        assertEquals("N6", p.getName());
+        assertEquals(Arrays.asList("O"), p.getOwners());
+        assertTrue(p.isPublic());
+        assertEquals(1, p.getSongs().size());
+        assertEquals(Arrays.asList(2), p.getOrder());
+    }
+
+    /**
+     * @test Converts a null Playlist list to DTO list and expects null.
+     */
+    @Test
+    void playlist_toDTOList_Null_ReturnsNull() {
+        assertNull(PlaylistAssembler.toDTOList(null));
+    }
+
+    /**
+     * @test Converts an empty Playlist list to empty PlaylistDTO list.
+     */
+    @Test
+    void playlist_toDTOList_Empty_ReturnsEmpty() {
+        List<PlaylistDTO> list = PlaylistAssembler.toDTOList(Collections.emptyList());
+        assertNotNull(list);
+        assertTrue(list.isEmpty());
+    }
+
+    /**
+     * @test Converts a null PlaylistDTO list to entity list and expects null.
+     */
+    @Test
+    void playlist_toEntityList_Null_ReturnsNull() {
+        assertNull(PlaylistAssembler.toEntityList(null));
+    }
+
+    /**
+     * @test Converts an empty PlaylistDTO list to empty Playlist list.
+     */
+    @Test
+    void playlist_toEntityList_Empty_ReturnsEmpty() {
+        List<Playlist> list = PlaylistAssembler.toEntityList(Collections.emptyList());
+        assertNotNull(list);
+        assertTrue(list.isEmpty());
+    }
+
+    // ProfileAssembler tests
+
+    /**
+     * @test Converts a null Profile to ProfileDTO and expects null.
+     */
+    @Test
+    void profile_toDTO_Null_ReturnsNull() {
+        assertNull(ProfileAssembler.toDTO(null));
+    }
+
+    /**
+     * @test Converts a populated Profile to ProfileDTO and verifies all direct and nested fields.
+     */
+    @Test
+    void profile_toDTO_FullEntity_MappedCorrectly() {
+        Profile p = new Profile();
+        p.setId(7L);
+        p.setUsername("usr");
+        p.setEmail("e@e.com");
+        p.setFriendsList(Arrays.asList("f1","f2"));
+        Song song = new Song(); song.setId(8L); song.setName("N");
+        p.setFavouriteSongs(Arrays.asList(song));
+        Playlist pl = new Playlist(); pl.setId(10L); pl.setName("X");
+        p.setPlaylists(Arrays.asList(pl));
+        p.setAdmin(true);
+
+        ProfileDTO dto = ProfileAssembler.toDTO(p);
+        assertNotNull(dto);
+        assertEquals(7L, dto.getId());
+        assertEquals("usr", dto.getUsername());
+        assertEquals("e@e.com", dto.getEmail());
+        assertEquals(Arrays.asList("f1","f2"), dto.getFriendsList());
+        assertEquals(1, dto.getFavouriteSongs().size());
+        assertEquals(1, dto.getPlaylists().size());
+        assertTrue(dto.isAdmin());
+    }
+
+    /**
+     * @test Converts a null ProfileDTO to Profile and expects null.
+     */
+    @Test
+    void profile_toEntity_Null_ReturnsNull() {
+        assertNull(ProfileAssembler.toEntity(null));
+    }
+
+    /**
+     * @test Converts a populated ProfileDTO to Profile and verifies all direct and nested fields.
+     */
+    @Test
+    void profile_toEntity_FullDTO_MappedCorrectly() {
+        SongDTO sd = new SongDTO(11L, "NN", Collections.emptyList(), 2.2, Collections.emptyList(), new Date(2), "Al");
+        PlaylistDTO pd = new PlaylistDTO(12L, "PL12", Collections.emptyList(), true, Collections.emptyList(), 0, Collections.emptyList());
+        ProfileDTO dto = new ProfileDTO(13L, "usr2", "e2@e.com", Arrays.asList("fa"),
+                Arrays.asList(sd), Arrays.asList(pd), false);
+
+        Profile p = ProfileAssembler.toEntity(dto);
+        assertNotNull(p);
+        assertEquals(13L, p.getId());
+        assertEquals("usr2", p.getUsername());
+        assertEquals("e2@e.com", p.getEmail());
+        assertEquals(Arrays.asList("fa"), p.getFriendsList());
+        assertEquals(1, p.getFavouriteSongs().size());
+        assertEquals(1, p.getPlaylists().size());
+        assertFalse(p.isAdmin());
+    }
+
+    /**
+     * @test Converts a null Profile list to DTO list and expects null.
+     */
+    @Test
+    void profile_toDTOList_Null_ReturnsNull() {
+        assertNull(ProfileAssembler.toDTOList(null));
+    }
+
+    /**
+     * @test Converts an empty Profile list to empty ProfileDTO list.
+     */
+    @Test
+    void profile_toDTOList_Empty_ReturnsEmpty() {
+        List<ProfileDTO> list = ProfileAssembler.toDTOList(Collections.emptyList());
+        assertNotNull(list);
+        assertTrue(list.isEmpty());
+    }
+
+    /**
+     * @test Converts a null ProfileDTO list to entity list and expects null.
+     */
+    @Test
+    void profile_toEntityList_Null_ReturnsNull() {
+        assertNull(ProfileAssembler.toEntityList(null));
+    }
+
+    /**
+     * @test Converts an empty ProfileDTO list to empty Profile list.
+     */
+    @Test
+    void profile_toEntityList_Empty_ReturnsEmpty() {
+        List<Profile> list = ProfileAssembler.toEntityList(Collections.emptyList());
+        assertNotNull(list);
+        assertTrue(list.isEmpty());
     }
 }
     
