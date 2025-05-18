@@ -26,18 +26,20 @@ import java.util.function.Function;
 <span class="fc" id="L26">    private final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);</span>
 
     /**
-     * Generates a JWT token for the given username.
-     * 
-     * @param username The username for which the token is generated.
-     * @return A signed JWT token string.
+     * Genera un JWT incluyendo el ID y el username.
+     *
+     * @param userId   ID numérico del usuario.
+     * @param username Nombre de usuario.
+     * @return Token JWT.
      */
-    public String generateToken(String username) {
-<span class="nc" id="L35">        return Jwts.builder()</span>
-<span class="nc" id="L36">                .setSubject(username)</span>
-<span class="nc" id="L37">                .setIssuedAt(new Date())</span>
-<span class="nc" id="L38">                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // 10 hours</span>
-<span class="nc" id="L39">                .signWith(SECRET_KEY)</span>
-<span class="nc" id="L40">                .compact();</span>
+    public String generateToken(Long userId, String username) {
+<span class="nc" id="L36">        return Jwts.builder()</span>
+<span class="nc" id="L37">                .setSubject(username)</span>
+<span class="nc" id="L38">                .claim(&quot;id&quot;, userId) // Include userId in the token</span>
+<span class="nc" id="L39">                .setIssuedAt(new Date())</span>
+<span class="nc" id="L40">                .setExpiration(new Date(System.currentTimeMillis() + 1000L * 60 * 60 * 10))</span>
+<span class="nc" id="L41">                .signWith(SECRET_KEY)</span>
+<span class="nc" id="L42">                .compact();</span>
     }
 
     /**
@@ -47,7 +49,7 @@ import java.util.function.Function;
      * @return The username (subject) embedded in the token.
      */
     public String extractUsername(String token) {
-<span class="nc" id="L50">        return extractClaim(token, Claims::getSubject);</span>
+<span class="nc" id="L52">        return extractClaim(token, Claims::getSubject);</span>
     }
 
     /**
@@ -59,8 +61,8 @@ import java.util.function.Function;
      * @return The extracted claim value.
      */
     public &lt;T&gt; T extractClaim(String token, Function&lt;Claims, T&gt; claimsResolver) {
-<span class="nc" id="L62">        Claims claims = extractAllClaims(token);</span>
-<span class="nc" id="L63">        return claimsResolver.apply(claims);</span>
+<span class="nc" id="L64">        Claims claims = extractAllClaims(token);</span>
+<span class="nc" id="L65">        return claimsResolver.apply(claims);</span>
     }
 
     /**
@@ -70,11 +72,11 @@ import java.util.function.Function;
      * @return All claims contained in the token.
      */
     private Claims extractAllClaims(String token) {
-<span class="nc" id="L73">        Jws&lt;Claims&gt; claimsJws = Jwts.parserBuilder()</span>
-<span class="nc" id="L74">                .setSigningKey(SECRET_KEY)</span>
-<span class="nc" id="L75">                .build()</span>
-<span class="nc" id="L76">                .parseClaimsJws(token);</span>
-<span class="nc" id="L77">        return claimsJws.getBody();</span>
+<span class="nc" id="L75">        Jws&lt;Claims&gt; claimsJws = Jwts.parserBuilder()</span>
+<span class="nc" id="L76">                .setSigningKey(SECRET_KEY)</span>
+<span class="nc" id="L77">                .build()</span>
+<span class="nc" id="L78">                .parseClaimsJws(token);</span>
+<span class="nc" id="L79">        return claimsJws.getBody();</span>
     }
 
     /**
@@ -85,7 +87,7 @@ import java.util.function.Function;
      * @return True if the token is valid and belongs to the username; otherwise, false.
      */
     public boolean validateToken(String token, String username) {
-<span class="nc" id="L88">        return extractUsername(token).equals(username);</span>
+<span class="nc" id="L90">        return extractUsername(token).equals(username);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

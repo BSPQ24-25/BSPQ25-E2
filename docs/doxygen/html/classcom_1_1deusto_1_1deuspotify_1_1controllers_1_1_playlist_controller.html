@@ -107,6 +107,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa51a48ee778c2bfa3e4b0d4a2a76eb12" id="r_aa51a48ee778c2bfa3e4b0d4a2a76eb12"><td class="memItemLeft" align="right" valign="top">List&lt; Playlist &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#aa51a48ee778c2bfa3e4b0d4a2a76eb12">getAllPlaylists</a> ()</td></tr>
 <tr class="memdesc:aa51a48ee778c2bfa3e4b0d4a2a76eb12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves all playlists.  <br /></td></tr>
 <tr class="separator:aa51a48ee778c2bfa3e4b0d4a2a76eb12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58492d736345143341700a07b41e4648" id="r_a58492d736345143341700a07b41e4648"><td class="memItemLeft" align="right" valign="top">List&lt; Playlist &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a58492d736345143341700a07b41e4648">getPlaylistsByUsername</a> (@PathVariable String username)</td></tr>
+<tr class="memdesc:a58492d736345143341700a07b41e4648"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves playlists that belong to a given username.  <br /></td></tr>
+<tr class="separator:a58492d736345143341700a07b41e4648"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adfbe041c33785976643d0382cc03f260" id="r_adfbe041c33785976643d0382cc03f260"><td class="memItemLeft" align="right" valign="top">Optional&lt; Playlist &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#adfbe041c33785976643d0382cc03f260">getPlaylistById</a> (@PathVariable Long id)</td></tr>
 <tr class="memdesc:adfbe041c33785976643d0382cc03f260"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a playlist by its ID.  <br /></td></tr>
 <tr class="separator:adfbe041c33785976643d0382cc03f260"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -193,7 +196,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The saved playlist. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_playlist_controller_8java_source.html#l00065">65</a> of file <a class="el" href="_playlist_controller_8java_source.html">PlaylistController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_playlist_controller_8java_source.html#l00077">77</a> of file <a class="el" href="_playlist_controller_8java_source.html">PlaylistController.java</a>.</p>
 
 </div>
 </div>
@@ -221,7 +224,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_playlist_controller_8java_source.html#l00085">85</a> of file <a class="el" href="_playlist_controller_8java_source.html">PlaylistController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_playlist_controller_8java_source.html#l00097">97</a> of file <a class="el" href="_playlist_controller_8java_source.html">PlaylistController.java</a>.</p>
 
 </div>
 </div>
@@ -272,6 +275,35 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The playlist, if found. </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="_playlist_controller_8java_source.html#l00067">67</a> of file <a class="el" href="_playlist_controller_8java_source.html">PlaylistController.java</a>.</p>
+
+</div>
+</div>
+<a id="a58492d736345143341700a07b41e4648" name="a58492d736345143341700a07b41e4648"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58492d736345143341700a07b41e4648">&#9670;&#160;</a></span>getPlaylistsByUsername()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt; Playlist &gt; com.deusto.deuspotify.controllers.PlaylistController.getPlaylistsByUsername </td>
+          <td>(</td>
+          <td class="paramtype">@PathVariable String&#160;</td>
+          <td class="paramname"><em>username</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves playlists that belong to a given username. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">username</td><td>The username of the owner. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>List of playlists owned by the user. </dd></dl>
+
 <p class="definition">Definition at line <a class="el" href="_playlist_controller_8java_source.html#l00055">55</a> of file <a class="el" href="_playlist_controller_8java_source.html">PlaylistController.java</a>.</p>
 
 </div>
@@ -312,7 +344,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The updated playlist. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_playlist_controller_8java_source.html#l00076">76</a> of file <a class="el" href="_playlist_controller_8java_source.html">PlaylistController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_playlist_controller_8java_source.html#l00088">88</a> of file <a class="el" href="_playlist_controller_8java_source.html">PlaylistController.java</a>.</p>
 
 </div>
 </div>
@@ -352,7 +384,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Updated playlist with new song list. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_playlist_controller_8java_source.html#l00096">96</a> of file <a class="el" href="_playlist_controller_8java_source.html">PlaylistController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_playlist_controller_8java_source.html#l00108">108</a> of file <a class="el" href="_playlist_controller_8java_source.html">PlaylistController.java</a>.</p>
 
 </div>
 </div>
@@ -365,7 +397,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>com</b></li><li class="navelem"><b>deusto</b></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify.html">deuspotify</a></li><li class="navelem"><a class="el" href="namespacecom_1_1deusto_1_1deuspotify_1_1controllers.html">controllers</a></li><li class="navelem"><a class="el" href="classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html">PlaylistController</a></li>
-    <li class="footer">Generated on Sun May 18 2025 17:41:45 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Sun May 18 2025 20:37:44 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

@@ -47,7 +47,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_auth_controller_8java.html",
-"classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#af552f4ddb7201472406c38c63e3e8473"
+"classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#ae6d03f51856755a403004b64f235b925"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
