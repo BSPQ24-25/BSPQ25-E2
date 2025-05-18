@@ -23,6 +23,11 @@ public class Playlist {
 
     /** List of usernames who own the playlist. */
     @ElementCollection
+    @CollectionTable(
+      name = "playlist_owners",
+      joinColumns = @JoinColumn(name = "playlist_id")
+    )
+    @Column(name = "username", nullable = false)
     private List<String> owners;
 
     /** Flag indicating if the playlist is public. */

@@ -47,6 +47,18 @@ public class PlaylistController {
     }
 
     /**
+     * @brief Retrieves playlists that belong to a given username.
+     * @param username The username of the owner.
+     * @return List of playlists owned by the user.
+     */
+    @GetMapping("/user/{username}")
+    public List<Playlist> getPlaylistsByUsername(@PathVariable String username) {
+        return deuspotifyService.retrieveAllPlaylists().stream()
+                .filter(p -> p.getOwners().contains(username))
+                .toList();
+    }
+
+    /**
      * @brief Retrieves a playlist by its ID.
      * @param id The ID of the playlist.
      * @return The playlist, if found.
