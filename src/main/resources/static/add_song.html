@@ -113,11 +113,11 @@
 
       if (response.ok) {
         const data = await response.json();
-        alert(data.message || "Song added successfully!");
+        alert(data.message || t('song.added.successfully'));
         window.location.href = "songs.html";
       } else {
         const error = await response.json();
-        alert(error.message || "Failed to add song.");
+        alert(error.message || t('song.added.failed'));
       }
     }
   </script>

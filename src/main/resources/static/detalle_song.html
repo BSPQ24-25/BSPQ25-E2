@@ -30,7 +30,7 @@
         const songId = params.get('id');
 
         if (!songId) {
-            document.getElementById("songDetails").innerText = "No se ha proporcionado una canción válida.";
+            document.getElementById("songDetails").innerText = t("songDetail.error");
         } else {
             fetch(`${appUrl || "http://localhost"}:8080/api/songs/${songId}`)
                 .then(res => res.json())
@@ -57,20 +57,20 @@
                     };
 
                     document.getElementById("deleteBtn").onclick = () => {
-                        if (confirm("¿Estás seguro de que quieres eliminar esta canción?")) {
+                        if (confirm(t('songDetail.confirmDelete'))) {
                           fetch(`${appUrl || "http://localhost"}:8080/api/songs/${song.id}`, {
                             method: "DELETE"
                           })
                           .then(response => {
                             if (!response.ok) {
-                              throw new Error("Error al eliminar la canción");
+                              throw new Error(t('songDetail.deleteError')); 
                             }
-                            alert("Canción eliminada correctamente.");
+                            alert(t('songDetail.deleteSuccess'));
                             window.location.href = "songs.html";
                           })
                           .catch(error => {
-                            console.error("Error en la eliminación:", error);
-                            alert("No se pudo eliminar la canción.");
+                            console.error(t('songDetail.error.delete'), error);
+                            alert(t('songDetail.error.delete'));
                           });
                         }
                       };
@@ -93,15 +93,15 @@
                     document.getElementById("shareBtn").addEventListener("click", () => {
                         navigator.clipboard.writeText(shareLink)
                             .then(() => {
-                                alert("Link copiado: " + shareLink);
+                                alert(t('songDetail.copied.link') + shareLink);
                             })
                             .catch(err => {
-                                console.error("Error al copiar: ", err);
+                                console.error(t('songDetail.copied.link.error'), err);
                             });
                     });
                 })
                 .catch(error => {
-                    document.getElementById("songDetails").innerText = "Error al cargar los detalles.";
+                    document.getElementById("songDetails").innerText = t('songDetail.error');
                     console.error(error);
                 });
         }

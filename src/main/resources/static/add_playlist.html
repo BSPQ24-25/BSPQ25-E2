@@ -66,10 +66,10 @@
       });
     
       if (response.ok) {
-        alert("Playlist created successfully!");
+        alert(t('playlist.created.successfully'));
         window.location.href = "playlists.html";
       } else {
-        alert("Failed to create playlist");
+        alert(t('playlist.created.failed'));
       }
     }
   </script>

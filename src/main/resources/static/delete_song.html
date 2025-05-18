@@ -34,7 +34,7 @@
       .then(res => res.json())
       .then(data => {
         songs = data;
-        console.log("Canciones recibidas:", songs);
+        console.log(t('song.recibida'), songs);
         songs.forEach(song => {
           const option = document.createElement("option");
           option.value = song.id;
@@ -43,8 +43,8 @@
         });
       })
       .catch(err => {
-        console.error("Error al cargar canciones:", err);
-        alert("No se pudieron cargar las canciones.");
+        console.error(t('song.cargar.failed'), err);
+        alert(t('song.cargar.failed.alert'));
       });
   
       document.getElementById("confirmDelete").addEventListener("click", () => {
@@ -58,12 +58,12 @@
             if (!response.ok) {
                 throw new Error("Error al eliminar la canción");
             }
-            alert("Canción eliminada correctamente.");
+            alert(t('song.deleted.successfully'));
             window.location.href = "songs.html";
         })
         .catch(error => {
-            console.error("Error en la eliminación:", error);
-            alert("No se pudo eliminar la canción.");
+            console.error(t('song.deleted.failed'), error);
+            alert(t('song.deleted.failed.alert'));
         });
     });    
   </script>  
