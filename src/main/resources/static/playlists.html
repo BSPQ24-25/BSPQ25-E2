@@ -65,8 +65,9 @@
 
         document.addEventListener("DOMContentLoaded", () => {
             loadTranslations();
+            const username = localStorage.getItem("username");
 
-            fetch(`${appUrl || "http://localhost"}:8080/api/playlists`)
+            fetch(`${appUrl || "http://localhost"}:8080/api/playlists/user/${username}`)
                 .then(response => response.json())
                 .then(data => {
                     playlists = data;

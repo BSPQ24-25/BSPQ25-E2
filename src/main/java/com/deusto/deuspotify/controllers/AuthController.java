@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -53,9 +54,19 @@ public class AuthController {
         String username = request.get("username");
         String password = request.get("password");
 
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+        authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(username, password)
+        );
 
-        String token = jwtUtil.generateToken(username);
+        Profile profile = profileService
+            .getProfileByUsername(username)
+            .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado: " + username));
+        Long userId = profile.getId();
+        System.out.println("ID del usuario: " + userId);
+
+        // 3. Generar el token incluyendo el id
+        String token = jwtUtil.generateToken(userId, username);
+
         return ResponseEntity.ok(Map.of("token", token));
     }
 

@@ -73,6 +73,7 @@ import static org.mockito.Mockito.*;
 class DeuspotifyApplicationTests {
 
     private final String USERNAME = "testuser";
+    private final Long PROFILE_ID = 1L;
 
     @Mock
     private AuthenticationManager authenticationManager;
@@ -119,15 +120,27 @@ class DeuspotifyApplicationTests {
         String token = "dummy-token";
         Map<String, String> loginRequest = Map.of("username", username, "password", password);
 
+        // 1) Simular la autenticación
         when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
                 .thenReturn(new UsernamePasswordAuthenticationToken(username, password));
-        when(jwtUtil.generateToken(username)).thenReturn(token);
 
+        // 2) Simular que encontramos el perfil con ID = PROFILE_ID
+        Profile mockProfile = new Profile();
+        mockProfile.setId(PROFILE_ID);
+        mockProfile.setUsername(username);
+        when(profileRepository.findByUsername(username))
+                .thenReturn(Optional.of(mockProfile));
+
+        // 3) Simular la generación del token
+        when(jwtUtil.generateToken(PROFILE_ID, username)).thenReturn(token);
+
+        // Ejecutar
         ResponseEntity<?> response = authController.login(loginRequest);
         Map<?, ?> responseBody = (Map<?, ?>) response.getBody();
 
+        // Asserts
         assertNotNull(response);
-        assertEquals(200, response.getStatusCode().value());
+        assertEquals(200, response.getStatusCodeValue());
         assertNotNull(responseBody);
         assertEquals(token, responseBody.get("token"));
     }
@@ -1016,7 +1029,7 @@ class DeuspotifyApplicationTests {
      */
     @Test
     void testValidateToken_InvalidUsername_ShouldReturnFalse() {
-        String token = jwtUtil.generateToken(USERNAME);
+        String token = jwtUtil.generateToken(PROFILE_ID, USERNAME);
         assertFalse(jwtUtil.validateToken(token, "otroUsuario"), "Token not valid for other user");
     }
 
