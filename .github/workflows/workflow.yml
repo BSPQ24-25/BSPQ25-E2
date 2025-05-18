@@ -3,10 +3,9 @@ name: Maven Site &n Peformance & Integration Tests & prepares docs file where al
 on:
   push:
     branches:
-      - '**'
+      - main
   schedule:
-    - cron: '0 18-23/2 * * *'  # 20:00–01:00 CET
-    - cron: '0 0-6/2 * * *'    # 02:00–08:00 CET
+    - cron: '0 1 * * *' # 02:00 CET every day
 
     
 
