@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <title data-i18n="songs.title">Songs</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Bootstrap Icons CSS sin integrity -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      crossorigin="anonymous"
+    />
 </head>
 
 <body class="side-layout">
@@ -23,27 +29,58 @@
 
     <div class="main-content">
         <h2 data-i18n="songs.yours">Your Songs</h2>
-
-        <input type="text" id="searchInput" data-i18n-placeholder="songs.search" placeholder="Search by song name" style="margin-bottom: 10px; width: 100%; padding: 8px; font-size: 16px;">
-
+        <input
+          type="text"
+          id="searchInput"
+          data-i18n-placeholder="songs.search"
+          placeholder="Search by song name"
+          style="margin-bottom: 10px; width: 100%; padding: 8px; font-size: 16px;"
+        >
         <ul id="songsList"></ul>
     </div>
 
     <script src="/i18n.js"></script>
     <script>
-    const full = window.location.origin;
-    const match = full.match(/^(https?:\/\/[^\/:]+)/);
-    const appUrl = match ? match[0] : '';
+    (function() {
+        const full = window.location.origin;
+        const match = full.match(/^(https?:\/\/[^\/:]+)/);
+        const appUrl = match ? match[0] : '';
+        // ===> Inicializa aquí la variable 'username', p.ej. desde localStorage o una llamada a tu backend:
+        const username = localStorage.getItem('username') || '';
+
+        if (!username) {
+            console.error('Username is not set. Make sure to store it in localStorage or inject it server-side.');
+            return;
+        }
+
         document.addEventListener("DOMContentLoaded", () => {
             loadTranslations();
 
             let allSongs = [];
+            let favIds = new Set();
 
-            fetch(`${appUrl || "http://localhost"}:8080/api/songs`)
-                .then(response => response.json())
-                .then(songs => {
-                    allSongs = songs;
-                    renderSongs(songs);
+            // 1) Cargar favoritos
+            fetch(`${appUrl}:8080/api/profiles/${encodeURIComponent(username)}/favourite-songs`)
+                .then(res => {
+                    if (!res.ok) throw new Error('Failed to fetch favourites');
+                    return res.json();
+                })
+                .then(favs => {
+                    // favs debe ser un array
+                    favIds = new Set(Array.isArray(favs) ? favs.map(s => s.id) : []);
+                })
+                .catch(err => {
+                    console.error(err);
+                })
+                .finally(() => {
+                    // 2) Cargar todas las canciones
+                    fetch(`${appUrl}:8080/api/songs`)
+                      .then(response => response.json())
+                      .then(songs => {
+                          allSongs = songs;
+                          renderSongs(songs);
+                      })
+                      .catch(console.error);
                 });
 
             function renderSongs(songs) {
@@ -55,15 +92,43 @@
 
                     const item = document.createElement("li");
                     item.id = `song-${song.id}`;
+                    item.style.display = "flex";
+                    item.style.alignItems = "center";
 
                     const link = document.createElement("a");
                     link.href = `detalle_song.html?id=${song.id}`;
                     link.textContent = song.name;
-                    link.style.display = "block";
+                    link.style.flex = "1";
                     link.style.textDecoration = "none";
                     link.style.color = "inherit";
 
+                    const heart = document.createElement("i");
+                    heart.classList.add("bi", favIds.has(song.id) ? "bi-heart-fill" : "bi-heart");
+                    heart.style.cursor = "pointer";
+                    heart.style.marginLeft = "10px";
+                    if (favIds.has(song.id)) heart.style.color = "red";
+
+                    heart.addEventListener("click", () => {
+                        const isFav = favIds.has(song.id);
+                        const method = isFav ? 'DELETE' : 'POST';
+                        fetch(`${appUrl}:8080/api/profiles/${encodeURIComponent(username)}/favourite-songs/${song.id}`, { method })
+                            .then(resp => {
+                                if (!resp.ok) throw new Error('Error updating favourite');
+                                if (isFav) {
+                                    favIds.delete(song.id);
+                                    heart.classList.replace('bi-heart-fill','bi-heart');
+                                    heart.style.color = '';
+                                } else {
+                                    favIds.add(song.id);
+                                    heart.classList.replace('bi-heart','bi-heart-fill');
+                                    heart.style.color = 'red';
+                                }
+                            })
+                            .catch(console.error);
+                    });
+
                     item.appendChild(link);
+                    item.appendChild(heart);
                     list.appendChild(item);
                 });
             }
@@ -76,6 +141,7 @@
                 renderSongs(filteredSongs);
             });
         });
+    })();
     </script>
 </body>
 </html>

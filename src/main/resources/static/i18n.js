@@ -3,6 +3,21 @@ window.t = function(key) {
   return i18nTranslations[key] || key;
 };
 
+if (!localStorage.getItem("token") && localStorage.getItem("jwtToken")) {
+    const oldToken = localStorage.getItem("jwtToken");
+    localStorage.setItem("token", oldToken);
+    localStorage.removeItem("jwtToken");
+
+    const base64Url = oldToken.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(c =>
+        '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+    ).join(''));
+
+    const payload = JSON.parse(jsonPayload);
+    localStorage.setItem("username", payload.sub);
+}
+
 async function loadTranslations(lang = null) {
     try {
         const selectedLang = lang || localStorage.getItem('lang') || 'es';

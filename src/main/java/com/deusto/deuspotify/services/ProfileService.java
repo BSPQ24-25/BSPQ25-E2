@@ -1,7 +1,9 @@
 package com.deusto.deuspotify.services;
 
 import com.deusto.deuspotify.model.Profile;
+import com.deusto.deuspotify.model.Song;
 import com.deusto.deuspotify.repositories.ProfileRepository;
+import com.deusto.deuspotify.repositories.SongRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,13 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Optional;
-/**
- * @class ProfileService
- * @brief Service for managing user profiles, authentication and user details for Spring Security.
- *
- * This service provides methods for registering, retrieving, updating, and deleting user profiles.
- * It also supports authentication via Spring Security and token-based user identification using JWT.
- */
+
 @Service
 public class ProfileService implements UserDetailsService {
 
@@ -31,20 +27,16 @@ public class ProfileService implements UserDetailsService {
     @Autowired
     private JwtUtil jwtUtil;
 
-    /**
-     * Constructor for ProfileService.
-     * 
-     * @param profileRepository Repository to manage Profile entities.
-     * @param passwordEncoder Password encoder for secure password storage.
-     */
+    @Autowired
+    private SongRepository songRepository;
+
     public ProfileService(ProfileRepository profileRepository, @Lazy PasswordEncoder passwordEncoder) {
         this.profileRepository = profileRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
     /**
-     * Loads a user by their username. Required for Spring Security authentication.
-     *
+     * @brief Load a user by their username for Spring Security.
      * @param username Username of the user.
      * @return UserDetails object containing user information.
      * @throws UsernameNotFoundException if the user is not found.
@@ -62,8 +54,7 @@ public class ProfileService implements UserDetailsService {
     }
 
     /**
-     * Retrieves all user profiles.
-     * 
+     * @brief Retrieve all user profiles.
      * @return List of all Profile entities.
      */
     public List<Profile> getAllProfiles() {
@@ -71,8 +62,7 @@ public class ProfileService implements UserDetailsService {
     }
 
     /**
-     * Retrieves a profile by its ID.
-     * 
+     * @brief Retrieve a profile by its ID.
      * @param id ID of the profile.
      * @return Optional containing the Profile if found.
      */
@@ -81,8 +71,7 @@ public class ProfileService implements UserDetailsService {
     }
 
     /**
-     * Registers a new user with encoded password.
-     * 
+     * @brief Register a new user with encoded password.
      * @param profile Profile object containing registration data.
      * @return The saved Profile object.
      * @throws RuntimeException if the username already exists.
@@ -90,16 +79,15 @@ public class ProfileService implements UserDetailsService {
     @Transactional
     public Profile registerUser(Profile profile) {
         if (profileRepository.findByUsername(profile.getUsername()).isPresent()) {
-            throw new RuntimeException("El usuario ya existe.");
+            throw new RuntimeException("Username already exists.");
         }
         profile.setPassword(passwordEncoder.encode(profile.getPassword()));
         return profileRepository.save(profile);
     }
 
     /**
-     * Updates an existing user profile.
-     * 
-     * @param id ID of the profile to update.
+     * @brief Update an existing user profile.
+     * @param id             ID of the profile to update.
      * @param updatedProfile New profile data.
      * @return Optional containing the updated Profile.
      */
@@ -120,8 +108,7 @@ public class ProfileService implements UserDetailsService {
     }
 
     /**
-     * Deletes a user profile.
-     * 
+     * @brief Delete a user profile.
      * @param id ID of the profile to delete.
      * @return true if the profile was deleted, false otherwise.
      */
@@ -135,8 +122,7 @@ public class ProfileService implements UserDetailsService {
     }
 
     /**
-     * Validates user login by comparing raw and encoded passwords.
-     * 
+     * @brief Validate user login by comparing raw and encoded passwords.
      * @param username The username.
      * @param password The raw password.
      * @return Optional containing the Profile if login is successful.
@@ -147,23 +133,59 @@ public class ProfileService implements UserDetailsService {
     }
 
     /**
-     * Extracts and returns the currently authenticated user based on the JWT token in the request.
-     * 
+     * @brief Extract and return the currently authenticated user based on the JWT token.
      * @param request The HTTP request containing the Authorization header.
      * @return The authenticated Profile.
      * @throws RuntimeException if no token is found or the user does not exist.
      */
     public Profile getAuthenticatedUser(HttpServletRequest request) {
         String authHeader = request.getHeader("Authorization");
-
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             throw new RuntimeException("No JWT token found");
         }
-
         String token = authHeader.substring(7);
         String username = jwtUtil.extractUsername(token);
-
         return profileRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
+
+    /**
+     * @brief Retrieve a profile by its username.
+     * @param username The username to search for.
+     * @return Optional containing the Profile if found.
+     */
+    public Optional<Profile> getProfileByUsername(String username) {
+        return profileRepository.findByUsername(username);
+    }
+
+    /**
+     * @brief Add the specified song to the user's favourites.
+     * @param username The username of the user.
+     * @param songId   The ID of the song to add.
+     */
+    @Transactional
+    public void addFavouriteSong(String username, Long songId) {
+        Profile profile = profileRepository.findByUsername(username)
+            .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
+        Song song = songRepository.findById(songId)
+            .orElseThrow(() -> new RuntimeException("Song not found: " + songId));
+        profile.getFavouriteSongs().add(song);
+        profileRepository.save(profile);
+    }
+
+    /**
+     * @brief Remove the specified song from the user's favourites.
+     * @param username The username of the user.
+     * @param songId   The ID of the song to remove.
+     */
+    @Transactional
+    public void removeFavouriteSong(String username, Long songId) {
+        Profile profile = profileRepository.findByUsername(username)
+            .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
+        Song song = songRepository.findById(songId)
+            .orElseThrow(() -> new RuntimeException("Song not found: " + songId));
+        profile.getFavouriteSongs().remove(song);
+        profileRepository.save(profile);
+    }
+
 }
