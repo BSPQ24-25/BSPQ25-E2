@@ -169,3 +169,48 @@ li:hover {
     margin: 0.4rem 0;
     font-size: 1rem;
 }
+
+/* Contenedor de casillas: flexbox con salto automático */
+.song-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;              /* espacio entre casillas */
+  justify-content: flex-start;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.song-checkbox-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 140px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 8px;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.song-checkbox-label:hover {
+  box-shadow: 0 0 6px rgba(0,0,0,0.2);
+}
+
+.song-checkbox-label span {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.song-checkbox-label input[type="checkbox"] {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+#saveBtn + button {
+  margin-top: 20px;
+}
