@@ -60,7 +60,7 @@
             list.innerHTML = "";
 
             if (!songs.length) {
-                list.innerHTML = "<li data-i18n='songs.favourite.none'>No favourite songs found.</li>";
+                list.innerHTML = `<li>${t('songs.favourite.none')}</li>`;
                 return;
             }
 
