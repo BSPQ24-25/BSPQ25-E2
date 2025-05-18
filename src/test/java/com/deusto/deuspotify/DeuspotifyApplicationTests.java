@@ -53,6 +53,9 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
 class DeuspotifyApplicationTests {
 
+    private final String USERNAME = "testuser";
+
+
     @Mock
     private AuthenticationManager authenticationManager;
 
@@ -105,6 +108,14 @@ class DeuspotifyApplicationTests {
         assertEquals(200, response.getStatusCode().value());
         assertNotNull(responseBody);
         assertEquals(token, responseBody.get("token"));
+    }
+
+
+
+    @Test
+    void testValidateToken_InvalidUsername_ShouldReturnFalse() {
+        String token = jwtUtil.generateToken(USERNAME);
+        assertFalse(jwtUtil.validateToken(token, "otroUsuario"), "Token not valid for other user");
     }
 
     @Test
