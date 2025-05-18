@@ -144,10 +144,11 @@ var NAVTREEINDEX0 =
 "classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller.html#a2508f2c3c5582a01647c84c24225ca93":[2,0,0,0,0,2,1,1],
 "classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller.html#a98395c12cb003c8ec087d335e262a113":[2,0,0,0,0,2,1,0],
 "classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html":[2,0,0,0,0,2,2],
-"classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a2d5767a6881bce6e8bc2a0ddeb46f7f4":[2,0,0,0,0,2,2,5],
+"classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a2d5767a6881bce6e8bc2a0ddeb46f7f4":[2,0,0,0,0,2,2,6],
 "classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a3e356e143e63a70116a91406ac7270d6":[2,0,0,0,0,2,2,1],
 "classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a47c3de5be06c446c93bf27d1b8d2d608":[2,0,0,0,0,2,2,0],
-"classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a5d4c21632f49645f79d9c419cb82b7b4":[2,0,0,0,0,2,2,6],
+"classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a58492d736345143341700a07b41e4648":[2,0,0,0,0,2,2,5],
+"classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#a5d4c21632f49645f79d9c419cb82b7b4":[2,0,0,0,0,2,2,7],
 "classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#aa51a48ee778c2bfa3e4b0d4a2a76eb12":[2,0,0,0,0,2,2,3],
 "classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#adfbe041c33785976643d0382cc03f260":[2,0,0,0,0,2,2,4],
 "classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller.html#af563b84c67efbbe33d44ac6b2ba781a2":[2,0,0,0,0,2,2,2],
@@ -233,7 +234,7 @@ var NAVTREEINDEX0 =
 "classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song.html#af7aa4d6c94d737599e12350300e45534":[2,0,0,0,0,4,2,16],
 "classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html":[2,0,0,0,0,6,0],
 "classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#a1562935918d787cfa4ff3a54ba029a96":[2,0,0,0,0,6,0,2],
-"classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#a9e50d85a65148666b857fef37d4b26aa":[2,0,0,0,0,6,0,1],
+"classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#a8939674b70dbc5f74b8bf41918fe12a5":[2,0,0,0,0,6,0,1],
 "classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util.html#af5221644adf143531653f0dc9877d9cb":[2,0,0,0,0,6,0,0],
 "classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html":[2,0,0,0,0,7,1],
 "classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#a070b8955874b90467a7bfad956f02f71":[2,0,0,0,0,7,1,9],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#a73510c67446d418af9e4109b808c0610":[2,0,0,0,0,7,1,7],
 "classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#aa1a2951ce1781c6b888c39cf511f7ef4":[2,0,0,0,0,7,1,5],
 "classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#ab0ba768d7ce62e01269c1201b18149fe":[2,0,0,0,0,7,1,8],
-"classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#ab7569e55501d7cca2c27344d4c8d4215":[2,0,0,0,0,7,1,14],
-"classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#ae6d03f51856755a403004b64f235b925":[2,0,0,0,0,7,1,13]
+"classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#ab7569e55501d7cca2c27344d4c8d4215":[2,0,0,0,0,7,1,14]
 };

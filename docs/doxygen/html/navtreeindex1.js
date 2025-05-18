@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#ae6d03f51856755a403004b64f235b925":[2,0,0,0,0,7,1,13],
 "classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#af552f4ddb7201472406c38c63e3e8473":[2,0,0,0,0,7,1,6],
 "classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html":[2,0,0,0,0,7,2],
 "classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a049c4eaabaed732595e1eedaf4421358":[2,0,0,0,0,7,2,3],

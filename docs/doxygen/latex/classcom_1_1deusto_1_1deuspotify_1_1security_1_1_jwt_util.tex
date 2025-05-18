@@ -8,7 +8,7 @@ Utility class for generating and validating JSON Web Tokens (JWT).
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-String \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_a9e50d85a65148666b857fef37d4b26aa}{generate\+Token}} (String username)
+String \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_a8939674b70dbc5f74b8bf41918fe12a5}{generate\+Token}} (Long user\+Id, String username)
 \item 
 String \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_af5221644adf143531653f0dc9877d9cb}{extract\+Username}} (String token)
 \item 
@@ -44,27 +44,29 @@ The username (subject) embedded in the token.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_jwt_util_8java_source_l00049}{49}} of file \mbox{\hyperlink{_jwt_util_8java_source}{Jwt\+Util.\+java}}.
+Definition at line \mbox{\hyperlink{_jwt_util_8java_source_l00051}{51}} of file \mbox{\hyperlink{_jwt_util_8java_source}{Jwt\+Util.\+java}}.
 
-\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_a9e50d85a65148666b857fef37d4b26aa}\label{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_a9e50d85a65148666b857fef37d4b26aa} 
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_a8939674b70dbc5f74b8bf41918fe12a5}\label{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_a8939674b70dbc5f74b8bf41918fe12a5} 
 \index{com.deusto.deuspotify.security.JwtUtil@{com.deusto.deuspotify.security.JwtUtil}!generateToken@{generateToken}}
 \index{generateToken@{generateToken}!com.deusto.deuspotify.security.JwtUtil@{com.deusto.deuspotify.security.JwtUtil}}
 \doxysubsubsection{\texorpdfstring{generateToken()}{generateToken()}}
-{\footnotesize\ttfamily String com.\+deusto.\+deuspotify.\+security.\+Jwt\+Util.\+generate\+Token (\begin{DoxyParamCaption}\item[{String}]{username }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily String com.\+deusto.\+deuspotify.\+security.\+Jwt\+Util.\+generate\+Token (\begin{DoxyParamCaption}\item[{Long}]{user\+Id,  }\item[{String}]{username }\end{DoxyParamCaption})}
 
-Generates a JWT token for the given username.
+Genera un JWT incluyendo el ID y el username.
 
 
 \begin{DoxyParams}{Parameters}
-{\em username} & The username for which the token is generated. \\
+{\em user\+Id} & ID numérico del usuario. \\
+\hline
+{\em username} & Nombre de usuario. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A signed JWT token string. 
+Token JWT. 
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_jwt_util_8java_source_l00034}{34}} of file \mbox{\hyperlink{_jwt_util_8java_source}{Jwt\+Util.\+java}}.
+Definition at line \mbox{\hyperlink{_jwt_util_8java_source_l00035}{35}} of file \mbox{\hyperlink{_jwt_util_8java_source}{Jwt\+Util.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_a1562935918d787cfa4ff3a54ba029a96}\label{classcom_1_1deusto_1_1deuspotify_1_1security_1_1_jwt_util_a1562935918d787cfa4ff3a54ba029a96} 
 \index{com.deusto.deuspotify.security.JwtUtil@{com.deusto.deuspotify.security.JwtUtil}!validateToken@{validateToken}}
@@ -86,7 +88,7 @@ True if the token is valid and belongs to the username; otherwise, false.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_jwt_util_8java_source_l00087}{87}} of file \mbox{\hyperlink{_jwt_util_8java_source}{Jwt\+Util.\+java}}.
+Definition at line \mbox{\hyperlink{_jwt_util_8java_source_l00089}{89}} of file \mbox{\hyperlink{_jwt_util_8java_source}{Jwt\+Util.\+java}}.
 
 
 

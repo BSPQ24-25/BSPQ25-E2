@@ -47,13 +47,25 @@ public class PlaylistController {
     }
 
     /**
+     * @brief Retrieves playlists that belong to a given username.
+     * @param username The username of the owner.
+     * @return List of playlists owned by the user.
+     */
+    @GetMapping(&quot;/user/{username}&quot;)
+    public List&lt;Playlist&gt; getPlaylistsByUsername(@PathVariable String username) {
+<span class="nc" id="L56">        return deuspotifyService.retrieveAllPlaylists().stream()</span>
+<span class="nc" id="L57">                .filter(p -&gt; p.getOwners().contains(username))</span>
+<span class="nc" id="L58">                .toList();</span>
+    }
+
+    /**
      * @brief Retrieves a playlist by its ID.
      * @param id The ID of the playlist.
      * @return The playlist, if found.
      */
     @GetMapping(&quot;/{id}&quot;)
     public Optional&lt;Playlist&gt; getPlaylistById(@PathVariable Long id) {
-<span class="nc" id="L56">        return deuspotifyService.findPlaylist(id);</span>
+<span class="nc" id="L68">        return deuspotifyService.findPlaylist(id);</span>
     }
 
     /**
@@ -63,7 +75,7 @@ public class PlaylistController {
      */
     @PostMapping
     public Playlist createPlaylist(@RequestBody Playlist playlist) {
-<span class="nc" id="L66">        return deuspotifyService.addPlaylist(playlist);</span>
+<span class="nc" id="L78">        return deuspotifyService.addPlaylist(playlist);</span>
     }
 
     /**
@@ -74,7 +86,7 @@ public class PlaylistController {
      */
     @PutMapping(&quot;/{id}&quot;)
     public Playlist updatePlaylist(@PathVariable Long id, @RequestBody Playlist playlist) {
-<span class="nc" id="L77">        return deuspotifyService.updatePlaylist(id, playlist);</span>
+<span class="nc" id="L89">        return deuspotifyService.updatePlaylist(id, playlist);</span>
     }
 
     /**
@@ -83,8 +95,8 @@ public class PlaylistController {
      */
     @DeleteMapping(&quot;/{id}&quot;)
     public void deletePlaylist(@PathVariable Long id) {
-<span class="nc" id="L86">        deuspotifyService.deletePlaylist(id);</span>
-<span class="nc" id="L87">    }</span>
+<span class="nc" id="L98">        deuspotifyService.deletePlaylist(id);</span>
+<span class="nc" id="L99">    }</span>
 
     /**
      * @brief Updates the list of songs in a playlist.
@@ -94,13 +106,13 @@ public class PlaylistController {
      */
     @PutMapping(&quot;/{id}/songs&quot;)
     public Playlist updatePlaylistSongs(@PathVariable Long id, @RequestBody List&lt;Long&gt; songIds) {
-<span class="nc" id="L97">        Playlist playlist = deuspotifyService.findPlaylist(id)</span>
-<span class="nc" id="L98">            .orElseThrow(() -&gt; new RuntimeException(&quot;Playlist no encontrada&quot;));</span>
+<span class="nc" id="L109">        Playlist playlist = deuspotifyService.findPlaylist(id)</span>
+<span class="nc" id="L110">            .orElseThrow(() -&gt; new RuntimeException(&quot;Playlist no encontrada&quot;));</span>
 
-<span class="nc" id="L100">        List&lt;Song&gt; songs = deuspotifyService.findSongsByIds(songIds);</span>
-<span class="nc" id="L101">        playlist.setSongs(songs);</span>
+<span class="nc" id="L112">        List&lt;Song&gt; songs = deuspotifyService.findSongsByIds(songIds);</span>
+<span class="nc" id="L113">        playlist.setSongs(songs);</span>
 
-<span class="nc" id="L103">        return deuspotifyService.updatePlaylist(id, playlist);</span>
+<span class="nc" id="L115">        return deuspotifyService.updatePlaylist(id, playlist);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
