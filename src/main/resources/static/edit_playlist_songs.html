@@ -1,100 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title data-i18n="edit_playlist_title">Edit Playlist</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <title data-i18n="edit_playlist_songs.title">Editar canciones de la playlist</title>
+  <link rel="stylesheet" href="styles.css">
   <script src="i18n.js" defer></script>
 </head>
 <body class="centered-page">
-  
+
+  <!-- Language Switcher -->
   <div style="position: absolute; top: 10px; right: 20px;">
     <button onclick="loadTranslations('es')" title="Español">Es</button>
     <button onclick="loadTranslations('en')" title="English">En</button>
     <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
   </div>
 
-  <h2 data-i18n="edit_playlist_title">Edit Playlist</h2>
+  <!-- Page Title -->
+  <h2 data-i18n="edit_playlist_songs.title">Editar canciones de la playlist</h2>
 
-  <label for="playlistSelect" data-i18n="edit_playlist_choose">Choose a playlist:</label>
-  <select id="playlistSelect" size="5" required></select>
+  <!-- Songs Form -->
+  <form id="songsForm"></form>
 
-  <form id="editPlaylistForm" style="margin-top: 2rem;">
-    <label for="name" data-i18n="edit_playlist_name">Name:</label>
-    <input type="text" id="name" required />
-
-    <label for="owner" data-i18n="edit_playlist_owner">Owner (username):</label>
-    <input type="text" id="owner" disabled />
-
-    <label for="is_public" data-i18n="edit_playlist_public">Public:</label>
-    <input type="checkbox" id="is_public" />
-
-    <button type="submit" data-i18n="edit_playlist_save">Save Changes</button>
-  </form>
+  <!-- Action Buttons -->
+  <button id="saveBtn" data-i18n="edit_playlist_songs.save">Guardar cambios</button>
+  <button onclick="window.history.back()" data-i18n="edit_playlist_songs.cancel">Cancelar</button>
 
   <script>
     const full = window.location.origin;
     const match = full.match(/^(https?:\/\/[^\/:]+)/);
     const appUrl = match ? match[0] : '';
-    const select = document.getElementById("playlistSelect");
-    let playlists = [];
+    const params = new URLSearchParams(window.location.search);
+    const playlistId = params.get("id");
 
-    fetch(`${appUrl || "http://localhost"}:8080/api/playlists`)
+    let playlistSongs = [];
+
+    // Obtener canciones de la playlist actual
+    fetch(`${appUrl}:8080/api/playlists/${playlistId}`)
       .then(res => res.json())
-      .then(data => {
-        playlists = data;
-        data.forEach(pl => {
-          const option = document.createElement("option");
-          option.value = pl.id;
-          option.textContent = pl.name || `Playlist #${pl.id}`;
-          select.appendChild(option);
+      .then(playlist => {
+        playlistSongs = playlist.songs.map(song => song.id);
+
+        // Obtener todas las canciones del usuario
+        return fetch(`${appUrl}:8080/api/songs`);
+      })
+      .then(res => res.json())
+      .then(allSongs => {
+        const form = document.getElementById("songsForm");
+        allSongs.forEach(song => {
+          const isInPlaylist = playlistSongs.includes(song.id);
+
+          const label = document.createElement("label");
+          label.className = "song-checkbox-label";
+
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.value = song.id;
+          checkbox.checked = isInPlaylist;
+
+          label.appendChild(checkbox);
+          label.appendChild(document.createElement("span")).textContent = song.name;
+
+          form.appendChild(label);
         });
+      })
+      .catch(err => console.error('Error loading playlist or songs:', err));
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const preselectId = urlParams.get("id");
+    document.getElementById("saveBtn").addEventListener("click", () => {
+      const checkboxes = document.querySelectorAll("#songsForm input[type='checkbox']");
+      const selectedIds = Array.from(checkboxes)
+        .filter(cb => cb.checked)
+        .map(cb => parseInt(cb.value, 10));
 
-        if (preselectId) {
-          select.value = preselectId;
-          select.dispatchEvent(new Event("change"));
-        }
-      });
-
-    select.addEventListener("change", () => {
-      const selected = playlists.find(p => p.id == select.value);
-      if (selected) {
-        document.getElementById("name").value = selected.name;
-        document.getElementById("owner").value = (selected.owners && selected.owners.length > 0) ? selected.owners[0] : ""; 
-        document.getElementById("is_public").checked = selected.is_public || false;
-        
-        select.dataset.songs = JSON.stringify(selected.songs || []);
-        select.dataset.order = JSON.stringify(selected.order || []);
-      }
-    });      
-
-    document.getElementById("editPlaylistForm").addEventListener("submit", function(event) {
-      event.preventDefault();
-      const playlistId = select.value;
-      const updated = {
-        name: document.getElementById("name").value,
-        is_public: document.getElementById("is_public").checked,
-        songs: JSON.parse(select.dataset.songs || "[]"),
-        order: JSON.parse(select.dataset.order || "[]")
-      };
-
-      fetch(`${appUrl || "http://localhost"}:8080/api/playlists/${playlistId}`, {
+      fetch(`${appUrl}:8080/api/playlists/${playlistId}/songs`, {
         method: "PUT",
-        headers: { 
-          "Content-Type": "application/json"
-          // Si usas token, añádelo aquí: "Authorization": `Bearer ${token}`
-        },
-        body: JSON.stringify(updated)
-      }).then(response => {
-        if(response.ok){
-          window.location.href = "playlists.html";
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(selectedIds)
+      })
+      .then(response => {
+        // Use i18n if available, else fallback
+        const msgUpdated = (window.i18n && i18n.t('edit_playlist_songs.updated')) || 'Canciones actualizadas.';
+        const msgError = (window.i18n && i18n.t('edit_playlist_songs.error')) || 'Error al actualizar canciones.';
+        if (response.ok) {
+          alert(msgUpdated);
+          window.location.href = `detalle_playlist.html?id=${playlistId}`;
         } else {
-          alert("Failed to update playlist");
+          alert(msgError);
         }
-      });
+      })
+      .catch(err => console.error('Error updating songs:', err));
     });
   </script>
 </body>
