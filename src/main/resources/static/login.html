@@ -31,5 +31,50 @@
 
     <!-- Carga el archivo de traducción -->
     <script src="/i18n.js"></script>
+    <script>
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        try {
+            const response = await fetch('/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+            if (response.ok) {
+                const data = await response.json();
+                localStorage.setItem('token', data.token);
+
+                // Decodificar payload del JWT y guardar username y userId
+                const oldToken = data.token;
+                const base64Url = oldToken.split('.')[1];
+                const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                const jsonPayload = decodeURIComponent(
+                    atob(base64)
+                        .split('')
+                        .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+                        .join('')
+                );
+                const payload = JSON.parse(jsonPayload);
+                console.warn("Payload decodificado:", payload);
+
+                localStorage.setItem("username", payload.sub);
+
+                if (payload.id !== undefined) {
+                    localStorage.setItem("userId", payload.id.toString());
+                } else {
+                    console.warn("El token no contiene el claim 'id'");
+                }
+
+                e.target.submit();
+            } else {
+                document.getElementById('errorMsg').hidden = false;
+            }
+        } catch (err) {
+            document.getElementById('errorMsg').hidden = false;
+        }
+    });
+    </script>
 </body>
 </html>
