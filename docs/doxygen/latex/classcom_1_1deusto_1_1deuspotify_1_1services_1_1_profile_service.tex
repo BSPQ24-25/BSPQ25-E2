@@ -17,21 +17,27 @@ Inheritance diagram for com.\+deusto.\+deuspotify.\+services.\+Profile\+Service\
 \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a2cc1b9df95256d933a2972a870dc8b97}{Profile\+Service}} (Profile\+Repository profile\+Repository, @Lazy Password\+Encoder password\+Encoder)
 \item 
 User\+Details \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_aea8053cdaa7f5db8765a86eca75b8551}{load\+User\+By\+Username}} (String username)  throws Username\+Not\+Found\+Exception 
-\item 
+\begin{DoxyCompactList}\small\item\em Load a user by their username for Spring Security. \end{DoxyCompactList}\item 
 List$<$ Profile $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a049c4eaabaed732595e1eedaf4421358}{get\+All\+Profiles}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Retrieve all user profiles. \end{DoxyCompactList}\item 
 Optional$<$ Profile $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a96b5dbf26aa198907ec4255b5ea45555}{get\+Profile\+By\+Id}} (Long id)
-\item 
+\begin{DoxyCompactList}\small\item\em Retrieve a profile by its ID. \end{DoxyCompactList}\item 
 Profile \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a4eaa2f2555991012dc731965e3964e51}{register\+User}} (Profile profile)
-\item 
+\begin{DoxyCompactList}\small\item\em Register a new user with encoded password. \end{DoxyCompactList}\item 
 Optional$<$ Profile $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a6c56deeaf508796ac7ca0f7c40dd1551}{update\+Profile}} (Long id, Profile updated\+Profile)
-\item 
+\begin{DoxyCompactList}\small\item\em Update an existing user profile. \end{DoxyCompactList}\item 
 boolean \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a90f8de45ed4df27ae8e93a30df7bf41e}{delete\+Profile}} (Long id)
-\item 
+\begin{DoxyCompactList}\small\item\em Delete a user profile. \end{DoxyCompactList}\item 
 Optional$<$ Profile $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_ad3fe9f333fac3baa64a3d271eff6c700}{login}} (String username, String password)
-\item 
+\begin{DoxyCompactList}\small\item\em Validate user login by comparing raw and encoded passwords. \end{DoxyCompactList}\item 
 Profile \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a4862c021d83bb2f56ad9141681334a7c}{get\+Authenticated\+User}} (Http\+Servlet\+Request request)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Extract and return the currently authenticated user based on the JWT token. \end{DoxyCompactList}\item 
+Optional$<$ Profile $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_ac3342806390c309a224db0f50bb2d561}{get\+Profile\+By\+Username}} (String username)
+\begin{DoxyCompactList}\small\item\em Retrieve a profile by its username. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_aaa467c02ff8bc4ccac3c8545fbe39275}{add\+Favourite\+Song}} (String username, Long song\+Id)
+\begin{DoxyCompactList}\small\item\em Add the specified song to the user\textquotesingle{}s favourites. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a30613aac36022aefbd4c361029c17bb8}{remove\+Favourite\+Song}} (String username, Long song\+Id)
+\begin{DoxyCompactList}\small\item\em Remove the specified song from the user\textquotesingle{}s favourites. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -39,7 +45,7 @@ Service for managing user profiles, authentication and user details for Spring S
 
 This service provides methods for registering, retrieving, updating, and deleting user profiles. It also supports authentication via Spring Security and token-\/based user identification using JWT. 
 
-Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00026}{26}} of file \mbox{\hyperlink{_profile_service_8java_source}{Profile\+Service.\+java}}.
+Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00030}{30}} of file \mbox{\hyperlink{_profile_service_8java_source}{Profile\+Service.\+java}}.
 
 
 
@@ -50,29 +56,43 @@ Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00026}{26}} o
 \doxysubsubsection{\texorpdfstring{ProfileService()}{ProfileService()}}
 {\footnotesize\ttfamily com.\+deusto.\+deuspotify.\+services.\+Profile\+Service.\+Profile\+Service (\begin{DoxyParamCaption}\item[{Profile\+Repository}]{profile\+Repository,  }\item[{@Lazy Password\+Encoder}]{password\+Encoder }\end{DoxyParamCaption})}
 
-Constructor for Profile\+Service.
 
 
-\begin{DoxyParams}{Parameters}
-{\em profile\+Repository} & Repository to manage Profile entities. \\
-\hline
-{\em password\+Encoder} & Password encoder for secure password storage. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00040}{40}} of file \mbox{\hyperlink{_profile_service_8java_source}{Profile\+Service.\+java}}.
+Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00047}{47}} of file \mbox{\hyperlink{_profile_service_8java_source}{Profile\+Service.\+java}}.
 
 
 
 \doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_aaa467c02ff8bc4ccac3c8545fbe39275}\label{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_aaa467c02ff8bc4ccac3c8545fbe39275} 
+\index{com.deusto.deuspotify.services.ProfileService@{com.deusto.deuspotify.services.ProfileService}!addFavouriteSong@{addFavouriteSong}}
+\index{addFavouriteSong@{addFavouriteSong}!com.deusto.deuspotify.services.ProfileService@{com.deusto.deuspotify.services.ProfileService}}
+\doxysubsubsection{\texorpdfstring{addFavouriteSong()}{addFavouriteSong()}}
+{\footnotesize\ttfamily void com.\+deusto.\+deuspotify.\+services.\+Profile\+Service.\+add\+Favourite\+Song (\begin{DoxyParamCaption}\item[{String}]{username,  }\item[{Long}]{song\+Id }\end{DoxyParamCaption})}
+
+
+
+Add the specified song to the user\textquotesingle{}s favourites. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The username of the user. \\
+\hline
+{\em song\+Id} & The ID of the song to add. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00181}{181}} of file \mbox{\hyperlink{_profile_service_8java_source}{Profile\+Service.\+java}}.
+
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a90f8de45ed4df27ae8e93a30df7bf41e}\label{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a90f8de45ed4df27ae8e93a30df7bf41e} 
 \index{com.deusto.deuspotify.services.ProfileService@{com.deusto.deuspotify.services.ProfileService}!deleteProfile@{deleteProfile}}
 \index{deleteProfile@{deleteProfile}!com.deusto.deuspotify.services.ProfileService@{com.deusto.deuspotify.services.ProfileService}}
 \doxysubsubsection{\texorpdfstring{deleteProfile()}{deleteProfile()}}
 {\footnotesize\ttfamily boolean com.\+deusto.\+deuspotify.\+services.\+Profile\+Service.\+delete\+Profile (\begin{DoxyParamCaption}\item[{Long}]{id }\end{DoxyParamCaption})}
 
-Deletes a user profile.
+
+
+Delete a user profile. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -84,7 +104,7 @@ true if the profile was deleted, false otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00129}{129}} of file \mbox{\hyperlink{_profile_service_8java_source}{Profile\+Service.\+java}}.
+Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00130}{130}} of file \mbox{\hyperlink{_profile_service_8java_source}{Profile\+Service.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a049c4eaabaed732595e1eedaf4421358}\label{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a049c4eaabaed732595e1eedaf4421358} 
 \index{com.deusto.deuspotify.services.ProfileService@{com.deusto.deuspotify.services.ProfileService}!getAllProfiles@{getAllProfiles}}
@@ -92,14 +112,16 @@ Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00129}{129}} 
 \doxysubsubsection{\texorpdfstring{getAllProfiles()}{getAllProfiles()}}
 {\footnotesize\ttfamily List$<$ Profile $>$ com.\+deusto.\+deuspotify.\+services.\+Profile\+Service.\+get\+All\+Profiles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Retrieves all user profiles.
+
+
+Retrieve all user profiles. 
 
 \begin{DoxyReturn}{Returns}
 List of all Profile entities. 
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00069}{69}} of file \mbox{\hyperlink{_profile_service_8java_source}{Profile\+Service.\+java}}.
+Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00074}{74}} of file \mbox{\hyperlink{_profile_service_8java_source}{Profile\+Service.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a4862c021d83bb2f56ad9141681334a7c}\label{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a4862c021d83bb2f56ad9141681334a7c} 
 \index{com.deusto.deuspotify.services.ProfileService@{com.deusto.deuspotify.services.ProfileService}!getAuthenticatedUser@{getAuthenticatedUser}}
@@ -107,7 +129,9 @@ Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00069}{69}} o
 \doxysubsubsection{\texorpdfstring{getAuthenticatedUser()}{getAuthenticatedUser()}}
 {\footnotesize\ttfamily Profile com.\+deusto.\+deuspotify.\+services.\+Profile\+Service.\+get\+Authenticated\+User (\begin{DoxyParamCaption}\item[{Http\+Servlet\+Request}]{request }\end{DoxyParamCaption})}
 
-Extracts and returns the currently authenticated user based on the JWT token in the request.
+
+
+Extract and return the currently authenticated user based on the JWT token. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -124,7 +148,7 @@ The authenticated Profile.
 \end{DoxyExceptions}
 
 
-Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00156}{156}} of file \mbox{\hyperlink{_profile_service_8java_source}{Profile\+Service.\+java}}.
+Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00155}{155}} of file \mbox{\hyperlink{_profile_service_8java_source}{Profile\+Service.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a96b5dbf26aa198907ec4255b5ea45555}\label{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a96b5dbf26aa198907ec4255b5ea45555} 
 \index{com.deusto.deuspotify.services.ProfileService@{com.deusto.deuspotify.services.ProfileService}!getProfileById@{getProfileById}}
@@ -132,7 +156,9 @@ Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00156}{156}} 
 \doxysubsubsection{\texorpdfstring{getProfileById()}{getProfileById()}}
 {\footnotesize\ttfamily Optional$<$ Profile $>$ com.\+deusto.\+deuspotify.\+services.\+Profile\+Service.\+get\+Profile\+By\+Id (\begin{DoxyParamCaption}\item[{Long}]{id }\end{DoxyParamCaption})}
 
-Retrieves a profile by its ID.
+
+
+Retrieve a profile by its ID. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -144,7 +170,29 @@ Optional containing the Profile if found.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00079}{79}} of file \mbox{\hyperlink{_profile_service_8java_source}{Profile\+Service.\+java}}.
+Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00083}{83}} of file \mbox{\hyperlink{_profile_service_8java_source}{Profile\+Service.\+java}}.
+
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_ac3342806390c309a224db0f50bb2d561}\label{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_ac3342806390c309a224db0f50bb2d561} 
+\index{com.deusto.deuspotify.services.ProfileService@{com.deusto.deuspotify.services.ProfileService}!getProfileByUsername@{getProfileByUsername}}
+\index{getProfileByUsername@{getProfileByUsername}!com.deusto.deuspotify.services.ProfileService@{com.deusto.deuspotify.services.ProfileService}}
+\doxysubsubsection{\texorpdfstring{getProfileByUsername()}{getProfileByUsername()}}
+{\footnotesize\ttfamily Optional$<$ Profile $>$ com.\+deusto.\+deuspotify.\+services.\+Profile\+Service.\+get\+Profile\+By\+Username (\begin{DoxyParamCaption}\item[{String}]{username }\end{DoxyParamCaption})}
+
+
+
+Retrieve a profile by its username. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The username to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Optional containing the Profile if found. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00171}{171}} of file \mbox{\hyperlink{_profile_service_8java_source}{Profile\+Service.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_aea8053cdaa7f5db8765a86eca75b8551}\label{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_aea8053cdaa7f5db8765a86eca75b8551} 
 \index{com.deusto.deuspotify.services.ProfileService@{com.deusto.deuspotify.services.ProfileService}!loadUserByUsername@{loadUserByUsername}}
@@ -152,7 +200,9 @@ Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00079}{79}} o
 \doxysubsubsection{\texorpdfstring{loadUserByUsername()}{loadUserByUsername()}}
 {\footnotesize\ttfamily User\+Details com.\+deusto.\+deuspotify.\+services.\+Profile\+Service.\+load\+User\+By\+Username (\begin{DoxyParamCaption}\item[{String}]{username }\end{DoxyParamCaption}) throws Username\+Not\+Found\+Exception}
 
-Loads a user by their username. Required for Spring Security authentication.
+
+
+Load a user by their username for Spring Security. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -169,7 +219,7 @@ User\+Details object containing user information.
 \end{DoxyExceptions}
 
 
-Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00053}{53}} of file \mbox{\hyperlink{_profile_service_8java_source}{Profile\+Service.\+java}}.
+Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00059}{59}} of file \mbox{\hyperlink{_profile_service_8java_source}{Profile\+Service.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_ad3fe9f333fac3baa64a3d271eff6c700}\label{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_ad3fe9f333fac3baa64a3d271eff6c700} 
 \index{com.deusto.deuspotify.services.ProfileService@{com.deusto.deuspotify.services.ProfileService}!login@{login}}
@@ -177,7 +227,9 @@ Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00053}{53}} o
 \doxysubsubsection{\texorpdfstring{login()}{login()}}
 {\footnotesize\ttfamily Optional$<$ Profile $>$ com.\+deusto.\+deuspotify.\+services.\+Profile\+Service.\+login (\begin{DoxyParamCaption}\item[{String}]{username,  }\item[{String}]{password }\end{DoxyParamCaption})}
 
-Validates user login by comparing raw and encoded passwords.
+
+
+Validate user login by comparing raw and encoded passwords. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -199,7 +251,9 @@ Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00144}{144}} 
 \doxysubsubsection{\texorpdfstring{registerUser()}{registerUser()}}
 {\footnotesize\ttfamily Profile com.\+deusto.\+deuspotify.\+services.\+Profile\+Service.\+register\+User (\begin{DoxyParamCaption}\item[{Profile}]{profile }\end{DoxyParamCaption})}
 
-Registers a new user with encoded password.
+
+
+Register a new user with encoded password. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -216,7 +270,28 @@ The saved Profile object.
 \end{DoxyExceptions}
 
 
-Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00091}{91}} of file \mbox{\hyperlink{_profile_service_8java_source}{Profile\+Service.\+java}}.
+Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00094}{94}} of file \mbox{\hyperlink{_profile_service_8java_source}{Profile\+Service.\+java}}.
+
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a30613aac36022aefbd4c361029c17bb8}\label{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a30613aac36022aefbd4c361029c17bb8} 
+\index{com.deusto.deuspotify.services.ProfileService@{com.deusto.deuspotify.services.ProfileService}!removeFavouriteSong@{removeFavouriteSong}}
+\index{removeFavouriteSong@{removeFavouriteSong}!com.deusto.deuspotify.services.ProfileService@{com.deusto.deuspotify.services.ProfileService}}
+\doxysubsubsection{\texorpdfstring{removeFavouriteSong()}{removeFavouriteSong()}}
+{\footnotesize\ttfamily void com.\+deusto.\+deuspotify.\+services.\+Profile\+Service.\+remove\+Favourite\+Song (\begin{DoxyParamCaption}\item[{String}]{username,  }\item[{Long}]{song\+Id }\end{DoxyParamCaption})}
+
+
+
+Remove the specified song from the user\textquotesingle{}s favourites. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The username of the user. \\
+\hline
+{\em song\+Id} & The ID of the song to remove. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00196}{196}} of file \mbox{\hyperlink{_profile_service_8java_source}{Profile\+Service.\+java}}.
 
 \Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a6c56deeaf508796ac7ca0f7c40dd1551}\label{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_a6c56deeaf508796ac7ca0f7c40dd1551} 
 \index{com.deusto.deuspotify.services.ProfileService@{com.deusto.deuspotify.services.ProfileService}!updateProfile@{updateProfile}}
@@ -224,7 +299,9 @@ Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00091}{91}} o
 \doxysubsubsection{\texorpdfstring{updateProfile()}{updateProfile()}}
 {\footnotesize\ttfamily Optional$<$ Profile $>$ com.\+deusto.\+deuspotify.\+services.\+Profile\+Service.\+update\+Profile (\begin{DoxyParamCaption}\item[{Long}]{id,  }\item[{Profile}]{updated\+Profile }\end{DoxyParamCaption})}
 
-Updates an existing user profile.
+
+
+Update an existing user profile. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -238,7 +315,7 @@ Optional containing the updated Profile.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00107}{107}} of file \mbox{\hyperlink{_profile_service_8java_source}{Profile\+Service.\+java}}.
+Definition at line \mbox{\hyperlink{_profile_service_8java_source_l00109}{109}} of file \mbox{\hyperlink{_profile_service_8java_source}{Profile\+Service.\+java}}.
 
 
 

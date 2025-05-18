@@ -100,103 +100,109 @@ $(document).ready(function(){initNavTree('_profile_service_8java_source.html',''
 <a href="_profile_service_8java.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">package </span>com.deusto.deuspotify.services;</div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">import</span> com.deusto.deuspotify.model.Profile;</div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">import</span> com.deusto.deuspotify.repositories.ProfileRepository;</div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">import</span> org.springframework.security.core.userdetails.UserDetails;</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">import</span> org.springframework.security.core.userdetails.UserDetailsService;</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">import</span> org.springframework.security.core.userdetails.UsernameNotFoundException;</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">import</span> org.springframework.security.crypto.password.PasswordEncoder;</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">import</span> org.springframework.stereotype.Service;</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">import</span> org.springframework.transaction.annotation.Transactional;</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">import</span> org.springframework.context.annotation.Lazy;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">import</span> com.deusto.deuspotify.security.JwtUtil;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">import</span> jakarta.servlet.http.HttpServletRequest;</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">import</span> java.util.List;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">import</span> java.util.Optional;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>@Service</div>
-<div class="foldopen" id="foldopen00026" data-start="{" data-end="};">
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html">   26</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html">ProfileService</a> <span class="keyword">implements</span> UserDetailsService {</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keyword">private</span> <span class="keyword">final</span> ProfileRepository profileRepository;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">private</span> <span class="keyword">final</span> PasswordEncoder passwordEncoder;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    @Autowired</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">private</span> JwtUtil jwtUtil;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="foldopen" id="foldopen00040" data-start="{" data-end="}">
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a2cc1b9df95256d933a2972a870dc8b97">   40</a></span>    <span class="keyword">public</span> <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a2cc1b9df95256d933a2972a870dc8b97">ProfileService</a>(ProfileRepository profileRepository, @Lazy PasswordEncoder passwordEncoder) {</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        this.profileRepository = profileRepository;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        this.passwordEncoder = passwordEncoder;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">import</span> com.deusto.deuspotify.model.Song;</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">import</span> com.deusto.deuspotify.repositories.ProfileRepository;</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">import</span> com.deusto.deuspotify.repositories.SongRepository;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">import</span> org.springframework.security.core.userdetails.UserDetails;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">import</span> org.springframework.security.core.userdetails.UserDetailsService;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">import</span> org.springframework.security.core.userdetails.UsernameNotFoundException;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">import</span> org.springframework.security.crypto.password.PasswordEncoder;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">import</span> org.springframework.stereotype.Service;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">import</span> org.springframework.transaction.annotation.Transactional;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">import</span> org.springframework.context.annotation.Lazy;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">import</span> com.deusto.deuspotify.security.JwtUtil;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">import</span> jakarta.servlet.http.HttpServletRequest;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">import</span> java.util.List;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">import</span> java.util.Optional;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>@Service</div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="};">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html">   30</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html">ProfileService</a> <span class="keyword">implements</span> UserDetailsService {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">private</span> <span class="keyword">final</span> ProfileRepository profileRepository;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">private</span> <span class="keyword">final</span> PasswordEncoder passwordEncoder;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    @Autowired</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">private</span> JwtUtil jwtUtil;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    @Autowired</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keyword">private</span> SongRepository songRepository;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="foldopen" id="foldopen00047" data-start="{" data-end="}">
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a2cc1b9df95256d933a2972a870dc8b97">   47</a></span>    <span class="keyword">public</span> <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a2cc1b9df95256d933a2972a870dc8b97">ProfileService</a>(ProfileRepository profileRepository, @Lazy PasswordEncoder passwordEncoder) {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        this.profileRepository = profileRepository;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        this.passwordEncoder = passwordEncoder;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    }</div>
 </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    @Override</div>
-<div class="foldopen" id="foldopen00053" data-start="{" data-end="}">
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#aea8053cdaa7f5db8765a86eca75b8551">   53</a></span>    <span class="keyword">public</span> UserDetails <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#aea8053cdaa7f5db8765a86eca75b8551">loadUserByUsername</a>(String username) <span class="keywordflow">throws</span> UsernameNotFoundException {</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        Profile profile = profileRepository.findByUsername(username)</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                .orElseThrow(() -&gt; <span class="keyword">new</span> UsernameNotFoundException(<span class="stringliteral">&quot;User not found: &quot;</span> + username));</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">return</span> org.springframework.security.core.userdetails.User</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                .withUsername(profile.getUsername())</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                .password(profile.getPassword())</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                .roles(profile.isAdmin() ? <span class="stringliteral">&quot;ADMIN&quot;</span> : <span class="stringliteral">&quot;USER&quot;</span>)</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                .build();</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    @Override</div>
+<div class="foldopen" id="foldopen00059" data-start="{" data-end="}">
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#aea8053cdaa7f5db8765a86eca75b8551">   59</a></span>    <span class="keyword">public</span> UserDetails <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#aea8053cdaa7f5db8765a86eca75b8551">loadUserByUsername</a>(String username) <span class="keywordflow">throws</span> UsernameNotFoundException {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        Profile profile = profileRepository.findByUsername(username)</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                .orElseThrow(() -&gt; <span class="keyword">new</span> UsernameNotFoundException(<span class="stringliteral">&quot;User not found: &quot;</span> + username));</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="keywordflow">return</span> org.springframework.security.core.userdetails.User</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                .withUsername(profile.getUsername())</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                .password(profile.getPassword())</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                .roles(profile.isAdmin() ? <span class="stringliteral">&quot;ADMIN&quot;</span> : <span class="stringliteral">&quot;USER&quot;</span>)</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                .build();</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    }</div>
 </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="foldopen" id="foldopen00069" data-start="{" data-end="}">
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a049c4eaabaed732595e1eedaf4421358">   69</a></span>    <span class="keyword">public</span> List&lt;Profile&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a049c4eaabaed732595e1eedaf4421358">getAllProfiles</a>() {</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordflow">return</span> profileRepository.findAll();</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    }</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="foldopen" id="foldopen00074" data-start="{" data-end="}">
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a049c4eaabaed732595e1eedaf4421358">   74</a></span>    <span class="keyword">public</span> List&lt;Profile&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a049c4eaabaed732595e1eedaf4421358">getAllProfiles</a>() {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <span class="keywordflow">return</span> profileRepository.findAll();</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    }</div>
 </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="foldopen" id="foldopen00079" data-start="{" data-end="}">
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a96b5dbf26aa198907ec4255b5ea45555">   79</a></span>    <span class="keyword">public</span> Optional&lt;Profile&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a96b5dbf26aa198907ec4255b5ea45555">getProfileById</a>(Long <span class="keywordtype">id</span>) {</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <span class="keywordflow">return</span> profileRepository.findById(<span class="keywordtype">id</span>);</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    }</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="foldopen" id="foldopen00083" data-start="{" data-end="}">
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a96b5dbf26aa198907ec4255b5ea45555">   83</a></span>    <span class="keyword">public</span> Optional&lt;Profile&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a96b5dbf26aa198907ec4255b5ea45555">getProfileById</a>(Long <span class="keywordtype">id</span>) {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="keywordflow">return</span> profileRepository.findById(<span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    }</div>
 </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    @Transactional</div>
-<div class="foldopen" id="foldopen00091" data-start="{" data-end="}">
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a4eaa2f2555991012dc731965e3964e51">   91</a></span>    <span class="keyword">public</span> Profile <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a4eaa2f2555991012dc731965e3964e51">registerUser</a>(Profile profile) {</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="keywordflow">if</span> (profileRepository.findByUsername(profile.getUsername()).isPresent()) {</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>            <span class="keywordflow">throw</span> <span class="keyword">new</span> RuntimeException(<span class="stringliteral">&quot;El usuario ya existe.&quot;</span>);</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        }</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        profile.setPassword(passwordEncoder.encode(profile.getPassword()));</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="keywordflow">return</span> profileRepository.save(profile);</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    }</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    @Transactional</div>
+<div class="foldopen" id="foldopen00094" data-start="{" data-end="}">
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a4eaa2f2555991012dc731965e3964e51">   94</a></span>    <span class="keyword">public</span> Profile <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a4eaa2f2555991012dc731965e3964e51">registerUser</a>(Profile profile) {</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keywordflow">if</span> (profileRepository.findByUsername(profile.getUsername()).isPresent()) {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>            <span class="keywordflow">throw</span> <span class="keyword">new</span> RuntimeException(<span class="stringliteral">&quot;Username already exists.&quot;</span>);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        }</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        profile.setPassword(passwordEncoder.encode(profile.getPassword()));</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="keywordflow">return</span> profileRepository.save(profile);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    }</div>
 </div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    @Transactional</div>
-<div class="foldopen" id="foldopen00107" data-start="{" data-end="}">
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a6c56deeaf508796ac7ca0f7c40dd1551">  107</a></span>    <span class="keyword">public</span> Optional&lt;Profile&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a6c56deeaf508796ac7ca0f7c40dd1551">updateProfile</a>(Long <span class="keywordtype">id</span>, Profile updatedProfile) {</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keywordflow">return</span> profileRepository.findById(<span class="keywordtype">id</span>).map(profile -&gt; {</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>            profile.setUsername(updatedProfile.getUsername());</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>            <span class="keywordflow">if</span> (!updatedProfile.getPassword().isEmpty()) {</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                profile.setPassword(passwordEncoder.encode(updatedProfile.getPassword()));</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>            }</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>            profile.setEmail(updatedProfile.getEmail());</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            profile.setFriendsList(updatedProfile.getFriendsList());</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>            profile.setFavouriteSongs(updatedProfile.getFavouriteSongs());</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            profile.setPlaylists(updatedProfile.getPlaylists());</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>            profile.setAdmin(updatedProfile.isAdmin());</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>            <span class="keywordflow">return</span> profileRepository.save(profile);</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        });</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    }</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    @Transactional</div>
+<div class="foldopen" id="foldopen00109" data-start="{" data-end="}">
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a6c56deeaf508796ac7ca0f7c40dd1551">  109</a></span>    <span class="keyword">public</span> Optional&lt;Profile&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a6c56deeaf508796ac7ca0f7c40dd1551">updateProfile</a>(Long <span class="keywordtype">id</span>, Profile updatedProfile) {</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="keywordflow">return</span> profileRepository.findById(<span class="keywordtype">id</span>).map(profile -&gt; {</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>            profile.setUsername(updatedProfile.getUsername());</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>            <span class="keywordflow">if</span> (!updatedProfile.getPassword().isEmpty()) {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                profile.setPassword(passwordEncoder.encode(updatedProfile.getPassword()));</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            }</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>            profile.setEmail(updatedProfile.getEmail());</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            profile.setFriendsList(updatedProfile.getFriendsList());</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>            profile.setFavouriteSongs(updatedProfile.getFavouriteSongs());</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>            profile.setPlaylists(updatedProfile.getPlaylists());</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>            profile.setAdmin(updatedProfile.isAdmin());</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>            <span class="keywordflow">return</span> profileRepository.save(profile);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        });</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    }</div>
 </div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    @Transactional</div>
-<div class="foldopen" id="foldopen00129" data-start="{" data-end="}">
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a90f8de45ed4df27ae8e93a30df7bf41e">  129</a></span>    <span class="keyword">public</span> <span class="keywordtype">boolean</span> <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a90f8de45ed4df27ae8e93a30df7bf41e">deleteProfile</a>(Long <span class="keywordtype">id</span>) {</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <span class="keywordflow">if</span> (profileRepository.existsById(<span class="keywordtype">id</span>)) {</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>            profileRepository.deleteById(<span class="keywordtype">id</span>);</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        }</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    }</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    @Transactional</div>
+<div class="foldopen" id="foldopen00130" data-start="{" data-end="}">
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a90f8de45ed4df27ae8e93a30df7bf41e">  130</a></span>    <span class="keyword">public</span> <span class="keywordtype">boolean</span> <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a90f8de45ed4df27ae8e93a30df7bf41e">deleteProfile</a>(Long <span class="keywordtype">id</span>) {</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <span class="keywordflow">if</span> (profileRepository.existsById(<span class="keywordtype">id</span>)) {</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>            profileRepository.deleteById(<span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        }</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    }</div>
 </div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
 <div class="foldopen" id="foldopen00144" data-start="{" data-end="}">
 <div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#ad3fe9f333fac3baa64a3d271eff6c700">  144</a></span>    <span class="keyword">public</span> Optional&lt;Profile&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#ad3fe9f333fac3baa64a3d271eff6c700">login</a>(String username, String password) {</div>
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        <span class="keywordflow">return</span> profileRepository.findByUsername(username)</div>
@@ -204,40 +210,71 @@ $(document).ready(function(){initNavTree('_profile_service_8java_source.html',''
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    }</div>
 </div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
-<div class="foldopen" id="foldopen00156" data-start="{" data-end="}">
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a4862c021d83bb2f56ad9141681334a7c">  156</a></span>    <span class="keyword">public</span> Profile <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a4862c021d83bb2f56ad9141681334a7c">getAuthenticatedUser</a>(HttpServletRequest request) {</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        String authHeader = request.getHeader(<span class="stringliteral">&quot;Authorization&quot;</span>);</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        <span class="keywordflow">if</span> (authHeader == <span class="keyword">null</span> || !authHeader.startsWith(<span class="stringliteral">&quot;Bearer &quot;</span>)) {</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>            <span class="keywordflow">throw</span> <span class="keyword">new</span> RuntimeException(<span class="stringliteral">&quot;No JWT token found&quot;</span>);</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        }</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        String token = authHeader.substring(7);</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        String username = jwtUtil.extractUsername(token);</div>
+<div class="foldopen" id="foldopen00155" data-start="{" data-end="}">
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a4862c021d83bb2f56ad9141681334a7c">  155</a></span>    <span class="keyword">public</span> Profile <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a4862c021d83bb2f56ad9141681334a7c">getAuthenticatedUser</a>(HttpServletRequest request) {</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        String authHeader = request.getHeader(<span class="stringliteral">&quot;Authorization&quot;</span>);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        <span class="keywordflow">if</span> (authHeader == <span class="keyword">null</span> || !authHeader.startsWith(<span class="stringliteral">&quot;Bearer &quot;</span>)) {</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>            <span class="keywordflow">throw</span> <span class="keyword">new</span> RuntimeException(<span class="stringliteral">&quot;No JWT token found&quot;</span>);</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        }</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        String token = authHeader.substring(7);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        String username = jwtUtil.extractUsername(token);</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        <span class="keywordflow">return</span> profileRepository.findByUsername(username)</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>                .orElseThrow(() -&gt; <span class="keyword">new</span> RuntimeException(<span class="stringliteral">&quot;User not found&quot;</span>));</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    }</div>
+</div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        <span class="keywordflow">return</span> profileRepository.findByUsername(username)</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>                .orElseThrow(() -&gt; <span class="keyword">new</span> RuntimeException(<span class="stringliteral">&quot;User not found&quot;</span>));</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    }</div>
+<div class="foldopen" id="foldopen00171" data-start="{" data-end="}">
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#ac3342806390c309a224db0f50bb2d561">  171</a></span>    <span class="keyword">public</span> Optional&lt;Profile&gt; <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#ac3342806390c309a224db0f50bb2d561">getProfileByUsername</a>(String username) {</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        <span class="keywordflow">return</span> profileRepository.findByUsername(username);</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    }</div>
 </div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>}</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    @Transactional</div>
+<div class="foldopen" id="foldopen00181" data-start="{" data-end="}">
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#aaa467c02ff8bc4ccac3c8545fbe39275">  181</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#aaa467c02ff8bc4ccac3c8545fbe39275">addFavouriteSong</a>(String username, Long songId) {</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        Profile profile = profileRepository.findByUsername(username)</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>            .orElseThrow(() -&gt; <span class="keyword">new</span> UsernameNotFoundException(<span class="stringliteral">&quot;User not found: &quot;</span> + username));</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        Song song = songRepository.findById(songId)</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>            .orElseThrow(() -&gt; <span class="keyword">new</span> RuntimeException(<span class="stringliteral">&quot;Song not found: &quot;</span> + songId));</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        profile.getFavouriteSongs().add(song);</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        profileRepository.save(profile);</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    }</div>
 </div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_html"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html">com.deusto.deuspotify.services.ProfileService</a></div><div class="ttdoc">Service for managing user profiles, authentication and user details for Spring Security.</div><div class="ttdef"><b>Definition</b> <a href="_profile_service_8java_source.html#l00026">ProfileService.java:26</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_html_a049c4eaabaed732595e1eedaf4421358"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a049c4eaabaed732595e1eedaf4421358">com.deusto.deuspotify.services.ProfileService.getAllProfiles</a></div><div class="ttdeci">List&lt; Profile &gt; getAllProfiles()</div><div class="ttdef"><b>Definition</b> <a href="_profile_service_8java_source.html#l00069">ProfileService.java:69</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_html_a2cc1b9df95256d933a2972a870dc8b97"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a2cc1b9df95256d933a2972a870dc8b97">com.deusto.deuspotify.services.ProfileService.ProfileService</a></div><div class="ttdeci">ProfileService(ProfileRepository profileRepository, @Lazy PasswordEncoder passwordEncoder)</div><div class="ttdef"><b>Definition</b> <a href="_profile_service_8java_source.html#l00040">ProfileService.java:40</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_html_a4862c021d83bb2f56ad9141681334a7c"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a4862c021d83bb2f56ad9141681334a7c">com.deusto.deuspotify.services.ProfileService.getAuthenticatedUser</a></div><div class="ttdeci">Profile getAuthenticatedUser(HttpServletRequest request)</div><div class="ttdef"><b>Definition</b> <a href="_profile_service_8java_source.html#l00156">ProfileService.java:156</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_html_a4eaa2f2555991012dc731965e3964e51"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a4eaa2f2555991012dc731965e3964e51">com.deusto.deuspotify.services.ProfileService.registerUser</a></div><div class="ttdeci">Profile registerUser(Profile profile)</div><div class="ttdef"><b>Definition</b> <a href="_profile_service_8java_source.html#l00091">ProfileService.java:91</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_html_a6c56deeaf508796ac7ca0f7c40dd1551"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a6c56deeaf508796ac7ca0f7c40dd1551">com.deusto.deuspotify.services.ProfileService.updateProfile</a></div><div class="ttdeci">Optional&lt; Profile &gt; updateProfile(Long id, Profile updatedProfile)</div><div class="ttdef"><b>Definition</b> <a href="_profile_service_8java_source.html#l00107">ProfileService.java:107</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_html_a90f8de45ed4df27ae8e93a30df7bf41e"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a90f8de45ed4df27ae8e93a30df7bf41e">com.deusto.deuspotify.services.ProfileService.deleteProfile</a></div><div class="ttdeci">boolean deleteProfile(Long id)</div><div class="ttdef"><b>Definition</b> <a href="_profile_service_8java_source.html#l00129">ProfileService.java:129</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_html_a96b5dbf26aa198907ec4255b5ea45555"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a96b5dbf26aa198907ec4255b5ea45555">com.deusto.deuspotify.services.ProfileService.getProfileById</a></div><div class="ttdeci">Optional&lt; Profile &gt; getProfileById(Long id)</div><div class="ttdef"><b>Definition</b> <a href="_profile_service_8java_source.html#l00079">ProfileService.java:79</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_html_ad3fe9f333fac3baa64a3d271eff6c700"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#ad3fe9f333fac3baa64a3d271eff6c700">com.deusto.deuspotify.services.ProfileService.login</a></div><div class="ttdeci">Optional&lt; Profile &gt; login(String username, String password)</div><div class="ttdef"><b>Definition</b> <a href="_profile_service_8java_source.html#l00144">ProfileService.java:144</a></div></div>
-<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_html_aea8053cdaa7f5db8765a86eca75b8551"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#aea8053cdaa7f5db8765a86eca75b8551">com.deusto.deuspotify.services.ProfileService.loadUserByUsername</a></div><div class="ttdeci">UserDetails loadUserByUsername(String username)</div><div class="ttdef"><b>Definition</b> <a href="_profile_service_8java_source.html#l00053">ProfileService.java:53</a></div></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    @Transactional</div>
+<div class="foldopen" id="foldopen00196" data-start="{" data-end="}">
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a30613aac36022aefbd4c361029c17bb8">  196</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a30613aac36022aefbd4c361029c17bb8">removeFavouriteSong</a>(String username, Long songId) {</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        Profile profile = profileRepository.findByUsername(username)</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>            .orElseThrow(() -&gt; <span class="keyword">new</span> UsernameNotFoundException(<span class="stringliteral">&quot;User not found: &quot;</span> + username));</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>        Song song = songRepository.findById(songId)</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>            .orElseThrow(() -&gt; <span class="keyword">new</span> RuntimeException(<span class="stringliteral">&quot;Song not found: &quot;</span> + songId));</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>        profile.getFavouriteSongs().remove(song);</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        profileRepository.save(profile);</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    }</div>
+</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>}</div>
+</div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_html"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html">com.deusto.deuspotify.services.ProfileService</a></div><div class="ttdoc">Service for managing user profiles, authentication and user details for Spring Security.</div><div class="ttdef"><b>Definition</b> <a href="_profile_service_8java_source.html#l00030">ProfileService.java:30</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_html_a049c4eaabaed732595e1eedaf4421358"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a049c4eaabaed732595e1eedaf4421358">com.deusto.deuspotify.services.ProfileService.getAllProfiles</a></div><div class="ttdeci">List&lt; Profile &gt; getAllProfiles()</div><div class="ttdoc">Retrieve all user profiles.</div><div class="ttdef"><b>Definition</b> <a href="_profile_service_8java_source.html#l00074">ProfileService.java:74</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_html_a2cc1b9df95256d933a2972a870dc8b97"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a2cc1b9df95256d933a2972a870dc8b97">com.deusto.deuspotify.services.ProfileService.ProfileService</a></div><div class="ttdeci">ProfileService(ProfileRepository profileRepository, @Lazy PasswordEncoder passwordEncoder)</div><div class="ttdef"><b>Definition</b> <a href="_profile_service_8java_source.html#l00047">ProfileService.java:47</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_html_a30613aac36022aefbd4c361029c17bb8"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a30613aac36022aefbd4c361029c17bb8">com.deusto.deuspotify.services.ProfileService.removeFavouriteSong</a></div><div class="ttdeci">void removeFavouriteSong(String username, Long songId)</div><div class="ttdoc">Remove the specified song from the user's favourites.</div><div class="ttdef"><b>Definition</b> <a href="_profile_service_8java_source.html#l00196">ProfileService.java:196</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_html_a4862c021d83bb2f56ad9141681334a7c"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a4862c021d83bb2f56ad9141681334a7c">com.deusto.deuspotify.services.ProfileService.getAuthenticatedUser</a></div><div class="ttdeci">Profile getAuthenticatedUser(HttpServletRequest request)</div><div class="ttdoc">Extract and return the currently authenticated user based on the JWT token.</div><div class="ttdef"><b>Definition</b> <a href="_profile_service_8java_source.html#l00155">ProfileService.java:155</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_html_a4eaa2f2555991012dc731965e3964e51"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a4eaa2f2555991012dc731965e3964e51">com.deusto.deuspotify.services.ProfileService.registerUser</a></div><div class="ttdeci">Profile registerUser(Profile profile)</div><div class="ttdoc">Register a new user with encoded password.</div><div class="ttdef"><b>Definition</b> <a href="_profile_service_8java_source.html#l00094">ProfileService.java:94</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_html_a6c56deeaf508796ac7ca0f7c40dd1551"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a6c56deeaf508796ac7ca0f7c40dd1551">com.deusto.deuspotify.services.ProfileService.updateProfile</a></div><div class="ttdeci">Optional&lt; Profile &gt; updateProfile(Long id, Profile updatedProfile)</div><div class="ttdoc">Update an existing user profile.</div><div class="ttdef"><b>Definition</b> <a href="_profile_service_8java_source.html#l00109">ProfileService.java:109</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_html_a90f8de45ed4df27ae8e93a30df7bf41e"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a90f8de45ed4df27ae8e93a30df7bf41e">com.deusto.deuspotify.services.ProfileService.deleteProfile</a></div><div class="ttdeci">boolean deleteProfile(Long id)</div><div class="ttdoc">Delete a user profile.</div><div class="ttdef"><b>Definition</b> <a href="_profile_service_8java_source.html#l00130">ProfileService.java:130</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_html_a96b5dbf26aa198907ec4255b5ea45555"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#a96b5dbf26aa198907ec4255b5ea45555">com.deusto.deuspotify.services.ProfileService.getProfileById</a></div><div class="ttdeci">Optional&lt; Profile &gt; getProfileById(Long id)</div><div class="ttdoc">Retrieve a profile by its ID.</div><div class="ttdef"><b>Definition</b> <a href="_profile_service_8java_source.html#l00083">ProfileService.java:83</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_html_aaa467c02ff8bc4ccac3c8545fbe39275"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#aaa467c02ff8bc4ccac3c8545fbe39275">com.deusto.deuspotify.services.ProfileService.addFavouriteSong</a></div><div class="ttdeci">void addFavouriteSong(String username, Long songId)</div><div class="ttdoc">Add the specified song to the user's favourites.</div><div class="ttdef"><b>Definition</b> <a href="_profile_service_8java_source.html#l00181">ProfileService.java:181</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_html_ac3342806390c309a224db0f50bb2d561"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#ac3342806390c309a224db0f50bb2d561">com.deusto.deuspotify.services.ProfileService.getProfileByUsername</a></div><div class="ttdeci">Optional&lt; Profile &gt; getProfileByUsername(String username)</div><div class="ttdoc">Retrieve a profile by its username.</div><div class="ttdef"><b>Definition</b> <a href="_profile_service_8java_source.html#l00171">ProfileService.java:171</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_html_ad3fe9f333fac3baa64a3d271eff6c700"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#ad3fe9f333fac3baa64a3d271eff6c700">com.deusto.deuspotify.services.ProfileService.login</a></div><div class="ttdeci">Optional&lt; Profile &gt; login(String username, String password)</div><div class="ttdoc">Validate user login by comparing raw and encoded passwords.</div><div class="ttdef"><b>Definition</b> <a href="_profile_service_8java_source.html#l00144">ProfileService.java:144</a></div></div>
+<div class="ttc" id="aclasscom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service_html_aea8053cdaa7f5db8765a86eca75b8551"><div class="ttname"><a href="classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service.html#aea8053cdaa7f5db8765a86eca75b8551">com.deusto.deuspotify.services.ProfileService.loadUserByUsername</a></div><div class="ttdeci">UserDetails loadUserByUsername(String username)</div><div class="ttdoc">Load a user by their username for Spring Security.</div><div class="ttdef"><b>Definition</b> <a href="_profile_service_8java_source.html#l00059">ProfileService.java:59</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_5eb159725f84c66aafd839904a4acdd0.html">main</a></li><li class="navelem"><a class="el" href="dir_fd3f6763802dee1ad875f6c80eac0bda.html">java</a></li><li class="navelem"><a class="el" href="dir_d8517d8b842053dc3dd7dde525dd9163.html">com</a></li><li class="navelem"><a class="el" href="dir_c829b153888480d1cd6945dc2092d47a.html">deusto</a></li><li class="navelem"><a class="el" href="dir_2fc7bb6d021d87fedeb47034f59180a8.html">deuspotify</a></li><li class="navelem"><a class="el" href="dir_e71c221910dfc5afcc73df940abe176f.html">services</a></li><li class="navelem"><a class="el" href="_profile_service_8java.html">ProfileService.java</a></li>
-    <li class="footer">Generated on Sun May 18 2025 14:46:00 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Sun May 18 2025 17:15:10 for SpringBootLibrary by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>
