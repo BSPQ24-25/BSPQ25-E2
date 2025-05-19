@@ -171,8 +171,9 @@
 				let allSongs = [];
 				let favIds = new Set();
 				let currentAudio = null;
+				let currentPlayBtn = null;
 
-				// 1) Cargar favoritos
+				// Load favourites
 				fetch(`${appUrl}:8080/api/profiles/${encodeURIComponent(username)}/favourite-songs`)
 					.then(res => {
 						if (!res.ok) throw new Error('Failed to fetch favourites');
@@ -181,18 +182,16 @@
 					.then(favs => {
 						favIds = new Set(Array.isArray(favs) ? favs.map(s => s.id) : []);
 					})
-					.catch(err => {
-						console.error(err);
-					})
+					.catch(err => console.error(err))
 					.finally(() => {
-						// 2) Cargar todas las canciones
+						// Load all songs
 						fetch(`${appUrl}:8080/api/songs`)
-						  .then(response => response.json())
-						  .then(songs => {
-							  allSongs = songs;
-							  renderSongs(songs);
-						  })
-						  .catch(console.error);
+						.then(response => response.json())
+						.then(songs => {
+							allSongs = songs;
+							renderSongs(songs);
+						})
+						.catch(console.error);
 					});
 
 				function renderSongs(songs) {
@@ -206,31 +205,44 @@
 						item.className = "song-item";
 						item.id = `song-${song.id}`;
 
-						// Play button
 						const playBtn = document.createElement("i");
 						playBtn.className = "bi bi-play-circle play-btn";
 						playBtn.title = "Play song";
+
 						playBtn.addEventListener("click", () => {
-							// Stop any currently playing audio
-							if (currentAudio) {
-								currentAudio.pause();
-								currentAudio = null;
+							// If clicking the same song toggle pause/resume
+							if (currentAudio && currentPlayBtn === playBtn) {
+								if (!currentAudio.paused) {
+									currentAudio.pause();
+									playBtn.classList.replace('bi-pause-circle', 'bi-play-circle');
+								} else {
+									currentAudio.play();
+									playBtn.classList.replace('bi-play-circle', 'bi-pause-circle');
+								}
+								return;
 							}
-							
-							// Play this song
+
+							// If another song is playing, stop it and reset its icon
+							if (currentAudio && currentPlayBtn) {
+								currentAudio.pause();
+								currentPlayBtn.classList.replace('bi-pause-circle', 'bi-play-circle');
+							}
+
+							// Start new song
 							if (song.filePath) {
 								currentAudio = new Audio(`/songs_files/${song.filePath}`);
+								currentPlayBtn = playBtn;
 								currentAudio.play();
-								
-								// Change icon to pause while playing
 								playBtn.classList.replace('bi-play-circle', 'bi-pause-circle');
+
 								currentAudio.onended = () => {
 									playBtn.classList.replace('bi-pause-circle', 'bi-play-circle');
+									currentAudio = null;
+									currentPlayBtn = null;
 								};
 							}
 						});
 
-						// Song info
 						const songInfo = document.createElement("div");
 						songInfo.className = "song-info";
 						
@@ -247,7 +259,6 @@
 						songInfo.appendChild(songLink);
 						songInfo.appendChild(artists);
 
-						// Favorite button
 						const favBtn = document.createElement("i");
 						favBtn.className = favIds.has(song.id) ? "bi bi-heart-fill fav-btn favorited" : "bi bi-heart fav-btn";
 						favBtn.title = favIds.has(song.id) ? "Remove from favorites" : "Add to favorites";
@@ -273,13 +284,11 @@
 								.catch(console.error);
 						});
 
-						// Actions container
 						const actions = document.createElement("div");
 						actions.className = "song-actions";
 						actions.appendChild(playBtn);
 						actions.appendChild(favBtn);
 
-						// Assemble the item
 						item.appendChild(actions);
 						item.appendChild(songInfo);
 						list.appendChild(item);
