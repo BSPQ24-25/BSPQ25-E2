@@ -102,3 +102,4 @@ All reports should be visible on the target folder.
 - [Maven site report](https://bspq24-25.github.io/BSPQ25-E2/site/)
 - [Jacoco report for test coverage](https://bspq24-25.github.io/BSPQ25-E2/site/jacoco)
 - [Performance reports](https://bspq24-25.github.io/BSPQ25-E2/perf/perf-report.html)
+- [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/BSPQ24-25/BSPQ25-E2)
