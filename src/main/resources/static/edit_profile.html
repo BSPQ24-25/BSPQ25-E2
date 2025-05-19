@@ -136,45 +136,72 @@
   <script>
     function logout() {
       localStorage.removeItem("token");
+      localStorage.removeItem("username");
+      localStorage.removeItem("email");
+      localStorage.removeItem("userId");
       fetch("/auth/logout", { method: "POST" })
         .then(() => window.location.href = "login.html");
     }
-
+  
     document.addEventListener("DOMContentLoaded", () => {
       loadTranslations();
-
+  
       const username = localStorage.getItem("username");
       const email = localStorage.getItem("email");
+      const userId = localStorage.getItem("userId");
+      const token = localStorage.getItem("token");
+  
+      if (!token || !userId) {
+        alert("You must be logged in.");
+        window.location.href = "login.html";
+        return;
+      }
+  
+      // Mostrar los datos actuales en los campos
       document.getElementById("username").textContent = username || "N/A";
       document.getElementById("email").textContent = email || "N/A";
-
+      document.getElementById("newUsername").value = username || "";
+      document.getElementById("newEmail").value = email || "";
+  
       const form = document.getElementById("profileForm");
       form.addEventListener("submit", async function (e) {
         e.preventDefault();
         const updated = {
-          newUsername: document.getElementById("newUsername").value,
-          newEmail: document.getElementById("newEmail").value,
-          newPassword: document.getElementById("newPassword").value
+          id: userId, // Asegúrate de que tu backend lo espera
+          username: document.getElementById("newUsername").value,
+          email: document.getElementById("newEmail").value,
+          password: document.getElementById("newPassword").value || null
         };
-
-        const token = localStorage.getItem("token");
-
-        const res = await fetch("/api/profile/update", {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-          },
-          body: JSON.stringify(updated)
-        });
-
-        if (res.ok) {
-          document.getElementById("updateMsg").style.display = "block";
-        } else {
-          alert("Error updating profile");
+  
+        try {
+          const res = await fetch(`/api/profiles/${userId}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(updated)
+          });
+  
+          if (res.ok) {
+            document.getElementById("updateMsg").style.display = "block";
+  
+            // Actualizar localStorage si se cambia username o email
+            localStorage.setItem("username", updated.username);
+            localStorage.setItem("email", updated.email);
+  
+            document.getElementById("username").textContent = updated.username;
+            document.getElementById("email").textContent = updated.email;
+          } else {
+            const err = await res.json();
+            alert("Error updating profile: " + (err.message || res.status));
+          }
+        } catch (err) {
+          alert("Network error or server is down.");
         }
       });
     });
   </script>
+  
 </body>
 </html>
