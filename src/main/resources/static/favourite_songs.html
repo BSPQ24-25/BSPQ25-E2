@@ -1,95 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title data-i18n="songs.title">Songs</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <title data-i18n="songs.favourite.yours">Favourite Songs - Deuspotify</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/animate.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/owl.carousel.css" />
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/style-color.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="img/logo/favicon.ico" />
+  <script src="i18n.js" defer></script>
 </head>
-
-<body class="side-layout">
-    <div style="position: absolute; top: 10px; right: 20px;">
-        <button onclick="loadTranslations('es')" title="Español">Es</button>
-        <button onclick="loadTranslations('en')" title="English">En</button>
-        <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
-    </div>
-    <div class="sidebar">
-        <div class="button-group">
-            <button onclick="window.location.href='add_song.html'" data-i18n="songs.add">Add Song</button>
-            <button onclick="window.location.href='edit_song.html'" data-i18n="songs.edit">Edit Song</button>
-            <button onclick="window.location.href='delete_song.html'" data-i18n="songs.delete">Delete Song</button>
-            <button onclick="window.location.href='index.html'" data-i18n="songs.back">Back to Home</button>
+<body>
+  <div class="wrapper" id="home">
+    <!-- Header -->
+    <header>
+      <nav class="secondary-menu">
+        <div class="container">
+          <div class="sm-left">
+            <strong data-i18n="index.phone">Phone</strong>: <a href="#">555 555 555</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <strong data-i18n="index.email">E-mail</strong>: <a href="#">info@deuspotify.com</a>
+          </div>
+          <div class="sm-right">
+            <div class="sm-social-link">
+              <a class="h-facebook" href="#"><i class="fa fa-facebook"></i></a>
+              <a class="h-twitter" href="#"><i class="fa fa-twitter"></i></a>
+              <a class="h-google" href="#"><i class="fa fa-google-plus"></i></a>
+              <a class="h-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+            </div>
+          </div>
         </div>
+      </nav>
+
+      <nav class="navbar navbar-fixed-top navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="index.html" style="font-size: 24px; font-weight: bold; color: white;">
+              Deuspotify
+            </a>
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="songs.html" data-i18n="index.viewSongs">View Songs</a></li>
+              <li><a href="favourite_songs.html" data-i18n="index.viewFavouriteSongs">View Favourite Songs</a></li>
+              <li><a href="playlists.html" data-i18n="index.viewPlaylists">View Playlists</a></li>
+              <li><a href="edit_profile.html" data-i18n="index.addeditProfile">Edit Profile</a></li>
+              <li><a href="view_all_playlist.html" data-i18n="index.addview_all_playlist">View All Playlists</a></li>
+              <li><button onclick="logout()" class="logout-button" data-i18n="index.logout">Logout</button></li>
+              <div class="language-selector">
+                <button onclick="loadTranslations('es')">Es</button>
+                <button onclick="loadTranslations('en')">En</button>
+                <button onclick="loadTranslations('eu')">Eu</button>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container pad" style="padding-top: 140px;">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="sidebar">
+            <div class="sidebar-buttons">
+              <button onclick="window.location.href='add_song.html'" class="btn btn-theme" data-i18n="songs.add">Add Song</button>
+              <button onclick="window.location.href='edit_song.html'" class="btn btn-theme" data-i18n="songs.edit">Edit Song</button>
+              <button onclick="window.location.href='delete_song.html'" class="btn btn-theme" data-i18n="songs.delete">Delete Song</button>
+              <button onclick="window.location.href='index.html'" class="btn btn-theme" data-i18n="songs.back">Back to Home</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-9">
+          <h2 data-i18n="songs.favourite.yours">Your Favourite Songs</h2>
+          <input type="text" id="searchInput" class="search-box" data-i18n-placeholder="songs.search" placeholder="Search by song name" />
+          <ul id="songsList" class="list-unstyled"></ul>
+        </div>
+      </div>
     </div>
 
-    <div class="main-content">
-        <h2 data-i18n="songs.favourite.yours">Your Favourite Songs</h2>
+    <footer>
+      <div class="container">
+        <div class="social">
+          <a class="h-facebook" href="#"><i class="fa fa-facebook"></i></a>
+          <a class="h-google" href="#"><i class="fa fa-google-plus"></i></a>
+          <a class="h-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+          <a class="h-twitter" href="#"><i class="fa fa-twitter"></i></a>
+        </div>
+        <p class="copy-right">&copy; <span data-i18n="index.copyright">Copyright</span> 2023,
+          <span data-i18n="index.allRightsReserved">All rights are reserved</span>.
+        </p>
+      </div>
+    </footer>
 
-        <input type="text" id="searchInput" data-i18n-placeholder="songs.search" placeholder="Search by song name" style="margin-bottom: 10px; width: 100%; padding: 8px; font-size: 16px;">
+    <span class="totop"><a href="#"><i class="fa fa-chevron-up"></i></a></span>
+  </div>
 
-        <ul id="songsList"></ul>
-    </div>
+  <!-- JS -->
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/waypoints.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.nav.js"></script>
+  <script src="js/respond.min.js"></script>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/custom.js"></script>
+  <script>
+    const full = window.location.origin;
+    const match = full.match(/^(https?:\/\/[^\/:]+)/);
+    const appUrl = match ? match[0] : '';
+    const username = localStorage.getItem("username") || '';
+    let favouriteSongs = [];
+    let currentAudio = null;
 
-    <script src="/i18n.js"></script>
-    <script>
-        const username = localStorage.getItem("username");
+    document.addEventListener("DOMContentLoaded", () => {
+      loadTranslations();
 
-        const full = window.location.origin;
-        const match = full.match(/^(https?:\/\/[^\/:]+)/);
-        const appUrl = match ? match[0] : '';
-
-        document.addEventListener("DOMContentLoaded", () => {
-            loadTranslations();
-
-        let favouriteSongs = [];
-
-        fetch(`${appUrl || "http://localhost"}:8080/api/profiles/${username}/favourite-songs`)
-            .then(response => {
-                if (!response.ok) throw new Error("Failed to load favourite songs");
-                return response.json();
-            })
-            .then(songs => {
-                favouriteSongs = songs;
-                renderSongs(songs);
-            })
-            .catch(error => {
-                document.getElementById("songsList").innerHTML = "<li style='color:red;'>Could not load favourite songs.</li>";
-            });
-
-        function renderSongs(songs) {
-            const list = document.getElementById("songsList");
-            list.innerHTML = "";
-
-            if (!songs.length) {
-                list.innerHTML = `<li>${t('songs.favourite.none')}</li>`;
-                return;
-            }
-
-            songs.forEach(song => {
-                if (!song.id) return;
-
-                const item = document.createElement("li");
-                item.id = `song-${song.id}`;
-
-                const link = document.createElement("a");
-                link.href = `detalle_song.html?id=${song.id}`;
-                link.textContent = song.name;
-                link.style.display = "block";
-                link.style.textDecoration = "none";
-                link.style.color = "inherit";
-
-                item.appendChild(link);
-                list.appendChild(item);
-            });
-        }
-
-        document.getElementById("searchInput").addEventListener("input", function () {
-            const searchTerm = this.value.toLowerCase();
-            const filteredSongs = favouriteSongs.filter(song =>
-                (song.name ?? "").toLowerCase().includes(searchTerm)
-            );
-            renderSongs(filteredSongs);
+      fetch(`${appUrl}:8080/api/profiles/${username}/favourite-songs`)
+        .then(res => res.json())
+        .then(songs => {
+          favouriteSongs = songs;
+          renderSongs(songs);
+        })
+        .catch(() => {
+          document.getElementById("songsList").innerHTML = "<li style='color:red;'>Could not load favourite songs.</li>";
         });
+
+      document.getElementById("searchInput").addEventListener("input", function () {
+        const term = this.value.toLowerCase();
+        const filtered = favouriteSongs.filter(song => (song.name || "").toLowerCase().includes(term));
+        renderSongs(filtered);
+      });
     });
-    </script>
+
+    function renderSongs(songs) {
+      const list = document.getElementById("songsList");
+      list.innerHTML = "";
+
+      songs.forEach(song => {
+        const item = document.createElement("li");
+        item.className = "song-item";
+
+        const playBtn = document.createElement("i");
+        playBtn.className = "bi bi-play-circle play-btn";
+        playBtn.title = "Play song";
+        playBtn.addEventListener("click", () => {
+          if (currentAudio) currentAudio.pause();
+          if (song.filePath) {
+            currentAudio = new Audio(`/songs_files/${song.filePath}`);
+            currentAudio.play();
+            playBtn.classList.replace('bi-play-circle', 'bi-pause-circle');
+            currentAudio.onended = () => {
+              playBtn.classList.replace('bi-pause-circle', 'bi-play-circle');
+            };
+          }
+        });
+
+        const favBtn = document.createElement("i");
+        favBtn.className = "bi bi-heart-fill fav-btn favorited";
+        favBtn.title = "Remove from favourites";
+        favBtn.addEventListener("click", () => {
+          fetch(`${appUrl}:8080/api/profiles/${username}/favourite-songs/${song.id}`, { method: "DELETE" })
+            .then(() => {
+              favouriteSongs = favouriteSongs.filter(s => s.id !== song.id);
+              renderSongs(favouriteSongs);
+            });
+        });
+
+        const info = document.createElement("div");
+        info.className = "song-info";
+
+        const link = document.createElement("a");
+        link.href = `detalle_song.html?id=${song.id}`;
+        link.textContent = song.name;
+        link.style.fontWeight = "bold";
+
+        const artists = document.createElement("p");
+        artists.textContent = song.artists?.join(", ") || "Unknown";
+        artists.style.margin = "5px 0";
+        artists.style.color = "#666";
+
+        info.appendChild(link);
+        info.appendChild(artists);
+
+        const actions = document.createElement("div");
+        actions.className = "song-actions";
+        actions.appendChild(playBtn);
+        actions.appendChild(favBtn);
+
+        item.appendChild(actions);
+        item.appendChild(info);
+        list.appendChild(item);
+      });
+    }
+
+    function logout() {
+      localStorage.removeItem("token");
+      fetch("/auth/logout", { method: "POST" }).then(() => window.location.href = "login.html");
+    }
+  </script>
 </body>
 </html>

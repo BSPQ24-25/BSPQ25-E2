@@ -1306,3 +1306,31 @@ footer .copy-right {
     text-decoration: none;
     outline: none;
 }
+
+.btn-red {
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 4px;
+  margin: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-red:hover {
+  background-color: #cc0000;
+  color: white;
+  text-decoration: none;
+}
+
+.form-container {
+  padding-top: 140px;
+  max-width: 700px;
+  margin: auto;
+}
+
+.sidebar-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

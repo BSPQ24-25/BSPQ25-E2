@@ -3,57 +3,160 @@
 <head>
   <meta charset="UTF-8">
   <title data-i18n="add_song_title">Add Song</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Styles -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">	
+  <link href="css/animate.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/owl.carousel.css">
+  <link href="css/font-awesome.min.css" rel="stylesheet">		
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/style-color.css" rel="stylesheet">
+  <link rel="shortcut icon" href="img/logo/favicon.ico">
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
   <script src="i18n.js" defer></script>
 </head>
-<body class="centered-page">
-  <!-- Botones para cambiar el idioma -->
-  <div style="position: absolute; top: 10px; right: 20px;">
-    <button onclick="loadTranslations('es')" title="Español">Es</button>
-    <button onclick="loadTranslations('en')" title="English">En</button>
-    <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
+<body>
+  <div class="wrapper" id="home">
+    <!-- Header -->
+    <header>
+      <nav class="secondary-menu">
+        <div class="container">
+          <div class="sm-left">
+            <strong data-i18n="index.phone">Phone</strong>: <a href="#">555 555 555</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <strong data-i18n="index.email">E-mail</strong>: <a href="#">info@deuspotify.com</a>
+          </div>
+          <div class="sm-right">
+            <div class="sm-social-link">
+              <a class="h-facebook" href="#"><i class="fa fa-facebook"></i></a>
+              <a class="h-twitter" href="#"><i class="fa fa-twitter"></i></a>
+              <a class="h-google" href="#"><i class="fa fa-google-plus"></i></a>
+              <a class="h-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </nav>
+
+      <nav class="navbar navbar-fixed-top navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html" style="font-size: 24px; font-weight: bold; color: white;">
+              Deuspotify
+            </a>
+          </div>
+          <div class="collapse navbar-collapse" id="menu">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="songs.html" data-i18n="index.viewSongs">View Songs</a></li>
+              <li><a href="favourite_songs.html" data-i18n="index.viewFavouriteSongs">View Favourite Songs</a></li>
+              <li><a href="playlists.html" data-i18n="index.viewPlaylists">View Playlists</a></li>
+              <li><a href="edit_profile.html" data-i18n="index.addeditProfile">Edit Profile</a></li>
+              <li><a href="view_all_playlist.html" data-i18n="index.addview_all_playlist">View All Playlists</a></li>
+              <li><button onclick="logout()" class="logout-button" data-i18n="index.logout">Logout</button></li>
+              <div class="language-selector">
+                <button onclick="loadTranslations('es')" title="Español">Es</button>
+                <button onclick="loadTranslations('en')" title="English">En</button>
+                <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main content -->
+    <div class="container form-container">
+      <h2 class="text-center" data-i18n="add_song_title">Add a New Song</h2>
+      <form id="addSongForm" onsubmit="addSong(event)" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="name" data-i18n="add_song_name">Name:</label>
+          <input type="text" class="form-control" id="name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="album" data-i18n="add_song_album">Album:</label>
+          <input type="text" class="form-control" id="album" required>
+        </div>
+
+        <div class="form-group">
+          <label for="artists" data-i18n="add_song_artists">Artists (comma-separated):</label>
+          <input type="text" class="form-control" id="artists" required>
+        </div>
+
+        <div class="form-group">
+          <label for="genres" data-i18n="add_song_genres">Genres (comma-separated):</label>
+          <input type="text" class="form-control" id="genres" required>
+        </div>
+
+        <div class="form-group">
+          <label for="date_of_release" data-i18n="add_song_release">Release Date:</label>
+          <input type="date" class="form-control" id="date_of_release" required>
+        </div>
+
+        <div class="form-group">
+          <label for="file" data-i18n="add_song_file">Audio File:</label>
+          <input type="file" class="form-control-file" id="file" name="file" accept="audio/*" required>
+        </div>
+
+        <input type="hidden" id="duration" name="duration">
+
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="extractMetadata">
+          <label class="form-check-label" for="extractMetadata" data-i18n="add_song_extract">Automatically extract metadata from file</label>
+        </div>
+
+        <div class="text-center" style="margin-top: 20px;">
+          <button type="submit" class="btn btn-red" data-i18n="add_song_button">Add</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="social">
+          <a class="h-facebook" href="#"><i class="fa fa-facebook"></i></a>
+          <a class="h-google" href="#"><i class="fa fa-google-plus"></i></a>
+          <a class="h-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+          <a class="h-twitter" href="#"><i class="fa fa-twitter"></i></a>
+        </div>
+        <p class="copy-right">&copy; <span data-i18n="index.copyright">Copyright</span> 2023,
+          <span data-i18n="index.allRightsReserved">All rights are reserved</span>.
+        </p>
+      </div>
+    </footer>
+
+    <span class="totop"><a href="#"><i class="fa fa-chevron-up"></i></a></span>
   </div>
 
-  <h2 data-i18n="add_song_title">Add a New Song</h2>
-  <form id="addSongForm" onsubmit="addSong(event)" enctype="multipart/form-data">
-    <label for="name" data-i18n="add_song_name">Name:</label>
-    <input type="text" id="name" required>
-    <br>
-
-    <label for="album" data-i18n="add_song_album">Album:</label>
-    <input type="text" id="album" required>
-    <br>
-
-    <label for="artists" data-i18n="add_song_artists">Artists (comma-separated):</label>
-    <input type="text" id="artists" required>
-    <br>
-
-    <label for="genres" data-i18n="add_song_genres">Genres (comma-separated):</label>
-    <input type="text" id="genres" required>
-    <br>
-
-    <label for="date_of_release" data-i18n="add_song_release">Release Date:</label>
-    <input type="date" id="date_of_release" required>
-    <br>
-
-    <label for="file" data-i18n="add_song_file">Audio File:</label>
-    <input type="file" id="file" name="file" accept="audio/*" required>
-    <br>
-
-    <!-- Campo oculto para duración en minutos -->
-    <input type="hidden" id="duration" name="duration">
-    
-    <label>
-      <input type="checkbox" id="extractMetadata">
-      <span data-i18n="add_song_extract">Automatically extract metadata from file</span>
-    </label>
-    <br>
-    
-    <button type="submit" data-i18n="add_song_button">Add</button>
-  </form>
+  <!-- Scripts -->
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/waypoints.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.nav.js"></script>
+  <script src="js/respond.min.js"></script>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/custom.js"></script>
 
   <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      loadTranslations();
+    });
+
+    function logout() {
+      localStorage.removeItem("token");
+      fetch("/auth/logout", { method: "POST" })
+        .then(() => window.location.href = "login.html");
+    }
+
     const full = window.location.origin;
     const match = full.match(/^(https?:\/\/[^\/:]+)/);
     const appUrl = match ? match[0] : '';
@@ -64,14 +167,12 @@
       const file = this.files[0];
 
       if (file) {
-        // Extraer duración del archivo
         const audio = new Audio(URL.createObjectURL(file));
         audio.onloadedmetadata = function () {
           const durationMinutes = (audio.duration / 60).toFixed(2);
           document.getElementById("duration").value = durationMinutes;
         };
 
-        // Extraer metadata si checkbox está activado
         if (checkbox.checked) {
           jsmediatags.read(file, {
             onSuccess: function (tag) {

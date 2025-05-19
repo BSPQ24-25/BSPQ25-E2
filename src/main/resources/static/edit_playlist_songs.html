@@ -3,44 +3,129 @@
 <head>
   <meta charset="UTF-8">
   <title data-i18n="edit_playlist_songs.title">Editar canciones de la playlist</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Estilos -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/animate.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/owl.carousel.css">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/style-color.css" rel="stylesheet">
+  <link rel="shortcut icon" href="img/logo/favicon.ico">
+
   <script src="i18n.js" defer></script>
 </head>
-<body class="centered-page">
+<body>
+  <div class="wrapper" id="home">
+    <!-- Header -->
+    <header>
+      <nav class="secondary-menu">
+        <div class="container">
+          <div class="sm-left">
+            <strong data-i18n="index.phone">Phone</strong>: <a href="#">555 555 555</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <strong data-i18n="index.email">E-mail</strong>: <a href="#">info@deuspotify.com</a>
+          </div>
+          <div class="sm-right">
+            <div class="sm-social-link">
+              <a class="h-facebook" href="#"><i class="fa fa-facebook"></i></a>
+              <a class="h-twitter" href="#"><i class="fa fa-twitter"></i></a>
+              <a class="h-google" href="#"><i class="fa fa-google-plus"></i></a>
+              <a class="h-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </nav>
+      <nav class="navbar navbar-fixed-top navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html" style="font-size: 24px; font-weight: bold; color: white;">
+              Deuspotify
+            </a>
+          </div>
+          <div class="collapse navbar-collapse" id="menu">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="songs.html" data-i18n="index.viewSongs">View Songs</a></li>
+              <li><a href="favourite_songs.html" data-i18n="index.viewFavouriteSongs">View Favourite Songs</a></li>
+              <li><a href="playlists.html" data-i18n="index.viewPlaylists">View Playlists</a></li>
+              <li><a href="edit_profile.html" data-i18n="index.addeditProfile">Edit Profile</a></li>
+              <li><a href="view_all_playlist.html" data-i18n="index.addview_all_playlist">View All Playlists</a></li>
+              <li><button onclick="logout()" class="logout-button" data-i18n="index.logout">Logout</button></li>
+              <div class="language-selector">
+                <button onclick="loadTranslations('es')" title="Español">Es</button>
+                <button onclick="loadTranslations('en')" title="English">En</button>
+                <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-  <!-- Language Switcher -->
-  <div style="position: absolute; top: 10px; right: 20px;">
-    <button onclick="loadTranslations('es')" title="Español">Es</button>
-    <button onclick="loadTranslations('en')" title="English">En</button>
-    <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
+    <!-- Main Content -->
+    <div class="container form-container" style="padding-top: 150px; max-width: 600px;">
+      <h2 class="text-center" data-i18n="edit_playlist_songs.title">Editar canciones de la playlist</h2>
+
+      <form id="songsForm" class="form-group d-flex flex-column gap-2"></form>
+
+      <div class="text-center mt-4">
+        <button id="saveBtn" class="btn btn-red" data-i18n="edit_playlist_songs.save">Guardar cambios</button>
+        <button onclick="window.history.back()" class="btn btn-secondary" data-i18n="edit_playlist_songs.cancel">Cancelar</button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="social">
+          <a class="h-facebook" href="#"><i class="fa fa-facebook"></i></a>
+          <a class="h-google" href="#"><i class="fa fa-google-plus"></i></a>
+          <a class="h-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+          <a class="h-twitter" href="#"><i class="fa fa-twitter"></i></a>
+        </div>
+        <p class="copy-right">&copy; <span data-i18n="index.copyright">Copyright</span> 2023,
+          <span data-i18n="index.allRightsReserved">All rights are reserved</span>.
+        </p>
+      </div>
+    </footer>
+
+    <span class="totop"><a href="#"><i class="fa fa-chevron-up"></i></a></span>
   </div>
 
-  <!-- Page Title -->
-  <h2 data-i18n="edit_playlist_songs.title">Editar canciones de la playlist</h2>
-
-  <!-- Songs Form -->
-  <form id="songsForm"></form>
-
-  <!-- Action Buttons -->
-  <button id="saveBtn" data-i18n="edit_playlist_songs.save">Guardar cambios</button>
-  <button onclick="window.history.back()" data-i18n="edit_playlist_songs.cancel">Cancelar</button>
+  <!-- Scripts -->
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/waypoints.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.nav.js"></script>
+  <script src="js/respond.min.js"></script>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/custom.js"></script>
 
   <script>
+    function logout() {
+      localStorage.removeItem("token");
+      fetch("/auth/logout", { method: "POST" }).then(() => window.location.href = "login.html");
+    }
+
     const full = window.location.origin;
     const match = full.match(/^(https?:\/\/[^\/:]+)/);
     const appUrl = match ? match[0] : '';
     const params = new URLSearchParams(window.location.search);
     const playlistId = params.get("id");
-
     let playlistSongs = [];
 
-    // Obtener canciones de la playlist actual
     fetch(`${appUrl}:8080/api/playlists/${playlistId}`)
       .then(res => res.json())
       .then(playlist => {
         playlistSongs = playlist.songs.map(song => song.id);
-
-        // Obtener todas las canciones del usuario
         return fetch(`${appUrl}:8080/api/songs`);
       })
       .then(res => res.json())
@@ -49,27 +134,31 @@
         allSongs.forEach(song => {
           const isInPlaylist = playlistSongs.includes(song.id);
 
-          const label = document.createElement("label");
-          label.className = "song-checkbox-label";
+          const formCheck = document.createElement("div");
+          formCheck.className = "form-check mb-2";
 
           const checkbox = document.createElement("input");
           checkbox.type = "checkbox";
+          checkbox.className = "form-check-input";
+          checkbox.id = `song-${song.id}`;
           checkbox.value = song.id;
           checkbox.checked = isInPlaylist;
 
-          label.appendChild(checkbox);
-          label.appendChild(document.createElement("span")).textContent = song.name;
+          const label = document.createElement("label");
+          label.className = "form-check-label";
+          label.setAttribute("for", `song-${song.id}`);
+          label.textContent = song.name;
 
-          form.appendChild(label);
+          formCheck.appendChild(checkbox);
+          formCheck.appendChild(label);
+          form.appendChild(formCheck);
         });
       })
       .catch(err => console.error('Error loading playlist or songs:', err));
 
     document.getElementById("saveBtn").addEventListener("click", () => {
       const checkboxes = document.querySelectorAll("#songsForm input[type='checkbox']");
-      const selectedIds = Array.from(checkboxes)
-        .filter(cb => cb.checked)
-        .map(cb => parseInt(cb.value, 10));
+      const selectedIds = Array.from(checkboxes).filter(cb => cb.checked).map(cb => parseInt(cb.value, 10));
 
       fetch(`${appUrl}:8080/api/playlists/${playlistId}/songs`, {
         method: "PUT",
@@ -77,13 +166,11 @@
         body: JSON.stringify(selectedIds)
       })
       .then(response => {
-        const msgUpdated = t('edit_playlist_songs.updated');
-        const msgError   = t('edit_playlist_songs.error');
         if (response.ok) {
-          alert(msgUpdated);
+          alert(t('edit_playlist_songs.updated'));
           window.location.href = `detalle_playlist.html?id=${playlistId}`;
         } else {
-          alert(msgError);
+          alert(t('edit_playlist_songs.error'));
         }
       })
       .catch(err => console.error(t('song.updated.failed'), err));

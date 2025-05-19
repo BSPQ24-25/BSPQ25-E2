@@ -1,43 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title data-i18n="editProfile.title">Edit Profile</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="i18n.js" defer></script>
+  <meta charset="UTF-8">
+  <title data-i18n="editProfile.title">Edit Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Estilos -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/animate.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/owl.carousel.css">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/style-color.css" rel="stylesheet">
+  <link rel="shortcut icon" href="img/logo/favicon.ico">
+
+  <script src="i18n.js" defer></script>
 </head>
 <body>
-    <div style="position: absolute; top: 10px; right: 20px;">
-        <button onclick="loadTranslations('es')" title="Español">Es</button>
-        <button onclick="loadTranslations('en')" title="English">En</button>
-        <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
-    </div>
+  <div class="wrapper" id="home">
+    <!-- Header -->
+    <header>
+      <nav class="secondary-menu">
+        <div class="container">
+          <div class="sm-left">
+            <strong data-i18n="index.phone">Phone</strong>: <a href="#">555 555 555</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <strong data-i18n="index.email">E-mail</strong>: <a href="#">info@deuspotify.com</a>
+          </div>
+          <div class="sm-right">
+            <div class="sm-social-link">
+              <a class="h-facebook" href="#"><i class="fa fa-facebook"></i></a>
+              <a class="h-twitter" href="#"><i class="fa fa-twitter"></i></a>
+              <a class="h-google" href="#"><i class="fa fa-google-plus"></i></a>
+              <a class="h-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </nav>
 
-    <h1 data-i18n="editProfile.heading">Edit Profile</h1>
+      <nav class="navbar navbar-fixed-top navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html" style="font-size: 24px; font-weight: bold; color: white;">
+              Deuspotify
+            </a>
+          </div>
+          <div class="collapse navbar-collapse" id="menu">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="songs.html" data-i18n="index.viewSongs">View Songs</a></li>
+              <li><a href="favourite_songs.html" data-i18n="index.viewFavouriteSongs">View Favourite Songs</a></li>
+              <li><a href="playlists.html" data-i18n="index.viewPlaylists">View Playlists</a></li>
+              <li><a href="edit_profile.html" data-i18n="index.addeditProfile">Edit Profile</a></li>
+              <li><a href="view_all_playlist.html" data-i18n="index.addview_all_playlist">View All Playlists</a></li>
+              <li><button onclick="logout()" class="logout-button" data-i18n="index.logout">Logout</button></li>
+              <div class="language-selector">
+                <button onclick="loadTranslations('es')" title="Español">Es</button>
+                <button onclick="loadTranslations('en')" title="English">En</button>
+                <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-    <div id="profile-container">
-        <p><strong data-i18n="editProfile.usernameLabel">Username:</strong> <span id="username">Loading...</span></p>
-        <p><strong data-i18n="editProfile.emailLabel">Email:</strong> <span id="email">Loading...</span></p>
-    </div>
+    <!-- Main Content -->
+    <div class="container form-container" style="padding-top: 150px; max-width: 600px;">
+      <h2 class="text-center" data-i18n="editProfile.heading">Edit Profile</h2>
 
-    <div id="edit-profile-form" style="margin-top: 20px;">
-        <h3 data-i18n="editProfile.updateHeading">Update Profile</h3>
+      <div class="card p-4">
+        <div id="profile-container" class="mb-4">
+          <p><strong data-i18n="editProfile.usernameLabel">Username:</strong> <span id="username">Loading...</span></p>
+          <p><strong data-i18n="editProfile.emailLabel">Email:</strong> <span id="email">Loading...</span></p>
+        </div>
+
         <form id="profileForm">
+          <div class="form-group">
             <label for="newUsername" data-i18n="editProfile.newUsernameLabel">New Username:</label>
-            <input type="text" id="newUsername" name="newUsername" required>
-            <br><br>
+            <input type="text" class="form-control" id="newUsername" name="newUsername" required>
+          </div>
 
+          <div class="form-group">
             <label for="newEmail" data-i18n="editProfile.newEmailLabel">New Email:</label>
-            <input type="email" id="newEmail" name="newEmail" required>
-            <br><br>
+            <input type="email" class="form-control" id="newEmail" name="newEmail" required>
+          </div>
 
+          <div class="form-group">
             <label for="newPassword" data-i18n="editProfile.newPasswordLabel">New Password (optional):</label>
-            <input type="password" id="newPassword" name="newPassword" placeholder="Leave blank to keep current" data-i18n-placeholder="editProfile.newPasswordPlaceholder">
-            <br><br>
+            <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Leave blank to keep current" data-i18n-placeholder="editProfile.newPasswordPlaceholder">
+          </div>
 
-            <button type="submit" data-i18n="editProfile.updateButton">Update</button>
+          <div class="text-center">
+            <button type="submit" class="btn btn-red" data-i18n="editProfile.updateButton">Update</button>
+          </div>
+
+          <div id="updateMsg" class="mt-3 text-success text-center" style="display: none;" data-i18n="editProfile.updateMsg">Profile updated!</div>
         </form>
-        <div id="updateMsg" style="color: green; display: none;" data-i18n="editProfile.updateMsg">Profile updated!</div>
+      </div>
     </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="social">
+          <a class="h-facebook" href="#"><i class="fa fa-facebook"></i></a>
+          <a class="h-google" href="#"><i class="fa fa-google-plus"></i></a>
+          <a class="h-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+          <a class="h-twitter" href="#"><i class="fa fa-twitter"></i></a>
+        </div>
+        <p class="copy-right">&copy; <span data-i18n="index.copyright">Copyright</span> 2023,
+          <span data-i18n="index.allRightsReserved">All rights are reserved</span>.
+        </p>
+      </div>
+    </footer>
+
+    <span class="totop"><a href="#"><i class="fa fa-chevron-up"></i></a></span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/waypoints.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.nav.js"></script>
+  <script src="js/respond.min.js"></script>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/custom.js"></script>
+
+  <script>
+    function logout() {
+      localStorage.removeItem("token");
+      fetch("/auth/logout", { method: "POST" })
+        .then(() => window.location.href = "login.html");
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      loadTranslations();
+
+      const username = localStorage.getItem("username");
+      const email = localStorage.getItem("email");
+      document.getElementById("username").textContent = username || "N/A";
+      document.getElementById("email").textContent = email || "N/A";
+
+      const form = document.getElementById("profileForm");
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        const updated = {
+          newUsername: document.getElementById("newUsername").value,
+          newEmail: document.getElementById("newEmail").value,
+          newPassword: document.getElementById("newPassword").value
+        };
+
+        const token = localStorage.getItem("token");
+
+        const res = await fetch("/api/profile/update", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+          },
+          body: JSON.stringify(updated)
+        });
+
+        if (res.ok) {
+          document.getElementById("updateMsg").style.display = "block";
+        } else {
+          alert("Error updating profile");
+        }
+      });
+    });
+  </script>
 </body>
 </html>
