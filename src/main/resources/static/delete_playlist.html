@@ -3,37 +3,126 @@
 <head>
   <meta charset="UTF-8">
   <title data-i18n="delete_playlist_title">Delete Playlist</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Estilos -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/animate.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/owl.carousel.css">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/style-color.css" rel="stylesheet">
+  <link rel="shortcut icon" href="img/logo/favicon.ico">
+
   <script src="i18n.js" defer></script>
 </head>
-<body class="centered-page">
-  <!-- Botones de idioma -->
-  <div style="position: absolute; top: 10px; right: 20px;">
-    <button onclick="loadTranslations('es')" title="Español">Es</button>
-    <button onclick="loadTranslations('en')" title="English">En</button>
-    <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
+<body>
+  <div class="wrapper" id="home">
+    <!-- Header -->
+    <header>
+      <nav class="secondary-menu">
+        <div class="container">
+          <div class="sm-left">
+            <strong data-i18n="index.phone">Phone</strong>: <a href="#">555 555 555</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <strong data-i18n="index.email">E-mail</strong>: <a href="#">info@deuspotify.com</a>
+          </div>
+          <div class="sm-right">
+            <div class="sm-social-link">
+              <a class="h-facebook" href="#"><i class="fa fa-facebook"></i></a>
+              <a class="h-twitter" href="#"><i class="fa fa-twitter"></i></a>
+              <a class="h-google" href="#"><i class="fa fa-google-plus"></i></a>
+              <a class="h-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </nav>
+      <nav class="navbar navbar-fixed-top navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html" style="font-size: 24px; font-weight: bold; color: white;">
+              Deuspotify
+            </a>
+          </div>
+          <div class="collapse navbar-collapse" id="menu">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="songs.html" data-i18n="index.viewSongs">View Songs</a></li>
+              <li><a href="favourite_songs.html" data-i18n="index.viewFavouriteSongs">View Favourite Songs</a></li>
+              <li><a href="playlists.html" data-i18n="index.viewPlaylists">View Playlists</a></li>
+              <li><a href="edit_profile.html" data-i18n="index.addeditProfile">Edit Profile</a></li>
+              <li><a href="view_all_playlist.html" data-i18n="index.addview_all_playlist">View All Playlists</a></li>
+              <li><button onclick="logout()" class="logout-button" data-i18n="index.logout">Logout</button></li>
+              <div class="language-selector">
+                <button onclick="loadTranslations('es')" title="Español">Es</button>
+                <button onclick="loadTranslations('en')" title="English">En</button>
+                <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container form-container text-center" style="padding-top: 150px;">
+      <h2 data-i18n="delete_playlist_heading">Select a playlist to delete</h2>
+
+      <select id="playlistSelect" class="form-control" size="5" required style="max-width: 400px; margin: 20px auto;"></select>
+
+      <div class="mt-4">
+        <button id="confirmDelete" class="btn btn-red" data-i18n="delete_playlist_confirm">Yes, Delete</button>
+        <button onclick="window.location.href='playlists.html'" class="btn btn-red" data-i18n="delete_playlist_cancel">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="social">
+          <a class="h-facebook" href="#"><i class="fa fa-facebook"></i></a>
+          <a class="h-google" href="#"><i class="fa fa-google-plus"></i></a>
+          <a class="h-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+          <a class="h-twitter" href="#"><i class="fa fa-twitter"></i></a>
+        </div>
+        <p class="copy-right">&copy; <span data-i18n="index.copyright">Copyright</span> 2023,
+          <span data-i18n="index.allRightsReserved">All rights are reserved</span>.
+        </p>
+      </div>
+    </footer>
+
+    <span class="totop"><a href="#"><i class="fa fa-chevron-up"></i></a></span>
   </div>
 
-  <h2 data-i18n="delete_playlist_heading">Select a playlist to delete</h2>
-
-  <select id="playlistSelect" size="5" required></select>
-
-  <div style="margin-top: 1.5rem;">
-    <button id="confirmDelete" data-i18n="delete_playlist_confirm">Yes, Delete</button>
-    <button onclick="window.location.href='playlists.html'" data-i18n="delete_playlist_cancel">Cancel</button>
-  </div>
-
+  <!-- Scripts -->
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/waypoints.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.nav.js"></script>
+  <script src="js/respond.min.js"></script>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/custom.js"></script>
   <script>
+    function logout() {
+      localStorage.removeItem("token");
+      fetch("/auth/logout", { method: "POST" })
+        .then(() => window.location.href = "login.html");
+    }
+
     const full = window.location.origin;
     const match = full.match(/^(https?:\/\/[^\/:]+)/);
     const appUrl = match ? match[0] : '';
     const select = document.getElementById("playlistSelect");
-    let playlists = [];
 
     fetch(`${appUrl || "http://localhost"}:8080/api/playlists`)
       .then(res => res.json())
       .then(data => {
-        playlists = data;
         data.forEach(pl => {
           const option = document.createElement("option");
           option.value = pl.id;
@@ -49,6 +138,10 @@
       fetch(`${appUrl || "http://localhost"}:8080/api/playlists/${playlistId}`, {
         method: "DELETE"
       }).then(() => window.location.href = "playlists.html");
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      loadTranslations();
     });
   </script>
 </body>

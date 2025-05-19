@@ -1,94 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title data-i18n="playlists.title">Playlists</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title data-i18n="playlists.title">Playlists</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Styles -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">	
+  <link href="css/animate.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/owl.carousel.css">
+  <link href="css/font-awesome.min.css" rel="stylesheet">		
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/style-color.css" rel="stylesheet">
+  <link rel="shortcut icon" href="img/logo/favicon.ico">
+
+  <script src="i18n.js" defer></script>
 </head>
-
-<body class="side-layout">
-    <div style="position: absolute; top: 10px; right: 20px;">
-        <button onclick="loadTranslations('es')" title="Español">Es</button>
-        <button onclick="loadTranslations('en')" title="English">En</button>
-        <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
-    </div>
-
-    <div class="sidebar">
-        <div class="button-group">
-            <button onclick="window.location.href='add_playlist.html'" data-i18n="playlists.add">Add Playlist</button>
-            <button onclick="window.location.href='edit_playlist.html'" data-i18n="playlists.edit">Edit Playlist</button>
-            <button onclick="window.location.href='delete_playlist.html'" data-i18n="playlists.delete">Delete Playlist</button>
-            <button onclick="window.location.href='index.html'" data-i18n="playlists.back">Back to Home</button>
+<body>
+  <div class="wrapper" id="home">
+    <!-- Header -->
+    <header>
+      <nav class="secondary-menu">
+        <div class="container">
+          <div class="sm-left">
+            <strong data-i18n="index.phone">Phone</strong>: <a href="#">555 555 555</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <strong data-i18n="index.email">E-mail</strong>: <a href="#">info@deuspotify.com</a>
+          </div>
+          <div class="sm-right">
+            <div class="sm-social-link">
+              <a class="h-facebook" href="#"><i class="fa fa-facebook"></i></a>
+              <a class="h-twitter" href="#"><i class="fa fa-twitter"></i></a>
+              <a class="h-google" href="#"><i class="fa fa-google-plus"></i></a>
+              <a class="h-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+            </div>
+          </div>
+          <div class="clearfix"></div>
         </div>
-    </div>
+      </nav>
 
-    <div class="main-content">
-        <h2 data-i18n="playlists.yours">Your Playlists</h2>
+      <nav class="navbar navbar-fixed-top navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html" style="font-size: 24px; font-weight: bold; color: white;">
+              Deuspotify
+            </a>
+          </div>
+          <div class="collapse navbar-collapse" id="menu">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="songs.html" data-i18n="index.viewSongs">View Songs</a></li>
+              <li><a href="favourite_songs.html" data-i18n="index.viewFavouriteSongs">View Favourite Songs</a></li>
+              <li><a href="playlists.html" data-i18n="index.viewPlaylists">View Playlists</a></li>
+              <li><a href="edit_profile.html" data-i18n="index.addeditProfile">Edit Profile</a></li>
+              <li><a href="view_all_playlist.html" data-i18n="index.addview_all_playlist">View All Playlists</a></li>
+              <li><button onclick="logout()" class="logout-button" data-i18n="index.logout">Logout</button></li>
+              <div class="language-selector">
+                <button onclick="loadTranslations('es')" title="Español">Es</button>
+                <button onclick="loadTranslations('en')" title="English">En</button>
+                <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-        <div style="margin: 1rem 0;">
-            <label for="playlistOrder" data-i18n="playlistList.order">Ordenar por:</label>
-            <select id="playlistOrder">
-                <option value="id" data-i18n="playlistList.order.id">ID</option>
-                <option value="name" data-i18n="playlistList.order.name">Nombre</option>
-                <option value="numberOfSongs" data-i18n="playlistList.order.numberOfSongs">Número de canciones</option>
+    <!-- Main content -->
+    <div class="container form-container">
+      <h2 class="text-center" data-i18n="playlists.yours">Your Playlists</h2>
+
+      <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3">
+          <div class="sidebar">
+            <div class="sidebar-buttons">
+              <button onclick="window.location.href='add_playlist.html'" class="btn btn-red" data-i18n="playlists.add">Add Playlist</button>
+              <button onclick="window.location.href='edit_playlist.html'" class="btn btn-red" data-i18n="playlists.edit">Edit Playlist</button>
+              <button onclick="window.location.href='delete_playlist.html'" class="btn btn-red" data-i18n="playlists.delete">Delete Playlist</button>
+              <button onclick="window.location.href='index.html'" class="btn btn-red" data-i18n="playlists.back">Back to Home</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Playlist list -->
+        <div class="col-md-9">
+          <div class="form-group">
+            <label for="playlistOrder" data-i18n="playlistList.order">Order by:</label>
+            <select id="playlistOrder" class="form-control">
+              <option value="id" data-i18n="playlistList.order.id">ID</option>
+              <option value="name" data-i18n="playlistList.order.name">Name</option>
+              <option value="numberOfSongs" data-i18n="playlistList.order.numberOfSongs">Number of Songs</option>
             </select>
-        </div>
+          </div>
 
-        <ul id="playlistsList"></ul>
+          <ul id="playlistsList" class="list-group"></ul>
+        </div>
+      </div>
     </div>
 
-    <script src="/i18n.js"></script>
-    <script>
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="social">
+          <a class="h-facebook" href="#"><i class="fa fa-facebook"></i></a>
+          <a class="h-google" href="#"><i class="fa fa-google-plus"></i></a>
+          <a class="h-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+          <a class="h-twitter" href="#"><i class="fa fa-twitter"></i></a>
+        </div>
+        <p class="copy-right">&copy; <span data-i18n="index.copyright">Copyright</span> 2023,
+          <span data-i18n="index.allRightsReserved">All rights are reserved</span>.
+        </p>
+      </div>
+    </footer>
+
+    <span class="totop"><a href="#"><i class="fa fa-chevron-up"></i></a></span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/waypoints.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.nav.js"></script>
+  <script src="js/respond.min.js"></script>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/custom.js"></script>
+  <script>
+    function logout() {
+      localStorage.removeItem("token");
+      fetch("/auth/logout", { method: "POST" })
+        .then(() => window.location.href = "login.html");
+    }
+
     const full = window.location.origin;
     const match = full.match(/^(https?:\/\/[^\/:]+)/);
     const appUrl = match ? match[0] : '';
-        let playlists = [];
+    let playlists = [];
 
-        function renderPlaylists(list) {
-            const ul = document.getElementById("playlistsList");
-            ul.innerHTML = "";
-            list.forEach(pl => {
-                const li = document.createElement("li");
-                li.id = `playlist-${pl.id}`;
+    function renderPlaylists(list) {
+      const ul = document.getElementById("playlistsList");
+      ul.innerHTML = "";
+      list.forEach(pl => {
+        const li = document.createElement("li");
+        li.className = "list-group-item";
+        li.id = `playlist-${pl.id}`;
 
-                const link = document.createElement("a");
-                link.href = `detalle_playlist.html?id=${pl.id}`;
-                link.textContent = pl.name || `Playlist #${pl.id}`;
-                link.style.display = "block";
-                link.style.textDecoration = "none";
-                link.style.color = "inherit";
+        const link = document.createElement("a");
+        link.href = `detalle_playlist.html?id=${pl.id}`;
+        link.textContent = pl.name || `Playlist #${pl.id}`;
+        link.style.textDecoration = "none";
+        link.style.color = "inherit";
 
-                li.appendChild(link);
-                ul.appendChild(li);
-            });
+        li.appendChild(link);
+        ul.appendChild(li);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      loadTranslations();
+      const username = localStorage.getItem("username");
+
+      fetch(`${appUrl || "http://localhost"}:8080/api/playlists/user/${username}`)
+        .then(response => response.json())
+        .then(data => {
+          playlists = data;
+          renderPlaylists(playlists);
+        });
+
+      document.getElementById("playlistOrder").addEventListener("change", () => {
+        const sortBy = document.getElementById("playlistOrder").value;
+        const sorted = [...playlists];
+
+        if (sortBy === "id") {
+          sorted.sort((a, b) => a.id - b.id);
+        } else if (sortBy === "name") {
+          sorted.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+        } else if (sortBy === "numberOfSongs") {
+          sorted.sort((a, b) => (a.numberOfSongs || 0) - (b.numberOfSongs || 0));
         }
 
-        document.addEventListener("DOMContentLoaded", () => {
-            loadTranslations();
-            const username = localStorage.getItem("username");
-
-            fetch(`${appUrl || "http://localhost"}:8080/api/playlists/user/${username}`)
-                .then(response => response.json())
-                .then(data => {
-                    playlists = data;
-                    renderPlaylists(playlists);
-                });
-
-            document.getElementById("playlistOrder").addEventListener("change", () => {
-                const sortBy = document.getElementById("playlistOrder").value;
-                const sorted = [...playlists];
-
-                if (sortBy === "id") {
-                    sorted.sort((a, b) => a.id - b.id);
-                } else if (sortBy === "name") {
-                    sorted.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
-                } else if (sortBy === "numberOfSongs") {
-                    sorted.sort((a, b) => (a.numberOfSongs || 0) - (b.numberOfSongs || 0));
-                }
-
-                renderPlaylists(sorted);
-            });
-        });
-    </script>
+        renderPlaylists(sorted);
+      });
+    });
+  </script>
 </body>
 </html>
