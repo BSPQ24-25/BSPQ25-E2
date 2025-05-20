@@ -85,8 +85,14 @@ public class PlaylistController {
      * @return The updated playlist.
      */
     @PutMapping("/{id}")
-    public Playlist updatePlaylist(@PathVariable Long id, @RequestBody Playlist playlist) {
-        return deuspotifyService.updatePlaylist(id, playlist);
+    public Playlist updatePlaylist(@PathVariable Long id, @RequestBody Playlist dto) {
+        Playlist existing = deuspotifyService.findPlaylist(id)
+            .orElseThrow(() -> new RuntimeException("Playlist no encontrada"));
+        existing.setName(dto.getName());
+        existing.setPublic(dto.isPublic());
+        existing.setSongs(dto.getSongs());
+        existing.setOrder(dto.getOrder());
+        return deuspotifyService.updatePlaylist(id, existing);
     }
 
     /**
