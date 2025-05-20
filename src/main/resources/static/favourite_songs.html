@@ -38,11 +38,18 @@
       <nav class="navbar navbar-fixed-top navbar-default">
         <div class="container">
           <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
             <a class="navbar-brand" href="index.html" style="font-size: 24px; font-weight: bold; color: white;">
               Deuspotify
             </a>
           </div>
-          <div class="collapse navbar-collapse">
+
+          <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
               <li><a href="songs.html" data-i18n="index.viewSongs">View Songs</a></li>
               <li><a href="favourite_songs.html" data-i18n="index.viewFavouriteSongs">View Favourite Songs</a></li>
@@ -51,9 +58,9 @@
               <li><a href="view_all_playlist.html" data-i18n="index.addview_all_playlist">View All Playlists</a></li>
               <li><button onclick="logout()" class="logout-button" data-i18n="index.logout">Logout</button></li>
               <div class="language-selector">
-                <button onclick="loadTranslations('es')">Es</button>
-                <button onclick="loadTranslations('en')">En</button>
-                <button onclick="loadTranslations('eu')">Eu</button>
+                <button onclick="loadTranslations('es')" title="Español">Es</button>
+                <button onclick="loadTranslations('en')" title="English">En</button>
+                <button onclick="loadTranslations('eu')" title="Euskara">Eu</button>
               </div>
             </ul>
           </div>
@@ -76,7 +83,13 @@
 
         <div class="col-md-9">
           <h2 data-i18n="songs.favourite.yours">Your Favourite Songs</h2>
-          <input type="text" id="searchInput" class="search-box" data-i18n-placeholder="songs.search" placeholder="Search by song name" />
+          <input
+            type="text"
+            id="searchInput"
+            class="search-box"
+            data-i18n-placeholder="songs.search"
+            placeholder="Search by song name"
+          />
           <ul id="songsList" class="list-unstyled"></ul>
         </div>
       </div>
@@ -99,7 +112,7 @@
     <span class="totop"><a href="#"><i class="fa fa-chevron-up"></i></a></span>
   </div>
 
-  <!-- JS -->
+  <!-- JS dependencies -->
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/waypoints.min.js"></script>
@@ -108,99 +121,141 @@
   <script src="js/respond.min.js"></script>
   <script src="js/html5shiv.js"></script>
   <script src="js/custom.js"></script>
+  <script src="i18n.js"></script>
+
+  <!-- Page script -->
   <script>
+  (function() {
     const full = window.location.origin;
     const match = full.match(/^(https?:\/\/[^\/:]+)/);
     const appUrl = match ? match[0] : '';
     const username = localStorage.getItem("username") || '';
-    let favouriteSongs = [];
-    let currentAudio = null;
 
     document.addEventListener("DOMContentLoaded", () => {
       loadTranslations();
 
-      fetch(`${appUrl}:8080/api/profiles/${username}/favourite-songs`)
-        .then(res => res.json())
+      let favouriteSongs = [];
+      let currentAudio = null;
+      let currentPlayBtn = null;
+
+      // Load favourite songs
+      fetch(`${appUrl}:8080/api/profiles/${encodeURIComponent(username)}/favourite-songs`)
+        .then(res => {
+          if (!res.ok) throw new Error('Failed to fetch favourites');
+          return res.json();
+        })
         .then(songs => {
           favouriteSongs = songs;
           renderSongs(songs);
         })
-        .catch(() => {
+        .catch(err => {
+          console.error(err);
           document.getElementById("songsList").innerHTML = "<li style='color:red;'>Could not load favourite songs.</li>";
         });
 
+      function renderSongs(songs) {
+        const list = document.getElementById("songsList");
+        list.innerHTML = "";
+
+        songs.forEach(song => {
+          if (!song.id) return;
+
+          const item = document.createElement("li");
+          item.className = "song-item";
+          item.id = `song-${song.id}`;
+
+          const playBtn = document.createElement("i");
+          playBtn.className = "bi bi-play-circle play-btn";
+          playBtn.title = "Play song";
+
+          playBtn.addEventListener("click", () => {
+            // Toggle pause/resume on same song
+            if (currentAudio && currentPlayBtn === playBtn) {
+              if (!currentAudio.paused) {
+                currentAudio.pause();
+                playBtn.classList.replace('bi-pause-circle', 'bi-play-circle');
+              } else {
+                currentAudio.play();
+                playBtn.classList.replace('bi-play-circle', 'bi-pause-circle');
+              }
+              return;
+            }
+
+            // Stop previous
+            if (currentAudio && currentPlayBtn) {
+              currentAudio.pause();
+              currentPlayBtn.classList.replace('bi-pause-circle', 'bi-play-circle');
+            }
+
+            // Play new
+            if (song.filePath) {
+              currentAudio = new Audio(`/songs_files/${song.filePath}`);
+              currentPlayBtn = playBtn;
+              currentAudio.play();
+              playBtn.classList.replace('bi-play-circle', 'bi-pause-circle');
+
+              currentAudio.onended = () => {
+                playBtn.classList.replace('bi-pause-circle', 'bi-play-circle');
+                currentAudio = null;
+                currentPlayBtn = null;
+              };
+            }
+          });
+
+          const info = document.createElement("div");
+          info.className = "song-info";
+
+          const link = document.createElement("a");
+          link.href = `detalle_song.html?id=${song.id}`;
+          link.textContent = song.name;
+          link.style.fontWeight = "bold";
+
+          const artists = document.createElement("p");
+          artists.textContent = song.artists?.join(", ") || "Unknown artist";
+          artists.style.margin = "5px 0";
+          artists.style.color = "#666";
+
+          info.appendChild(link);
+          info.appendChild(artists);
+
+          const favBtn = document.createElement("i");
+          favBtn.className = "bi bi-heart-fill fav-btn favorited";
+          favBtn.title = "Remove from favourites";
+          favBtn.addEventListener("click", () => {
+            fetch(`${appUrl}:8080/api/profiles/${encodeURIComponent(username)}/favourite-songs/${song.id}`, { method: "DELETE" })
+              .then(() => {
+                favouriteSongs = favouriteSongs.filter(s => s.id !== song.id);
+                renderSongs(favouriteSongs);
+              })
+              .catch(console.error);
+          });
+
+          const actions = document.createElement("div");
+          actions.className = "song-actions";
+          actions.appendChild(playBtn);
+          actions.appendChild(favBtn);
+
+          item.appendChild(actions);
+          item.appendChild(info);
+          list.appendChild(item);
+        });
+      }
+
       document.getElementById("searchInput").addEventListener("input", function () {
         const term = this.value.toLowerCase();
-        const filtered = favouriteSongs.filter(song => (song.name || "").toLowerCase().includes(term));
+        const filtered = favouriteSongs.filter(song =>
+          (song.name || "").toLowerCase().includes(term) ||
+          (song.artists?.join(' ') || "").toLowerCase().includes(term)
+        );
         renderSongs(filtered);
       });
     });
-
-    function renderSongs(songs) {
-      const list = document.getElementById("songsList");
-      list.innerHTML = "";
-
-      songs.forEach(song => {
-        const item = document.createElement("li");
-        item.className = "song-item";
-
-        const playBtn = document.createElement("i");
-        playBtn.className = "bi bi-play-circle play-btn";
-        playBtn.title = "Play song";
-        playBtn.addEventListener("click", () => {
-          if (currentAudio) currentAudio.pause();
-          if (song.filePath) {
-            currentAudio = new Audio(`/songs_files/${song.filePath}`);
-            currentAudio.play();
-            playBtn.classList.replace('bi-play-circle', 'bi-pause-circle');
-            currentAudio.onended = () => {
-              playBtn.classList.replace('bi-pause-circle', 'bi-play-circle');
-            };
-          }
-        });
-
-        const favBtn = document.createElement("i");
-        favBtn.className = "bi bi-heart-fill fav-btn favorited";
-        favBtn.title = "Remove from favourites";
-        favBtn.addEventListener("click", () => {
-          fetch(`${appUrl}:8080/api/profiles/${username}/favourite-songs/${song.id}`, { method: "DELETE" })
-            .then(() => {
-              favouriteSongs = favouriteSongs.filter(s => s.id !== song.id);
-              renderSongs(favouriteSongs);
-            });
-        });
-
-        const info = document.createElement("div");
-        info.className = "song-info";
-
-        const link = document.createElement("a");
-        link.href = `detalle_song.html?id=${song.id}`;
-        link.textContent = song.name;
-        link.style.fontWeight = "bold";
-
-        const artists = document.createElement("p");
-        artists.textContent = song.artists?.join(", ") || "Unknown";
-        artists.style.margin = "5px 0";
-        artists.style.color = "#666";
-
-        info.appendChild(link);
-        info.appendChild(artists);
-
-        const actions = document.createElement("div");
-        actions.className = "song-actions";
-        actions.appendChild(playBtn);
-        actions.appendChild(favBtn);
-
-        item.appendChild(actions);
-        item.appendChild(info);
-        list.appendChild(item);
-      });
-    }
 
     function logout() {
       localStorage.removeItem("token");
       fetch("/auth/logout", { method: "POST" }).then(() => window.location.href = "login.html");
     }
+  })();
   </script>
 </body>
 </html>
