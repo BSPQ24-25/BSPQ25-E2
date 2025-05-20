@@ -48,6 +48,11 @@ jobs:
       - name: Install Doxygen
         run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
 
+      - name: Git pull
+        run: |
+            git config --global user.name "github-actions"
+            git config --global user.email "github-actions@github.com"
+            git pull
       - name: Wait for MySQL to be ready
         run: |
           echo "Waiting for MySQL..."
