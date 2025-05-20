@@ -85,8 +85,14 @@ public class PlaylistController {
      * @return The updated playlist.
      */
     @PutMapping(&quot;/{id}&quot;)
-    public Playlist updatePlaylist(@PathVariable Long id, @RequestBody Playlist playlist) {
-<span class="nc" id="L89">        return deuspotifyService.updatePlaylist(id, playlist);</span>
+    public Playlist updatePlaylist(@PathVariable Long id, @RequestBody Playlist dto) {
+<span class="nc" id="L89">        Playlist existing = deuspotifyService.findPlaylist(id)</span>
+<span class="nc" id="L90">            .orElseThrow(() -&gt; new RuntimeException(&quot;Playlist no encontrada&quot;));</span>
+<span class="nc" id="L91">        existing.setName(dto.getName());</span>
+<span class="nc" id="L92">        existing.setPublic(dto.isPublic());</span>
+<span class="nc" id="L93">        existing.setSongs(dto.getSongs());</span>
+<span class="nc" id="L94">        existing.setOrder(dto.getOrder());</span>
+<span class="nc" id="L95">        return deuspotifyService.updatePlaylist(id, existing);</span>
     }
 
     /**
@@ -95,8 +101,8 @@ public class PlaylistController {
      */
     @DeleteMapping(&quot;/{id}&quot;)
     public void deletePlaylist(@PathVariable Long id) {
-<span class="nc" id="L98">        deuspotifyService.deletePlaylist(id);</span>
-<span class="nc" id="L99">    }</span>
+<span class="nc" id="L104">        deuspotifyService.deletePlaylist(id);</span>
+<span class="nc" id="L105">    }</span>
 
     /**
      * @brief Updates the list of songs in a playlist.
@@ -106,13 +112,13 @@ public class PlaylistController {
      */
     @PutMapping(&quot;/{id}/songs&quot;)
     public Playlist updatePlaylistSongs(@PathVariable Long id, @RequestBody List&lt;Long&gt; songIds) {
-<span class="nc" id="L109">        Playlist playlist = deuspotifyService.findPlaylist(id)</span>
-<span class="nc" id="L110">            .orElseThrow(() -&gt; new RuntimeException(&quot;Playlist no encontrada&quot;));</span>
+<span class="nc" id="L115">        Playlist playlist = deuspotifyService.findPlaylist(id)</span>
+<span class="nc" id="L116">            .orElseThrow(() -&gt; new RuntimeException(&quot;Playlist no encontrada&quot;));</span>
 
-<span class="nc" id="L112">        List&lt;Song&gt; songs = deuspotifyService.findSongsByIds(songIds);</span>
-<span class="nc" id="L113">        playlist.setSongs(songs);</span>
+<span class="nc" id="L118">        List&lt;Song&gt; songs = deuspotifyService.findSongsByIds(songIds);</span>
+<span class="nc" id="L119">        playlist.setSongs(songs);</span>
 
-<span class="nc" id="L115">        return deuspotifyService.updatePlaylist(id, playlist);</span>
+<span class="nc" id="L121">        return deuspotifyService.updatePlaylist(id, playlist);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
