@@ -3,6 +3,7 @@
 \mbox{\hyperlink{_playlist_controller_8java}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00005}00005\ }
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00006}00006\ \textcolor{keyword}{package\ }com.deusto.deuspotify.controllers;}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00007}00007\ }
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00008}00008\ \textcolor{keyword}{import}\ com.deusto.deuspotify.model.Playlist;}
@@ -18,12 +19,12 @@
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00022}00022\ @RestController}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00023}00023\ @RequestMapping(\textcolor{stringliteral}{"{}/api/playlists"{}})}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00024}00024\ @CrossOrigin}
-\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00025}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller}{00025}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller}{PlaylistController}}\ \{}
+\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00025}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller}{00025}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a47c3de5be06c446c93bf27d1b8d2d608}{PlaylistController}}\ \{}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00026}00026\ }
-\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00027}00027\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ DeuspotifyService\ deuspotifyService;}
-\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00028}00028\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ ProfileService\ profileService;}
+\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00027}00027\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ \mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service}{DeuspotifyService}}\ deuspotifyService;}
+\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00028}00028\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service}{ProfileService}}\ profileService;}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00029}00029\ }
-\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00035}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a47c3de5be06c446c93bf27d1b8d2d608}{00035}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a47c3de5be06c446c93bf27d1b8d2d608}{PlaylistController}}(DeuspotifyService\ deuspotifyService,\ ProfileService\ profileService)\ \{}
+\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00035}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a47c3de5be06c446c93bf27d1b8d2d608}{00035}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a47c3de5be06c446c93bf27d1b8d2d608}{PlaylistController}}(\mbox{\hyperlink{interfacecom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service}{DeuspotifyService}}\ deuspotifyService,\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service}{ProfileService}}\ profileService)\ \{}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00036}00036\ \ \ \ \ \ \ \ \ this.deuspotifyService\ =\ deuspotifyService;}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00037}00037\ \ \ \ \ \ \ \ \ this.profileService\ =\ profileService;}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00038}00038\ \ \ \ \ \}}
@@ -34,30 +35,30 @@
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00047}00047\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00048}00048\ }
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00054}00054\ \ \ \ \ @GetMapping(\textcolor{stringliteral}{"{}/user/\{username\}"{}})}
-\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00055}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a58492d736345143341700a07b41e4648}{00055}}\ \ \ \ \ public\ List<Playlist>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a58492d736345143341700a07b41e4648}{getPlaylistsByUsername}}(@PathVariable\ String\ username)\ \{}
+\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00055}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a58492d736345143341700a07b41e4648}{00055}}\ \ \ \ \ public\ List<\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}}>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a58492d736345143341700a07b41e4648}{getPlaylistsByUsername}}(@PathVariable\ String\ username)\ \{}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ deuspotifyService.retrieveAllPlaylists().stream()}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .filter(p\ -\/>\ p.getOwners().contains(username))}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .toList();}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00059}00059\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00060}00060\ }
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00066}00066\ \ \ \ \ @GetMapping(\textcolor{stringliteral}{"{}/\{id\}"{}})}
-\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00067}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_adfbe041c33785976643d0382cc03f260}{00067}}\ \ \ \ \ public\ Optional<Playlist>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_adfbe041c33785976643d0382cc03f260}{getPlaylistById}}(@PathVariable\ Long\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00067}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_adfbe041c33785976643d0382cc03f260}{00067}}\ \ \ \ \ public\ Optional<\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}}>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_adfbe041c33785976643d0382cc03f260}{getPlaylistById}}(@PathVariable\ Long\ \textcolor{keywordtype}{id})\ \{}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00068}00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ deuspotifyService.findPlaylist(\textcolor{keywordtype}{id});}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00069}00069\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00070}00070\ }
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00076}00076\ \ \ \ \ @PostMapping}
-\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00077}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a3e356e143e63a70116a91406ac7270d6}{00077}}\ \ \ \ \ \textcolor{keyword}{public}\ Playlist\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a3e356e143e63a70116a91406ac7270d6}{createPlaylist}}(@RequestBody\ Playlist\ playlist)\ \{}
+\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00077}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a3e356e143e63a70116a91406ac7270d6}{00077}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a3e356e143e63a70116a91406ac7270d6}{createPlaylist}}(@RequestBody\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}}\ playlist)\ \{}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ deuspotifyService.addPlaylist(playlist);}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00079}00079\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00080}00080\ }
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00087}00087\ \ \ \ \ @PutMapping(\textcolor{stringliteral}{"{}/\{id\}"{}})}
-\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00088}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_af30336d476a22e68de4130f918719aa4}{00088}}\ \ \ \ \ public\ Playlist\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_af30336d476a22e68de4130f918719aa4}{updatePlaylist}}(@PathVariable\ Long\ \textcolor{keywordtype}{id},\ @RequestBody\ Playlist\ dto)\ \{}
-\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00089}00089\ \ \ \ \ \ \ \ \ Playlist\ existing\ =\ deuspotifyService.findPlaylist(\textcolor{keywordtype}{id})}
+\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00088}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_af30336d476a22e68de4130f918719aa4}{00088}}\ \ \ \ \ public\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_af30336d476a22e68de4130f918719aa4}{updatePlaylist}}(@PathVariable\ Long\ \textcolor{keywordtype}{id},\ @RequestBody\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}}\ dto)\ \{}
+\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00089}00089\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}}\ existing\ =\ deuspotifyService.findPlaylist(\textcolor{keywordtype}{id})}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ .orElseThrow(()\ -\/>\ \textcolor{keyword}{new}\ RuntimeException(\textcolor{stringliteral}{"{}Playlist\ no\ encontrada"{}}));}
-\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00091}00091\ \ \ \ \ \ \ \ \ existing.setName(dto.getName());}
-\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00092}00092\ \ \ \ \ \ \ \ \ existing.setPublic(dto.isPublic());}
-\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00093}00093\ \ \ \ \ \ \ \ \ existing.setSongs(dto.getSongs());}
-\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00094}00094\ \ \ \ \ \ \ \ \ existing.setOrder(dto.getOrder());}
+\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00091}00091\ \ \ \ \ \ \ \ \ existing.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a962e49d054176316410d07d45d80ef4b}{setName}}(dto.getName());}
+\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00092}00092\ \ \ \ \ \ \ \ \ existing.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_abbc76280f389509b495a53a0cd7440c8}{setPublic}}(dto.isPublic());}
+\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00093}00093\ \ \ \ \ \ \ \ \ existing.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_af922ddea356269da7af372a5dffefe72}{setSongs}}(dto.getSongs());}
+\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00094}00094\ \ \ \ \ \ \ \ \ existing.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_ad90c303b764cc92b8082e172b3876bd0}{setOrder}}(dto.getOrder());}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ deuspotifyService.updatePlaylist(\textcolor{keywordtype}{id},\ existing);}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00096}00096\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00097}00097\ }
@@ -67,12 +68,12 @@
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00105}00105\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00106}00106\ }
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00113}00113\ \ \ \ \ @PutMapping(\textcolor{stringliteral}{"{}/\{id\}/songs"{}})}
-\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00114}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a5d4c21632f49645f79d9c419cb82b7b4}{00114}}\ \ \ \ \ public\ Playlist\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a5d4c21632f49645f79d9c419cb82b7b4}{updatePlaylistSongs}}(@PathVariable\ Long\ \textcolor{keywordtype}{id},\ @RequestBody\ List<Long>\ songIds)\ \{}
-\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00115}00115\ \ \ \ \ \ \ \ \ Playlist\ playlist\ =\ deuspotifyService.findPlaylist(\textcolor{keywordtype}{id})}
+\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00114}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a5d4c21632f49645f79d9c419cb82b7b4}{00114}}\ \ \ \ \ public\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_playlist_controller_a5d4c21632f49645f79d9c419cb82b7b4}{updatePlaylistSongs}}(@PathVariable\ Long\ \textcolor{keywordtype}{id},\ @RequestBody\ List<Long>\ songIds)\ \{}
+\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00115}00115\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}}\ playlist\ =\ deuspotifyService.findPlaylist(\textcolor{keywordtype}{id})}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ .orElseThrow(()\ -\/>\ \textcolor{keyword}{new}\ RuntimeException(\textcolor{stringliteral}{"{}Playlist\ no\ encontrada"{}}));}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00117}00117\ }
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00118}00118\ \ \ \ \ \ \ \ \ List<Song>\ songs\ =\ deuspotifyService.findSongsByIds(songIds);}
-\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00119}00119\ \ \ \ \ \ \ \ \ playlist.setSongs(songs);}
+\DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00119}00119\ \ \ \ \ \ \ \ \ playlist.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_af922ddea356269da7af372a5dffefe72}{setSongs}}(songs);}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00120}00120\ }
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ deuspotifyService.updatePlaylist(\textcolor{keywordtype}{id},\ playlist);}
 \DoxyCodeLine{\Hypertarget{_playlist_controller_8java_source_l00122}00122\ \ \ \ \ \}}

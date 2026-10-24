@@ -1,6 +1,21 @@
 \doxysection{src/main/java/com/deusto/deuspotify/services/\+Profile\+Service.java File Reference}
 \hypertarget{_profile_service_8java}{}\label{_profile_service_8java}\index{src/main/java/com/deusto/deuspotify/services/ProfileService.java@{src/main/java/com/deusto/deuspotify/services/ProfileService.java}}
 {\ttfamily import com.\+deusto.\+deuspotify.\+model.\+Profile;}\newline
+{\ttfamily import com.\+deusto.\+deuspotify.\+model.\+Song;}\newline
+{\ttfamily import com.\+deusto.\+deuspotify.\+repositories.\+Profile\+Repository;}\newline
+{\ttfamily import com.\+deusto.\+deuspotify.\+repositories.\+Song\+Repository;}\newline
+{\ttfamily import org.\+springframework.\+security.\+core.\+userdetails.\+User\+Details;}\newline
+{\ttfamily import org.\+springframework.\+security.\+core.\+userdetails.\+User\+Details\+Service;}\newline
+{\ttfamily import org.\+springframework.\+security.\+core.\+userdetails.\+Username\+Not\+Found\+Exception;}\newline
+{\ttfamily import org.\+springframework.\+security.\+crypto.\+password.\+Password\+Encoder;}\newline
+{\ttfamily import org.\+springframework.\+stereotype.\+Service;}\newline
+{\ttfamily import org.\+springframework.\+transaction.\+annotation.\+Transactional;}\newline
+{\ttfamily import org.\+springframework.\+context.\+annotation.\+Lazy;}\newline
+{\ttfamily import com.\+deusto.\+deuspotify.\+security.\+Jwt\+Util;}\newline
+{\ttfamily import jakarta.\+servlet.\+http.\+Http\+Servlet\+Request;}\newline
+{\ttfamily import org.\+springframework.\+beans.\+factory.\+annotation.\+Autowired;}\newline
+{\ttfamily import java.\+util.\+List;}\newline
+{\ttfamily import java.\+util.\+Optional;}\newline
 \doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 

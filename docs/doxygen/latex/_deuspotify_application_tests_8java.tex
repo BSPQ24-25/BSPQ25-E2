@@ -1,6 +1,52 @@
 \doxysection{src/test/java/com/deusto/deuspotify/\+Deuspotify\+Application\+Tests.java File Reference}
 \hypertarget{_deuspotify_application_tests_8java}{}\label{_deuspotify_application_tests_8java}\index{src/test/java/com/deusto/deuspotify/DeuspotifyApplicationTests.java@{src/test/java/com/deusto/deuspotify/DeuspotifyApplicationTests.java}}
 {\ttfamily import com.\+deusto.\+deuspotify.\+model.\+Profile;}\newline
+{\ttfamily import com.\+deusto.\+deuspotify.\+model.\+Playlist;}\newline
+{\ttfamily import com.\+deusto.\+deuspotify.\+model.\+Song;}\newline
+{\ttfamily import com.\+deusto.\+deuspotify.\+repositories.\+Profile\+Repository;}\newline
+{\ttfamily import com.\+deusto.\+deuspotify.\+repositories.\+Playlist\+Repository;}\newline
+{\ttfamily import com.\+deusto.\+deuspotify.\+repositories.\+Song\+Repository;}\newline
+{\ttfamily import com.\+deusto.\+deuspotify.\+security.\+Jwt\+Util;}\newline
+{\ttfamily import com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service;}\newline
+{\ttfamily import com.\+deusto.\+deuspotify.\+services.\+Deuspotify\+Service\+Impl;}\newline
+{\ttfamily import com.\+deusto.\+deuspotify.\+services.\+Profile\+Service;}\newline
+{\ttfamily import jakarta.\+servlet.\+http.\+Http\+Servlet\+Request;}\newline
+{\ttfamily import com.\+deusto.\+deuspotify.\+DTO.\+Playlist\+DTO;}\newline
+{\ttfamily import com.\+deusto.\+deuspotify.\+DTO.\+Profile\+DTO;}\newline
+{\ttfamily import com.\+deusto.\+deuspotify.\+DTO.\+Song\+DTO;}\newline
+{\ttfamily import com.\+deusto.\+deuspotify.\+assembler.\+Playlist\+Assembler;}\newline
+{\ttfamily import com.\+deusto.\+deuspotify.\+assembler.\+Profile\+Assembler;}\newline
+{\ttfamily import com.\+deusto.\+deuspotify.\+assembler.\+Song\+Assembler;}\newline
+{\ttfamily import com.\+deusto.\+deuspotify.\+controllers.\+Auth\+Controller;}\newline
+{\ttfamily import org.\+junit.\+jupiter.\+api.\+Before\+Each;}\newline
+{\ttfamily import org.\+junit.\+jupiter.\+api.\+Test;}\newline
+{\ttfamily import org.\+mockito.\+Inject\+Mocks;}\newline
+{\ttfamily import org.\+mockito.\+Mock;}\newline
+{\ttfamily import org.\+mockito.\+Mockito\+Annotations;}\newline
+{\ttfamily import org.\+springframework.\+boot.\+test.\+context.\+Spring\+Boot\+Test;}\newline
+{\ttfamily import org.\+springframework.\+http.\+Response\+Entity;}\newline
+{\ttfamily import org.\+springframework.\+mock.\+web.\+Mock\+Multipart\+File;}\newline
+{\ttfamily import org.\+springframework.\+security.\+authentication.\+Authentication\+Manager;}\newline
+{\ttfamily import org.\+springframework.\+security.\+authentication.\+Username\+Password\+Authentication\+Token;}\newline
+{\ttfamily import org.\+springframework.\+security.\+core.\+userdetails.\+User\+Details;}\newline
+{\ttfamily import org.\+springframework.\+security.\+core.\+userdetails.\+Username\+Not\+Found\+Exception;}\newline
+{\ttfamily import org.\+springframework.\+security.\+crypto.\+password.\+Password\+Encoder;}\newline
+{\ttfamily import org.\+springframework.\+test.\+util.\+Reflection\+Test\+Utils;}\newline
+{\ttfamily import org.\+springframework.\+web.\+multipart.\+Multipart\+File;}\newline
+{\ttfamily import io.\+jsonwebtoken.\+Claims;}\newline
+{\ttfamily import java.\+nio.\+file.\+Files;}\newline
+{\ttfamily import java.\+nio.\+file.\+Path;}\newline
+{\ttfamily import java.\+nio.\+file.\+Paths;}\newline
+{\ttfamily import java.\+util.\+Date;}\newline
+{\ttfamily import java.\+util.\+List;}\newline
+{\ttfamily import java.\+util.\+Map;}\newline
+{\ttfamily import java.\+util.\+Optional;}\newline
+{\ttfamily import java.\+util.\+Array\+List;}\newline
+{\ttfamily import java.\+util.\+Collections;}\newline
+{\ttfamily import java.\+util.\+Arrays;}\newline
+{\ttfamily import org.\+junit.\+jupiter.\+api.\+Assertions.\texorpdfstring{$\ast$}{*};}\newline
+{\ttfamily import org.\+mockito.\+Argument\+Matchers.\+any;}\newline
+{\ttfamily import org.\+mockito.\+Mockito.\texorpdfstring{$\ast$}{*};}\newline
 \doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 

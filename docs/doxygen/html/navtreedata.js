@@ -27,7 +27,7 @@ var NAVTREE =
   [ "SpringBootLibrary", "index.html", [
     [ "Test List", "test.html", null ],
     [ "Packages", "namespaces.html", [
-      [ "Package List", "namespaces.html", null ]
+      [ "Package List", "namespaces.html", "namespaces_dup" ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
@@ -47,8 +47,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_auth_controller_8java.html",
-"classcom_1_1deusto_1_1deuspotify_1_1services_1_1_deuspotify_service_impl.html#ae6d03f51856755a403004b64f235b925"
+"classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller.html#a6f28d1db06d26dce4b424c7adca3fb93",
+"functions_func.html"
 ];
 
-var SYNCONMSG = 'click to disable panel synchronisation';
-var SYNCOFFMSG = 'click to enable panel synchronisation';
+var SYNCONMSG = 'click to disable panel synchronization';
+var SYNCOFFMSG = 'click to enable panel synchronization';
+var LISTOFALLMEMBERS = 'List of all members';

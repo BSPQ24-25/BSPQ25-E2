@@ -3,6 +3,7 @@
 \mbox{\hyperlink{_i18n_controller_8java}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00005}00005\ }
 \DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00006}00006\ \textcolor{keyword}{package\ }com.deusto.deuspotify.controllers;}
 \DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00007}00007\ }
 \DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00008}00008\ \textcolor{keyword}{import}\ org.springframework.beans.factory.annotation.Value;}
@@ -19,7 +20,7 @@
 \DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00019}00019\ \textcolor{keyword}{import}\ java.io.Reader;}
 \DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00020}00020\ }
 \DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00025}00025\ @RestController}
-\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00026}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller}{00026}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller}{I18nController}}\ \{}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00026}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller}{00026}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller_a98395c12cb003c8ec087d335e262a113}{I18nController}}\ \{}
 \DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00027}00027\ }
 \DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00028}00028\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{final}\ MessageSource\ messageSource;}
 \DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00029}00029\ }
@@ -40,7 +41,7 @@
 \DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00048}00048\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00049}00049\ }
 \DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00056}00056\ \ \ \ \ @GetMapping(\textcolor{stringliteral}{"{}/api/i18n"{}})}
-\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00057}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller_a2508f2c3c5582a01647c84c24225ca93}{00057}}\ \ \ \ \ public\ Map<String,\ String>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller_a2508f2c3c5582a01647c84c24225ca93}{getTranslations}}(@RequestParam(value\ =\ "{}lang"{},\ required\ =\ false)\ String\ lang)\ throws\ IOException\ \{}
+\DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00057}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller_a2508f2c3c5582a01647c84c24225ca93}{00057}}\ \ \ \ \ public\ Map<String,\ String>\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_i18n_controller_a2508f2c3c5582a01647c84c24225ca93}{getTranslations}}(@RequestParam(value\ =\ \textcolor{stringliteral}{"{}lang"{}},\ required\ =\ false)\ String\ lang)\ throws\ IOException\ \{}
 \DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ Locale\ locale\ =\ \textcolor{keywordflow}{switch}\ (lang\ !=\ \textcolor{keyword}{null}\ ?\ lang\ :\ \textcolor{stringliteral}{"{}es"{}})\ \{}
 \DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}en"{}}\ -\/>\ Locale.ENGLISH;}
 \DoxyCodeLine{\Hypertarget{_i18n_controller_8java_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}eu"{}}\ -\/>\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}eu"{}});}

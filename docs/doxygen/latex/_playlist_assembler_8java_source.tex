@@ -3,6 +3,7 @@
 \mbox{\hyperlink{_playlist_assembler_8java}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00005}00005\ }
 \DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00006}\mbox{\hyperlink{namespacecom_1_1deusto_1_1deuspotify_1_1assembler}{00006}}\ \textcolor{keyword}{package\ }com.deusto.deuspotify.assembler;}
 \DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00007}00007\ }
 \DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00008}00008\ \textcolor{keyword}{import}\ com.deusto.deuspotify.model.Playlist;}
@@ -15,34 +16,34 @@
 \DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00015}00015\ }
 \DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00020}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler}{00020}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler}{PlaylistAssembler}}\ \{}
 \DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00021}00021\ }
-\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00027}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler_a0747e7edb176be5ebb50ef8df7edda9f}{00027}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ PlaylistDTO\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler_a0747e7edb176be5ebb50ef8df7edda9f}{toDTO}}(Playlist\ playlist)\ \{}
+\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00027}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler_a0747e7edb176be5ebb50ef8df7edda9f}{00027}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1_d_t_o_1_1_playlist_d_t_o}{PlaylistDTO}}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler_a0747e7edb176be5ebb50ef8df7edda9f}{toDTO}}(\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}}\ playlist)\ \{}
 \DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (playlist\ ==\ \textcolor{keyword}{null})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
 \DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00029}00029\ }
-\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00030}00030\ \ \ \ \ \ \ \ \ List<SongDTO>\ songDTOs\ =\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler}{SongAssembler}}.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a79a720faf60db34ee2c33398e4b7cb61}{toDTOList}}(playlist.getSongs());}
+\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00030}00030\ \ \ \ \ \ \ \ \ List<SongDTO>\ songDTOs\ =\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler}{SongAssembler}}.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_a79a720faf60db34ee2c33398e4b7cb61}{toDTOList}}(playlist.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a40719e6c50d7791c214ed6130339c3ce}{getSongs}}());}
 \DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00031}00031\ }
-\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ PlaylistDTO(}
-\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playlist.getId(),}
-\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playlist.getName(),}
-\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playlist.getOwners(),}
+\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1_d_t_o_1_1_playlist_d_t_o}{PlaylistDTO}}(}
+\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playlist.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_ad4c00ec19de66dd60e5d14fbaa3beb30}{getId}}(),}
+\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playlist.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a168e32ed6a17d95b8e04aeb31e7ed645}{getName}}(),}
+\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playlist.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_ac120abcefd2925b18b2603c381b3cd9b}{getOwners}}(),}
 \DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playlist.isPublic(),}
 \DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ songDTOs,}
-\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playlist.getNumberOfSongs(),}
-\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playlist.getOrder()}
+\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playlist.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a7adfaaf6a76b2f42e8013752d82934df}{getNumberOfSongs}}(),}
+\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playlist.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a86ae5f81c0820faaadcb4b7ab7b8e701}{getOrder}}()}
 \DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00040}00040\ \ \ \ \ \ \ \ \ );}
 \DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00041}00041\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00042}00042\ }
-\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00048}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler_a448675ab042e8138dc6698081520d857}{00048}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ Playlist\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler_a448675ab042e8138dc6698081520d857}{toEntity}}(PlaylistDTO\ dto)\ \{}
+\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00048}\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler_a448675ab042e8138dc6698081520d857}{00048}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_playlist_assembler_a448675ab042e8138dc6698081520d857}{toEntity}}(\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1_d_t_o_1_1_playlist_d_t_o}{PlaylistDTO}}\ dto)\ \{}
 \DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dto\ ==\ \textcolor{keyword}{null})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
 \DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00050}00050\ }
-\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00051}00051\ \ \ \ \ \ \ \ \ List<Song>\ songs\ =\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler}{SongAssembler}}.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_afc7bf8dcea2b2f7bd1cb25c7cea1b35d}{toEntityList}}(dto.getSongs());}
+\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00051}00051\ \ \ \ \ \ \ \ \ List<Song>\ songs\ =\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler}{SongAssembler}}.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1assembler_1_1_song_assembler_afc7bf8dcea2b2f7bd1cb25c7cea1b35d}{toEntityList}}(dto.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1_d_t_o_1_1_playlist_d_t_o_a446d772f49959d59d20d25a958464334}{getSongs}}());}
 \DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00052}00052\ }
-\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00053}00053\ \ \ \ \ \ \ \ \ Playlist\ playlist\ =\ \textcolor{keyword}{new}\ Playlist();}
-\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ playlist.setId(dto.getId());}
-\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ playlist.setName(dto.getName());}
-\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00056}00056\ \ \ \ \ \ \ \ \ playlist.setOwners(dto.getOwners());}
-\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00057}00057\ \ \ \ \ \ \ \ \ playlist.setPublic(dto.isPublic());}
-\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ playlist.setSongs(songs);}
-\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ playlist.setOrder(dto.getOrder());}
+\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00053}00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}}\ playlist\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist}{Playlist}}();}
+\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00054}00054\ \ \ \ \ \ \ \ \ playlist.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a1b5d50353efdd55486875ca756bb65fe}{setId}}(dto.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1_d_t_o_1_1_playlist_d_t_o_a8cfdf89a93fe4807a618b1d6b782113c}{getId}}());}
+\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ playlist.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a962e49d054176316410d07d45d80ef4b}{setName}}(dto.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1_d_t_o_1_1_playlist_d_t_o_a07be53a6f99c17428e80bc54e75762ac}{getName}}());}
+\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00056}00056\ \ \ \ \ \ \ \ \ playlist.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_a839490a7218c52464c90c69a8563b9aa}{setOwners}}(dto.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1_d_t_o_1_1_playlist_d_t_o_a4dfcd077e340ad6e498d89f35ff7e8c2}{getOwners}}());}
+\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00057}00057\ \ \ \ \ \ \ \ \ playlist.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_abbc76280f389509b495a53a0cd7440c8}{setPublic}}(dto.isPublic());}
+\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00058}00058\ \ \ \ \ \ \ \ \ playlist.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_af922ddea356269da7af372a5dffefe72}{setSongs}}(songs);}
+\DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ playlist.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_playlist_ad90c303b764cc92b8082e172b3876bd0}{setOrder}}(dto.\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1_d_t_o_1_1_playlist_d_t_o_a884f6434330d905982e48f5fdf5d0af0}{getOrder}}());}
 \DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00060}00060\ }
 \DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ playlist;}
 \DoxyCodeLine{\Hypertarget{_playlist_assembler_8java_source_l00062}00062\ \ \ \ \ \}}

@@ -8,21 +8,21 @@ Controller that handles HTTP requests related to user profiles.
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aafd928d8bffb499cfe909c06b585dcf1}{Profile\+Controller}} (Profile\+Service profile\+Service)
-\begin{DoxyCompactList}\small\item\em Constructor for Profile\+Controller. \end{DoxyCompactList}\item 
-Response\+Entity$<$ List$<$ Profile $>$ $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aa2b47fa3227ab5e0d89a13b987218cd2}{get\+All\+Profiles}} ()
+\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aafd928d8bffb499cfe909c06b585dcf1}{Profile\+Controller}} (\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service}{Profile\+Service}} profile\+Service)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller}{Profile\+Controller}. \end{DoxyCompactList}\item 
+Response\+Entity$<$ List$<$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile}{Profile}} $>$ $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aa2b47fa3227ab5e0d89a13b987218cd2}{get\+All\+Profiles}} ()
 \begin{DoxyCompactList}\small\item\em Retrieve all user profiles. \end{DoxyCompactList}\item 
-Response\+Entity$<$ Profile $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a6f28d1db06d26dce4b424c7adca3fb93}{get\+Profile\+By\+Id}} (@Path\+Variable Long id)
+Response\+Entity$<$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile}{Profile}} $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a6f28d1db06d26dce4b424c7adca3fb93}{get\+Profile\+By\+Id}} (@Path\+Variable Long id)
 \begin{DoxyCompactList}\small\item\em Retrieve a user profile by its ID. \end{DoxyCompactList}\item 
-Response\+Entity$<$?$>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a85c323ac44c3137d04d87e52bf5e85be}{create\+Profile}} (@Request\+Body Profile profile)
+Response\+Entity$<$?$>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a85c323ac44c3137d04d87e52bf5e85be}{create\+Profile}} (@Request\+Body \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile}{Profile}} profile)
 \begin{DoxyCompactList}\small\item\em Create a new user profile. \end{DoxyCompactList}\item 
-Response\+Entity$<$?$>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aca483baea8c901ccd60208ac5a2f2bb3}{update\+Profile}} (@Path\+Variable Long id, @Request\+Body Profile updated\+Profile)
+Response\+Entity$<$?$>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aca483baea8c901ccd60208ac5a2f2bb3}{update\+Profile}} (@Path\+Variable Long id, @Request\+Body \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile}{Profile}} updated\+Profile)
 \begin{DoxyCompactList}\small\item\em Update an existing user profile. \end{DoxyCompactList}\item 
 Response\+Entity$<$?$>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a99435c5acd0ce62086457fe294b0c7cb}{delete\+Profile}} (@Path\+Variable Long id)
 \begin{DoxyCompactList}\small\item\em Delete a user profile by its ID. \end{DoxyCompactList}\item 
-Response\+Entity$<$?$>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_ab8fafce1acbdc49400d0a2c00a656b6d}{login}} (@Request\+Body Profile login\+Request)
+Response\+Entity$<$?$>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_ab8fafce1acbdc49400d0a2c00a656b6d}{login}} (@Request\+Body \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile}{Profile}} login\+Request)
 \begin{DoxyCompactList}\small\item\em Authenticate a user by username and password. \end{DoxyCompactList}\item 
-List$<$ Song $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_ac47100767a3eaeda3c930f65482f03e7}{get\+Favourite\+Songs}} (@Path\+Variable String username)
+List$<$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song}{Song}} $>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_ac47100767a3eaeda3c930f65482f03e7}{get\+Favourite\+Songs}} (@Path\+Variable String username)
 \begin{DoxyCompactList}\small\item\em Retrieve the list of favourite songs for the given user. \end{DoxyCompactList}\item 
 Response\+Entity$<$?$>$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aeb865dea5af171595cab83eab0f2c351}{add\+Favourite\+Song}} ( @Path\+Variable String username, @Path\+Variable Long song\+Id)
 \begin{DoxyCompactList}\small\item\em Mark a song as favourite for the user. \end{DoxyCompactList}\item 
@@ -37,16 +37,18 @@ Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00025}{25}
 
 
 
+\label{doc-constructors}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_doc-constructors}
 \doxysubsection{Constructor \& Destructor Documentation}
-\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aafd928d8bffb499cfe909c06b585dcf1}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aafd928d8bffb499cfe909c06b585dcf1} 
-\index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!ProfileController@{ProfileController}}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aafd928d8bffb499cfe909c06b585dcf1}\index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!ProfileController@{ProfileController}}
 \index{ProfileController@{ProfileController}!com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}}
 \doxysubsubsection{\texorpdfstring{ProfileController()}{ProfileController()}}
-{\footnotesize\ttfamily com.\+deusto.\+deuspotify.\+controllers.\+Profile\+Controller.\+Profile\+Controller (\begin{DoxyParamCaption}\item[{Profile\+Service}]{profile\+Service }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aafd928d8bffb499cfe909c06b585dcf1} 
+com.\+deusto.\+deuspotify.\+controllers.\+Profile\+Controller.\+Profile\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1services_1_1_profile_service}{Profile\+Service}}}]{profile\+Service}{}\end{DoxyParamCaption})}
 
 
 
-Constructor for Profile\+Controller. 
+Constructor for \doxylink{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller}{Profile\+Controller}. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -59,12 +61,14 @@ Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00033}{33}
 
 
 
+\label{doc-func-members}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_doc-func-members}
 \doxysubsection{Member Function Documentation}
-\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aeb865dea5af171595cab83eab0f2c351}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aeb865dea5af171595cab83eab0f2c351} 
-\index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!addFavouriteSong@{addFavouriteSong}}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aeb865dea5af171595cab83eab0f2c351}\index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!addFavouriteSong@{addFavouriteSong}}
 \index{addFavouriteSong@{addFavouriteSong}!com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}}
 \doxysubsubsection{\texorpdfstring{addFavouriteSong()}{addFavouriteSong()}}
-{\footnotesize\ttfamily Response\+Entity$<$?$>$ com.\+deusto.\+deuspotify.\+controllers.\+Profile\+Controller.\+add\+Favourite\+Song (\begin{DoxyParamCaption}\item[{@Path\+Variable String}]{username,  }\item[{@Path\+Variable Long}]{song\+Id }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aeb865dea5af171595cab83eab0f2c351} 
+Response\+Entity$<$?$>$ com.\+deusto.\+deuspotify.\+controllers.\+Profile\+Controller.\+add\+Favourite\+Song (\begin{DoxyParamCaption}\item[{@Path\+Variable String}]{username}{, }\item[{@Path\+Variable Long}]{song\+Id}{}\end{DoxyParamCaption})}
 
 
 
@@ -84,11 +88,11 @@ Response\+Entity indicating success or error.
 
 Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00134}{134}} of file \mbox{\hyperlink{_profile_controller_8java_source}{Profile\+Controller.\+java}}.
 
-\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a85c323ac44c3137d04d87e52bf5e85be}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a85c323ac44c3137d04d87e52bf5e85be} 
-\index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!createProfile@{createProfile}}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a85c323ac44c3137d04d87e52bf5e85be}\index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!createProfile@{createProfile}}
 \index{createProfile@{createProfile}!com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}}
 \doxysubsubsection{\texorpdfstring{createProfile()}{createProfile()}}
-{\footnotesize\ttfamily Response\+Entity$<$?$>$ com.\+deusto.\+deuspotify.\+controllers.\+Profile\+Controller.\+create\+Profile (\begin{DoxyParamCaption}\item[{@Request\+Body Profile}]{profile }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a85c323ac44c3137d04d87e52bf5e85be} 
+Response\+Entity$<$?$>$ com.\+deusto.\+deuspotify.\+controllers.\+Profile\+Controller.\+create\+Profile (\begin{DoxyParamCaption}\item[{@Request\+Body \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile}{Profile}}}]{profile}{}\end{DoxyParamCaption})}
 
 
 
@@ -106,11 +110,11 @@ Response\+Entity with the created profile or error message.
 
 Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00064}{64}} of file \mbox{\hyperlink{_profile_controller_8java_source}{Profile\+Controller.\+java}}.
 
-\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a99435c5acd0ce62086457fe294b0c7cb}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a99435c5acd0ce62086457fe294b0c7cb} 
-\index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!deleteProfile@{deleteProfile}}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a99435c5acd0ce62086457fe294b0c7cb}\index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!deleteProfile@{deleteProfile}}
 \index{deleteProfile@{deleteProfile}!com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}}
 \doxysubsubsection{\texorpdfstring{deleteProfile()}{deleteProfile()}}
-{\footnotesize\ttfamily Response\+Entity$<$?$>$ com.\+deusto.\+deuspotify.\+controllers.\+Profile\+Controller.\+delete\+Profile (\begin{DoxyParamCaption}\item[{@Path\+Variable Long}]{id }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a99435c5acd0ce62086457fe294b0c7cb} 
+Response\+Entity$<$?$>$ com.\+deusto.\+deuspotify.\+controllers.\+Profile\+Controller.\+delete\+Profile (\begin{DoxyParamCaption}\item[{@Path\+Variable Long}]{id}{}\end{DoxyParamCaption})}
 
 
 
@@ -128,11 +132,11 @@ Response\+Entity indicating success or 404 if not found.
 
 Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00092}{92}} of file \mbox{\hyperlink{_profile_controller_8java_source}{Profile\+Controller.\+java}}.
 
-\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aa2b47fa3227ab5e0d89a13b987218cd2}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aa2b47fa3227ab5e0d89a13b987218cd2} 
-\index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!getAllProfiles@{getAllProfiles}}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aa2b47fa3227ab5e0d89a13b987218cd2}\index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!getAllProfiles@{getAllProfiles}}
 \index{getAllProfiles@{getAllProfiles}!com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}}
 \doxysubsubsection{\texorpdfstring{getAllProfiles()}{getAllProfiles()}}
-{\footnotesize\ttfamily Response\+Entity$<$ List$<$ Profile $>$ $>$ com.\+deusto.\+deuspotify.\+controllers.\+Profile\+Controller.\+get\+All\+Profiles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aa2b47fa3227ab5e0d89a13b987218cd2} 
+Response\+Entity$<$ List$<$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile}{Profile}} $>$ $>$ com.\+deusto.\+deuspotify.\+controllers.\+Profile\+Controller.\+get\+All\+Profiles (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 
 
@@ -145,11 +149,11 @@ Response\+Entity containing the list of profiles.
 
 Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00042}{42}} of file \mbox{\hyperlink{_profile_controller_8java_source}{Profile\+Controller.\+java}}.
 
-\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_ac47100767a3eaeda3c930f65482f03e7}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_ac47100767a3eaeda3c930f65482f03e7} 
-\index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!getFavouriteSongs@{getFavouriteSongs}}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_ac47100767a3eaeda3c930f65482f03e7}\index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!getFavouriteSongs@{getFavouriteSongs}}
 \index{getFavouriteSongs@{getFavouriteSongs}!com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}}
 \doxysubsubsection{\texorpdfstring{getFavouriteSongs()}{getFavouriteSongs()}}
-{\footnotesize\ttfamily List$<$ Song $>$ com.\+deusto.\+deuspotify.\+controllers.\+Profile\+Controller.\+get\+Favourite\+Songs (\begin{DoxyParamCaption}\item[{@Path\+Variable String}]{username }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_ac47100767a3eaeda3c930f65482f03e7} 
+List$<$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song}{Song}} $>$ com.\+deusto.\+deuspotify.\+controllers.\+Profile\+Controller.\+get\+Favourite\+Songs (\begin{DoxyParamCaption}\item[{@Path\+Variable String}]{username}{}\end{DoxyParamCaption})}
 
 
 
@@ -161,7 +165,7 @@ Retrieve the list of favourite songs for the given user.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-List of Song entities marked as favourites by the user. 
+List of \doxylink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_song}{Song} entities marked as favourites by the user. 
 \end{DoxyReturn}
 
 \begin{DoxyExceptions}{Exceptions}
@@ -172,11 +176,11 @@ List of Song entities marked as favourites by the user.
 
 Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00119}{119}} of file \mbox{\hyperlink{_profile_controller_8java_source}{Profile\+Controller.\+java}}.
 
-\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a6f28d1db06d26dce4b424c7adca3fb93}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a6f28d1db06d26dce4b424c7adca3fb93} 
-\index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!getProfileById@{getProfileById}}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a6f28d1db06d26dce4b424c7adca3fb93}\index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!getProfileById@{getProfileById}}
 \index{getProfileById@{getProfileById}!com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}}
 \doxysubsubsection{\texorpdfstring{getProfileById()}{getProfileById()}}
-{\footnotesize\ttfamily Response\+Entity$<$ Profile $>$ com.\+deusto.\+deuspotify.\+controllers.\+Profile\+Controller.\+get\+Profile\+By\+Id (\begin{DoxyParamCaption}\item[{@Path\+Variable Long}]{id }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a6f28d1db06d26dce4b424c7adca3fb93} 
+Response\+Entity$<$ \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile}{Profile}} $>$ com.\+deusto.\+deuspotify.\+controllers.\+Profile\+Controller.\+get\+Profile\+By\+Id (\begin{DoxyParamCaption}\item[{@Path\+Variable Long}]{id}{}\end{DoxyParamCaption})}
 
 
 
@@ -194,11 +198,11 @@ Response\+Entity containing the profile or 404 if not found.
 
 Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00052}{52}} of file \mbox{\hyperlink{_profile_controller_8java_source}{Profile\+Controller.\+java}}.
 
-\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_ab8fafce1acbdc49400d0a2c00a656b6d}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_ab8fafce1acbdc49400d0a2c00a656b6d} 
-\index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!login@{login}}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_ab8fafce1acbdc49400d0a2c00a656b6d}\index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!login@{login}}
 \index{login@{login}!com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}}
 \doxysubsubsection{\texorpdfstring{login()}{login()}}
-{\footnotesize\ttfamily Response\+Entity$<$?$>$ com.\+deusto.\+deuspotify.\+controllers.\+Profile\+Controller.\+login (\begin{DoxyParamCaption}\item[{@Request\+Body Profile}]{login\+Request }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_ab8fafce1acbdc49400d0a2c00a656b6d} 
+Response\+Entity$<$?$>$ com.\+deusto.\+deuspotify.\+controllers.\+Profile\+Controller.\+login (\begin{DoxyParamCaption}\item[{@Request\+Body \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile}{Profile}}}]{login\+Request}{}\end{DoxyParamCaption})}
 
 
 
@@ -216,11 +220,11 @@ Response\+Entity with the profile if login is successful, or 401 error.
 
 Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00106}{106}} of file \mbox{\hyperlink{_profile_controller_8java_source}{Profile\+Controller.\+java}}.
 
-\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a8ec9b10781b84eade4db802349bbbab0}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a8ec9b10781b84eade4db802349bbbab0} 
-\index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!removeFavouriteSong@{removeFavouriteSong}}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a8ec9b10781b84eade4db802349bbbab0}\index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!removeFavouriteSong@{removeFavouriteSong}}
 \index{removeFavouriteSong@{removeFavouriteSong}!com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}}
 \doxysubsubsection{\texorpdfstring{removeFavouriteSong()}{removeFavouriteSong()}}
-{\footnotesize\ttfamily Response\+Entity$<$?$>$ com.\+deusto.\+deuspotify.\+controllers.\+Profile\+Controller.\+remove\+Favourite\+Song (\begin{DoxyParamCaption}\item[{@Path\+Variable String}]{username,  }\item[{@Path\+Variable Long}]{song\+Id }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_a8ec9b10781b84eade4db802349bbbab0} 
+Response\+Entity$<$?$>$ com.\+deusto.\+deuspotify.\+controllers.\+Profile\+Controller.\+remove\+Favourite\+Song (\begin{DoxyParamCaption}\item[{@Path\+Variable String}]{username}{, }\item[{@Path\+Variable Long}]{song\+Id}{}\end{DoxyParamCaption})}
 
 
 
@@ -240,11 +244,11 @@ Response\+Entity indicating success or error.
 
 Definition at line \mbox{\hyperlink{_profile_controller_8java_source_l00154}{154}} of file \mbox{\hyperlink{_profile_controller_8java_source}{Profile\+Controller.\+java}}.
 
-\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aca483baea8c901ccd60208ac5a2f2bb3}\label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aca483baea8c901ccd60208ac5a2f2bb3} 
-\index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!updateProfile@{updateProfile}}
+\Hypertarget{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aca483baea8c901ccd60208ac5a2f2bb3}\index{com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}!updateProfile@{updateProfile}}
 \index{updateProfile@{updateProfile}!com.deusto.deuspotify.controllers.ProfileController@{com.deusto.deuspotify.controllers.ProfileController}}
 \doxysubsubsection{\texorpdfstring{updateProfile()}{updateProfile()}}
-{\footnotesize\ttfamily Response\+Entity$<$?$>$ com.\+deusto.\+deuspotify.\+controllers.\+Profile\+Controller.\+update\+Profile (\begin{DoxyParamCaption}\item[{@Path\+Variable Long}]{id,  }\item[{@Request\+Body Profile}]{updated\+Profile }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{classcom_1_1deusto_1_1deuspotify_1_1controllers_1_1_profile_controller_aca483baea8c901ccd60208ac5a2f2bb3} 
+Response\+Entity$<$?$>$ com.\+deusto.\+deuspotify.\+controllers.\+Profile\+Controller.\+update\+Profile (\begin{DoxyParamCaption}\item[{@Path\+Variable Long}]{id}{, }\item[{@Request\+Body \mbox{\hyperlink{classcom_1_1deusto_1_1deuspotify_1_1model_1_1_profile}{Profile}}}]{updated\+Profile}{}\end{DoxyParamCaption})}
 
 
 
